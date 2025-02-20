@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-quote',
   imports: [],
   templateUrl: './quote.component.html',
-  styleUrl: './quote.component.css'
+  styleUrl: './quote.component.css',
 })
-export class QuoteComponent {
-
-}
+export class QuoteComponent {}
