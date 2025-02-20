@@ -5,8 +5,6 @@ import { HoverDirective } from '../../directives/hover.directive';
   selector: 'app-features',
   imports: [HoverDirective],
   templateUrl: './features.component.html',
-  styleUrl: './features.component.css'
+  styleUrl: './features.component.css',
 })
-export class FeaturesComponent {
-
-}
+export class FeaturesComponent {}
