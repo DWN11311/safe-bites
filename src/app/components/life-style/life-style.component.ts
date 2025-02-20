@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './life-style.component.html',
   styleUrl: './life-style.component.css',
 })
+
 export class LifeStyleComponent {
   @Input() title = '';
   @Input() description = '';
