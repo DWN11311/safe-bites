@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterModule,CommonModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
   isMenuOpen = false;
@@ -15,5 +15,3 @@ export class HeaderComponent {
     this.isMenuOpen = !this.isMenuOpen;
   }
 }
-
-
