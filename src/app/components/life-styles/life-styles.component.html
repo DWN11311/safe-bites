@@ -1,9 +1,121 @@
+<h3
+  class="text-center text-3xl md:text-4xl text-[#102900B8] font-semibold mt-8">
+  Shop by Lifestyle
+</h3>
+
 <div
-  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:px-16 lg:px-0 xl:px-56 lg:gap-y-16 my-16 place-items-center">
-  <app-life-style></app-life-style>
-  <app-life-style></app-life-style>
-  <app-life-style></app-life-style>
-  <app-life-style></app-life-style>
-  <app-life-style></app-life-style>
-  <app-life-style></app-life-style>
+  class="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:px-16 gap-y-8 lg:px-24 xl:px-56 mb-16 mt-8 place-items-center">
+  <div>
+    <app-life-style
+      [title]="'Sugar-Free'"
+      [description]="'Enjoy sweetness without the sugar.'"
+      [image]="'images/home/lifeStyles/sugar-free.png'"
+      [width]="'w-40'"></app-life-style>
+  </div>
+  <div>
+    <app-life-style
+      [title]="'Gluten-Free'"
+      [description]="'Whole foods crafted without any gluten.'"
+      [image]="'images/home/lifeStyles/gluten-free.png'"
+      [width]="'w-40'"></app-life-style>
+  </div>
+  <div>
+    <app-life-style
+      [title]="'Low Cholestrol'"
+      [description]="'Support heart health with minimal cholestrol.'"
+      [image]="'images/home/lifeStyles/cholesterol.png'"
+      [width]="'w-40'"></app-life-style>
+  </div>
+  <div>
+    <app-life-style
+      [title]="'Keto'"
+      [description]="'Low-carb high-fat products for ketogenic lifestyles.'"
+      [image]="'images/home/lifeStyles/keto.png'"
+      [width]="'w-40'"></app-life-style>
+  </div>
+  <div>
+    <app-life-style
+      [title]="'Vegan'"
+      [description]="'100% plant-based free from animal products.'"
+      [image]="'images/home/lifeStyles/plant-based.png'"
+      [width]="'w-40'"></app-life-style>
+  </div>
+  <div>
+    <app-life-style
+      [title]="'Low Carb'"
+      [description]="'Carb-consious choices for a balanced diet.'"
+      [image]="'images/home/lifeStyles/simple-carbs.png'"
+      [width]="'w-40'"></app-life-style>
+  </div>
+</div>
+
+<div class="w-screen flex sm:hidden flex-col items-center mt-8 mb-8">
+  <div class="w-[300px] border">
+    <div
+      #slider
+      id="slider"
+      class="flex gap-4 transition-transform duration-300">
+      <div class="w-[300px] justify-between gap-4 shrink-0 flex">
+        <div>
+          <app-life-style
+            [title]="'first'"
+            [description]="'Enjoy sweetness without the sugar.'"
+            [image]="'images/home/lifeStyles/sugar-free.png'"
+            [width]="'w-24'"></app-life-style>
+        </div>
+        <div>
+          <app-life-style
+            [title]="'second'"
+            [description]="'Whole foods crafted without any gluten.'"
+            [image]="'images/home/lifeStyles/gluten-free.png'"
+            [width]="'w-24'"></app-life-style>
+        </div>
+      </div>
+      <div class="w-[300px] justify-center gap-4 shrink-0 flex">
+        <div>
+          <app-life-style
+            [title]="'third'"
+            [description]="'Enjoy sweetness without the sugar.'"
+            [image]="'images/home/lifeStyles/sugar-free.png'"
+            [width]="'w-24'"></app-life-style>
+        </div>
+        <div>
+          <app-life-style
+            [title]="'fourth'"
+            [description]="'Whole foods crafted without any gluten.'"
+            [image]="'images/home/lifeStyles/gluten-free.png'"
+            [width]="'w-24'"></app-life-style>
+        </div>
+      </div>
+      <div class="w-[300px] justify-center gap-4 shrink-0 flex">
+        <div>
+          <app-life-style
+            [title]="'fifth'"
+            [description]="'Enjoy sweetness without the sugar.'"
+            [image]="'images/home/lifeStyles/sugar-free.png'"
+            [width]="'w-24'"></app-life-style>
+        </div>
+        <div>
+          <app-life-style
+            [title]="'sixth'"
+            [description]="'Whole foods crafted without any gluten.'"
+            [image]="'images/home/lifeStyles/gluten-free.png'"
+            [width]="'w-24'"></app-life-style>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div (click)="dotsClick($event)" class="flex gap-2 mt-4">
+    @for (dot of [0, 1, 2]; track $index) {
+      @if (counter === dot) {
+        <div
+          class="size-4 border-2 border-[#C7CFC1] bg-[#C7CFC1] rounded-full cursor-pointer"
+          [attr.data-index]="dot"></div>
+      } @else {
+        <div
+          class="size-4 border-2 border-[#C7CFC1] rounded-full cursor-pointer"
+          [attr.data-index]="dot"></div>
+      }
+    }
+  </div>
 </div>
