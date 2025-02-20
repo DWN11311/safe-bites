@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-life-style',
@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: './life-style.component.html',
   styleUrl: './life-style.component.css',
 })
-export class LifeStyleComponent {}
+
+export class LifeStyleComponent {
+  @Input() title = '';
+  @Input() description = '';
+  @Input() image = '';
+  @Input() width = '';
+}
