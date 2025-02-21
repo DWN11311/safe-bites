@@ -1,36 +1,45 @@
-<div class="flex w-full  bg-[#f9f9eb] pb-8   xl:pb-4 " style="margin-top:10px">
+<div class="flex w-full bg-[#f9f9eb] pb-8 xl:pb-4">
   <!-- Left Section -->
-  <div class="w-full  md:w-1/2 " style="margin-top:24px ; margin-left:160px;">
+  <div class="w-full md:w-1/2 ml-auto">
     <h1 class="text-2xl md:text-4xl font-semibold text-[#2E3926]">About Us</h1>
-    <h6 class="text-xl md:text-3xl font-semibold text-[#2E3926] " style="margin-top:24px">
+    <h6
+      class="text-xl md:text-3xl font-semibold text-[#2E3926]"
+      style="margin-top: 24px">
       We strive to bring you health and quality in every meal.
     </h6>
-    <p class="text-[#696968] leading-relaxed text-l md:text-2xl" style="margin-top:12px">
+    <p
+      class="text-[#696968] leading-relaxed text-l md:text-2xl"
+      style="margin-top: 12px">
       Our company was founded in 2020 with the aim of offering healthy and
       natural products that meet the needs of the modern consumer. We believe
-      that a healthy diet is the foundation @if(!isExpanded){<span>...</span>}
+      that a healthy diet is the foundation
+      @if (!isExpanded) {
+        <span>...</span>
+      }
 
-    @if (isExpanded) {
-      <span class="text-[#696968] leading-relaxed md:text-2xl">
-        of a balanced life,which is why we
-        carefully select the finest ingredients and suppliers to ensure the
-        highest standards of quality and purity in every product we provide.
-      </span>
-    }
-
+      @if (isExpanded) {
+        <span class="text-[#696968] leading-relaxed md:text-2xl">
+          of a balanced life,which is why we carefully select the finest
+          ingredients and suppliers to ensure the highest standards of quality
+          and purity in every product we provide.
+        </span>
+      }
     </p>
 
     <a
-      class="font-bold text-[#2E3926] underline inline-block md:text-2xl" style="margin-top:24px ;"
+      class="font-bold text-[#2E3926] underline inline-block md:text-2xl"
+      style="margin-top: 24px"
       (click)="toggleText()"
       href="#"
-      >{{isExpanded ? 'Read Less' : 'Read More' }}</a
+      >{{ isExpanded ? 'Read Less' : 'Read More' }}</a
     >
   </div>
 
   <!-- Right Section -->
   <div class="w-full md:w-1/3 flex justify-center mt-6 md:mt-0">
-    <img src="./images/Logo.png" alt="Safe Bites Logo"class="w-4/5 md:w-full max-w-xs md:max-w-md object-contain" />
+    <img
+      src="./images/Logo.png"
+      alt="Safe Bites Logo"
+      class="w-4/5 md:w-full max-w-xs md:max-w-md object-contain" />
   </div>
 </div>
-
