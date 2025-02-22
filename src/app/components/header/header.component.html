@@ -1,67 +1,122 @@
-<div class="bg-[#4C782FB8] w-full  h-[133px] mx-auto flex sm:flex-col relative items-center justify-center">
-    <div class="max-w-[1000px] flex grow justify-center gap-4 sm:gap-8 items-center px-8 sm:px-16 w-full ">
-        <div>
-            <span
-                class=" text-nowrap max-w-[156px] h-[45px] font-[Montserrat] text-white font-[700] text-2xl sm:text-3xl leading-[45px]">Safe
-                Bites</span>
-        </div>
-        <div class="min-w-24 w-full h-[40px] relative">
-            <input type="text" placeholder="search"
-                class="placeholder-white w-full p-2  border-2 border-white rounded-[25px] focus:outline-none focus:ring-2 focus:ring-white">
-
-            <a href="#"><i class="fa-solid fa-magnifying-glass text-white absolute right-4 top-1/2 -translate-y-1/2
-                "></i></a>
-        </div>
-      `
-        <button
-            class="flex items-center gap-2 px-4 py-2 border-2 border-white text-[#4C782FB8] rounded-[25px] hover:bg-[#4C782FB8] hover:text-white bg-white transition">
-            <i class="fa-solid fa-user"></i>
-            Account
-        </button>
-
-        <div class=" w-[35px] h-[25px] text-white fa-2x top-1/2 -translate-y-1/2">
-            <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
-        </div>
-
+<div
+  class="bg-[#4C782FB8] w-full h-[133px] mx-auto flex sm:flex-col relative items-center justify-center">
+  <div
+    class="max-w-[1000px] flex grow justify-center gap-4 sm:gap-8 items-center px-8 sm:px-16 w-full">
+    <div>
+      <span
+        class="text-nowrap max-w-[156px] h-[45px] font-[Montserrat] text-white font-[700] text-2xl sm:text-3xl leading-[45px]"
+        >Safe Bites</span
+      >
     </div>
-   
-    <div class="relative">
-        <button class="text-white sm:hidden" (click)="toggleMenu()">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
-        <ul [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen}"
-            class="absolute top-full left-0 w-screen bg-[#4C782FB8] text-white sm:flex sm:static sm:w-auto sm:bg-transparent sm:p-0 grow sm:justify-center align gap-4 sm:gap-8 ">
-            <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="hover:underline"> Home
-                </a></li>
-            <li> <a routerLink="/" routerLinkActive="active" class="hover:underline">Products</a></li>
-            <ul class="relative">
-                <li class="categories">
-                    <a routerLink="/" routerLinkActive="active" class="hover:underline">Categories</a>
-                    <div class="dropdown">
-                        <div class="grid-container">
-                            <ul>
-                                <li><a routerLink="/" routerLinkActive="active"
-                                        class="text-3xl text-[#4C782FB8]">Diet</a></li>
-                                <li><a routerLink="/" routerLinkActive="active">Keto</a></li>
-                                <li><a routerLink="/" routerLinkActive="active">Vegan</a></li>
-                                <li><a routerLink="/" routerLinkActive="active">Low carb</a></li>
-                            </ul>
-                            <ul>
-                                <li><a routerLink="/" routerLinkActive="active"
-                                        class="text-3xl text-[#4C782FB8]">Illness</a></li>
-                                <li><a routerLink="/" routerLinkActive="active">Keto</a></li>
-                                <li><a routerLink="/" routerLinkActive="active">Vegan</a></li>
-                                <li><a routerLink="/" routerLinkActive="active">Low carb</a></li>
-                            </ul>
-                        </div>
-                    </div>
+    <div class="min-w-24 w-full h-[40px] relative">
+      <input
+        type="text"
+        placeholder="search"
+        class="placeholder-white w-full p-2 border-2 border-white rounded-[25px] focus:outline-none focus:ring-2 focus:ring-white" />
+
+      <a href="#"
+        ><i
+          class="fa-solid fa-magnifying-glass text-white absolute right-4 top-1/2 -translate-y-1/2"></i
+      ></a>
+    </div>
+    `
+    <button
+      class="flex items-center gap-2 px-4 py-2 border-2 border-white text-[#4C782FB8] rounded-[25px] hover:bg-[#4C782FB8] hover:text-white bg-white transition">
+      <i class="fa-solid fa-user"></i>
+      Account
+    </button>
+
+    <div class="w-[35px] h-[25px] text-white fa-2x top-1/2 -translate-y-1/2">
+      <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+  </div>
+
+  <div class="relative">
+    <button class="text-white sm:hidden" (click)="toggleMenu()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+    <ul
+      [ngClass]="{ block: isMenuOpen, hidden: !isMenuOpen }"
+      class="absolute top-full left-0 w-screen bg-[#4C782FB8] text-white sm:flex sm:static sm:w-auto sm:bg-transparent sm:p-0 grow sm:justify-center align gap-4 sm:gap-8">
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="hover:underline">
+          Home
+        </a>
+      </li>
+      <li>
+        <a routerLink="/" routerLinkActive="active" class="hover:underline"
+          >Products</a
+        >
+      </li>
+      <ul class="relative">
+        <li class="categories">
+          <a routerLink="/" routerLinkActive="active" class="hover:underline"
+            >Categories</a
+          >
+          <div class="dropdown">
+            <div class="grid-container">
+              <ul>
+                <li>
+                  <a
+                    routerLink="/"
+                    routerLinkActive="active"
+                    class="text-3xl text-[#4C782FB8]"
+                    >Diet</a
+                  >
                 </li>
-            </ul>
-            <li> <a routerLink="/" routerLinkActive="active" class="hover:underline hover:text-bold">ContactUs </a></li>
-            <li> <a routerLink="/" routerLinkActive="active" class="hover:underline">AboutUs </a></li>
-        </ul>
-       
-    </div>
+                <li><a routerLink="/" routerLinkActive="active">Keto</a></li>
+                <li><a routerLink="/" routerLinkActive="active">Vegan</a></li>
+                <li>
+                  <a routerLink="/" routerLinkActive="active">Low carb</a>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <a
+                    routerLink="/"
+                    routerLinkActive="active"
+                    class="text-3xl text-[#4C782FB8]"
+                    >Illness</a
+                  >
+                </li>
+                <li><a routerLink="/" routerLinkActive="active">Keto</a></li>
+                <li><a routerLink="/" routerLinkActive="active">Vegan</a></li>
+                <li>
+                  <a routerLink="/" routerLinkActive="active">Low carb</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          class="hover:underline hover:text-bold"
+          >ContactUs
+        </a>
+      </li>
+      <li>
+        <a routerLink="/" routerLinkActive="active" class="hover:underline"
+          >AboutUs
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
