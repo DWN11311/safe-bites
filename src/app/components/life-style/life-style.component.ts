@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-life-style',
   imports: [],
   templateUrl: './life-style.component.html',
-  styleUrl: './life-style.component.css'
+  styleUrl: './life-style.component.css',
 })
-export class LifeStyleComponent {
-
-}
+export class LifeStyleComponent {}
