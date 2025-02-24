@@ -1,0 +1,7 @@
+<app-product-card 
+    [totalItems]="data.length" 
+    [itemsPerPage]="itemsPerPage"
+    [currentPage]="currentPage"
+    [paginatedData]="paginatedData"
+    (onClick)="changePage($event)">
+</app-product-card>
