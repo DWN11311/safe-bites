@@ -7,6 +7,7 @@ import { CustomerReviewsComponent } from './customer-reviews/customer-reviews.co
 import { FeaturesComponent } from './components/features/features.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { QuoteComponent } from './components/quote/quote.component';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { QuoteComponent } from './components/quote/quote.component';
     FooterComponent,
     QuoteComponent,
     LifeStylesComponent,
+    LoginComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
