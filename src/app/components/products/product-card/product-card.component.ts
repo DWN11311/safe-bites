@@ -1,24 +1,33 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { HoverDirective } from '../../../directives/hover.directive';
 import { CommonModule } from '@angular/common';
-
+import { FilterComponent } from '../filter/filter.component';
 
 @Component({
   selector: 'app-product-card',
-  imports: [HoverDirective, CommonModule],
+  imports: [HoverDirective, CommonModule, FilterComponent],
   templateUrl: './product-card.component.html',
-  styleUrl: './product-card.component.css'
+  styleUrl: './product-card.component.css',
 })
-export class ProductCardComponent implements OnInit{
-  @Input() totalItems:number = 0;
-  @Input() currentPage:number = 1;
-  @Input() itemsPerPage:number = 0;
-  @Input() paginatedData: any[] = []; 
+export class ProductCardComponent implements OnInit {
+  @Input() totalItems: number = 0;
+  @Input() currentPage: number = 1;
+  @Input() itemsPerPage: number = 0;
+  @Input() paginatedData: any[] = [];
   @Output() onClick: EventEmitter<number> = new EventEmitter();
   totalPages = 0;
   pages: number[] = [];
 
-  constructor(){}
+  filterIsHidden: boolean = false;
+
+  constructor() {}
 
   ngOnInit(): void {
     this.setItemsPerPage();
@@ -50,5 +59,9 @@ export class ProductCardComponent implements OnInit{
     if (page > this.totalPages) return;
     if (page < 1) return;
     this.onClick.emit(page);
+  }
+
+  toggleFilterMenu() {
+    this.filterIsHidden = !this.filterIsHidden;
   }
 }

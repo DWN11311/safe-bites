@@ -1,40 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { LifeStylesComponent } from './components/life-styles/life-styles.component';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
-import { AboutUsComponent } from './components/about-us/about-us.component';
-import { CustomerReviewsComponent } from './customer-reviews/customer-reviews.component';
-import { FeaturesComponent } from './components/features/features.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { QuoteComponent } from './components/quote/quote.component';
-import { LoginComponent } from './login/login.component';
-import { SignUpComponent } from "./components/sign-up/sign-up/sign-up.component";
-import { HeroComponent } from './components/hero/hero.component';
-import { FilterComponent } from './components/filter/filter.component';
-import { ProductCardComponent } from "./components/products/product-card/product-card.component";
-import { ProductsComponent } from "./components/products/products/products.component";
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    HeaderComponent,
-    AboutUsComponent,
-    CustomerReviewsComponent,
-    FeaturesComponent,
-    FooterComponent,
-    QuoteComponent,
-    LifeStylesComponent,
-    LoginComponent
-    SignUpComponent
-    HeroComponent,
-    FilterComponent,
-    ProductCardComponent,
-    ProductsComponent
-],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  hiddenRoutes = ['/login', '/sign-up'];
   title = 'safe-bites';
+
+  constructor(private router: Router) {}
+
+  shouldDisplayLayout(): boolean {
+    return !this.hiddenRoutes.includes(this.router.url);
+  }
 }

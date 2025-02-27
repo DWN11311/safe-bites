@@ -1,13 +1,8 @@
-<app-header></app-header>
-<app-hero></app-hero>
-<app-features></app-features>
-<app-life-styles></app-life-styles>
-<app-quote></app-quote>
-<app-customer-reviews></app-customer-reviews>
-<app-about-us></app-about-us>
-<app-footer></app-footer>
-<app-filter></app-filter>
-<app-products></app-products>
-<app-footer></app-footer>
-<app-sign-up></app-sign-up>
-<app-login></app-login>
+@if (shouldDisplayLayout()) {
+  <app-header></app-header>
+}
+<router-outlet></router-outlet>
+
+@if (shouldDisplayLayout()) {
+  <app-footer></app-footer>
+}

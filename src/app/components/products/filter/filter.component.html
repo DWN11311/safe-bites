@@ -1,8 +1,8 @@
-<div class="w-full md:w-[20%] bg-[#FDFFF6] px-4 flex flex-col gap-4 py-4">
+<div class="w-full bg-[#FDFFF6] px-4 flex flex-col gap-4 py-4">
   <!-- Sort -->
   <div class="flex flex-col gap-2">
     <div
-      class="text-[#353932] flex justify-between items-center text-lg underline">
+      class="text-[#353932] flex justify-between items-center text-xl underline">
       <p>Sort by:</p>
     </div>
     <select
@@ -27,7 +27,7 @@
   <div>
     <div
       (click)="collapsePrice()"
-      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-lg cursor-pointer">
+      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-xl cursor-pointer">
       <p class="underline">Price</p>
       <span
         [ngClass]="{ '-rotate-[90deg]': priceIsCollapsed }"
@@ -73,7 +73,7 @@
   <div class="flex flex-col">
     <div
       (click)="collapseAvailability()"
-      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-lg cursor-pointer">
+      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-xl cursor-pointer">
       <p class="underline">Availability</p>
       <span
         [ngClass]="{ '-rotate-[90deg]': availabilityIsCollapsed }"
@@ -101,7 +101,7 @@
   <div>
     <div
       (click)="collapseCategory()"
-      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-lg cursor-pointer">
+      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-xl cursor-pointer">
       <p class="underline">Cateogry</p>
       <span
         [ngClass]="{ '-rotate-[90deg]': categoryIsCollapsed }"

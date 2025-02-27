@@ -3,9 +3,10 @@
   <!-- Upper half -->
   <div class="flex grow justify-center sm:gap-4 items-center w-full">
     <div>
-      <span
+      <a
+        routerLink="/"
         class="text-nowrap max-w-[156px] h-[45px] text-white font-bold text-2xl sm:text-3xl leading-[45px]"
-        >Safe Bites</span
+        >Safe Bites</a
       >
     </div>
     <div
@@ -29,7 +30,7 @@
       <i class="fa-solid fa-heart"></i>
     </button>
     <a
-      href=""
+      routerLink="/login"
       class="h-12 bg-white hidden sm:flex items-center justify-center px-4 gap-2 rounded-full text-[#7C9B66] font-semibold">
       <i class="fa-solid fa-user"></i>
       <span>Account</span>
@@ -48,7 +49,7 @@
       class="absolute top-full left-0 w-screen bg-[#4C782FB8] text-white hidden sm:flex sm:static sm:w-auto sm:bg-transparent sm:p-0 grow sm:justify-center align gap-4 sm:gap-8">
       <li>
         <a
-          routerLink="/"
+          routerLink=""
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           class="hover:underline">
@@ -56,13 +57,19 @@
         </a>
       </li>
       <li>
-        <a routerLink="/" routerLinkActive="active" class="hover:underline"
+        <a
+          routerLink="/products"
+          routerLinkActive="active"
+          class="hover:underline"
           >Products</a
         >
       </li>
       <ul class="relative">
         <li class="categories">
-          <a routerLink="/" routerLinkActive="active" class="hover:underline"
+          <a
+            routerLink="/products"
+            routerLinkActive="active"
+            class="hover:underline"
             >Categories</a
           >
           <div class="dropdown z-10">
@@ -70,31 +77,43 @@
               <ul>
                 <li>
                   <a
-                    routerLink="/"
+                    routerLink="/products"
                     routerLinkActive="active"
                     class="text-2xl text-[#4C782FB8]"
                     >Diet</a
                   >
                 </li>
-                <li><a routerLink="/" routerLinkActive="active">Keto</a></li>
-                <li><a routerLink="/" routerLinkActive="active">Vegan</a></li>
                 <li>
-                  <a routerLink="/" routerLinkActive="active">Low carb</a>
+                  <a routerLink="/products" routerLinkActive="active">Keto</a>
+                </li>
+                <li>
+                  <a routerLink="/products" routerLinkActive="active">Vegan</a>
+                </li>
+                <li>
+                  <a routerLink="/products" routerLinkActive="active"
+                    >Low carb</a
+                  >
                 </li>
               </ul>
               <ul>
                 <li>
                   <a
-                    routerLink="/"
+                    routerLink="/products"
                     routerLinkActive="active"
                     class="text-2xl text-[#4C782FB8]"
                     >Illness</a
                   >
                 </li>
-                <li><a routerLink="/" routerLinkActive="active">Keto</a></li>
-                <li><a routerLink="/" routerLinkActive="active">Vegan</a></li>
                 <li>
-                  <a routerLink="/" routerLinkActive="active">Low carb</a>
+                  <a routerLink="/products" routerLinkActive="active">Keto</a>
+                </li>
+                <li>
+                  <a routerLink="/products" routerLinkActive="active">Vegan</a>
+                </li>
+                <li>
+                  <a routerLink="/products" routerLinkActive="active"
+                    >Low carb</a
+                  >
                 </li>
               </ul>
             </div>
@@ -103,14 +122,17 @@
       </ul>
       <li>
         <a
-          routerLink="/"
+          routerLink="/contact-us"
           routerLinkActive="active"
           class="hover:underline hover:text-bold"
           >ContactUs
         </a>
       </li>
       <li>
-        <a routerLink="/" routerLinkActive="active" class="hover:underline"
+        <a
+          routerLink="/about-us"
+          routerLinkActive="active"
+          class="hover:underline"
           >AboutUs
         </a>
       </li>
@@ -127,14 +149,16 @@
     class="side-menu-content bg-white sm:hidden h-full w-[80vw] absolute overflow-y-scroll right-0 top-0"
     [ngClass]="{ open: isMenuOpen }">
     <div class="flex justify-between items-center w-full px-6">
-      <div class="flex items-center justify-center gap-2 py-4">
+      <a
+        routerLink="/login"
+        class="flex items-center justify-center gap-2 py-4">
         <span
           class="size-12 rounded-full flex items-center justify-center bg-[#7C9B66] text-white"
           ><i class="fa-solid fa-user"></i
         ></span>
 
         Profile
-      </div>
+      </a>
       <button
         class="text-[#7C9B66] sm:hidden flex items-center justify-center text-3xl"
         (click)="toggleMenu()">
@@ -159,7 +183,7 @@
       <li
         class="h-12 bg-[#C5CDBE] w-full px-4 flex items-center rounded text-[#141810] font-bold">
         <a
-          routerLink="/"
+          routerLink=""
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           class="hover:underline">
@@ -168,7 +192,10 @@
       </li>
       <li
         class="h-12 bg-[#C5CDBE]/40 w-full px-4 flex items-center rounded text-[#141810]">
-        <a routerLink="/" routerLinkActive="active" class="hover:underline"
+        <a
+          routerLink="/products"
+          routerLinkActive="active"
+          class="hover:underline"
           >Products</a
         >
       </li>
@@ -185,40 +212,40 @@
         [ngClass]="{ block: isSideOpen, hidden: !isSideOpen }">
         <li>
           <a
-            routerLink="/"
+            routerLink=""
             routerLinkActive="active"
             class="text-lg text-[#4C782FB8]"
             >Illness</a
           >
         </li>
         <li class="px-2">
-          <a routerLink="/" routerLinkActive="active">Keto</a>
+          <a routerLink="" routerLinkActive="active">Keto</a>
         </li>
         <li class="px-2">
-          <a routerLink="/" routerLinkActive="active">Vegan</a>
+          <a routerLink="" routerLinkActive="active">Vegan</a>
         </li>
         <li class="px-2">
-          <a routerLink="/" routerLinkActive="active">Low carb</a>
+          <a routerLink="" routerLinkActive="active">Low carb</a>
         </li>
 
         <li>
           <a
-            routerLink="/"
+            routerLink=""
             routerLinkActive="active"
             class="text-lg text-[#4C782FB8]"
             >Diet</a
           >
         </li>
-        <li><a routerLink="/" routerLinkActive="active">Keto</a></li>
-        <li><a routerLink="/" routerLinkActive="active">Vegan</a></li>
+        <li><a routerLink="" routerLinkActive="active">Keto</a></li>
+        <li><a routerLink="" routerLinkActive="active">Vegan</a></li>
         <li>
-          <a routerLink="/" routerLinkActive="active">Low carb</a>
+          <a routerLink="" routerLinkActive="active">Low carb</a>
         </li>
       </ul>
       <li
         class="h-12 bg-[#C5CDBE]/40 w-full px-4 flex items-center rounded text-[#141810]">
         <a
-          routerLink="/"
+          routerLink="/contact-us"
           routerLinkActive="active"
           class="hover:underline hover:text-bold"
           >ContactUs
@@ -226,7 +253,10 @@
       </li>
       <li
         class="h-12 bg-[#C5CDBE]/40 w-full px-4 flex items-center rounded text-[#141810]">
-        <a routerLink="/" routerLinkActive="active" class="hover:underline"
+        <a
+          routerLink="/about-us"
+          routerLinkActive="active"
+          class="hover:underline"
           >AboutUs
         </a>
       </li>
