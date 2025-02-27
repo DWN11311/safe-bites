@@ -1,13 +1,12 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { LifeStyleComponent } from '../life-style/life-style.component';
 
 @Component({
-  selector: 'app-life-styles',
-  imports: [LifeStyleComponent],
-  templateUrl: './life-styles.component.html',
-  styleUrl: './life-styles.component.css',
+  selector: 'app-hero',
+  imports: [],
+  templateUrl: './hero.component.html',
+  styleUrl: './hero.component.css',
 })
-export class LifeStylesComponent {
+export class HeroComponent {
   @ViewChild('slider') slider!: ElementRef<HTMLDivElement>;
 
   private intervalId: any;
@@ -26,11 +25,11 @@ export class LifeStylesComponent {
       }
 
       this.goToSlide(this.counter);
-    }, 10000);
+    }, 20000);
   }
 
   goToSlide(index: number): void {
-    index *= window.innerWidth + 16;
+    index *= window.innerWidth;
 
     this.slider.nativeElement.style.transform = `translate(-${index}px)`;
   }
@@ -63,15 +62,15 @@ export class LifeStylesComponent {
 
     if (
       this.touchStartX - this.touchEndX > swipeThreshold &&
-      this.counter < 2
+      this.counter < this.childCount - 1
     ) {
-      this.counter = (this.counter + 1) % 3;
+      this.counter = (this.counter + 1) % this.childCount;
       this.goToSlide(this.counter);
     } else if (
       this.touchEndX - this.touchStartX > swipeThreshold &&
       this.counter > 0
     ) {
-      this.counter = (this.counter - 1 + 3) % 3;
+      this.counter = (this.counter - 1 + this.childCount) % this.childCount;
       this.goToSlide(this.counter);
     }
   }
