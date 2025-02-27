@@ -53,3 +53,16 @@
 .active {
   font-weight: bold;
 }
+
+.rotate {
+  rotate: -90deg !important;
+}
+
+.side-menu-content {
+  transform: translateX(100vw);
+  transition: transform 0.5s ease-in-out;
+}
+
+.side-menu-content.open {
+  transform: translateX(0);
+}

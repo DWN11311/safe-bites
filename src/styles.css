@@ -8,3 +8,9 @@
 @theme {
   --color-text: #2e3528;
 }
+
+@layer utilities {
+  .-rotate-90 {
+    transform: rotate(-90deg);
+  }
+}
