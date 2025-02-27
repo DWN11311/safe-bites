@@ -1,28 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { LifeStylesComponent } from './components/life-styles/life-styles.component';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
-import { AboutUsComponent } from './components/about-us/about-us.component';
-import { CustomerReviewsComponent } from './customer-reviews/customer-reviews.component';
-import { FeaturesComponent } from './components/features/features.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { QuoteComponent } from './components/quote/quote.component';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    HeaderComponent,
-    AboutUsComponent,
-    CustomerReviewsComponent,
-    FeaturesComponent,
-    FooterComponent,
-    QuoteComponent,
-    LifeStylesComponent,
-  ],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  hiddenRoutes = ['/login', '/sign-up'];
   title = 'safe-bites';
+
+  constructor(private router: Router) {}
+
+  shouldDisplayLayout(): boolean {
+    return !this.hiddenRoutes.includes(this.router.url);
+  }
 }
