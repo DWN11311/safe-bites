@@ -12,28 +12,25 @@ export class LifeStylesComponent {
 
   private intervalId: any;
   counter = 0;
+  private childCount = 0;
 
   private touchStartX = 0;
   private touchEndX = 0;
 
   startSlider() {
     this.intervalId = setInterval(() => {
-      console.log('interval fired');
-      console.log(this.counter);
-      console.log(this.slider.nativeElement);
-
       this.counter++;
 
-      if (this.counter >= 3) {
+      if (this.counter >= this.childCount) {
         this.counter = 0;
       }
 
       this.goToSlide(this.counter);
-    }, 5000);
+    }, 10000);
   }
 
   goToSlide(index: number): void {
-    index *= 308;
+    index *= window.innerWidth + 16;
 
     this.slider.nativeElement.style.transform = `translate(-${index}px)`;
   }
@@ -49,6 +46,7 @@ export class LifeStylesComponent {
       'touchend',
       (event: TouchEvent) => this.onTouchEnd(event)
     );
+    this.childCount = this.slider.nativeElement.children.length;
   }
 
   onTouchStart(event: TouchEvent) {
