@@ -9,6 +9,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { QuoteComponent } from './components/quote/quote.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { ProductCardComponent } from "./components/products/product-card/product-card.component";
+import { ProductsComponent } from "./components/products/products/products.component";
 
 @Component({
   selector: 'app-root',
@@ -23,7 +25,9 @@ import { FilterComponent } from './components/filter/filter.component';
     LifeStylesComponent,
     HeroComponent,
     FilterComponent,
-  ],
+    ProductCardComponent,
+    ProductsComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

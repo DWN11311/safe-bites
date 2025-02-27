@@ -1,0 +1,17 @@
+.active{
+    background-color: #7CAD3F;
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.6;
+    font-weight: bold;
+}
+
+.disabled{
+    background-color: #fff;
+    border: none;
+    color: #2E39264D;
+    cursor: not-allowed;
+}
