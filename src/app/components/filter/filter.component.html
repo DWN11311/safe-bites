@@ -1,0 +1,167 @@
+<div class="w-full md:w-[20%] bg-[#FDFFF6] px-4 flex flex-col gap-4 py-4">
+  <!-- Sort -->
+  <div class="flex flex-col gap-2">
+    <div
+      class="text-[#353932] flex justify-between items-center text-lg underline">
+      <p>Sort by:</p>
+    </div>
+    <select
+      [(ngModel)]="sortBy"
+      name=""
+      class="rounded-xl border-2 border-[#353932] py-3.5 px-2 text-[#353932]/70">
+      <option value="">Featured</option>
+      <option value="price">Price</option>
+      <option value="rating">Rating</option>
+      <option value="date">List date</option>
+    </select>
+    <label for="" class="px-2">
+      <input [(ngModel)]="sortOrder" type="radio" name="sort" value="desc" />
+      Descending
+    </label>
+    <label for="" class="px-2">
+      <input [(ngModel)]="sortOrder" type="radio" name="sort" value="asc" />
+      Ascending
+    </label>
+  </div>
+  <!-- Price -->
+  <div>
+    <div
+      (click)="collapsePrice()"
+      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-lg cursor-pointer">
+      <p class="underline">Price</p>
+      <span
+        [ngClass]="{ '-rotate-[90deg]': priceIsCollapsed }"
+        class="transition-transform duration-300">
+        <i class="fa-solid fa-chevron-down"></i>
+      </span>
+    </div>
+
+    <div
+      class="overflow-hidden transition-[max-height] duration-300 ease-in-out"
+      [ngClass]="{
+        'max-h-0': priceIsCollapsed,
+        'max-h-[200px]': !priceIsCollapsed,
+      }">
+      <div class="flex justify-between gap-2 items-center py-2">
+        <div class="basis-[40%] relative">
+          <input
+            [(ngModel)]="minPrice"
+            type="text"
+            class="w-full border-2 rounded-xl p-2 border-[#353932]/70 text-right pl-5"
+            placeholder="0" />
+          <span
+            class="absolute left-2 top-1/2 -translate-y-1/2 text-[#353932]/70">
+            <i class="fa-solid fa-dollar-sign"></i>
+          </span>
+        </div>
+        <span class="font-semibold text-[#353932]/70">to</span>
+        <div class="basis-[40%] relative">
+          <input
+            [(ngModel)]="maxPrice"
+            type="text"
+            class="w-full border-2 rounded-xl p-2 border-[#353932]/70 text-right pl-5"
+            placeholder="9" />
+          <span
+            class="absolute left-2 top-1/2 -translate-y-1/2 text-[#353932]/70">
+            <i class="fa-solid fa-dollar-sign"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Availability -->
+  <div class="flex flex-col">
+    <div
+      (click)="collapseAvailability()"
+      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-lg cursor-pointer">
+      <p class="underline">Availability</p>
+      <span
+        [ngClass]="{ '-rotate-[90deg]': availabilityIsCollapsed }"
+        class="transition-transform">
+        <i class="fa-solid fa-chevron-down"></i>
+      </span>
+    </div>
+    <div
+      class="flex flex-col gap-2 overflow-hidden transition-[max-height] duration-300 ease-in-out"
+      [ngClass]="{
+        'max-h-0': availabilityIsCollapsed,
+        'max-h-[200px]': !availabilityIsCollapsed,
+      }">
+      <label for="" class="flex items-center gap-1 pt-2">
+        <input type="checkbox" class="size-4" [(ngModel)]="inStock" />
+        In stock
+      </label>
+      <label for="" class="flex items-center gap-1 pb-2">
+        <input type="checkbox" class="size-4" [(ngModel)]="outOfStock" />
+        Out of stock
+      </label>
+    </div>
+  </div>
+  <!-- Cateogry -->
+  <div>
+    <div
+      (click)="collapseCategory()"
+      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-lg cursor-pointer">
+      <p class="underline">Cateogry</p>
+      <span
+        [ngClass]="{ '-rotate-[90deg]': categoryIsCollapsed }"
+        class="transition-transform">
+        <i class="fa-solid fa-chevron-down"></i>
+      </span>
+    </div>
+    <div
+      [ngClass]="{
+        'max-h-0': categoryIsCollapsed,
+        'max-h-[9999px]': !categoryIsCollapsed,
+      }"
+      class="overflow-hidden transition-[max-height] duration-300">
+      @for (category of categories; track $index) {
+        <label for="category-type" class="flex gap-1 px-2 items-center py-2">
+          <input
+            type="checkbox"
+            name="category-type"
+            class="size-4"
+            [(ngModel)]="category.checked"
+            value="{{ category.type }}" />
+          {{ category.type }}
+          <span
+            [ngClass]="{ '-rotate-[90deg]': category.isCollapsed }"
+            (click)="collapseSubCateogry($index)"
+            class="size-6 ml-auto cursor-pointer transition-transform duration-300 flex items-center justify-center">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </label>
+        <div
+          [ngClass]="{
+            'max-h-0': category.isCollapsed,
+            'max-h-[9999px]': !category.isCollapsed,
+          }"
+          class="overflow-hidden transition-[max-height] duration-300 px-6">
+          <div class="flex flex-col gap-1">
+            @for (subCategory of category.categories; track $index) {
+              <label for="subcategory-type" class="flex gap-1 items-center">
+                <input
+                  type="checkbox"
+                  name="subcategory-type"
+                  class="size-4"
+                  value="{{ subCategory.name }}"
+                  [(ngModel)]="subCategory.checked" />
+                {{ subCategory.name }}
+              </label>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+  <!-- Apply -->
+  <button
+    (click)="applyFilter()"
+    class="py-3.5 w-full bg-[#7CAD3F] text-white rounded-xl mt-2 hover:bg-[#7CAD3F]/80 cursor-pointer transition-[background-color]">
+    Apply
+  </button>
+  <button
+    class="py-3.5 w-full rounded-xl border-2 border-[#7CAD3F] text-[#7CAD3F] cursor-pointer">
+    Clear All
+  </button>
+</div>

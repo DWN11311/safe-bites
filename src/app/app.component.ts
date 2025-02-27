@@ -8,6 +8,10 @@ import { FeaturesComponent } from './components/features/features.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { QuoteComponent } from './components/quote/quote.component';
 import { SignUpComponent } from "./components/sign-up/sign-up/sign-up.component";
+import { HeroComponent } from './components/hero/hero.component';
+import { FilterComponent } from './components/filter/filter.component';
+import { ProductCardComponent } from "./components/products/product-card/product-card.component";
+import { ProductsComponent } from "./components/products/products/products.component";
 
 @Component({
   selector: 'app-root',
@@ -21,6 +25,10 @@ import { SignUpComponent } from "./components/sign-up/sign-up/sign-up.component"
     QuoteComponent,
     LifeStylesComponent,
     SignUpComponent
+    HeroComponent,
+    FilterComponent,
+    ProductCardComponent,
+    ProductsComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
