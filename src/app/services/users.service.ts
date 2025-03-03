@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,4 +20,8 @@ export class UsersService {
   // createUser(user:User){
   //   return this.http.post(this.url, user);
   // }
+  // logIn
+  login(email: string, password: string): Observable<{token: string}> {
+    return this.http.post<{token: string}>(`${this.url}/login`, { email, password });
+  }
 }
