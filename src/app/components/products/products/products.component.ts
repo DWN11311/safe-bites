@@ -1,11 +1,11 @@
 import { Component, HostListener } from '@angular/core';
-import { ProductCardComponent } from "../product-card/product-card.component";
+import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
   selector: 'app-products',
   imports: [ProductCardComponent],
   templateUrl: './products.component.html',
-  styleUrl: './products.component.css'
+  styleUrl: './products.component.css',
 })
 export class ProductsComponent {
   itemsPerPage = 9;
@@ -13,83 +13,83 @@ export class ProductsComponent {
 
   data = [
     {
-      productName: "A"
+      productName: 'A',
     },
     {
-      productName: "B"
+      productName: 'B',
     },
     {
-      productName: "C"
+      productName: 'C',
     },
     {
-      productName: "D"
+      productName: 'D',
     },
     {
-      productName: "E"
+      productName: 'E',
     },
     {
-      productName: "F"
+      productName: 'F',
     },
     {
-      productName: "G"
+      productName: 'G',
     },
     {
-      productName: "H"
+      productName: 'H',
     },
     {
-      productName: "I"
+      productName: 'I',
     },
     {
-      productName: "J"
+      productName: 'J',
     },
     {
-      productName: "K"
+      productName: 'K',
     },
     {
-      productName: "L"
+      productName: 'L',
     },
     {
-      productName: "M"
+      productName: 'M',
     },
     {
-      productName: "N"
+      productName: 'N',
     },
     {
-      productName: "O"
+      productName: 'O',
     },
     {
-      productName: "P"
+      productName: 'P',
     },
     {
-      productName: "Q"
+      productName: 'Q',
     },
     {
-      productName: "R"
+      productName: 'R',
     },
     {
-      productName: "S"
+      productName: 'S',
     },
     {
-      productName: "T"
+      productName: 'T',
     },
     {
-      productName: "U"
+      productName: 'U',
     },
     {
-      productName: "V"
+      productName: 'V',
     },
     {
-      productName: "W"
+      productName: 'W',
     },
     {
-      productName: "X"
+      productName: 'X',
     },
     {
-      productName: "Y"
+      productName: 'Y',
     },
     {
-      productName: "Z"
-    }
+      productName: 'Z',
+    },
   ];
 
   ngOnInit() {
@@ -108,21 +108,21 @@ export class ProductsComponent {
     } else {
       this.itemsPerPage = 9;
     }
-    this.currentPage = 1; 
+    this.currentPage = 1;
     this.totalPages;
   }
 
-  get paginatedData(){
+  get paginatedData() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;
-    return this.data.slice(start,end);
+    return this.data.slice(start, end);
   }
 
   get totalPages() {
     return Math.ceil(this.data.length / this.itemsPerPage);
   }
 
-  changePage(page: number){
+  changePage(page: number) {
     this.currentPage = page;
   }
 }
