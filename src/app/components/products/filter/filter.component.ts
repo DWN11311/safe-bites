@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface FilterParams {
   sortBy?: string;
@@ -23,6 +24,40 @@ export class FilterComponent {
   priceIsCollapsed = false;
   availabilityIsCollapsed = false;
   categoryIsCollapsed = false;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.sortBy = params['sortBy'] || '';
+      this.sortOrder = params['order'] || '';
+      this.minPrice = params['minPrice'] || '';
+      this.maxPrice = params['maxPrice'] || '';
+      this.inStock = params['inStock'] || '';
+      this.outOfStock = params['outOfStock'] || '';
+
+      console.log(params['categoryTypes'].length, params['categories']);
+
+      const selectedCategoryTypes = params['categories'];
+      if (selectedCategoryTypes?.length) {
+        this.categories?.forEach(category => {
+          category.checked = selectedCategoryTypes.includes(category.type);
+        });
+      }
+
+      const selectedCategories = params['categories'];
+      if (selectedCategories?.length) {
+        this.categories.forEach(category => {
+          category.categories.forEach(subCategory => {
+            subCategory.checked = selectedCategories.includes(subCategory.name);
+          });
+        });
+      }
+    });
+  }
 
   sortBy = '';
   sortOrder = '';
@@ -97,6 +132,15 @@ export class FilterComponent {
       params as Record<string, string>
     ).toString();
 
-    console.log(queryString);
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: params,
+    });
+  }
+
+  clearFilters() {
+    this.router.navigate([], {
+      relativeTo: this.route,
+    });
   }
 }
