@@ -1,121 +1,97 @@
-
-
-<form class="h-[100vh] flex  lg:my-0 md:block  mx-8 pt-4" [formGroup]="loginForm" (ngSubmit)="login()">
-  <div class="flex flex-col-reverse md:grid md:grid-cols-[60%_40%]  rounded-lg overflow-hidden lg:max-w-[90%] w-full shadow-[0px_4px_10px_rgba(0,0,0,0.25)] mx-auto  justify-center ">
-
-    <!-- Form Section (Left Side) -->
-    <div class="lg:w-[80%] md:w-[90%] md:px-0 md:pt-4 lg:pt-6 py-6 px-6 mx-auto  ">
-      <h1 class="text-[#7CAD3F] md:text-4xl font-bold pb-4 text-3xl mb-2 pt-6">
-        Welcome Back
-      </h1>
-
-      <div class="h-[2px]">
-        <p *ngIf="errorMessage" class="text-red-600 text-sm mt-2">{{ errorMessage }}</p>
-      </div>
-      <!-- Form Fields -->
-      <div class="grid grid-cols-2 md:gap-8 gap-4 pt-4 "></div>
-      <div class="grid grid-cols-none pt-7 gap-7">
-        <!-- Email Input -->
-        <div class="relative w-full">
-
-          <input
-            formControlName="email"
-            type="text"
-            id="Email"
-            class="peer w-full p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
-            placeholder="Email"
-            autocomplete="off" />
-          <label
-            for="Email"
-            class="absolute left-3 top-3 text-gray-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#365D1C] not-peer-placeholder-shown:top-[-10px] not-peer-placeholder-shown:text-sm not-peer-placeholder-shown:text-[#365D1C] bg-white px-1 transition-all duration-300 ease-in-out"
-            >Email</label
-          >
-          <div class="h-[12px]">
-            <p *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
-               class="text-red-600 text-sm transition-all duration-300">
-              {{ getEmailError() }}
-            </p>
-          </div>
-        </div>
-
-
-        <!-- Password Input -->
-        <div class="relative w-full">
-          <input
-          formControlName="password"
-            type="password"
-            name="password"
-            id="Password"
-            class="peer md:mb-0 mb-2 w-full p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
-            placeholder="Password"
-            autocomplete="off" />
-          <label
-            for="Password"
-            class="absolute left-3 top-3 text-gray-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#365D1C] not-peer-placeholder-shown:top-[-10px] not-peer-placeholder-shown:text-sm not-peer-placeholder-shown:text-[#365D1C] bg-white px-1 transition-all duration-300 ease-in-out"
-            >Password</label
-          >
-          <div class="h-[7px]">
-            <p *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
-               class="text-red-600 text-sm transition-all duration-300">
-               {{ getPasswordError() }}
-            </p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Remember Me Checkbox -->
-      <div class="pb-8 md:pt-3 mt-4 flex items-center gap-2 my-auto">
-        <input type="checkbox" id="accept" class="w-4 h-4" />
-        <label for="accept" class="text-[#365D1C] text-sm font-normal">Remember Me</label>
-      </div>
-
-      <!-- Login Button -->
-      <button (click)="login() " [disabled]="loginForm.invalid"
-        class="text-xl p-3 border-[#365D1C] rounded-md w-full bg-[#365D1C] text-[#FAFAFA] shadow-[0px_4px_10px_rgba(54,93,28,0.25)] hover:bg-[#1F4109] hover:border-[#1F4109] hover:-translate-y-1 cursor-pointer transition-all duration-300 ease-in-out mb-2">
-        Login
-      </button>
-      <span class="text-[#365D1C] md:text-sm font-normal opacity-80 text-normal ml-3">
-        Don't have an account
-      </span>
-      <a routerLink="/sign-up" class="md:text-sm font-semibold underline text-[#65715e]">Sign up</a>
-
-      <!-- Divider with Text -->
-      <div class="flex items-center justify-center gap-3 w-full my-6 lg:my-7 ">
-        <div class="flex-1 h-[1px] bg-[#365D1C]"></div>
-        <p class="px-3 text-md text-[#152D05]">Or Login with</p>
-        <div class="flex-1 h-[1px] bg-[#365D1C]"></div>
-      </div>
-
-      <!-- Google Login Button -->
-      <button
-        class="  text-xl p-3 border rounded-md w-full  border-[#7CAD3F] text-[#7CAD3F] flex justify-center items-center gap-2 lg:mb-12 shadow-[0px_4px_10px_rgba(124,173,63,0.25)] hover:border-[#1F4109] hover:text-[#1F4109] hover:-translate-y-1 cursor-pointer transition-all duration-300 ease-in-out  ">
-        <img src="images/sign up/google color.svg" class="h-4 w-4" />
-        Google
-      </button>
-
-    </div>
-
-    <!-- Image Section (Right Side on Desktop) -->
-    <div class="relative hidden md:block ">
-      <img src="images/sign up/pexels-photo-9070110 2.svg" class="h-full object-cover ml-2 "  />
-
-      <!-- Overlay Text -->
-      <div class="flex items-center justify-center w-full">
-        <p class="absolute bottom-12 bg-[rgba(255,255,255,0.2)] rounded-md text-[#F5F8F5] font-semibold md:text-sm lg:text-lg">
-          Log in now and make wellness a lifestyle!
-        </p>
-      </div>
-
-      <!-- Logo Image (Top Left Corner) -->
-      <img src="images/sign up/Frame 1321317559.svg" class="absolute top-0 left-4 w-20 h-20" />
-
-      <!-- Back to Home Link (Top Right Corner) -->
-      <a routerLink="" class="absolute top-0  md:right-1/16 mt-4 bg-white/80 rounded-2xl py-1 px-4 flex justify-end items-center gap-2 text-[#213E0E] cursor-pointer text-base">
-        Back to Home
-        <img src="images/sign up/Vector.svg" class="h-4 w-4" />
-      </a>
-    </div>
-
+<form class="grid grid-cols-4 max-w-[1920px]  md:grid-cols-12 bg-[#FDFFF6] gap-x-[1.5rem] md:gap-x-[2.5rem] px-[1.5rem] md:px-[10rem]  cursor-default py-[1.8rem] md:py-0 " [formGroup]="loginForm"
+(ngSubmit)="login()">
+  <div class="col-span-5 md:-ml-[10rem] hidden md:block">
+    <img
+      src="images/sign up/pexels-photo-9070110 2.svg"
+      class="w-full h-full object-cover" />
   </div>
+  <div class="col-span-4  md:col-span-6 flex flex-col gap-6 md:col-start-7">
+    <div class="text-form  gap-1 flex flex-col md:gap-2">
+    <h1 class="text-[#7CAD3F]  font-bold text-[2.5rem]">Welcome Back</h1>
+    <p class="text-[#749A44] text-xl font-normal flex gap-1">Don't have an account?<span   routerLink="/sign-up"
+      class=" text-[#58595A] text-xl underline font-semibold cursor-pointer">Sign up</span></p>
+
+        <p *ngIf="errorMessage" class="min-h-[20px] text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1 pb-2">
+          {{ errorMessage }}
+        </p>
+
+    </div>
+
+
+    <!-- form -->
+    <div class=" form-field  col-span-4 flex flex-col gap-8">
+      <!-- email -->
+      <div class="field-email relative ">
+        <input formControlName="email"
+        id="Email" type="email" placeholder="Email" class="peer w-full  border-2 rounded-lg  h-12 p-3 border-[#7CAD3F] focus:outline-none focus:border-[#718b5d] placeholder-transparent "autocomplete="off">
+        <label for="Email" class="absolute left-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out
+        peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2
+        peer-focus:top-[-1.4rem] peer-focus:-translate-y-0
+        not-peer-placeholder-shown:top-[-1.4rem] not-peer-placeholder-shown:-translate-y-0
+        bg-[#FDFFF6] px-2 font-normal text-xl text-[#8B8C8A] flex gap-2 items-center"><i class="fa-solid fa-envelope  text-[#58595A]"></i>Email</label>
+        <div class="h-[12px]">
+          <p
+            *ngIf="
+              loginForm.get('email')?.invalid &&
+              loginForm.get('email')?.touched
+            "
+            class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
+            {{ getEmailError() }}
+          </p>
+          <p *ngIf="errorEmail" class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
+            {{ errorEmail }}
+          </p>
+        </div>
+
+        </div>
+    <!-- Password -->
+    <div class="flex flex-col gap-8 ">
+      <div class="field-password relative ">
+        <input    formControlName="password"
+        [type]="showPassword ? 'text' : 'password'"
+        id="Password"   autocomplete="off" type="password" placeholder="Password" class="peer w-full  border-2 rounded-lg  h-12 p-3 border-[#7CAD3F] focus:outline-none focus:border-[#718b5d] placeholder-transparent "autocomplete="off">
+        <label for="Password"  class="absolute left-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out
+        peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2
+        peer-focus:top-[-1.4rem] peer-focus:-translate-y-0
+        not-peer-placeholder-shown:top-[-1.4rem] not-peer-placeholder-shown:-translate-y-0
+        bg-[#FDFFF6] px-2 font-normal text-xl text-[#8B8C8A] flex gap-2 items-center"><i class="fa-solid fa-lock  text-[#58595A]"></i>Password</label>
+        <span class="absolute text-[#58595A] top-1/2 -translate-y-1/2 right-3 text-xl pointer-cursor "(click)="togglePassword()">
+          <li [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></li>
+        </span>
+        <div class="h-[7px]">
+          <p
+            *ngIf="
+              loginForm.get('password')?.invalid &&
+              loginForm.get('password')?.touched
+            "
+            class="text-sm md:text-xs lg:text-sm text-[#a40f0f]">
+            {{ getPasswordError() }}
+          </p>
+        </div>
+
+      </div>
+
+      <!-- <span class="h-6">error</span> -->
+      <!-- check box  -->
+      <div class="flex items-center gap-2">
+        <input type="checkbox" id ="check" formControlName="rememberMe" class="w-5 h-5">
+        <label for="check" class="text-[#7CAD3F] text-[1rem] font-normal">Remeber me</label>
+      </div>
+     </div>
+     <!-- buttons -->
+      <div class="buttons flex flex-col gap-8">
+        <button   (click)="login()"
+        [disabled]="loginForm.invalid"
+         class=" shadow-[0px_4px_10px_rgba(124,173,63,0.25)] p-3 w-full border rounded-lg h-12 bg-[#7CAD3F] text-[#F5F8F5] font-bold text-2xl flex items-center justify-center shadow-[rgba(116,154,68,0.25)] hover:-translate-y-1 transition-all duration-300 ease-in-out cursor-pointer">Log in</button>
+        <div class="flex w-full  gap-2 items-center"> <div class=" flex-1 h-[2px] bg-[#7CAD3F]"> </div> <p class="text-[#7CAD3F] font-semibold text-2xl">Or Sign in with</p> <div class=" flex-1 h-[2px] bg-[#7CAD3F]"> </div></div>
+        <button class=" gap-4 border-2 shadow-[0px_4px_10px_rgba(124,173,63,0.25)] p-3 w-full border-[#7CAD3F] rounded-lg h-12  text-[#7CAD3F] font-bold text-2xl flex items-center justify-center shadow-[rgba(116,154,68,0.25)] hover:-translate-y-1 transition-all duration-300 ease-in-out cursor-pointer"> <img src="images/sign up/google color.svg" class="h-6 w-6" />
+    Google</button>
+    <div  routerLink="" class="flex items-center cursor-pointer gap-2"><i class="fa-solid fa-chevron-left text-xl text-[#7CAD3F]"></i> <span
+      class="underline font-semibold text-xl text-[#7CAD3F] flex gap-2 items-center ">Back to Home</span></div>
+    </div>
+    </div></div>
+
 </form>
+
+
+
