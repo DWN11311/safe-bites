@@ -6,10 +6,9 @@ import { Product } from '../../models/product.model';
   selector: 'app-wishlistcard',
   imports: [HoverDirective],
   templateUrl: './wishlistcard.component.html',
-  styleUrl: './wishlistcard.component.css'
+  styleUrl: './wishlistcard.component.css',
 })
 export class WishlistcardComponent {
-
   @Input() product!: Product;
   @Output() AddToCard = new EventEmitter<Product>();
   @Output() RemoveFromWishlist = new EventEmitter<Product>();
@@ -22,4 +21,3 @@ export class WishlistcardComponent {
     this.RemoveFromWishlist.emit(this.product);
   }
 }
-

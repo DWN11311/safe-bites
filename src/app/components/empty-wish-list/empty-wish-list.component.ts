@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-empty-wish-list',
   imports: [],
   templateUrl: './empty-wish-list.component.html',
-  styleUrl: './empty-wish-list.component.css'
+  styleUrl: './empty-wish-list.component.css',
 })
-export class EmptyWishListComponent {
-
-}
+export class EmptyWishListComponent {}

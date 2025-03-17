@@ -21,7 +21,10 @@ export class UsersService {
   //   return this.http.post(this.url, user);
   // }
   // logIn
-  login(email: string, password: string): Observable<{token: string}> {
-    return this.http.post<{token: string}>(`${this.url}/login`, { email, password });
+  login(email: string, password: string): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${this.url}/login`, {
+      email,
+      password,
+    });
   }
 }

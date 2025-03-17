@@ -1,38 +1,37 @@
-<div class="bg-white rounded-lg shadow-2xl py-2 px-2 mb-5 flex flex-col justify-evenly items-center ">
-
-
-    <!-- images -->
-    <div>
-        <img [src]="product.images[0]" [appHover]="product.images[1]" alt="image1"
-            class="w-30 h-40 object-cover duration-300 ">
-
+<div class="bg-white rounded-lg shadow-2xl py-2 px-2 mb-5 flex flex-col justify-evenly items-center">
+  <!-- images -->
+  <div>
+    <img [src]="product.images[0].imageUrl" [appHover]="product.images[1].imageUrl" alt="image1"
+      class="w-30 h-40 object-cover duration-300" />
+  </div>
+  <!-- details -->
+  <div class="p-4">
+    <!-- price -->
+    <p class="text-lg mt-2 text-[#808080]">${{ product.price }}</p>
+    <!-- title -->
+    <h2 class="text-xl mt-2 font-semibold">{{ product.name }}</h2>
+    <!-- pref -->
+    <p class="text-xs py-1 px-3 mt-2">{{ product.brief }}</p>
+    <!-- evaluation -->
+    <div class="mt-2 flex items-center">
+      @for (star of [1, 2, 3, 4, 5]; track star) {
+      <i class="fa-solid fa-star" class="{{
+            product.rank >= star ? 'text-yellow-400' : 'text-gray-300'
+          }}">
+      </i>
+      }
     </div>
-    <!-- details -->
-    <div class="p-4">
-        <!-- price -->
-        <p class="text-lg mt-2 text-[#808080]">${{product.price}}</p>
-        <!-- title -->
-        <h2 class="text-xl mt-2 font-semibold"> {{product.title}}</h2>
-        <!-- pref -->
-        <p class="text-xs py-1 px-3 mt-2">{{product.brief}}</p>
-        <!-- evaluation -->
-        <div class="mt-2 flex items-center">
-            @for (star of [1, 2, 3, 4, 5]; track star) {
-            <i class="fa-solid fa-star" class="{{ product.rank >= star ? 'text-yellow-400' : 'text-gray-300' }}">
-            </i>
-            }
-        </div>
-        <!-- buttons -->
-        <div class="flex justify-between items-center mt-3 gap-4">
-            <!-- add to cart -->
-            <button (click)="addToCart()"
-                class=" border-2 rounded-lg bg-[#7CAD3F] hover:bg-[#5B8329] text-white p-1 sm:p-1 md:p-2 lg:p-3 text-sm md:text-sm  h-12 md:h-14 cursor-pointer">
-                <i class="fa-solid fa-cart-plus mr-1 "></i> add to cart
-            </button>
-            <!-- delete -->
-            <button class="cursor-pointer  " (click)="removeItem()">
-                <i class="fa-solid fa-trash mr-1  text-[#808080] text-3xl hover:text-[#464545]"></i>
-            </button>
-        </div>
+    <!-- buttons -->
+    <div class="flex justify-between items-center mt-3 gap-4">
+      <!-- add to cart -->
+      <button (click)="addToCart()"
+        class="border-2 rounded-lg bg-[#7CAD3F] hover:bg-[#5B8329] text-white p-1 sm:p-1 md:p-2 lg:p-3 text-sm md:text-sm h-12 md:h-14 cursor-pointer">
+        <i class="fa-solid fa-cart-plus mr-1"></i> add to cart
+      </button>
+      <!-- delete -->
+      <button class="cursor-pointer" (click)="removeItem()">
+        <i class="fa-solid fa-trash mr-1 text-[#808080] text-3xl hover:text-[#464545]"></i>
+      </button>
     </div>
+  </div>
 </div>

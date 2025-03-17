@@ -12,5 +12,5 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'wishList', component: WishListComponent },
-  { path: 'empty-wishList' ,component: EmptyWishListComponent}
+  { path: 'empty-wishList', component: EmptyWishListComponent },
 ];

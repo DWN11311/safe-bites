@@ -1,33 +1,36 @@
-<div class="text-[54px] text-[#7C9B66] mt-5 ml-10">
-    Your WishList
-</div>
+<div class="text-[54px] text-[#7C9B66] mt-5 ml-10">Your WishList</div>
 
-@if (products.length > 0){
-<div
+@if (products.length > 0) {
+  <div
     class="grid grid-cols-6 md:grid-cols-9 xl:grid-cols-12 gap-5 md:gap-10 lg:mx-[88px] sm:mx-[48px] mx-[24px] place-items-center">
     @for (product of products; track product.id) {
-    <app-wishlistcard [product]="product" (AddToCard)="AddToCard($event)"
-        (RemoveFromWishlist)="removeFromWishlist($event)" class="w-full col-span-3"></app-wishlistcard>
+      <app-wishlistcard
+        [product]="product"
+        (AddToCard)="AddToCard($event)"
+        (RemoveFromWishlist)="removeFromWishlist($event)"
+        class="w-full col-span-3"></app-wishlistcard>
     }
-</div>
+  </div>
 
-<div class="flex justify-end mt-5 mb-4 mr-12 gap-5">
-    <button (click)="showPopUp()"
-        class="text-[#7CAD3F] border-[#7CAD3F] border-2 p-3 rounded-lg h-12 md:h-14 cursor-pointer hover:bg-[#5B8329] hover:text-white">
-        Remove All
-        <i class="fa-solid fa-xmark mr-2 ml-2"></i> </button>
-    <button (click)="moveToCart()"
-        class="text-white border-2 rounded-lg bg-[#7CAD3F] hover:bg-[#5B8329] transition p-3 cursor-pointer ">
-        Move All to Cart
+  <div class="flex justify-end mt-5 mb-4 mr-12 gap-5">
+    <button
+      (click)="showPopUp()"
+      class="text-[#7CAD3F] border-[#7CAD3F] border-2 p-3 rounded-lg h-12 md:h-14 cursor-pointer hover:bg-[#5B8329] hover:text-white">
+      Remove All
+      <i class="fa-solid fa-xmark mr-2 ml-2"></i>
     </button>
-</div>
-
-}@else{
-<app-empty-wish-list></app-empty-wish-list>
+    <button
+      (click)="moveToCart()"
+      class="text-white border-2 rounded-lg bg-[#7CAD3F] hover:bg-[#5B8329] transition p-3 cursor-pointer">
+      Move All to Cart
+    </button>
+  </div>
+} @else {
+  <app-empty-wish-list></app-empty-wish-list>
 }
 
 @if (showPopup) {
-<app-pop-up (confirm)="removeAll()" (cancel)="showPopup=false"></app-pop-up>
+  <app-pop-up (confirm)="removeAll()" (cancel)="showPopup = false"></app-pop-up>
 }
 <!-- <div class="text-[54px] text-[#7C9B66] mt-5 ml-10">
     Your WishList
@@ -101,7 +104,6 @@
     </div>
 </div>
 } -->
-
 
 <!-- popUp -->
 <!-- @if (showPopup) {
