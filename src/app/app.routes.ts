@@ -14,6 +14,6 @@ export const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'wishList', component: WishListComponent },
   { path: 'empty-wishList', component: EmptyWishListComponent },
-  { path: 'login', component: LoginComponent,canActivate: [AuthGuard] },
-  { path: 'sign-up', component: SignUpComponent,canActivate: [AuthGuard]},
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
 ];

@@ -21,7 +21,7 @@ export class AppComponent {
   hiddenRoutes = ['/login', '/sign-up'];
   title = 'safe-bites';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   shouldDisplayLayout(): boolean {
     return !this.hiddenRoutes.includes(this.router.url);

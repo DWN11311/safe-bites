@@ -9,6 +9,6 @@ export interface Product {
 }
 
 export interface Image {
-  _id: string,
-  imageUrl: string
+  _id: string;
+  imageUrl: string;
 }

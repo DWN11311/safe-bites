@@ -42,26 +42,27 @@
       <div class="flex items-center gap-8">
         <!-- <span class="text-white font-semibold text-lg">Hello, {{ username }}</span> -->
 
-        <a (click)="logout()"
-           class="  cursor-pointer flex items-center  gap-2   px-4 py-2 rounded-full text-[#ffff] font-semibold shadow-sm border-1 border-[#ffff]">
+        <a
+          (click)="logout()"
+          class="cursor-pointer flex items-center gap-2 px-4 py-2 rounded-full text-[#ffff] font-semibold shadow-sm border-1 border-[#ffff]">
           <i class="fa-solid fa-right-from-bracket"></i> Logout
         </a>
       </div>
     </ng-container>
 
     <ng-template #signInTemplate>
-      <a routerLink="/login"
-         class="flex items-center gap-2  text-[#ffff] font-semibold ">
+      <a
+        routerLink="/login"
+        class="flex items-center gap-2 text-[#ffff] font-semibold">
         <i class="fa-solid fa-user"></i> Sign in
       </a>
       <span class="text-[#ffff]">|</span>
-      <a routerLink="/sign-up"
-      class="flex items-center text-[#ffff] font-semibold ">
-   Register
-   </a>
+      <a
+        routerLink="/sign-up"
+        class="flex items-center text-[#ffff] font-semibold">
+        Register
+      </a>
     </ng-template>
-
-
   </div>
 
   <!-- Lower Half -->

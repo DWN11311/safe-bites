@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProductsService } from '../../../services/products.service';
 import { Product } from '../../../models/product.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -10,39 +11,36 @@ import { Product } from '../../../models/product.model';
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
-  constructor(private productService: ProductsService) {}
+  constructor(
+    private productService: ProductsService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
   data: Array<Product> = [];
 
   ngOnInit() {
-    this.productService.getAllProducts().subscribe({
+    const queryString = this.router.url.split('?')[1] || '';
+
+    this.productService.getAllProducts(queryString).subscribe({
       next: (res: any) => {
         this.data = res.data;
         this.calculatePagination();
       },
-      error: () => { },
-      complete: () => { }
-    })
-  }
-  setItemsPerPage() {
-    const screenWidth = window.innerWidth;
-    if (screenWidth <= 768) {
-      this.itemsPerPage = 5;
-    } else {
-      this.itemsPerPage = 9;
-    }
-    this.currentPage = 1;
-    this.totalPages;
+      error: () => {},
+      complete: () => {},
+    });
+
+    this.router.events.subscribe(() => {
+      this.productService.getAllProducts(queryString).subscribe({
+        next: (res: any) => {
+          this.data = res.data;
+          this.calculatePagination();
+        },
+        error: () => {},
+        complete: () => {},
+      });
+    });
   }
 
-  get paginatedData() {
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    return this.data.slice(start, end);
-  }
-
-  calculatePagination() {
-  changePage(page: number) {
-    this.currentPage = page;
-  }
-
+  calculatePagination() {}
 }

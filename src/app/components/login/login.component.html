@@ -1,93 +1,133 @@
-<form class="grid grid-cols-4 max-w-[1920px]  md:grid-cols-12 bg-[#FDFFF6] gap-x-[1.5rem] md:gap-x-[2.5rem] px-[1.5rem] md:px-[10rem]  cursor-default py-[1.8rem] md:py-0 " [formGroup]="loginForm"
-(ngSubmit)="login()">
+<form
+  class="grid grid-cols-4 max-w-[1920px] md:grid-cols-12 bg-[#FDFFF6] gap-x-[1.5rem] md:gap-x-[2.5rem] px-[1.5rem] md:px-[10rem] cursor-default py-[1.8rem] md:py-0"
+  [formGroup]="loginForm"
+  (ngSubmit)="login()">
   <div class="col-span-5 md:-ml-[10rem] hidden md:block">
     <img
       src="images/sign up/pexels-photo-9070110 2.svg"
       class="w-full h-full object-cover" />
   </div>
-  <div class="col-span-4  md:col-span-6 flex flex-col gap-6 md:col-start-7">
-    <div class="text-form  gap-1 flex flex-col md:gap-2">
-    <h1 class="text-[#7CAD3F]  font-bold text-[2.5rem]">Welcome Back</h1>
-    <p class="text-[#749A44] text-xl font-normal flex gap-1">Don't have an account?<span   routerLink="/sign-up"
-      class=" text-[#58595A] text-xl underline font-semibold cursor-pointer">Sign up</span></p>
+  <div class="col-span-4 md:col-span-6 flex flex-col gap-6 md:col-start-7">
+    <div class="text-form gap-1 flex flex-col md:gap-2">
+      <h1 class="text-[#7CAD3F] font-bold text-[2.5rem]">Welcome Back</h1>
+      <p class="text-[#749A44] text-xl font-normal flex gap-1">
+        Don't have an account?<span
+          routerLink="/sign-up"
+          class="text-[#58595A] text-xl underline font-semibold cursor-pointer"
+          >Sign up</span
+        >
+      </p>
 
-        <p *ngIf="errorMessage" class="min-h-[20px] text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1 pb-2">
-          {{ errorMessage }}
-        </p>
-
+      <p
+        *ngIf="errorMessage"
+        class="min-h-[20px] text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1 pb-2">
+        {{ errorMessage }}
+      </p>
     </div>
 
-
     <!-- form -->
-    <div class=" form-field  col-span-4 flex flex-col gap-8">
+    <div class="form-field col-span-4 flex flex-col gap-8">
       <!-- email -->
-      <div class="field-email relative ">
-        <input formControlName="email"
-        id="Email" type="email" placeholder="Email" class="peer w-full  border-2 rounded-lg  h-12 p-3 border-[#7CAD3F] focus:outline-none focus:border-[#718b5d] placeholder-transparent "autocomplete="off">
-        <label for="Email" class="absolute left-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out
-        peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2
-        peer-focus:top-[-1.4rem] peer-focus:-translate-y-0
-        not-peer-placeholder-shown:top-[-1.4rem] not-peer-placeholder-shown:-translate-y-0
-        bg-[#FDFFF6] px-2 font-normal text-xl text-[#8B8C8A] flex gap-2 items-center"><i class="fa-solid fa-envelope  text-[#58595A]"></i>Email</label>
+      <div class="field-email relative">
+        <input
+          formControlName="email"
+          id="Email"
+          type="email"
+          placeholder="Email"
+          class="peer w-full border-2 rounded-lg h-12 p-3 border-[#7CAD3F] focus:outline-none focus:border-[#718b5d] placeholder-transparent"
+          autocomplete="off" />
+        <label
+          for="Email"
+          class="absolute left-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-[-1.4rem] peer-focus:-translate-y-0 not-peer-placeholder-shown:top-[-1.4rem] not-peer-placeholder-shown:-translate-y-0 bg-[#FDFFF6] px-2 font-normal text-xl text-[#8B8C8A] flex gap-2 items-center"
+          ><i class="fa-solid fa-envelope text-[#58595A]"></i>Email</label
+        >
         <div class="h-[12px]">
           <p
             *ngIf="
-              loginForm.get('email')?.invalid &&
-              loginForm.get('email')?.touched
+              loginForm.get('email')?.invalid && loginForm.get('email')?.touched
             "
             class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
             {{ getEmailError() }}
           </p>
-          <p *ngIf="errorEmail" class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
+          <p
+            *ngIf="errorEmail"
+            class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
             {{ errorEmail }}
           </p>
         </div>
-        
-        </div>
-    <!-- Password -->
-    <div class="flex flex-col gap-8 ">
-      <div class="field-password relative ">
-        <input    formControlName="password"
-        [type]="showPassword ? 'text' : 'password'"
-        id="Password"   autocomplete="off" type="password" placeholder="Password" class="peer w-full  border-2 rounded-lg  h-12 p-3 border-[#7CAD3F] focus:outline-none focus:border-[#718b5d] placeholder-transparent "autocomplete="off">
-        <label for="Password"  class="absolute left-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out
-        peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2
-        peer-focus:top-[-1.4rem] peer-focus:-translate-y-0
-        not-peer-placeholder-shown:top-[-1.4rem] not-peer-placeholder-shown:-translate-y-0
-        bg-[#FDFFF6] px-2 font-normal text-xl text-[#8B8C8A] flex gap-2 items-center"><i class="fa-solid fa-lock  text-[#58595A]"></i>Password</label>
-        <span class="absolute text-[#58595A] top-1/2 -translate-y-1/2 right-3 text-xl pointer-cursor "(click)="togglePassword()">
-          <li [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></li>
-        </span>
-        <div class="h-[7px]">
-          <p
-            *ngIf="
-              loginForm.get('password')?.invalid &&
-              loginForm.get('password')?.touched
-            "
-            class="text-sm md:text-xs lg:text-sm text-[#a40f0f]">
-            {{ getPasswordError() }}
-          </p>
-        </div>
-        
       </div>
+      <!-- Password -->
+      <div class="flex flex-col gap-8">
+        <div class="field-password relative">
+          <input
+            formControlName="password"
+            [type]="showPassword ? 'text' : 'password'"
+            id="Password"
+            autocomplete="off"
+            type="password"
+            placeholder="Password"
+            class="peer w-full border-2 rounded-lg h-12 p-3 border-[#7CAD3F] focus:outline-none focus:border-[#718b5d] placeholder-transparent"
+            autocomplete="off" />
+          <label
+            for="Password"
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-[-1.4rem] peer-focus:-translate-y-0 not-peer-placeholder-shown:top-[-1.4rem] not-peer-placeholder-shown:-translate-y-0 bg-[#FDFFF6] px-2 font-normal text-xl text-[#8B8C8A] flex gap-2 items-center"
+            ><i class="fa-solid fa-lock text-[#58595A]"></i>Password</label
+          >
+          <span
+            class="absolute text-[#58595A] top-1/2 -translate-y-1/2 right-3 text-xl pointer-cursor"
+            (click)="togglePassword()">
+            <li [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></li>
+          </span>
+          <div class="h-[7px]">
+            <p
+              *ngIf="
+                loginForm.get('password')?.invalid &&
+                loginForm.get('password')?.touched
+              "
+              class="text-sm md:text-xs lg:text-sm text-[#a40f0f]">
+              {{ getPasswordError() }}
+            </p>
+          </div>
+        </div>
 
-      <!-- <span class="h-6">error</span> -->
-      <!-- check box  -->
-      <div class="flex items-center gap-2">
-        <input type="checkbox" id ="check" formControlName="rememberMe" class="w-5 h-5">
-        <label for="check" class="text-[#7CAD3F] text-[1rem] font-normal">Remeber me</label>
+        <!-- <span class="h-6">error</span> -->
+        <!-- check box  -->
+        <div class="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="check"
+            formControlName="rememberMe"
+            class="w-5 h-5" />
+          <label for="check" class="text-[#7CAD3F] text-[1rem] font-normal"
+            >Remeber me</label
+          >
+        </div>
       </div>
-     </div>
-     <!-- buttons -->
+      <!-- buttons -->
       <div class="buttons flex flex-col gap-8">
-        <button   (click)="login()"
-        [disabled]="loginForm.invalid"
-         class=" shadow-[0px_4px_10px_rgba(124,173,63,0.25)] p-3 w-full border rounded-lg h-12 bg-[#7CAD3F] text-[#F5F8F5] font-bold text-2xl flex items-center justify-center shadow-[rgba(116,154,68,0.25)] hover:-translate-y-1 transition-all duration-300 ease-in-out cursor-pointer">Log in</button>
-        <div class="flex w-full  gap-2 items-center"> <div class=" flex-1 h-[2px] bg-[#7CAD3F]"> </div> <p class="text-[#7CAD3F] font-semibold text-2xl">Or Sign in with</p> <div class=" flex-1 h-[2px] bg-[#7CAD3F]"> </div></div>
-        <button class=" gap-4 border-2 shadow-[0px_4px_10px_rgba(124,173,63,0.25)] p-3 w-full border-[#7CAD3F] rounded-lg h-12  text-[#7CAD3F] font-bold text-2xl flex items-center justify-center shadow-[rgba(116,154,68,0.25)] hover:-translate-y-1 transition-all duration-300 ease-in-out cursor-pointer"> <img src="images/sign up/google color.svg" class="h-6 w-6" />
-    Google</button>
-    <div  routerLink="" class="flex items-center cursor-pointer gap-2"><i class="fa-solid fa-chevron-left text-xl text-[#7CAD3F]"></i> <span
-      class="underline font-semibold text-xl text-[#7CAD3F] flex gap-2 items-center ">Back to Home</span></div>
+        <button
+          (click)="login()"
+          [disabled]="loginForm.invalid"
+          class="shadow-[0px_4px_10px_rgba(124,173,63,0.25)] p-3 w-full border rounded-lg h-12 bg-[#7CAD3F] text-[#F5F8F5] font-bold text-2xl flex items-center justify-center shadow-[rgba(116,154,68,0.25)] hover:-translate-y-1 transition-all duration-300 ease-in-out cursor-pointer">
+          Log in
+        </button>
+        <div class="flex w-full gap-2 items-center">
+          <div class="flex-1 h-[2px] bg-[#7CAD3F]"></div>
+          <p class="text-[#7CAD3F] font-semibold text-2xl">Or Sign in with</p>
+          <div class="flex-1 h-[2px] bg-[#7CAD3F]"></div>
+        </div>
+        <button
+          class="gap-4 border-2 shadow-[0px_4px_10px_rgba(124,173,63,0.25)] p-3 w-full border-[#7CAD3F] rounded-lg h-12 text-[#7CAD3F] font-bold text-2xl flex items-center justify-center shadow-[rgba(116,154,68,0.25)] hover:-translate-y-1 transition-all duration-300 ease-in-out cursor-pointer">
+          <img src="images/sign up/google color.svg" class="h-6 w-6" /> Google
+        </button>
+        <div routerLink="" class="flex items-center cursor-pointer gap-2">
+          <i class="fa-solid fa-chevron-left text-xl text-[#7CAD3F]"></i>
+          <span
+            class="underline font-semibold text-xl text-[#7CAD3F] flex gap-2 items-center"
+            >Back to Home</span
+          >
+        </div>
+      </div>
     </div>
-    </div></div>
+  </div>
 </form>

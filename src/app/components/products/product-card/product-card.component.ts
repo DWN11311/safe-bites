@@ -11,22 +11,27 @@ import {
 import { HoverDirective } from '../../../directives/hover.directive';
 import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../filter/filter.component';
-import { ActivatedRoute } from '@angular/router';
 import { FilterTagsComponent } from '../filter-tags/filter-tags.component';
-import { Category } from '../../../models/category';
+import { Category } from '../../../models/category.model';
 import { Product } from '../../../models/product.model';
-import { TruncateWordsPipe } from '../../../truncate-words.pipe'
+import { TruncateWordsPipe } from '../../../truncate-words.pipe';
 
 @Component({
   selector: 'app-product-card',
-  imports: [HoverDirective, CommonModule, FilterComponent, TruncateWordsPipe, FilterTagsComponent],
+  imports: [
+    HoverDirective,
+    CommonModule,
+    FilterComponent,
+    TruncateWordsPipe,
+    FilterTagsComponent,
+  ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',
 })
 export class ProductCardComponent implements OnInit, OnChanges {
+  @Input() data: Product[] = [];
   itemsPerPage = 9;
   currentPage = 1;
-  @Input() data: Product[] = [];
   totalPages = 0;
   totalItems: number = 0;
   pages: number[] = [];
@@ -34,20 +39,16 @@ export class ProductCardComponent implements OnInit, OnChanges {
   filterIsHidden: boolean = false;
   passedCategories: Category[] = [];
 
-  constructor() { }
+  constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.data);
     this.getTotalPages();
     this.getPaginatedData();
     this.totalItems = this.data.length;
-    console.log(this.totalItems);
     this.setItemsPerPage();
     this.calculatePagination();
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -61,7 +62,6 @@ export class ProductCardComponent implements OnInit, OnChanges {
       console.log(this.totalPages);
 
       this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-      console.log(this.pages);
     }
   }
 
@@ -75,7 +75,7 @@ export class ProductCardComponent implements OnInit, OnChanges {
   toggleFilterMenu() {
     this.filterIsHidden = !this.filterIsHidden;
   }
-  
+
   passCategories(params: Category[]) {
     this.passedCategories = params;
   }
@@ -96,16 +96,13 @@ export class ProductCardComponent implements OnInit, OnChanges {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;
     this.paginatedData = this.data.slice(start, end);
-    console.log(this.paginatedData);
   }
 
   getTotalPages() {
     this.totalPages = Math.ceil(this.data.length / this.itemsPerPage);
-    console.log(this.totalPages);
   }
 
   changePage(page: number) {
     this.currentPage = page;
-    this.getPaginatedData();
   }
 }
