@@ -11,29 +11,28 @@ import {
 import { HoverDirective } from '../../../directives/hover.directive';
 import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../filter/filter.component';
+import { ActivatedRoute } from '@angular/router';
+import { FilterTagsComponent } from '../filter-tags/filter-tags.component';
+import { Category } from '../../../models/category';
 import { Product } from '../../../models/product.model';
 import { TruncateWordsPipe } from '../../../truncate-words.pipe'
 
 @Component({
   selector: 'app-product-card',
-  imports: [HoverDirective, CommonModule, FilterComponent, TruncateWordsPipe],
+  imports: [HoverDirective, CommonModule, FilterComponent, TruncateWordsPipe, FilterTagsComponent],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',
 })
 export class ProductCardComponent implements OnInit, OnChanges {
   itemsPerPage = 9;
   currentPage = 1;
-  // @Input() totalItems: number = 0;
-  // @Input() currentPage: number = 1;
-  // @Input() itemsPerPage: number = 0;
-  // @Input() paginatedData: Product[] = [];
   @Input() data: Product[] = [];
-  // @Output() onClick: EventEmitter<number> = new EventEmitter();
   totalPages = 0;
   totalItems: number = 0;
   pages: number[] = [];
   paginatedData: Product[] = [];
   filterIsHidden: boolean = false;
+  passedCategories: Category[] = [];
 
   constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
@@ -56,14 +55,6 @@ export class ProductCardComponent implements OnInit, OnChanges {
     this.calculatePagination();
   }
 
-  // setItemsPerPage() {
-  //   if (window.innerWidth <= 768) {
-  //     this.itemsPerPage = 5;
-  //   } else {
-  //     this.itemsPerPage = 9;
-  //   }
-  // }
-
   calculatePagination() {
     if (this.totalItems) {
       this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
@@ -84,12 +75,10 @@ export class ProductCardComponent implements OnInit, OnChanges {
   toggleFilterMenu() {
     this.filterIsHidden = !this.filterIsHidden;
   }
-
-
-  // @HostListener('window:resize', ['$event'])
-  // onResize() {
-  //   this.setItemsPerPage();
-  // }
+  
+  passCategories(params: Category[]) {
+    this.passedCategories = params;
+  }
 
   setItemsPerPage() {
     const screenWidth = window.innerWidth;
