@@ -18,14 +18,12 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   errorMessage: string = '';
   showPassword = false;
-  errorEmail:string = '';
+  errorEmail: string = '';
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
-      Validators.required,
-    ]),
-    rememberMe: new FormControl(false)
+    password: new FormControl('', [Validators.required]),
+    rememberMe: new FormControl(false),
   });
 
   constructor(
@@ -65,12 +63,12 @@ export class LoginComponent {
       return; // Stop submission if form is invalid
     }
 
-    const { email, password ,rememberMe} = this.loginForm.value;
+    const { email, password, rememberMe } = this.loginForm.value;
 
     this.usersService.login(email, password).subscribe({
-      next: (res) => {
+      next: res => {
         const data = res.body;
-        if(data.token){
+        if (data.token) {
           console.log(data);
           localStorage.setItem('token', data.token);
           // localStorage.setItem('username', data.firstName);
@@ -80,7 +78,7 @@ export class LoginComponent {
           localStorage.setItem('firstName', decodedToken.firstName);
           console.log('User First Name:', decodedToken.firstName);
           this.router.navigate(['']);
-           // Remeber Me
+          // Remeber Me
           if (rememberMe) {
             localStorage.setItem('rememberedEmail', email);
             localStorage.setItem('rememberedPassword', btoa(password));
@@ -88,23 +86,20 @@ export class LoginComponent {
             localStorage.removeItem('rememberedEmail');
             localStorage.removeItem('rememberedPassword');
           }
-        }else{
-          this.errorEmail = "Invalid email or password.";
+        } else {
+          this.errorEmail = 'Invalid email or password.';
         }
-
       },
       error: err => {
         if (err.status === 400) {
           // Unauthorized
-          this.errorEmail = 'Invalid email or password.';}
-          else if (err.status === 404) {
-            this.errorMessage = 'This email is not registered. Please sign up first.';
-        }
-
-        else if (err.status === 500) {
+          this.errorEmail = 'Invalid email or password.';
+        } else if (err.status === 404) {
+          this.errorMessage =
+            'This email is not registered. Please sign up first.';
+        } else if (err.status === 500) {
           this.errorMessage = 'Server error. Please try again later.';
-        }
-        else {
+        } else {
           this.errorMessage = 'Login failed. Please try again later.';
         }
         console.error('Login error', err);
@@ -127,16 +122,13 @@ export class LoginComponent {
   }
 
   decodeJWT(token: string): any {
-
-      const payload = token.split('.')[1];
-      const decodedPayload = atob(payload);
-      return JSON.parse(decodedPayload);
+    const payload = token.split('.')[1];
+    const decodedPayload = atob(payload);
+    return JSON.parse(decodedPayload);
   }
   //////////////////////
-togglePassword(){
-  this.showPassword=!this.showPassword
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
 }
-}
-
 /////////////////////////////////
-

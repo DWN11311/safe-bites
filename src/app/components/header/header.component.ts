@@ -12,12 +12,8 @@ export class HeaderComponent {
   isMenuOpen = false;
   isSideOpen = false;
   showDropdown = false;
-  firstName:string | null=""
-  constructor(
-      private router: Router,
-
-    ) {}
-
+  firstName: string | null = '';
+  constructor(private router: Router) {}
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -39,4 +35,3 @@ export class HeaderComponent {
     this.router.navigate(['/']);
   }
 }
-
