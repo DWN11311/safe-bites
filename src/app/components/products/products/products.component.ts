@@ -13,9 +13,7 @@ export class ProductsComponent {
   // itemsPerPage = 9;
   // currentPage = 1;
 
-  constructor(private productService: ProductsService) {
-
-  }
+  constructor(private productService: ProductsService) {}
   data: Array<Product> = [];
   // data = [
   //   {
@@ -104,9 +102,9 @@ export class ProductsComponent {
         this.data = res.data;
         this.calculatePagination();
       },
-      error: () => { },
-      complete: () => { }
-    })
+      error: () => {},
+      complete: () => {},
+    });
     // this.setItemsPerPage();
   }
 
@@ -146,5 +144,4 @@ export class ProductsComponent {
     //   this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
     // }
   }
-
 }

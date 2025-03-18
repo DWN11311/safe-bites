@@ -12,7 +12,7 @@ import { HoverDirective } from '../../../directives/hover.directive';
 import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../filter/filter.component';
 import { Product } from '../../../models/product.model';
-import { TruncateWordsPipe } from '../../../truncate-words.pipe'
+import { TruncateWordsPipe } from '../../../truncate-words.pipe';
 
 @Component({
   selector: 'app-product-card',
@@ -35,7 +35,7 @@ export class ProductCardComponent implements OnInit, OnChanges {
   paginatedData: Product[] = [];
   filterIsHidden: boolean = false;
 
-  constructor() { }
+  constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
     console.log(this.data);
     this.getTotalPages();
@@ -46,9 +46,7 @@ export class ProductCardComponent implements OnInit, OnChanges {
     this.calculatePagination();
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -84,7 +82,6 @@ export class ProductCardComponent implements OnInit, OnChanges {
   toggleFilterMenu() {
     this.filterIsHidden = !this.filterIsHidden;
   }
-
 
   // @HostListener('window:resize', ['$event'])
   // onResize() {
