@@ -1,0 +1,8 @@
+<div class="col-span-full flex flex-wrap gap-2 mb-8">
+  @for (filter of filters; track $index) {
+    <span
+      class="bg-[#7C9B66] text-white text-sm px-4 rounded-full py-2 max-w-full"
+      >{{ filter.label }}
+    </span>
+  }
+</div>

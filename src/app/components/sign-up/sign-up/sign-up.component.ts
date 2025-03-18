@@ -9,7 +9,6 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { UsersService } from '../../../services/users.service';
 
-
 @Component({
   selector: 'app-sign-up',
   imports: [ReactiveFormsModule, CommonModule, RouterModule],
@@ -17,7 +16,6 @@ import { UsersService } from '../../../services/users.service';
   styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent {
-
   myform = new FormGroup({
     firstname: new FormControl('', [
       Validators.required,
@@ -37,32 +35,35 @@ export class SignUpComponent {
       Validators.pattern('^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$'),
     ]),
   });
-   //Back-front
+  //Back-front
 
-
-  constructor(private usersService:UsersService,private router: Router){}
-  onSubmit(){
-    if(this.myform.valid){
-     const user = {
-        firstName: this.myform.value.firstname!,//! means value is not null or undefined
+  constructor(
+    private usersService: UsersService,
+    private router: Router
+  ) {}
+  onSubmit() {
+    if (this.myform.valid) {
+      const user = {
+        firstName: this.myform.value.firstname!, //! means value is not null or undefined
         lastName: this.myform.value.lastname!,
         email: this.myform.value.email!,
-        password: this.myform.value.password!
+        password: this.myform.value.password!,
       };
       this.register(user);
-
-    }else {
+    } else {
       console.log('Form is not valid');
     }
   }
-  register(userData:any){
+  register(userData: any) {
     this.usersService.register(userData).subscribe({
-
-      next:(data)=>{ this.router.navigate(['/login']);
-        console.log('User registered successfully',data)
-      }, 
-      error:(err)=>{console.error('Registration failed',err)}
-    })
+      next: data => {
+        this.router.navigate(['/login']);
+        console.log('User registered successfully', data);
+      },
+      error: err => {
+        console.error('Registration failed', err);
+      },
+    });
   }
   //////////////////////////////////////////////////////////////
 
@@ -124,6 +125,4 @@ export class SignUpComponent {
     const passwordValue = this.myform.get('password')?.value || '';
     return /[!@#$%^&*]/.test(passwordValue);
   }
-
-
 }
