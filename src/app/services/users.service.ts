@@ -22,18 +22,17 @@ export class UsersService {
   // }
   // logIn
   login(email: string, password: string): Observable<HttpResponse<any>> {
-    return this.http.post<HttpResponse<any>>(`${this.url}/login`, {
-      email,
-      password,
-
-    }, {observe:"response"});
-
+    return this.http.post<HttpResponse<any>>(
+      `${this.url}/login`,
+      {
+        email,
+        password,
+      },
+      { observe: 'response' }
+    );
   }
   //sign up
-  register(user:any): Observable<any>{
-return this.http.post(`${this.url}`,user)
+  register(user: any): Observable<any> {
+    return this.http.post(`${this.url}`, user);
   }
 }
-
-
-
