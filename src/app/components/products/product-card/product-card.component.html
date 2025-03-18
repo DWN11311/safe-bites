@@ -22,7 +22,7 @@
 <div
   class="grid grid-cols-3 py-4 md:py-10 gap-10 px-5 md:px-8 lg:px-12 xl:px-20 bg-[#FDFFF6]">
   <div class="bg-[#FDFFF6] hidden md:block col-span-1">
-    <app-filter></app-filter>
+    <app-filter (sendCategoriesObj)="passCategories($event)"></app-filter>
   </div>
   <div class="col-span-3 md:col-span-2">
     <div class="flex justify-between items-center md:mb-4">
@@ -35,20 +35,7 @@
         1 of <span>{{ paginatedData.length }}</span> products
       </p>
     </div>
-    <div class="col-span-full flex flex-wrap gap-2 mb-8">
-      <span
-        class="bg-[#7C9B66] text-white text-sm px-4 rounded-full py-2 max-w-full"
-        >Min Price: 500
-      </span>
-      <span
-        class="bg-[#7C9B66] text-white text-sm px-4 rounded-full py-2 max-w-full"
-        >Max Price: 1000
-      </span>
-      <span
-        class="bg-[#7C9B66] text-white text-sm px-4 rounded-full py-2 max-w-full"
-        >Category: Diet
-      </span>
-    </div>
+    <app-filter-tags [categoriesObj]="passedCategories"></app-filter-tags>
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
       <div
         *ngFor="let item of paginatedData; let index = index"
