@@ -14,7 +14,7 @@ import { FilterComponent } from '../filter/filter.component';
 import { FilterTagsComponent } from '../filter-tags/filter-tags.component';
 import { Category } from '../../../models/category.model';
 import { Product } from '../../../models/product.model';
-import { TruncateWordsPipe } from '../../../truncate-words.pipe';
+import { TruncateWordsPipe } from '../../../pipes/truncate-words.pipe';
 
 @Component({
   selector: 'app-product-card',
@@ -79,7 +79,7 @@ export class ProductCardComponent implements OnInit, OnChanges {
   passCategories(params: Category[]) {
     this.passedCategories = params;
   }
-  
+
   setItemsPerPage() {
     const screenWidth = window.innerWidth;
     if (screenWidth <= 768) {
