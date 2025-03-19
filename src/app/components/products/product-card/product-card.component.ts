@@ -11,7 +11,9 @@ import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../filter/filter.component';
 import { ActivatedRoute } from '@angular/router';
 import { FilterTagsComponent } from '../filter-tags/filter-tags.component';
-import { Category } from '../../../models/category';
+import { Category } from '../../../models/category.model';
+import { Product } from '../../../models/product.model';
+import { TruncateWordsPipe } from '../../../pipes/truncate-words.pipe';
 
 @Component({
   selector: 'app-product-card',

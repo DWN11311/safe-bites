@@ -10,7 +10,8 @@ export class ProductsService {
   getAllProducts() {
     return this.http.get(this.url);
   }
-  getProductById(id: number) {
+
+  getProductById(id: string) {
     return this.http.get(this.url + '/' + id);
   }
   // createProduct(porduct:Product){

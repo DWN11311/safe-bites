@@ -8,92 +8,34 @@ import { ProductCardComponent } from '../product-card/product-card.component';
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
-  itemsPerPage = 9;
-  currentPage = 1;
-
-  data = [
-    {
-      productName: 'A',
-    },
-    {
-      productName: 'B',
-    },
-    {
-      productName: 'C',
-    },
-    {
-      productName: 'D',
-    },
-    {
-      productName: 'E',
-    },
-    {
-      productName: 'F',
-    },
-    {
-      productName: 'G',
-    },
-    {
-      productName: 'H',
-    },
-    {
-      productName: 'I',
-    },
-    {
-      productName: 'J',
-    },
-    {
-      productName: 'K',
-    },
-    {
-      productName: 'L',
-    },
-    {
-      productName: 'M',
-    },
-    {
-      productName: 'N',
-    },
-    {
-      productName: 'O',
-    },
-    {
-      productName: 'P',
-    },
-    {
-      productName: 'Q',
-    },
-    {
-      productName: 'R',
-    },
-    {
-      productName: 'S',
-    },
-    {
-      productName: 'T',
-    },
-    {
-      productName: 'U',
-    },
-    {
-      productName: 'V',
-    },
-    {
-      productName: 'W',
-    },
-    {
-      productName: 'X',
-    },
-    {
-      productName: 'Y',
-    },
-    {
-      productName: 'Z',
-    },
-  ];
+  constructor(
+    private productService: ProductsService,
+    private router: Router
+  ) {}
+  data: Array<Product> = [];
 
   ngOnInit() {
-    this.setItemsPerPage();
+    const queryString = this.router.url.split('?')[1] || '';
+    this.productService.getAllProducts(queryString).subscribe({
+      next: (res: any) => {
+        this.data = res.data;
+        this.calculatePagination();
+      },
+      error: () => {},
+      complete: () => {},
+    });
+
+    this.router.events.subscribe(() => {
+      const queryString = this.router.url.split('?')[1] || '';
+      this.productService.getAllProducts(queryString).subscribe({
+        next: (res: any) => {
+          this.data = res.data;
+          this.calculatePagination();
+        },
+        error: () => {},
+        complete: () => {},
+      });
+    });
   }
 
   @HostListener('window:resize', ['$event'])
