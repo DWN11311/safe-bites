@@ -1,4 +1,4 @@
-import { SubCategory } from './SubCategory';
+import { SubCategory } from './subCategory.model';
 
 export interface Category {
   _id: string;

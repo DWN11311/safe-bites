@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-product-nutrition',
   imports: [],
   templateUrl: './product-nutrition.component.html',
-  styleUrl: './product-nutrition.component.css'
+  styleUrl: './product-nutrition.component.css',
 })
-export class ProductNutritionComponent {
-
-}
+export class ProductNutritionComponent {}

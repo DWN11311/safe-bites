@@ -3,17 +3,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService } from '../../../services/categories.service';
-import { Category } from '../../../models/category';
-
-interface FilterParams {
-  sortBy?: string;
-  order?: string;
-  minPrice?: string;
-  maxPrice?: string;
-  inStock?: string;
-  outOfStock?: string;
-  categories?: string;
-}
+import { Category } from '../../../models/category.model';
+import { FilterParams } from '../../../models/filterParams.mode';
 
 @Component({
   selector: 'app-filter',

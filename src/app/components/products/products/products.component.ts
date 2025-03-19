@@ -1,5 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { ProductsService } from '../../../services/products.service';
+import { Product } from '../../../models/product.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -38,33 +41,5 @@ export class ProductsComponent {
     });
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.setItemsPerPage();
-  }
-
-  setItemsPerPage() {
-    const screenWidth = window.innerWidth;
-    if (screenWidth <= 768) {
-      this.itemsPerPage = 5;
-    } else {
-      this.itemsPerPage = 9;
-    }
-    this.currentPage = 1;
-    this.totalPages;
-  }
-
-  get paginatedData() {
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    return this.data.slice(start, end);
-  }
-
-  get totalPages() {
-    return Math.ceil(this.data.length / this.itemsPerPage);
-  }
-
-  changePage(page: number) {
-    this.currentPage = page;
-  }
+  calculatePagination() {}
 }

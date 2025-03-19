@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Category } from '../../../models/category';
+import { Category } from '../../../models/category.model';
 
 @Component({
   selector: 'app-filter-tags',

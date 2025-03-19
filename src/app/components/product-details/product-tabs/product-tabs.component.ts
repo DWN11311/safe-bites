@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-product-tabs',
   imports: [],
   templateUrl: './product-tabs.component.html',
-  styleUrl: './product-tabs.component.css'
+  styleUrl: './product-tabs.component.css',
 })
-export class ProductTabsComponent {
-
-}
+export class ProductTabsComponent {}

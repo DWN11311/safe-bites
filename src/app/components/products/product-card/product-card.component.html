@@ -49,17 +49,19 @@
             class="fa-regular fa-heart text-2xl hover:text-red-500 cursor-pointer"></i>
         </div>
         <img
-          src="images/feature2.png"
+          src="{{ item.images[0].imageUrl }}"
           class="m-auto h-[10rem] md:h-[11rem] lg:h-[13rem] cursor-pointer"
           alt="Feature 2"
-          [appHover]="'images/feature1.png'" />
+          [appHover]="item.images[1].imageUrl" />
 
         <div class="data my-1 md:my-3">
-          <p class="text-2xl text-[#454545]">$4.99</p>
-          <h3 class="my-1 lg:my-2 font-medium text-2xl sm:text-xl lg:text-3xl">
-            {{ item.productName }}
+          <p class="text-2xl text-[#454545]">${{ item.price }}</p>
+          <h3 class="my-1 lg:my-2 font-medium text-xl sm:text-xl lg:text-3xl">
+            {{ item.name | truncateWords: 25 }}
           </h3>
-          <p class="text-xl text-[#454545]">No added sugar!</p>
+          <p class="text-xl text-[#454545]">
+            {{ item.description | truncateWords: 40 }}
+          </p>
           <div class="rates mt-1 lg:mt-2">
             <i class="fa-solid fa-star text-[#EAFF00] text-lg"></i>
             <i class="fa-solid fa-star text-[#EAFF00] text-lg"></i>
