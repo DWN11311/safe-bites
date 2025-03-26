@@ -2,13 +2,11 @@
   <img src="images/products/hero.png" alt="" class="w-[100%] h-auto" />
 </div>
 
-<div
-  class="bg-[#FDFFF6] hidden w-full fixed top-0 h-full overflow-y-scroll md:hidden"
+<div class="bg-[#FDFFF6] hidden w-full fixed top-0 h-full overflow-y-scroll md:hidden"
   [ngClass]="{ hidden: !filterIsHidden }">
   <div class="flex justify-between items-center w-full bg-[#7C9B66] py-4 px-6">
     <span class="text-xl text-white font-semibold">Sorting & Filters</span>
-    <button
-      class="text-[#7C9B66] size-10 rounded-full bg-white flex items-center justify-center text-3xl"
+    <button class="text-[#7C9B66] size-10 rounded-full bg-white flex items-center justify-center text-3xl"
       (click)="toggleFilterMenu()">
       <i class="fa-solid fa-xmark"></i>
     </button>
@@ -19,40 +17,34 @@
   </div>
 </div>
 
-<div
-  class="grid grid-cols-3 py-4 md:py-10 gap-10 px-5 md:px-8 lg:px-12 xl:px-20 bg-[#FDFFF6]">
+<div class="grid grid-cols-3 py-4 md:py-10 gap-10 px-5 md:px-8 lg:px-12 xl:px-20 bg-[#FDFFF6]">
   <div class="bg-[#FDFFF6] hidden md:block col-span-1">
     <app-filter (sendCategoriesObj)="passCategories($event)"></app-filter>
   </div>
   <div class="col-span-3 md:col-span-2">
     <div class="flex justify-between items-center md:mb-4">
-      <button
-        (click)="toggleFilterMenu()"
+      <button (click)="toggleFilterMenu()"
         class="md:hidden px-4 py-3.5 text-[#353932B2] text-xl rounded-xl my-2 cursor-pointer transition-[background-color] font-semibold">
         <i class="fa-solid fa-filter"></i> Filter
       </button>
+      @if(paginatedData.length > 0){
       <p class="text-xl text-[#353932B2]">
         1 of <span>{{ paginatedData.length }}</span> products
       </p>
+      }
     </div>
     <app-filter-tags [categoriesObj]="passedCategories"></app-filter-tags>
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-      <div
-        *ngFor="let item of paginatedData; let index = index"
-        class="card bg-white shadow-2xl rounded-lg py-5 px-5 mb-3"
-        appHover>
+      <div *ngFor="let item of paginatedData; let index = index"
+        class="card bg-white shadow-2xl rounded-lg py-5 px-5 mb-3" appHover>
         <div class="header flex justify-between items-center mb-5">
           <p class="bg-[#7CAD3F] text-white py-1 px-7 text-lg rounded-sm">
             New
           </p>
-          <i
-            class="fa-regular fa-heart text-2xl hover:text-red-500 cursor-pointer"></i>
+          <i class="fa-regular fa-heart text-2xl hover:text-red-500 cursor-pointer"></i>
         </div>
-        <img
-          src="{{ item.images[0].imageUrl }}"
-          class="m-auto h-[10rem] md:h-[11rem] lg:h-[13rem] cursor-pointer"
-          alt="Feature 2"
-          [appHover]="item.images[1].imageUrl" />
+        <img src="{{ item.images[0].imageUrl }}" class="m-auto h-[10rem] md:h-[11rem] lg:h-[13rem] cursor-pointer"
+          alt="Feature 2" [appHover]="item.images[1].imageUrl" />
 
         <div class="data my-1 md:my-3">
           <p class="text-2xl text-[#454545]">${{ item.price }}</p>
@@ -77,24 +69,19 @@
         </button>
       </div>
     </div>
+    @if(paginatedData.length > 0){
     <div class="pagintion flex items-center mt-10 text-2xl">
-      <i
-        class="fa-solid fa-angle-left cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded-[50%] pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
-        (click)="pageClicked(currentPage - 1)"
-        [ngClass]="{ disabled: currentPage === 1 }"></i>
+      <i class="fa-solid fa-angle-left cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded-[50%] pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
+        (click)="pageClicked(currentPage - 1)" [ngClass]="{ disabled: currentPage === 1 }"></i>
       <ul class="flex justify-center items-center ml-5 text-xl">
-        <li
-          class="mr-5"
-          *ngFor="let page of pages"
-          [ngClass]="{ active: page === currentPage }"
+        <li class="mr-5" *ngFor="let page of pages" [ngClass]="{ active: page === currentPage }"
           (click)="pageClicked(page)">
           <a href="javascript:void(0)">{{ page }}</a>
         </li>
       </ul>
-      <i
-        class="fa-solid fa-angle-right cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded-[50%] pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
-        (click)="pageClicked(currentPage + 1)"
-        [ngClass]="{ disabled: currentPage === totalPages }"></i>
+      <i class="fa-solid fa-angle-right cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded-[50%] pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
+        (click)="pageClicked(currentPage + 1)" [ngClass]="{ disabled: currentPage === totalPages }"></i>
     </div>
+    }
   </div>
 </div>

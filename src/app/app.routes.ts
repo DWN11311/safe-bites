@@ -5,9 +5,9 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up/sign-up.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { EmptyWishListComponent } from './components/empty-wish-list/empty-wish-list.component';
-import { ProductDetailsComponent } from './components/product-details/product-details/product-details.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AuthGuard } from './auth.guard';
+import { ProductDetailsComponent } from './components/product-details/product-details/product-details.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
