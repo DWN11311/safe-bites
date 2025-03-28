@@ -1,1 +1,33 @@
-<p>product-tabs works!</p>
+<div class="custom-tab-group border-b-2 border-gray-300 flex gap-5 pb-1 mx-20">
+    <span 
+      class="custom-tab-label" 
+      [class.active]="selectedTab === 0" 
+      (click)="selectTab(0)">
+      Ingredients
+    </span>
+    <span 
+      class="custom-tab-label" 
+      [class.active]="selectedTab === 1" 
+      (click)="selectTab(1)">
+      Nutrition Facts
+    </span>
+    <span 
+      class="custom-tab-label" 
+      [class.active]="selectedTab === 2" 
+      (click)="selectTab(2)">
+      Reviews
+    </span>
+  </div>
+  
+  <!-- Tab Content -->
+  <div class="h-lvh px-20">
+    @if (selectedTab === 0) {
+        <app-product-ingredients></app-product-ingredients>
+    }
+    @if (selectedTab === 1) {
+        <app-product-nutrition></app-product-nutrition>
+    }
+    @if (selectedTab === 2) {
+        <app-product-reviews></app-product-reviews>
+    }
+  </div>

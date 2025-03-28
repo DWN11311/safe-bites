@@ -104,5 +104,6 @@ export class ProductCardComponent implements OnInit, OnChanges {
 
   changePage(page: number) {
     this.currentPage = page;
+    this.getPaginatedData();
   }
 }

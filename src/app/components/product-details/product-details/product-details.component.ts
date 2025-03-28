@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { ProductsService } from '../../../services/products.service';
 import { Product } from '../../../models/product.model';
 import { ActivatedRoute } from '@angular/router';
+import { ProductTabsComponent } from "../product-tabs/product-tabs.component";
 
 @Component({
   selector: 'app-product-details',
-  imports: [],
+  imports: [ProductTabsComponent],
   providers: [ProductsService],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
