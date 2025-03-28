@@ -39,7 +39,7 @@ export class ProductCardComponent implements OnInit, OnChanges {
   filterIsHidden: boolean = false;
   passedCategories: Category[] = [];
 
-  constructor() { }
+  constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
     this.getTotalPages();
     this.getPaginatedData();

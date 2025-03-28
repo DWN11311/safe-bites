@@ -1,1 +1,48 @@
-<p>product-info works!</p>
+<div class="flex flex-col items-start gap-8 max-w-full">
+
+
+    <!-- name -->
+    <div class=" text-black text-2xl font-bold">
+        {{product?.name}}
+    </div>
+    <!-- review -->
+    <div class="flex items-center gap-4 justify-center">
+        <div class="rates ">
+            <i *ngFor="let s of yellowStars" class="fa-solid fa-star text-[#EAFF00] text-lg"></i>
+            <i *ngFor="let s of whiteStars" class="fa-solid fa-star text-[#DCDCDC] text-lg"></i>
+        </div>
+        <p>{{product?.rank}}</p>
+        <p>({{product?.reviews?.length}} reviews)</p>
+    </div>
+    <!-- price -->
+    <div class=" font-bold text-black text-2xl ">
+        {{product?.price}} EGP
+    </div>
+    <!-- description -->
+    <div class=" font-normal text-sm">
+        {{product?.description}}
+    </div>
+    <!-- quantity -->
+    <div class=" flex items-center justify-around gap-4 mt-4 border-2 border-[#1B8057] rounded-lg px-4 py-2 w-30">
+        <button (click)="decreaseQuantity()" class=" text-black text-3xl rounded-lg transition cursor-pointer ">
+            -
+        </button>
+
+        <span class="text-lg font-bold">{{ quantity }}</span>
+
+        <button (click)="increaseQuantity()" class=" text-black rounded-lg  transition  text-3xl cursor-pointer ">
+            +
+        </button>
+    </div>
+
+    <div class="mt-4 flex items-center gap-4">
+        <button (click)="addToCart()"
+            class="border-2 rounded-lg bg-[#7CAD3F] hover:bg-[#5B8329] text-white p-1 sm:p-1 md:p-2 lg:p-3 text-sm md:text-sm h-12 md:h-14 cursor-pointer w-xs md:w-xs lg:w-xs sm:w-[200px]">
+            <i class="fa-solid fa-cart-plus mr-1"></i> add to cart
+        </button>
+
+        <div (click)="addToWishlist()" class="w-10 h-10 flex items-center justify-center border border-gray-400 rounded-full cursor-pointer hover:text-[#5B8329] hover:border-2 hover:border-[#5B8329]">
+            <i class="fa-regular fa-heart"></i>
+        </div>
+    </div>
+</div>
