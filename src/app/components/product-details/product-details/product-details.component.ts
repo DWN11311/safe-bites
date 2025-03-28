@@ -28,7 +28,7 @@ export class ProductDetailsComponent {
     this.productsService.getProductById(productId).subscribe({
       next: (res: any) => {
         this.data = res.data;
-        console.log(this.data);
+        // console.log(this.data);
       },
       error: () => { },
       complete: () => { },
