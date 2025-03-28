@@ -6,6 +6,8 @@ import { QuoteComponent } from '../quote/quote.component';
 import { CustomerReviewsComponent } from '../customer-reviews/customer-reviews.component';
 import { AboutUsComponent } from '../about-us/about-us.component';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   imports: [

@@ -7,6 +7,7 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 import { EmptyWishListComponent } from './components/empty-wish-list/empty-wish-list.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AuthGuard } from './auth.guard';
+import { NewsletterComponent } from './components/newsletter/newsletter.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,7 +16,10 @@ export const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'wishList', component: WishListComponent },
   { path: 'empty-wishList', component: EmptyWishListComponent },
-  { path: '**', component: ErrorComponent },
+  { path: 'newsletter', component: NewsletterComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
+  { path: '**', component: ErrorComponent },
+
+
 ];

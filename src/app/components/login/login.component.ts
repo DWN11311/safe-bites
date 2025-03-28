@@ -1,4 +1,6 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+
+declare var google: any; // تعريف مكتبة Google
+import {  AfterViewInit,ChangeDetectorRef, Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -15,7 +17,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.css',
   imports: [ReactiveFormsModule, CommonModule, RouterModule],
 })
-export class LoginComponent {
+export class LoginComponent
+//  implements AfterViewInit
+ {
   errorMessage: string = '';
   showPassword = false;
   errorEmail: string = '';
@@ -31,6 +35,69 @@ export class LoginComponent {
     private router: Router,
     private cdr: ChangeDetectorRef
   ) {}
+
+  onGoogleSignIn() {
+    const googleAuthURL = 'http://localhost:8282/auth/google';
+    const width = 500;
+    const height = 600;
+    const left = (window.innerWidth - width) / 2;
+    const top = (window.innerHeight - height) / 2;
+
+    const authWindow = window.open(
+      googleAuthURL,
+      'Google Sign-In',
+      `width=${width},height=${height},top=${top},left=${left}`
+    );
+
+    window.addEventListener('message', (event) => {
+      if (event.origin !== 'http://localhost:8282') return; // تأكد إن الرسالة جاية من الـ backend
+      if (event.data?.token) {
+        localStorage.setItem('token', event.data.token);
+        this.router.navigate(['']);
+      }
+    }, false);
+  }
+
+
+  // ngAfterViewInit() {
+  //   if (typeof google !== 'undefined' && google.accounts) {
+  //     google.accounts.id.initialize({
+  //       client_id:'377025698351-uhgf9ibv0nqlt4mgl43tdptkvb8k10oa.apps.googleusercontent.com',
+  //       callback: (response: any) => this.handleGoogleSignIn(response),
+  //     });
+
+
+  //   } else {
+  //     console.error("Google API is not loaded yet.");
+  //   }
+  // }
+
+
+  // handleGoogleSignIn(response: any) {
+  //   console.log('Google response:', response);
+
+  //   const token = response.credential;
+  //   if (token) {
+  //     localStorage.setItem('google_token', token);
+  //     this.usersService.verifyGoogleToken(token).subscribe({
+  //       next: res => {
+  //         console.log('Login successful:', res);
+  //         localStorage.setItem('token', res.token);
+  //         this.router.navigate(['']);
+  //       },
+  //       error: err => {
+  //         console.error('Login failed:', err);
+  //         this.errorMessage = 'Login failed. Please try again.';
+  //         this.cdr.detectChanges();
+  //       },
+  //     });
+  //   }
+  // }
+
+  // onGoogleSignIn() {
+  //   google.accounts.id.prompt();
+  // }
+
 
   ngOnInit() {
     this.loadRememberedUser();
