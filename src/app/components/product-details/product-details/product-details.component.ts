@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { ProductsService } from '../../../services/products.service';
 import { Product } from '../../../models/product.model';
 import { ActivatedRoute } from '@angular/router';
+import { ProductTabsComponent } from "../product-tabs/product-tabs.component";
 import { ProductGallaryComponent } from '../product-gallery/product-gallery.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
-  imports: [ProductGallaryComponent, CommonModule],
+  imports: [ProductGallaryComponent, ProductTabsComponent, CommonModule],
   providers: [ProductsService],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
