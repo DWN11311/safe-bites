@@ -39,7 +39,7 @@ export class ProductCardComponent implements OnInit, OnChanges {
   filterIsHidden: boolean = false;
   passedCategories: Category[] = [];
 
-  constructor() {}
+  constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
     this.getTotalPages();
     this.getPaginatedData();
@@ -48,7 +48,9 @@ export class ProductCardComponent implements OnInit, OnChanges {
     this.calculatePagination();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getPaginatedData();
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
