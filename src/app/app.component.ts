@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductsService } from './services/products.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NewsletterComponent } from './components/newsletter/newsletter.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     ReactiveFormsModule,
+    NewsletterComponent,
   ],
   providers: [ProductsService],
   templateUrl: './app.component.html',

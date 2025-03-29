@@ -11,22 +11,21 @@ import { NewsletterComponent } from './components/newsletter/newsletter.componen
 import { ProductDetailsComponent } from './components/product-details/product-details/product-details.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AboutusComponent } from './components/about us/aboutus/aboutus.component';
+import { CartComponent } from './components/cart/cart/cart.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'about-us', component: AboutusComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'wishList', component: WishListComponent },
   { path: 'empty-wishList', component: EmptyWishListComponent },
   { path: 'newsletter', component: NewsletterComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
-  { path: 'contactUs', component: ContactUsComponent },
-  { path: '**', component: ErrorComponent },
+  { path: 'contact-us', component: ContactUsComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
   { path: '**', component: ErrorComponent },
-
-
+  { path: '**', component: ErrorComponent },
 ];

@@ -39,7 +39,9 @@ export class UsersService {
 
   //LOGIN WITH GOOGLE
   verifyGoogleToken(token: string): Observable<any> {
-    return this.http.post<{ token: string }>("http://localhost:8282/auth/google", { token });
+    return this.http.post<{ token: string }>(
+      'http://localhost:8282/auth/google',
+      { token }
+    );
   }
-
 }
