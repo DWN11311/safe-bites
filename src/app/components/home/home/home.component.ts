@@ -5,6 +5,8 @@ import { LifeStylesComponent } from '../life-styles/life-styles.component';
 import { QuoteComponent } from '../quote/quote.component';
 import { CustomerReviewsComponent } from '../customer-reviews/customer-reviews.component';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   imports: [
