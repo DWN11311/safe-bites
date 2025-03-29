@@ -4,22 +4,25 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  standalone: true, 
+  standalone: true,
   selector: 'app-cart',
-  imports: [CommonModule,RouterModule],
-  providers:[CartsService],
+  imports: [CommonModule, RouterModule],
+  providers: [CartsService],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css'
+  styleUrl: './cart.component.css',
 })
 export class CartComponent {
-  cart:any
-  constructor(private CartsService:CartsService){}
-ngOnInit(){
-this.CartsService.getAllProducts().subscribe({
-  next:(data)=>{this.cart=data
-    console.log(data);
-  },
-  error:(err)=>{console.log(err);}
-})
-}
+  cart: any;
+  constructor(private CartsService: CartsService) {}
+  ngOnInit() {
+    this.CartsService.getAllProducts().subscribe({
+      next: data => {
+        this.cart = data;
+        console.log(data);
+      },
+      error: err => {
+        console.log(err);
+      },
+    });
+  }
 }

@@ -25,19 +25,20 @@ export class ProductInfoComponent implements OnChanges {
       this.yellowStars = new Array(this.product.rank);
       this.whiteStars = new Array(5 - this.product.rank);
     }
-
   }
 
   increaseQuantity() {
-    if (this.product?.quantity !== undefined && this.quantity < this.product?.quantity)
+    if (
+      this.product?.quantity !== undefined &&
+      this.quantity < this.product?.quantity
+    )
       this.quantity++;
   }
 
   decreaseQuantity() {
-    if (this.quantity > 1)
-      this.quantity--;
+    if (this.quantity > 1) this.quantity--;
   }
 
-  addToCart(){}
-  addToWishlist(){}
+  addToCart() {}
+  addToWishlist() {}
 }

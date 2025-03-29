@@ -5,7 +5,6 @@ import { LifeStylesComponent } from '../life-styles/life-styles.component';
 import { QuoteComponent } from '../quote/quote.component';
 import { CustomerReviewsComponent } from '../customer-reviews/customer-reviews.component';
 
-
 @Component({
   selector: 'app-home',
   imports: [
@@ -14,7 +13,6 @@ import { CustomerReviewsComponent } from '../customer-reviews/customer-reviews.c
     LifeStylesComponent,
     QuoteComponent,
     CustomerReviewsComponent,
-  
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
