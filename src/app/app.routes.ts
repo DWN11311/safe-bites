@@ -9,16 +9,18 @@ import { ErrorComponent } from './components/error/error.component';
 import { AuthGuard } from './auth.guard';
 import { ProductDetailsComponent } from './components/product-details/product-details/product-details.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { AboutusComponent } from './components/about us/aboutus/aboutus.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'about-us', component: AboutusComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'wishList', component: WishListComponent },
   { path: 'empty-wishList', component: EmptyWishListComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
-  { path: 'contactUs', component:ContactUsComponent},
+  { path: 'contactUs', component: ContactUsComponent },
   { path: '**', component: ErrorComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },

@@ -15,7 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [ProductsService],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   hiddenRoutes = ['/login', '/sign-up'];

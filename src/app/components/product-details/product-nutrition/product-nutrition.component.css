@@ -1,7 +1,7 @@
 .data-item:not(:last-child)::after {
-    content: "";
-    display: block;
-    height: 1px;
-    background: #ccc; 
-    margin: 3px 0; 
+  content: '';
+  display: block;
+  height: 1px;
+  background: #ccc;
+  margin: 3px 0;
 }

@@ -8,25 +8,29 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './product-ingredients.component.html',
   styleUrl: './product-ingredients.component.css',
 })
-export class ProductIngredientsComponent implements OnInit{
-  product: any ;
-  
-  constructor(private http: HttpClient, private route: ActivatedRoute){};
+export class ProductIngredientsComponent implements OnInit {
+  product: any;
 
-  ngOnInit(){
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
     const productId = this.route.snapshot.paramMap.get('id');
-    if(productId){
+    if (productId) {
       this.http.get(`http://localhost:8282/products/${productId}`).subscribe({
         next: (response: any) => {
           this.product = response.data;
           console.log('full object', this.product);
         },
-        error: (err) => {
+        error: err => {
           console.log(err);
-        }, complete: () => {
+        },
+        complete: () => {
           console.log('Request completed.');
-        }
-      })
+        },
+      });
     }
   }
 }
