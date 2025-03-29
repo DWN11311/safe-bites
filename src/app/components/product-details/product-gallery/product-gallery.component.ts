@@ -7,20 +7,16 @@ import { Image } from '../../../models/product.model';
   selector: 'app-product-gallary',
   imports: [CommonModule],
   templateUrl: './product-gallery.component.html',
-  styleUrl: './product-gallery.component.css'
+  styleUrl: './product-gallery.component.css',
 })
 export class ProductGallaryComponent {
-
   @Input() images: Image[] = [];
-  // images: string[] = [
-  //   'images/wishList/Sesame_Nori_1_1080x1080.webp', 'images/wishList/Sesame_Nori_back_1_1080x1080.webp', 'images/wishList/Vegan Granola Clusters.webp'
-  // ]
-
   currentIndex = 0;
   isFullScreen = false;
 
   prevImage() {
-    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+    this.currentIndex =
+      (this.currentIndex - 1 + this.images.length) % this.images.length;
   }
 
   nextImage() {
