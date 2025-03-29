@@ -2,7 +2,7 @@
 
 @if (products.length > 0) {
   <div
-    class="grid grid-cols-6 md:grid-cols-9 xl:grid-cols-12 gap-5 md:gap-10 lg:mx-[88px] sm:mx-[48px] mx-[24px] place-items-center">
+    class="grid grid-cols-6 md:grid-cols-9 xl:grid-cols-12 gap-5 lg:gap-8 lg:mx-40 sm:mx-24 mx-5 place-items-center">
     @for (product of products; track product.id) {
       <app-wishlistcard
         [product]="product"
