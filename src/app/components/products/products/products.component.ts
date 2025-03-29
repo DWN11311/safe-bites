@@ -13,14 +13,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductsComponent {
   constructor(
     private productService: ProductsService,
-    private route: ActivatedRoute,
     private router: Router
   ) {}
   data: Array<Product> = [];
 
   ngOnInit() {
     const queryString = this.router.url.split('?')[1] || '';
-
     this.productService.getAllProducts(queryString).subscribe({
       next: (res: any) => {
         this.data = res.data;
@@ -31,6 +29,7 @@ export class ProductsComponent {
     });
 
     this.router.events.subscribe(() => {
+      const queryString = this.router.url.split('?')[1] || '';
       this.productService.getAllProducts(queryString).subscribe({
         next: (res: any) => {
           this.data = res.data;

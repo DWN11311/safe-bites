@@ -33,6 +33,7 @@ export class WishListComponent implements OnChanges, OnInit {
       price: 15.99,
       brief: 'Best Seller',
       rank: 4.5,
+      quantity: 10,
     },
     {
       id: 2,
@@ -45,6 +46,7 @@ export class WishListComponent implements OnChanges, OnInit {
       price: 12.49,
       brief: 'Customer Favorite',
       rank: 4.8,
+      quantity: 10,
     },
     {
       id: 3,
@@ -63,6 +65,7 @@ export class WishListComponent implements OnChanges, OnInit {
       price: 9.99,
       brief: 'Superfood',
       rank: 4.7,
+      quantity: 10,
     },
     {
       id: 4,
@@ -81,6 +84,7 @@ export class WishListComponent implements OnChanges, OnInit {
       price: 11.49,
       brief: 'Healthy Choice',
       rank: 4.6,
+      quantity: 10,
     },
     {
       id: 5,
@@ -97,6 +101,7 @@ export class WishListComponent implements OnChanges, OnInit {
       price: 19.99,
       brief: 'Top Rated',
       rank: 4.9,
+      quantity: 10,
     },
     {
       id: 6,
@@ -113,6 +118,7 @@ export class WishListComponent implements OnChanges, OnInit {
       price: 8.99,
       brief: 'Versatile Use',
       rank: 4.5,
+      quantity: 10,
     },
     {
       id: 7,
@@ -131,6 +137,7 @@ export class WishListComponent implements OnChanges, OnInit {
       price: 5.99,
       brief: 'Indulgent Treat',
       rank: 4.4,
+      quantity: 10,
     },
     {
       id: 8,
@@ -143,6 +150,7 @@ export class WishListComponent implements OnChanges, OnInit {
       price: 14.49,
       brief: 'Superfood',
       rank: 4.8,
+      quantity: 10,
     },
   ];
   AddToCard(product: Product) {}
