@@ -1,0 +1,146 @@
+<div class="grid-cols-12 mx-6 gap-10 mt-10">
+  <!-- Overview -->
+  <div
+    class="flex flex-col sm:flex-row w-full justify-between border-b border-[#C5C4C4] pb-6 md:pb-10">
+    <!-- Left side -->
+    <div class="flex justify-center mr-8 lg:ml-12 xl:ml-32 mt-8">
+      <!-- Average Rating -->
+      <p
+        class="bg-[#F8C519] size-12 md:size-16 text-2xl md:text-3xl text-[#121311] font-bold rounded-full flex items-center justify-center pb-1">
+        {{ averageRating }}
+      </p>
+      <div class="font-bold text-2xl md:text-4xl flex flex-col">
+        <p class="mt-6 md:mt-10 text-[#121311] shrink-0">
+          out of
+          <span class="text-[#58595A] font-semibold text-xl md:text-3xl"
+            >5.0</span
+          >
+        </p>
+
+        <!-- Stars -->
+        <div
+          class="flex justify-center w-full mt-2 md:mt-6 text-xl md:text-2xl gap-2">
+          @for (star of [1, 2, 3, 4, 5]; track $index) {
+            @if (averageRating - $index > 1) {
+              <i class="fa-solid fa-star text-[#F8C519]"></i>
+            } @else if (averageRating - $index > 0.5) {
+              <i class="fa-solid fa-star-half-stroke text-[#F8C519]"></i>
+            } @else {
+              <i class="fa-regular fa-star text-[#F8C519]"></i>
+            }
+          }
+        </div>
+
+        <p
+          class="text-[#58595A] text-xl md:text-2xl font-semibold w-full text-center mt-2 mb-4 md:mt-6">
+          ( {{ count }} Reviews )
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="w-full md:w-1/2 flex flex-col justify-center">
+      <div class="flex flex-col gap-1 md:gap-2">
+        @for (rating of [5, 4, 3, 2, 1]; track $index) {
+          <div
+            class="flex gap-2 md:gap-4 items-center justify-center text-lg md:text-2xl text-[#8B8C8A] font-bold">
+            <span class="w-[15%] flex justify-end items-center">
+              {{ rating }}
+              <i class="fa-solid fa-star text-[#F8C519] ml-2"></i>
+            </span>
+            <div class="w-full relative h-3 bg-[#E6E6E6] rounded-full">
+              <div
+                class="absolute h-full rounded-full bg-[#F8C519]"
+                [style.width.%]="(ratingCounts[rating] / count) * 100"></div>
+            </div>
+            <span class="w-[10%]">({{ ratingCounts[rating] }})</span>
+          </div>
+        }
+      </div>
+      <button
+        (click)="addReview()"
+        class="add-review-btn text-lg md:text-xl font-semibold mt-10 py-2.5 bg-[#1B8057] w-50 md:w-80 mx-auto rounded-lg text-[#F5F8F5]">
+        Add Your Review
+      </button>
+    </div>
+  </div>
+  <!-- Title and sort -->
+  <div
+    class="flex flex-col md:flex-row items-center gap-4 justify-between mt-6">
+    <div>
+      <h3 class="text-3xl md:text-4xl font-bold text-[#121311]">
+        Review
+        <span class="text-[#1B8057]">List</span>
+      </h3>
+      <p class="font-semibold text-[#8B8C8A] mt-2 md:mt-4">
+        Showing 1-{{ loadedReviews }} of {{ count }} results
+      </p>
+    </div>
+
+    <div class="flex items-center md:text-lg font-semibold">
+      <p class="">sort by :</p>
+      <select
+        (change)="sortReviews($event)"
+        name=""
+        id=""
+        class="border py-3 px-2 ml-2 rounded-lg">
+        <option value="nosort">No Sort</option>
+        <option value="asc">Rating Ascending</option>
+        <option value="desc">Rating Descending</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- reviews -->
+  <div class="w-full mt-10 flex flex-col gap-4">
+    @for (review of reviews; track $index) {
+      @if ($index < loadedReviews) {
+        <div class="flex items-center gap-4">
+          @if (!review.userId.image) {
+            <img
+              src="images/defaultUser.png"
+              class="size-12 md:size-16 rounded-full"
+              alt="" />
+          } @else {
+            <img
+              src="{{ review.userId.image.imageUrl }}"
+              class="size-12 md:size-16 rounded-full"
+              alt="" />
+          }
+
+          <span class="text-2xl font-semibold"
+            >{{ review.userId.firstName }} {{ review.userId.lastName }}</span
+          >
+        </div>
+        <span class="text-xl font-bold">{{ review.reviewTitle }}</span>
+        <span class="text-lg">{{ review.reviewDescription }}</span>
+
+        <div class="flex items-center w-full text-xl gap-1 md:gap-2">
+          @for (star of [1, 2, 3, 4, 5]; track $index) {
+            @if (review.rating - $index >= 1) {
+              <i class="fa-solid fa-star text-[#F8C519]"></i>
+            } @else if (review.rating - $index >= 0.5) {
+              <i class="fa-solid fa-star-half-stroke text-[#F8C519]"></i>
+            } @else {
+              <i class="fa-regular fa-star text-[#F8C519]"></i>
+            }
+          }
+          <span class="text-2xl font-semibold">{{ review.rating }}</span>
+        </div>
+        <hr />
+      }
+    }
+    @if (loadedReviews < count) {
+      <button
+        (click)="loadMore()"
+        class="ml-auto py-3 border-2 border-[#1B8057] px-3 rounded-lg text-xl sm:text-2xl mx-auto sm:mx-0 sm:ml-auto font-semibold text-[#1B8057] cursor-pointer">
+        Load More Reviews
+      </button>
+    }
+  </div>
+  @if (addReviewActive) {
+    <div #addReviewForm>
+      <app-review-form [productId]="productId"></app-review-form>
+    </div>
+  }
+</div>

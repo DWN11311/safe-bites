@@ -1,0 +1,39 @@
+<div class="flex w-full bg-[#f9f9eb] px-10 md:px-16 py-8">
+  <!-- Left Section -->
+  <div class="w-3/4 mt-8 flex-col gap-2">
+    <h1 class="text-3xl md:text-4xl font-semibold text-[#2E3926]">About Us</h1>
+    <h6 class="text-2xl md:text-3xl font-semibold text-[#2E3926] mt-6">
+      We strive to bring you health and quality in every meal.
+    </h6>
+    <p class="text-[#696968] leading-relaxed text-xl md:text-2xl mt-2">
+      Our company was founded in 2020 with the aim of offering healthy and
+      natural products that meet the needs of the modern consumer. We believe
+      that a healthy diet is the foundation of a balanced life
+
+      @if (!isExpanded) {
+        <span>...</span>
+      }
+
+      @if (isExpanded) {
+        <span class="text-[#696968] leading-relaxed text-xl md:text-2xl">
+          ,which is why we carefully select the finest ingredients and suppliers
+          to ensure the highest standards of quality and purity in every product
+          we provide
+        </span>
+      }
+    </p>
+    <span
+      class="font-bold text-[#2E3926] underline inline-block text-xl md:text-2xl mt-8 cursor-pointer"
+      (click)="toggleText()"
+      >{{ isExpanded ? 'Read Less' : 'Read More' }}</span
+    >
+  </div>
+
+  <!-- Right Section -->
+  <div class="w-1/4 flex justify-center">
+    <img
+      src="./images/logo-frame.svg"
+      alt="Safe Bites Logo"
+      class="w-full lg:w-2/3 xl:w-1/2 object-contain pt-4" />
+  </div>
+</div>

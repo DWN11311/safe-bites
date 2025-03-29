@@ -6,7 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +16,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent {
-  showPassword=false;
+  showPassword = false;
   myform = new FormGroup({
     firstname: new FormControl('', [
       Validators.required,
@@ -35,6 +36,38 @@ export class SignUpComponent {
       Validators.pattern('^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$'),
     ]),
   });
+  //Back-front
+
+  constructor(
+    private usersService: UsersService,
+    private router: Router
+  ) {}
+  onSubmit() {
+    if (this.myform.valid) {
+      const user = {
+        firstName: this.myform.value.firstname!, //! means value is not null or undefined
+        lastName: this.myform.value.lastname!,
+        email: this.myform.value.email!,
+        password: this.myform.value.password!,
+      };
+      this.register(user);
+    } else {
+      console.log('Form is not valid');
+    }
+  }
+  register(userData: any) {
+    this.usersService.register(userData).subscribe({
+      next: data => {
+        this.router.navigate(['/login']);
+        console.log('User registered successfully', data);
+      },
+      error: err => {
+        console.error('Registration failed', err);
+      },
+    });
+  }
+  //////////////////////////////////////////////////////////////
+
   get firstnameRequired() {
     return (
       this.myform.controls.firstname.hasError('required') &&
@@ -93,8 +126,9 @@ export class SignUpComponent {
     const passwordValue = this.myform.get('password')?.value || '';
     return /[!@#$%^&*]/.test(passwordValue);
   }
-  togglePassword(){
-    this.showPassword=!this.showPassword;
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 
   data() {}

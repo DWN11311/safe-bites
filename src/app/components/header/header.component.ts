@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +11,9 @@ import { RouterModule } from '@angular/router';
 export class HeaderComponent {
   isMenuOpen = false;
   isSideOpen = false;
+  showDropdown = false;
+  firstName: string | null = '';
+  constructor(private router: Router) {}
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -18,5 +21,17 @@ export class HeaderComponent {
 
   sideMenuCateogryToggle() {
     this.isSideOpen = !this.isSideOpen;
+  }
+
+  ngOnInit() {
+    this.firstName = localStorage.getItem('firstName');
+  }
+  logout() {
+    localStorage.removeItem('fistName');
+    localStorage.removeItem('token');
+
+    this.firstName = null;
+
+    this.router.navigate(['/']);
   }
 }
