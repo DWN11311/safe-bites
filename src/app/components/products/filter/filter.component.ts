@@ -52,12 +52,9 @@ export class FilterComponent {
   }
 
   ngOnInit() {
-    this.categoriesService.getCategories().subscribe({
-      next: data => {
-        this.categories = data;
-        this.updateFilters();
-        this.sendCategoriesObj.emit(this.categories);
-      },
+    this.categoriesService.getCategories().subscribe(data => {
+      this.categories = data as Category[];
+      this.updateFilters();
     });
   }
 

@@ -7,7 +7,6 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 import { EmptyWishListComponent } from './components/empty-wish-list/empty-wish-list.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AuthGuard } from './auth.guard';
-import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import { ProductDetailsComponent } from './components/product-details/product-details/product-details.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AboutusComponent } from './components/about us/aboutus/aboutus.component';
@@ -20,7 +19,6 @@ export const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'wishList', component: WishListComponent },
   { path: 'empty-wishList', component: EmptyWishListComponent },
-  { path: 'newsletter', component: NewsletterComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'cart', component: CartComponent },

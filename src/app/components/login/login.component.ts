@@ -140,6 +140,19 @@ export class LoginComponent {
           // localStorage.setItem('username', "Asmaa");
           // store Fname at local storage
           const decodedToken = this.decodeJWT(data.token);
+          let userData;
+          this.usersService
+            .getUserById(decodedToken.id, data.token)
+            .subscribe(response => {
+              userData = response.user;
+              console.log(userData);
+
+              if (userData.image && userData.image.imageUrl)
+                localStorage.setItem(
+                  'profileImageUrl',
+                  userData.image.imageUrl
+                );
+            });
           localStorage.setItem('firstName', decodedToken.firstName);
           console.log('User First Name:', decodedToken.firstName);
           this.router.navigate(['']);
