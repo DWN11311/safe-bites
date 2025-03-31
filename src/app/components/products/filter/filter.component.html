@@ -1,4 +1,4 @@
-<div class="w-full bg-[#FDFFF6] px-4 flex flex-col gap-4 py-4">
+<div class="w-full px-4 flex flex-col gap-4 py-4">
   <!-- Sort -->
   <div class="flex flex-col gap-2">
     <div
@@ -98,62 +98,50 @@
     </div>
   </div>
   <!-- Cateogry -->
-  <div>
-    <div
-      (click)="collapseCategory()"
-      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-xl cursor-pointer">
-      <p class="underline">Cateogry</p>
-      <span
-        [ngClass]="{ '-rotate-[90deg]': categoryIsCollapsed }"
-        class="transition-transform">
-        <i class="fa-solid fa-chevron-down"></i>
-      </span>
+  @for (categoryType of categories; track $index) {
+    <div>
+      <div
+        (click)="collapseSubCateogry($index)"
+        class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-xl cursor-pointer">
+        <p class="underline">{{ categoryType.type | titlecase }}</p>
+        <span
+          [ngClass]="{ '-rotate-[90deg]': categoryType.isCollapsed }"
+          class="transition-transform">
+          <i class="fa-solid fa-chevron-down"></i>
+        </span>
+      </div>
+
+      <div
+        [ngClass]="{
+          'max-h-0': categoryType.isCollapsed,
+          'max-h-[9999px]': !categoryType.isCollapsed,
+        }"
+        class="overflow-hidden transition-[max-height] duration-500">
+        @for (category of categoryType.categories; track $index) {
+          <!-- <label for="subcategory-type" class="flex gap-1 items-center">
+            <input
+              type="checkbox"
+              name="subcategory-type"
+              class="size-4"
+              value="{{ category.name }}"
+              [(ngModel)]="category.checked" />
+            {{ category.name }}
+          </label> -->
+          <label class="container"
+            >{{ category.name | titlecase }}
+            <input
+              type="checkbox"
+              name="subcategory-type"
+              class="size-4"
+              value="{{ category.name }}"
+              [(ngModel)]="category.checked" />
+            <span class="checkmark"></span>
+          </label>
+        }
+      </div>
     </div>
-    <div
-      [ngClass]="{
-        'max-h-0': categoryIsCollapsed,
-        'max-h-[9999px]': !categoryIsCollapsed,
-      }"
-      class="overflow-hidden transition-[max-height] duration-300">
-      @for (category of categories; track $index) {
-        <label for="category-type" class="flex gap-1 px-2 items-center py-2">
-          <input
-            type="checkbox"
-            name="category-type"
-            class="size-4"
-            [(ngModel)]="category.checked"
-            value="{{ category.type }}" />
-          {{ category.type }}
-          <span
-            [ngClass]="{ '-rotate-[90deg]': category.isCollapsed }"
-            (click)="collapseSubCateogry($index)"
-            class="size-6 ml-auto cursor-pointer transition-transform duration-300 flex items-center justify-center">
-            <i class="fa-solid fa-chevron-down"></i>
-          </span>
-        </label>
-        <div
-          [ngClass]="{
-            'max-h-0': category.isCollapsed,
-            'max-h-[9999px]': !category.isCollapsed,
-          }"
-          class="overflow-hidden transition-[max-height] duration-300 px-6">
-          <div class="flex flex-col gap-1">
-            @for (subCategory of category.categories; track $index) {
-              <label for="subcategory-type" class="flex gap-1 items-center">
-                <input
-                  type="checkbox"
-                  name="subcategory-type"
-                  class="size-4"
-                  value="{{ subCategory.name }}"
-                  [(ngModel)]="subCategory.checked" />
-                {{ subCategory.name }}
-              </label>
-            }
-          </div>
-        </div>
-      }
-    </div>
-  </div>
+  }
+
   <!-- Apply -->
   <button
     (click)="applyFilter()"

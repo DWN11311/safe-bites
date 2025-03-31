@@ -15,6 +15,7 @@ import { FilterTagsComponent } from '../filter-tags/filter-tags.component';
 import { Category } from '../../../models/category.model';
 import { Product } from '../../../models/product.model';
 import { TruncateWordsPipe } from '../../../pipes/truncate-words.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -39,7 +40,7 @@ export class ProductCardComponent implements OnInit, OnChanges {
   filterIsHidden: boolean = false;
   passedCategories: Category[] = [];
 
-  constructor() {}
+  constructor(private router: Router) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.getTotalPages();
     this.getPaginatedData();
@@ -107,5 +108,9 @@ export class ProductCardComponent implements OnInit, OnChanges {
   changePage(page: number) {
     this.currentPage = page;
     this.getPaginatedData();
+  }
+
+  goToProductDetails(index: number) {
+    this.router.navigate(['products/' + this.data[index]._id]);
   }
 }

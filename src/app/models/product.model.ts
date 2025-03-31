@@ -1,13 +1,19 @@
 export interface Product {
-  id: number;
+  _id: number;
   name: string;
   images: Array<Image>;
   description: string;
   price: number;
   brief: string;
   quantity: number;
-  rank: number;
+  averageRating: number;
   reviews?: string[];
+  categories: Cateogry[];
+}
+
+interface Cateogry {
+  _id: string;
+  name: string;
 }
 
 export interface Image {

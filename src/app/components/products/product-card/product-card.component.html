@@ -1,7 +1,3 @@
-<div class="hero-image bg-[#FDFFF6]">
-  <img src="images/products/hero.png" alt="" class="w-[100%] h-auto" />
-</div>
-
 <div
   class="bg-[#FDFFF6] hidden w-full fixed top-0 h-full overflow-y-scroll md:hidden z-40"
   [ngClass]="{ hidden: !filterIsHidden }">
@@ -15,16 +11,19 @@
   </div>
 
   <div class="px-4">
-    <app-filter></app-filter>
+    <app-filter (sendCategoriesObj)="passCategories($event)"></app-filter>
   </div>
 </div>
 
 <div
-  class="grid grid-cols-3 py-4 md:py-10 gap-10 px-5 md:px-8 lg:px-12 xl:px-20 bg-[#FDFFF6]">
-  <div class="bg-[#FDFFF6] hidden md:block col-span-1">
+  class="grid grid-cols-12 gap-5 lg:gap-10 px-5 min-[1024px]:px-16 min-[1440px]:px-40 mt-[78px] md:mt-[154px]">
+  <!-- Left Part -->
+  <div class="hidden md:block col-span-4 xl:col-span-3">
     <app-filter (sendCategoriesObj)="passCategories($event)"></app-filter>
   </div>
-  <div class="col-span-3 md:col-span-2">
+
+  <!-- Right Part -->
+  <div class="col-span-12 md:col-span-8 xl:col-span-9">
     <div class="flex justify-between items-center md:mb-4">
       <button
         (click)="toggleFilterMenu()"
@@ -33,56 +32,70 @@
       </button>
       @if (paginatedData.length > 0) {
         <p class="text-xl text-[#353932B2]">
-          1 of <span>{{ paginatedData.length }}</span> products
+          1 of <span>{{ paginatedData.length }}</span> Products
         </p>
       }
     </div>
     <app-filter-tags [categoriesObj]="passedCategories"></app-filter-tags>
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+
+    <!-- Products -->
+    <div class="grid min-[500px]:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-10">
       <div
         *ngFor="let item of paginatedData; let index = index"
-        class="card bg-white shadow-2xl rounded-lg py-5 px-5 mb-3"
+        class="card bg-white rounded-lg py-4 px-5"
+        style="box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25)"
         appHover>
         <div class="header flex justify-between items-center mb-5">
-          <p class="bg-[#7CAD3F] text-white py-1 px-7 text-lg rounded-sm">
+          <p
+            class="bg-[#1B8057] text-white py-2 px-4 font-bold rounded-lg"
+            style="box-shadow: 0px 4px 10px 0px rgba(29, 139, 94, 0.25)">
             New
           </p>
-          <i
-            class="fa-regular fa-heart text-2xl hover:text-red-500 cursor-pointer"></i>
         </div>
         <img
+          (click)="goToProductDetails(index)"
           src="{{ item.images[0].imageUrl }}"
           class="m-auto h-[10rem] md:h-[11rem] lg:h-[13rem] cursor-pointer"
           alt="Feature 2"
           [appHover]="item.images[1].imageUrl" />
 
-        <div class="data my-1 md:my-3">
-          <p class="text-2xl text-[#454545]">${{ item.price }}</p>
-          <h3 class="my-1 lg:my-2 font-medium text-xl sm:text-xl lg:text-3xl">
+        <div class="data my-2 lg:my-4 mt-4 lg:mt-6 flex flex-col gap-2">
+          <div class="flex justify-between text-lg lg:text-xl">
+            <p class="text-[#7DB69F]">
+              {{ (item.categories[0].name | titlecase) || 'Healthy Product' }}
+            </p>
+            <span class="text-[#121311] font-semibold"
+              ><i class="fa-solid fa-star text-[#F8C519] mr-1"></i
+              >{{ item.averageRating || 0 }}</span
+            >
+          </div>
+          <h3 class="font-medium text-xl sm:text-xl lg:text-2xl text-[#121311]">
             {{ item.name | truncateWords: 25 }}
           </h3>
-          <p class="text-xl text-[#454545]">
-            {{ item.description | truncateWords: 40 }}
+          <p class="text-xl font-semibold text-[#1B8057]">
+            {{ item.price }} EGP
           </p>
-          <div class="rates mt-1 lg:mt-2">
-            <i class="fa-solid fa-star text-[#EAFF00] text-lg"></i>
-            <i class="fa-solid fa-star text-[#EAFF00] text-lg"></i>
-            <i class="fa-solid fa-star text-[#DCDCDC] text-lg"></i>
-            <i class="fa-solid fa-star text-[#DCDCDC] text-lg"></i>
-            <i class="fa-solid fa-star text-[#DCDCDC] text-lg"></i>
-          </div>
         </div>
 
-        <button
-          class="block mt-2 sm:mt-3 md:mt-5 bg-[#7CAD3F] w-full py-2 text-white text-xl rounded-lg border-2 hover:cursor-pointer hover:bg-white hover:text-[#7CAD3F] hover:border-[#7CAD3F]">
-          Add To Cart
-        </button>
+        <div class="flex gap-4">
+          <button
+            class="bg-[#378F6B] w-full py-2 text-white text-xl rounded-lg hover:cursor-pointer hover:bg-[#307055] transition-all">
+            Add To Cart
+          </button>
+          <button
+            class="shrink-0 rounded-full flex items-center justify-center size-14 border border-[#C5C4C4] hover:text-red-500 cursor-pointer">
+            <i class="fa-regular fa-heart text-3xl"></i>
+          </button>
+        </div>
       </div>
     </div>
+  </div>
+  <div class="col-span-12">
     @if (paginatedData.length > 0) {
-      <div class="pagintion flex items-center mt-10 text-2xl">
+      <div
+        class="pagintion flex items-center justify-center mt-4 mb-16 text-2xl">
         <i
-          class="fa-solid fa-angle-left cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded-[50%] pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
+          class="fa-solid fa-angle-left cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
           (click)="pageClicked(currentPage - 1)"
           [ngClass]="{ disabled: currentPage === 1 }"></i>
         <ul class="flex justify-center items-center ml-5 text-xl">
@@ -95,7 +108,7 @@
           </li>
         </ul>
         <i
-          class="fa-solid fa-angle-right cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded-[50%] pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
+          class="fa-solid fa-angle-right cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded-lg pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
           (click)="pageClicked(currentPage + 1)"
           [ngClass]="{ disabled: currentPage === totalPages }"></i>
       </div>
