@@ -1,3 +1,4 @@
+import { ProfileComponent } from './components/profile/profile/profile.component';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home/home.component';
 import { ProductsComponent } from './components/products/products/products.component';
@@ -10,14 +11,15 @@ import { AuthGuard } from './auth.guard';
 import { ProductDetailsComponent } from './components/product-details/product-details/product-details.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'products', component: ProductsComponent },
+  { path: '', component: HomeComponent,data: { breadcrumb: 'Home' } },
+  { path: 'products', component: ProductsComponent,data: { breadcrumb: 'Products' } },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'wishList', component: WishListComponent },
-  { path: 'empty-wishList', component: EmptyWishListComponent },
-  { path: 'products/:id', component: ProductDetailsComponent },
-  { path: '**', component: ErrorComponent },
+  { path: 'wishList', component: WishListComponent,data: { breadcrumb: 'Wishlist' } },
+  { path: 'empty-wishList', component: EmptyWishListComponent,data: { breadcrumb: 'Wishlist empty' } },
+  { path: 'products/:id', component: ProductDetailsComponent,data: { breadcrumb: 'Product details' } },
+  { path: 'users/:id', component: ProfileComponent,data: { breadcrumb: 'Profile' } },
+  { path: '**', component: ErrorComponent,data: { breadcrumb: 'Error' } },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
 ];

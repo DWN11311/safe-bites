@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+// app.component.ts
+import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductsService } from './services/products.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-root',
@@ -12,18 +14,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     ReactiveFormsModule,
+    BreadcrumbComponent
   ],
   providers: [ProductsService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  hiddenRoutes = ['/login', '/sign-up'];
+  hiddenLayoutRoutes = ['/login', '/sign-up'];
   title = 'safe-bites';
-
-  constructor(private router: Router) {}
+  router = inject(Router); // Inject the Router
 
   shouldDisplayLayout(): boolean {
-    return !this.hiddenRoutes.includes(this.router.url);
+    return !this.hiddenLayoutRoutes.includes(this.router.url);
   }
 }

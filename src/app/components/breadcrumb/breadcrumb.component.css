@@ -1,0 +1,9 @@
+.breadcrumb {
+    list-style: none;
+    display: flex;
+    gap: 5px;
+    padding: 0;
+}
+.breadcrumb li {
+    display: inline;
+}
