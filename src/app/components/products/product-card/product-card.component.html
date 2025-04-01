@@ -1,10 +1,10 @@
 <div
   class="bg-[#FDFFF6] hidden w-full fixed top-0 h-full overflow-y-scroll md:hidden z-40"
   [ngClass]="{ hidden: !filterIsHidden }">
-  <div class="flex justify-between items-center w-full bg-[#7C9B66] py-4 px-6">
+  <div class="flex justify-between items-center w-full bg-[#378f6b] py-4 px-6">
     <span class="text-xl text-white font-semibold">Sorting & Filters</span>
     <button
-      class="text-[#7C9B66] size-10 rounded-full bg-white flex items-center justify-center text-3xl"
+      class="text-[#378f6b] size-10 rounded-full bg-white flex items-center justify-center text-3xl"
       (click)="toggleFilterMenu()">
       <i class="fa-solid fa-xmark"></i>
     </button>
@@ -42,10 +42,10 @@
     <div class="grid min-[500px]:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-10">
       <div
         *ngFor="let item of paginatedData; let index = index"
-        class="card bg-white rounded-lg py-4 px-5"
+        class="card bg-white rounded-lg py-4 px-5 flex flex-col"
         style="box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25)"
         appHover>
-        <div class="header flex justify-between items-center mb-5">
+        <div class="header flex justify-between mb-5">
           <p
             class="bg-[#1B8057] text-white py-2 px-4 font-bold rounded-lg"
             style="box-shadow: 0px 4px 10px 0px rgba(29, 139, 94, 0.25)">
@@ -77,9 +77,9 @@
           </p>
         </div>
 
-        <div class="flex gap-4">
+        <div class="flex gap-4 justify-self-end">
           <button
-            class="bg-[#378F6B] w-full py-2 text-white text-xl rounded-lg hover:cursor-pointer hover:bg-[#307055] transition-all">
+            class="bg-[#378F6B] w-full py-2 text-white text-lg md:text-xl rounded-lg hover:cursor-pointer hover:bg-[#307055] transition-all">
             Add To Cart
           </button>
           <button

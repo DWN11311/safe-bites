@@ -81,6 +81,7 @@ export class ProductCardComponent implements OnInit, OnChanges {
 
   passCategories(params: Category[]) {
     this.passedCategories = params;
+    this.toggleFilterMenu();
   }
 
   setItemsPerPage() {

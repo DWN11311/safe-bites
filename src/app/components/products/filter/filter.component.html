@@ -1,34 +1,46 @@
 <div class="w-full px-4 flex flex-col gap-4 py-4">
   <!-- Sort -->
   <div class="flex flex-col gap-2">
-    <div
-      class="text-[#353932] flex justify-between items-center text-xl underline">
+    <div class="text-[#353932] flex justify-between items-center text-xl">
       <p>Sort by:</p>
     </div>
     <select
       [(ngModel)]="sortBy"
       name=""
-      class="rounded-xl border-2 border-[#353932] py-3.5 px-2 text-[#353932]/70">
+      class="rounded-lg mx-1 border-1 border-[#353932] py-3.5 px-2 text-[#353932]">
       <option value="">Featured</option>
       <option value="price">Price</option>
       <option value="rating">Rating</option>
       <option value="date">List date</option>
     </select>
-    <label for="" class="px-2">
-      <input [(ngModel)]="sortOrder" type="radio" name="sort" value="desc" />
-      Descending
-    </label>
-    <label for="" class="px-2">
-      <input [(ngModel)]="sortOrder" type="radio" name="sort" value="asc" />
-      Ascending
-    </label>
+
+    <div class="radio-wrapper-27 mt-2">
+      <input
+        [checked]="sortOrder == 'desc' ? true : false"
+        (change)="changeSortOrder($event)"
+        id="sort-desc"
+        type="radio"
+        name="sort"
+        value="desc" />
+      <label for="sort-desc">Descending</label>
+    </div>
+    <div class="radio-wrapper-27">
+      <input
+        [checked]="sortOrder == 'asc' ? true : false"
+        (change)="changeSortOrder($event)"
+        id="sort-asc"
+        type="radio"
+        name="sort"
+        value="asc" />
+      <label for="sort-asc">Ascending</label>
+    </div>
   </div>
   <!-- Price -->
   <div>
     <div
       (click)="collapsePrice()"
-      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-xl cursor-pointer">
-      <p class="underline">Price</p>
+      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-2 text-xl cursor-pointer">
+      <p class="">Price</p>
       <span
         [ngClass]="{ '-rotate-[90deg]': priceIsCollapsed }"
         class="transition-transform duration-300">
@@ -42,12 +54,12 @@
         'max-h-0': priceIsCollapsed,
         'max-h-[200px]': !priceIsCollapsed,
       }">
-      <div class="flex justify-between gap-2 items-center py-2">
+      <div class="flex justify-between gap-2 items-center py-4 px-1">
         <div class="basis-[40%] relative">
           <input
             [(ngModel)]="minPrice"
             type="text"
-            class="w-full border-2 rounded-xl p-2 border-[#353932]/70 text-right pl-5"
+            class="w-full border-1 rounded-lg p-2 border-[#353932]/70 text-right pl-5 focus:outline-1 outline-[#378f6b]/60"
             placeholder="0" />
           <span
             class="absolute left-2 top-1/2 -translate-y-1/2 text-[#353932]/70">
@@ -59,7 +71,7 @@
           <input
             [(ngModel)]="maxPrice"
             type="text"
-            class="w-full border-2 rounded-xl p-2 border-[#353932]/70 text-right pl-5"
+            class="w-full border-1 rounded-lg p-2 border-[#353932]/70 text-right pl-5 focus:outline-2 outline-[#378f6b]/60"
             placeholder="9" />
           <span
             class="absolute left-2 top-1/2 -translate-y-1/2 text-[#353932]/70">
@@ -73,8 +85,8 @@
   <div class="flex flex-col">
     <div
       (click)="collapseAvailability()"
-      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-xl cursor-pointer">
-      <p class="underline">Availability</p>
+      class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-2 text-xl cursor-pointer">
+      <p class="">Availability</p>
       <span
         [ngClass]="{ '-rotate-[90deg]': availabilityIsCollapsed }"
         class="transition-transform">
@@ -82,18 +94,29 @@
       </span>
     </div>
     <div
-      class="flex flex-col gap-2 overflow-hidden transition-[max-height] duration-300 ease-in-out"
+      class="flex flex-col gap-2 overflow-hidden transition-[max-height] duration-300 ease-in-out mt-4"
       [ngClass]="{
         'max-h-0': availabilityIsCollapsed,
         'max-h-[200px]': !availabilityIsCollapsed,
       }">
-      <label for="" class="flex items-center gap-1 pt-2">
-        <input type="checkbox" class="size-4" [(ngModel)]="inStock" />
+      <label class="container">
         In stock
+        <input
+          type="checkbox"
+          name="subcategory-type"
+          [(ngModel)]="inStock"
+          class="size-4" />
+        <span class="checkmark"></span>
       </label>
-      <label for="" class="flex items-center gap-1 pb-2">
-        <input type="checkbox" class="size-4" [(ngModel)]="outOfStock" />
+
+      <label class="container">
         Out of stock
+        <input
+          type="checkbox"
+          name="subcategory-type"
+          [(ngModel)]="outOfStock"
+          class="size-4" />
+        <span class="checkmark"></span>
       </label>
     </div>
   </div>
@@ -102,8 +125,8 @@
     <div>
       <div
         (click)="collapseSubCateogry($index)"
-        class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-3 text-xl cursor-pointer">
-        <p class="underline">{{ categoryType.type | titlecase }}</p>
+        class="text-[#353932] border-b border-[#353932]/20 flex justify-between items-center py-2 text-xl cursor-pointer">
+        <p class="">{{ categoryType.type | titlecase }}</p>
         <span
           [ngClass]="{ '-rotate-[90deg]': categoryType.isCollapsed }"
           class="transition-transform">
@@ -116,18 +139,9 @@
           'max-h-0': categoryType.isCollapsed,
           'max-h-[9999px]': !categoryType.isCollapsed,
         }"
-        class="overflow-hidden transition-[max-height] duration-500">
+        class="overflow-hidden transition-[max-height] duration-500 flex flex-col gap-2">
         @for (category of categoryType.categories; track $index) {
-          <!-- <label for="subcategory-type" class="flex gap-1 items-center">
-            <input
-              type="checkbox"
-              name="subcategory-type"
-              class="size-4"
-              value="{{ category.name }}"
-              [(ngModel)]="category.checked" />
-            {{ category.name }}
-          </label> -->
-          <label class="container"
+          <label class="container first:mt-4"
             >{{ category.name | titlecase }}
             <input
               type="checkbox"
@@ -145,12 +159,12 @@
   <!-- Apply -->
   <button
     (click)="applyFilter()"
-    class="py-3.5 w-full bg-[#7CAD3F] text-white rounded-xl mt-2 hover:bg-[#7CAD3F]/80 cursor-pointer transition-[background-color]">
+    class="py-3.5 w-full bg-[#378f6b] text-xl text-white rounded-lg mt-2 hover:bg-[#307055] cursor-pointer transition-[background-color]">
     Apply
   </button>
   <button
     (click)="clearFilters()"
-    class="py-3.5 w-full rounded-xl border-2 border-[#7CAD3F] text-[#7CAD3F] cursor-pointer">
+    class="py-3.5 w-full rounded-lg text-xl border-2 border-[#378f6b] text-[#378f6b] font-semibold cursor-pointer">
     Clear All
   </button>
 </div>

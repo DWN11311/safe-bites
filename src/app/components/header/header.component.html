@@ -265,6 +265,17 @@
           >Profile</a
         >
       </li>
+
+      <li>
+        <a *ngIf="firstName" (click)="toggleMenu()" routerLink="/wishList"
+          >Wishlist</a
+        >
+      </li>
+
+      <li>
+        <a *ngIf="firstName" (click)="toggleMenu()" routerLink="/cart">Cart</a>
+      </li>
+
       <li *ngIf="firstName" (click)="logout()">
         <p class="text-black underline">Logout</p>
       </li>
