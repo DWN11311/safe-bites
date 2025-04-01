@@ -12,13 +12,13 @@
   </div>
 </div>
 
-<div class="grid grid-cols-12 gap-8 p-8 mt-16 mx-10">
+<div class="grid grid-cols-12 gap-8 p-8 mt-16 mx-auto lg:mx-10">
   <form
     [formGroup]="contactForm"
     (ngSubmit)="submitForm()"
     class="col-span-12 sm:col-span-6 md:col-span-6 my-auto">
     <div class="col-span-12 sm:col-span-6 md:col-span-6">
-      <div class="relative lg:mb-10 mb-6 mt-4">
+      <div class="relative lg:mb-16 md:mb-10 sm:mb-10 mb-10 mt-4">
         <input
           type="text"
           id="phone"
@@ -29,7 +29,7 @@
 
         <label
           for="phone"
-          class="absolute left-3 bg-white px-1 text-gray-500 text-base transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057] focus:ring-0"
+          class="absolute left-3 bg-white px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057] focus:ring-0"
           [ngClass]="{
             'top-[-10px] text-sm text-[#1B8057]':
               contactForm.get('phone')?.value,
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <div class="relative lg:mb-10 mb-6 mt-4">
+      <div class="relative lg:mb-16 md:mb-10 sm:mb-10 mb-10 mt-4">
         <input
           type="text"
           id="subject"
@@ -62,7 +62,7 @@
 
         <label
           for="subject"
-          class="absolute left-3 bg-white px-1 text-gray-500 text-base transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
+          class="absolute left-3 bg-white px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
           [ngClass]="{
             'top-[-10px] text-sm text-[#1B8057]':
               contactForm.get('subject')?.value,
@@ -80,7 +80,7 @@
         </div>
       </div>
 
-      <div class="relative lg:mb-10 mb-6 0 mt-4">
+      <div class="relative lg:mb-16 md:mb-10 sm:mb-10 mb-10 mt-4">
         <textarea
           id="message"
           formControlName="message"
@@ -90,7 +90,7 @@
 
         <label
           for="message"
-          class="absolute left-3 bg-white px-1 text-gray-500 text-base transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#1B8057]"
+          class="absolute left-3 bg-white px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#1B8057]"
           [ngClass]="{
             'top-[-10px] text-sm text-[#1B8057]':
               contactForm.get('message')?.value,
@@ -110,7 +110,7 @@
 
       <button
         type="submit"
-        class="bg-[#1B8057] text-white px-6 py-1 rounded-lg hover:bg-[#3a6b58] transition h-12 md:h-14 cursor-pointer">
+        class="bg-[#1B8057] text-white px-6 py-1 rounded-lg hover:bg-[#3a6b58] transition h-12 md:h-14 mt-4 cursor-pointer">
         Send a Message
       </button>
     </div>
@@ -163,7 +163,7 @@
       <i
         class="fa-solid fa-truck-fast absolute top-[-10px] left-[-5px] text-[#1B8057] text-5xl"></i>
     </div>
-    <div class="bg-amber-300 w-12 h-12 rounded-full ml-3"></div>
+    <div class="bg-amber-300 w-12 h-12 rounded-full flex-shrink-0 ml-3"></div>
     <div class="flex flex-col">
       <p class="text-xl text-gray-900 font-semibold">Fast Delivery</p>
       <p class="text-gray-600 font-light">Quick and on-time delivery</p>
@@ -175,7 +175,7 @@
       <i
         class="fa-solid fa-basket-shopping absolute top-[-10px] left-[-5px] text-[#1B8057] text-5xl"></i>
     </div>
-    <div class="bg-amber-300 w-12 h-12 rounded-full ml-3"></div>
+    <div class="bg-amber-300 w-12 h-12 rounded-full flex-shrink-0 ml-3"></div>
     <div class="flex flex-col">
       <p class="text-xl text-gray-900 font-semibold">Free Shipping</p>
       <p class="text-gray-600 font-light">
@@ -188,7 +188,7 @@
       <i
         class="fa-solid fa-headset absolute top-[-10px] left-[-5px] text-[#1B8057] text-5xl"></i>
     </div>
-    <div class="bg-amber-300 w-12 h-12 rounded-full ml-3"></div>
+    <div class="bg-amber-300 w-12 h-12 rounded-full flex-shrink-0 ml-3"></div>
     <div class="flex flex-col">
       <p class="text-xl text-gray-900 font-semibold">24*7</p>
       <p class="text-gray-600 font-light">We support online all days</p>
@@ -199,7 +199,7 @@
       <i
         class="fa-solid fa-leaf absolute top-[-10px] left-[-5px] text-[#1B8057] text-5xl"></i>
     </div>
-    <div class="bg-amber-300 w-12 h-12 rounded-full ml-3"></div>
+    <div class="bg-amber-300 w-12 h-12 rounded-full flex-shrink-0 ml-3"></div>
     <div class="flex flex-col">
       <p class="text-xl text-gray-900 font-semibold">Best Quality</p>
       <p class="text-gray-600 font-light">Premium products guaranteed</p>

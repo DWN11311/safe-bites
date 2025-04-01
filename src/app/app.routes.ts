@@ -11,6 +11,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AboutusComponent } from './components/about us/aboutus/aboutus.component';
 import { CartComponent } from './components/cart/cart/cart.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'empty-wishList', component: EmptyWishListComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'contact-us', component: ContactUsComponent },
+  { path: 'payment', component: PaymentComponent },
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
