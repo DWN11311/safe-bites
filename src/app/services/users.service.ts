@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -13,8 +13,12 @@ export class UsersService {
     return this.http.get(this.url);
   }
 
-  getUserById(id: number) {
-    return this.http.get(this.url + '/' + id);
+  getUserById(id: string, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.get(this.url + '/' + id, { headers });
   }
 
   getUserByEmail(email: string) {

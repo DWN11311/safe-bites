@@ -23,7 +23,7 @@ export class WishListComponent implements OnChanges, OnInit {
   }
   products: Array<Product> = [
     {
-      id: 1,
+      _id: 1,
       images: [
         { _id: '', imageUrl: 'images/wishList/veganDarkChocolatete2.webp' },
         { _id: '', imageUrl: 'images/wishList/veganDarkChocolate4.webp' },
@@ -32,11 +32,12 @@ export class WishListComponent implements OnChanges, OnInit {
       description: 'Pure organic honey from natural farms.',
       price: 15.99,
       brief: 'Best Seller',
-      rank: 4.5,
+      averageRating: 4.5,
       quantity: 10,
+      categories: [{ _id: 'aaa', name: 'aaaa' }],
     },
     {
-      id: 2,
+      _id: 2,
       images: [
         { _id: '', imageUrl: 'images/wishList/Vegan Granola Clusters.webp' },
         { _id: '', imageUrl: 'images/wishList/Vegan Granola Clusters2.webp' },
@@ -45,11 +46,12 @@ export class WishListComponent implements OnChanges, OnInit {
       description: 'Rich and creamy almond butter with no additives.',
       price: 12.49,
       brief: 'Customer Favorite',
-      rank: 4.8,
+      averageRating: 4.8,
       quantity: 10,
+      categories: [{ _id: 'aaa', name: 'aaaa' }],
     },
     {
-      id: 3,
+      _id: 3,
       images: [
         {
           _id: '',
@@ -64,11 +66,12 @@ export class WishListComponent implements OnChanges, OnInit {
       description: 'High-quality chia seeds packed with nutrients.',
       price: 9.99,
       brief: 'Superfood',
-      rank: 4.7,
+      averageRating: 4.7,
       quantity: 10,
+      categories: [{ _id: 'aaa', name: 'aaaa' }],
     },
     {
-      id: 4,
+      _id: 4,
       images: [
         {
           _id: '',
@@ -83,11 +86,12 @@ export class WishListComponent implements OnChanges, OnInit {
       description: 'Premium white quinoa, gluten-free and protein-rich.',
       price: 11.49,
       brief: 'Healthy Choice',
-      rank: 4.6,
+      averageRating: 4.6,
       quantity: 10,
+      categories: [{ _id: 'aaa', name: 'aaaa' }],
     },
     {
-      id: 5,
+      _id: 5,
       images: [
         {
           _id: '',
@@ -100,11 +104,12 @@ export class WishListComponent implements OnChanges, OnInit {
       description: 'Organic Japanese matcha powder for lattes and smoothies.',
       price: 19.99,
       brief: 'Top Rated',
-      rank: 4.9,
+      averageRating: 4.9,
       quantity: 10,
+      categories: [{ _id: 'aaa', name: 'aaaa' }],
     },
     {
-      id: 6,
+      _id: 6,
       images: [
         {
           _id: '',
@@ -117,11 +122,12 @@ export class WishListComponent implements OnChanges, OnInit {
       description: 'Cold-pressed extra virgin coconut oil.',
       price: 8.99,
       brief: 'Versatile Use',
-      rank: 4.5,
+      averageRating: 4.5,
       quantity: 10,
+      categories: [{ _id: 'aaa', name: 'aaaa' }],
     },
     {
-      id: 7,
+      _id: 7,
       images: [
         {
           _id: '',
@@ -136,11 +142,12 @@ export class WishListComponent implements OnChanges, OnInit {
       description: '85% dark chocolate, rich in antioxidants.',
       price: 5.99,
       brief: 'Indulgent Treat',
-      rank: 4.4,
+      averageRating: 4.4,
       quantity: 10,
+      categories: [{ _id: 'aaa', name: 'aaaa' }],
     },
     {
-      id: 8,
+      _id: 8,
       images: [
         { _id: '', imageUrl: 'images/wishList/Low-Carb Avocado Mayo1.jpg' },
         { _id: '', imageUrl: 'images/wishList/Low-Carb Avocado Mayo2.jpg' },
@@ -149,14 +156,15 @@ export class WishListComponent implements OnChanges, OnInit {
       description: 'Dried goji berries, a powerful superfood.',
       price: 14.49,
       brief: 'Superfood',
-      rank: 4.8,
+      averageRating: 4.8,
       quantity: 10,
+      categories: [{ _id: 'aaa', name: 'aaaa' }],
     },
   ];
   AddToCard(product: Product) {}
   ngOnChanges() {}
   removeFromWishlist(product: Product) {
-    this.products = this.products.filter(p => p.id !== product.id);
+    this.products = this.products.filter(p => p._id !== product._id);
   }
   showPopup = false;
 

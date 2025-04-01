@@ -9,7 +9,7 @@
   </h1>
 </div> -->
 
-<div class="w-screen overflow-hidden relative">
+<div class="w-screen overflow-hidden relative mt-[72px]">
   <div #slider class="w-screen h-full flex transition-transform duration-500">
     <div
       class="w-screen h-full relative flex items-center justify-center shrink-0">
@@ -104,7 +104,7 @@
   <div
     (click)="dotsClick($event)"
     class="flex gap-2 mt-4 absolute bottom-10 left-1/2 -translate-x-1/2">
-    @for (dot of [0, 1, 2, 3]; track $index) {
+    @for (dot of [0]; track $index) {
       @if (counter === dot) {
         <div
           class="size-6 border-2 border-[#485A3B] bg-[#485A3B] rounded-full cursor-pointer"
