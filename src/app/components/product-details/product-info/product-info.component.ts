@@ -21,9 +21,9 @@ export class ProductInfoComponent implements OnChanges {
       }
     }
     if (this.product) {
-      this.product.rank = 3;
-      this.yellowStars = new Array(this.product.rank);
-      this.whiteStars = new Array(5 - this.product.rank);
+      this.product.averageRating = 3;
+      this.yellowStars = new Array(this.product.averageRating);
+      this.whiteStars = new Array(5 - this.product.averageRating);
     }
   }
 
