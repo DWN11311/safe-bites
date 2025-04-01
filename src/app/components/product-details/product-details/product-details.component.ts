@@ -4,7 +4,7 @@ import { Product } from '../../../models/product.model';
 import { ActivatedRoute } from '@angular/router';
 import { ProductGallaryComponent } from '../product-gallery/product-gallery.component';
 import { CommonModule } from '@angular/common';
-import { ProductInfoComponent } from '../product-info/product-info.component'
+import { ProductInfoComponent } from '../product-info/product-info.component';
 
 @Component({
   selector: 'app-product-details',
@@ -19,7 +19,7 @@ export class ProductDetailsComponent {
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
     const productId = this.route.snapshot.paramMap.get('id') as string;
@@ -30,8 +30,8 @@ export class ProductDetailsComponent {
         this.data = res.data;
         console.log(this.data);
       },
-      error: () => { },
-      complete: () => { },
+      error: () => {},
+      complete: () => {},
     });
   }
 }

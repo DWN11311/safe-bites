@@ -9,6 +9,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { AuthGuard } from './auth.guard';
 import { ProductDetailsComponent } from './components/product-details/product-details/product-details.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,7 +19,8 @@ export const routes: Routes = [
   { path: 'wishList', component: WishListComponent },
   { path: 'empty-wishList', component: EmptyWishListComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
-  { path: 'contactUs', component:ContactUsComponent},
+  { path: 'contactUs', component: ContactUsComponent },
+  { path: 'payment', component:PaymentComponent },
   { path: '**', component: ErrorComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
