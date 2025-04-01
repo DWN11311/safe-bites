@@ -1,1 +1,13 @@
-<p>product-ingredients works!</p>
+<div>
+  <h1 class="mt-8 text-2xl font-bold">Key Ingredients:</h1>
+  <p class="my-4 w-5xl text-gray-500">
+    These carefully selected ingredients are chosen for their nutritional value
+    and health benefits, ensuring a product that supports a balanced lifestyle
+    while offering a distinctive taste.
+  </p>
+  <ul class="text-gray-500 font-semibold list-disc px-5">
+    @for (ingredient of product?.ingredients; track ingredient) {
+      <li class="mb-3">{{ ingredient }}</li>
+    }
+  </ul>
+</div>

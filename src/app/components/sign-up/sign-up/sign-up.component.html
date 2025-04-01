@@ -1,219 +1,126 @@
 <form
   [formGroup]="myform"
   (ngSubmit)="onSubmit()"
-  class="h-[100vh] flex items-center justify-center lg:my-0 md:block mx-auto">
-  <!-- img part -->
-  <div class="flex items-center justify-center md:min-h-screen md:mx-4 lg:mx-0">
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 rounded-lg overflow-hidden lg:max-w-[90%] w-full shadow-[0px_4px_10px_rgba(0,0,0,0.25)]">
-      <div class="relative hidden md:block">
-        <img
-          src="images/sign up/pexels-photo-9070110 2.svg"
-          class="h-full lg:w-[80%] md:w-[90%] object-cover" />
-        <div
-          class="flex items-center justify-center md:max-w-[90%] lg:max-w-[80%] w-full">
-          <p
-            class="absolute bottom-12 bg-[rgba(255,255,255,0.2)] rounded-md text-[#F5F8F5] font-semibold md:text-sm lg:text-lg">
-            Sign up now and make wellness a lifestyle!
-          </p>
-        </div>
-        <img
-          src="images/sign up/Frame 1321317559.svg"
-          class="absolute top-0 left-4 w-20 h-20" />
-        <a
-          routerLink=""
-          class="absolute top-0 lg:right-1/4 md:right-1/6 mt-4 bg-white/80 rounded-2xl py-1 px-4 flex justify-center items-center gap-2 text-[#213E0E] cursor-pointer text-base">
-          Back to Home<img src="images/sign up/Vector.svg" class="h-4 w-4" />
-        </a>
-      </div>
-
-      <!-- sign up -->
-      <!-- title ceate account -->
-      <div class="lg:w-[80%] md:w-[90%] md:px-0 md:pt-4 lg:pt-6 py-6 px-6">
-        <h1 class="text-[#7CAD3F] md:text-4xl font-bold pb-4 text-3xl">
-          Create an account
-        </h1>
-        <span
-          class="text-[#365D1C] md:text-lg font-normal opacity-80 text-normal"
-          >Already have an account? </span
-        ><a
-          routerLink="/login"
-          class="text-md font-semibold underline text-[#65715e]"
-          >log in</a
+  class="grid grid-cols-4 max-w-[1920px] md:grid-cols-12 bg-[#FDFFF6] gap-x-[1.5rem] md:gap-x-[2.5rem] px-[1.5rem] md:px-[10rem] cursor-default py-[1.8rem] md:py-0">
+  <div class="col-span-5 md:-ml-[10rem] hidden md:block">
+    <img
+      src="images/sign up/pexels-photo-9070110 2.svg"
+      class="w-full h-full object-cover" />
+  </div>
+  <div class="col-span-4 md:col-span-6 md:col-start-7 flex flex-col gap-6">
+    <div class="text-form flex flex-col gap-1">
+      <h1 class="text-[#7CAD3F] text-[2.5rem] font-bold">Creat An Account</h1>
+      <p class="text-[#749A44] text-xl font-normal flex gap-1">
+        Already have an account?<span
+          class="text-[#58595A] text-xl underline font-semibold cursor-pointer"
+          >login</span
         >
-        <!-- field -->
-        <div class="grid grid-cols-2 md:gap-8 gap-4 pt-4">
-          <div class="relative w-full">
-            <input
-              formControlName="firstname"
-              type="text"
-              id="FirstName"
-              class="w-full peer p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
-              placeholder="First Name"
-              autocomplete="off" />
-            <label
-              for="FirstName"
-              class="absolute left-3 top-3 text-gray-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#365D1C] not-peer-placeholder-shown:top-[-10px] not-peer-placeholder-shown:text-sm not-peer-placeholder-shown:text-[#365D1C] bg-white px-1 transition-all duration-300 ease-in-out"
-              >First Name</label
-            >
+      </p>
+    </div>
+    <div class="form-field flex flex-col gap-8">
+      <div class="md:grid grid-cols-2 gap-x-[2.5rem] flex flex-col gap-8">
+        <div class="field-firstname relative flex flex-col gap-1">
+          <input
+            id="firstname"
+            type="text"
+            placeholder="First Name"
+            class="peer w-full border-2 rounded-lg h-12 p-3 border-[#7CAD3F] focus:outline-none focus:border-[#718b5d] placeholder-transparent"
+            autocomplete="off" />
 
-            <!-- error message -->
+          <label
+            for="firstname"
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-[-1.4rem] peer-focus:-translate-y-0 not-peer-placeholder-shown:top-[-1.4rem] not-peer-placeholder-shown:-translate-y-0 bg-[#FDFFF6] px-2 font-normal text-xl text-[#8B8C8A] flex gap-2 items-center"
+            ><i class="fa-solid fa-user text-[#58595A]"></i>First Name</label
+          >
+          <!--  -->
 
-            <p
-              class="min-h-[20px] text-sm md:text-xs lg:text-sm text-[#a40f0f] flex items-center gap-1 pl-1">
-              <ng-container *ngIf="firstnameRequired; else charOnly2">
-                <i class="fa-solid fa-circle-exclamation pr-2"></i>
-                Required field
-              </ng-container>
-            </p>
-            <ng-template #charOnly2>
-              <p
-                *ngIf="firstnamepattern"
-                class="min-h-[20px] text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
-                Character only
-              </p>
-            </ng-template>
-          </div>
-          <div class="relative w-full">
-            <input
-              formControlName="lastname"
-              type="text"
-              id="lastname"
-              class="w-full peer p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
-              placeholder="Last Name"
-              autocomplete="off" />
-            <label
-              for="lastname"
-              class="absolute left-3 top-3 text-gray-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#365D1C] not-peer-placeholder-shown:top-[-10px] not-peer-placeholder-shown:text-sm not-peer-placeholder-shown:text-[#365D1C] bg-white px-1 transition-all duration-300 ease-in-out"
-              >Last Name</label
-            >
-            <!-- error message -->
-            <p
-              class="min-h-[20px] text-sm md:text-xs lg:text-sm text-[#a40f0f] flex items-center gap-1 pl-1">
-              <ng-container *ngIf="lastnameRequired; else charOnly">
-                <i class="fa-solid fa-circle-exclamation pr-2"></i>
-                Required field
-              </ng-container>
-            </p>
-            <ng-template #charOnly>
-              <p
-                *ngIf="lastnamepattern"
-                class="min-h-[20px] text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
-                Character only
-              </p>
-            </ng-template>
-          </div>
+          <!--  -->
         </div>
-        <div class="grid grid-cols-none pt-7 gap-7">
-          <!-- Email -->
-          <div class="relative w-full">
+        <!-- end fn-->
+        <div class="field-lastname relative">
+          <input
+            id="lastname"
+            type="text"
+            placeholder="Last Name"
+            class="peer w-full border-2 rounded-lg h-12 p-3 border-[#7CAD3F] focus:outline-none focus:border-[#718b5d] placeholder-transparent"
+            autocomplete="off" />
+          <label
+            for="lastname"
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-[-1.4rem] peer-focus:-translate-y-0 not-peer-placeholder-shown:top-[-1.4rem] not-peer-placeholder-shown:-translate-y-0 bg-[#FDFFF6] px-2 font-normal text-xl text-[#8B8C8A] flex gap-2 items-center"
+            ><i class="fa-solid fa-user text-[#58595A]"></i>Last Name</label
+          >
+        </div>
+      </div>
+      <!-- end ln -->
+      <div class="field-email relative">
+        <input
+          id="Email"
+          type="email"
+          placeholder="First Name"
+          class="peer w-full border-2 rounded-lg h-12 p-3 border-[#7CAD3F] focus:outline-none focus:border-[#718b5d] placeholder-transparent"
+          autocomplete="off" />
+        <label
+          for="Email"
+          class="absolute left-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-[-1.4rem] peer-focus:-translate-y-0 not-peer-placeholder-shown:top-[-1.4rem] not-peer-placeholder-shown:-translate-y-0 bg-[#FDFFF6] px-2 font-normal text-xl text-[#8B8C8A] flex gap-2 items-center"
+          ><i class="fa-solid fa-envelope text-[#58595A]"></i>Email</label
+        >
+      </div>
+      <!-- end email -->
+      <div class="flex flex-col gap-8">
+        <div>
+          <div class="field-password relative">
             <input
-              formControlName="email"
-              type="text"
-              id="Email"
-              class="peer w-full p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
-              placeholder="Email"
-              autocomplete="off" />
-            <label
-              for="Email"
-              class="absolute left-3 top-3 text-gray-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#365D1C] not-peer-placeholder-shown:top-[-10px] not-peer-placeholder-shown:text-sm not-peer-placeholder-shown:text-[#365D1C] bg-white px-1 transition-all duration-300 ease-in-out"
-              >Email</label
-            >
-            <!-- error message  -->
-            <p
-              class="min-h-[20px] text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
-              <ng-container *ngIf="emailRequired; else emailCheck">
-                <i class="fa-solid fa-circle-exclamation pr-2"></i>Required
-                field
-              </ng-container>
-            </p>
-            <ng-template #emailCheck>
-              <p
-                *ngIf="emailvalidation"
-                class="min-h-[20px] text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
-                <i class="fa-solid fa-circle-exclamation pr-2"></i>
-
-                Please enter a valid email address format (must contain &#64;
-                and .)
-              </p>
-            </ng-template>
-          </div>
-          <!-- password -->
-          <div class="relative w-full">
-            <input
-              formControlName="password"
-              type="text"
               id="Password"
-              class="peer md:mb-0 mb-2 w-full p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
-              placeholder="Password"
+              type="password"
+              placeholder="First Name"
+              class="peer w-full border-2 rounded-lg h-12 p-3 border-[#7CAD3F] focus:outline-none focus:border-[#718b5d] placeholder-transparent"
               autocomplete="off" />
             <label
               for="Password"
-              class="absolute left-3 top-3 text-gray-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#365D1C] not-peer-placeholder-shown:top-[-10px] not-peer-placeholder-shown:text-sm not-peer-placeholder-shown:text-[#365D1C] bg-white px-1 transition-all duration-300 ease-in-out"
-              >Password</label
+              class="absolute left-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-[-1.4rem] peer-focus:-translate-y-0 not-peer-placeholder-shown:top-[-1.4rem] not-peer-placeholder-shown:-translate-y-0 bg-[#FDFFF6] px-2 font-normal text-xl text-[#8B8C8A] flex gap-2 items-center"
+              ><i class="fa-solid fa-lock text-[#58595A]"></i>Password</label
             >
+            <span
+              class="absolute text-[#58595A] top-1/2 -translate-y-1/2 right-3 text-xl cursor-pointer"
+              (click)="togglePassword()">
+              <li
+                [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></li>
+            </span>
           </div>
+          <!-- error here   -->
         </div>
-        <!-- error password -->
-        <ul
-          class="flex items-center justify-center gap-0 md:gap-0 lg:gap-2 flex-row md:pt-1">
-          <li
-            class="text-xs"
-            [ngClass]="{
-              'text-[#365D1C]': hasUpperCase(),
-              'text-[#a40f0f]': !hasUpperCase(),
-            }">
-            <i
-              [ngClass]="
-                hasUpperCase()
-                  ? 'fa-solid fa-circle-check text-[#365D1C]'
-                  : 'fa-solid fa-circle-xmark text-[#a40f0f]'
-              "></i
-            >At least one UpperCase (A-Z)
-          </li>
-
-          <li
-            class="text-xs"
-            [ngClass]="{
-              'text-[#365D1C]': hasNumber(),
-              'text-[#a40f0f]': !hasNumber(),
-            }">
-            <i
-              [ngClass]="
-                hasNumber()
-                  ? 'fa-solid fa-circle-check text-[#365D1C]'
-                  : 'fa-solid fa-circle-xmark text-[#a40f0f]'
-              "></i>
-            At least one special character (!&#64;#$%^&*)
-          </li>
-        </ul>
-        <!-- check box -->
-        <div class="pb-6 md:pt-3 pt-2 flex items-center gap-2">
-          <input type="checkbox" id="accept" class="w-4 h-4" />
-          <label for="accept" class="text-[#365D1C] text-sm font-normal"
+        <!-- end password -->
+        <div class="flex items-center gap-2">
+          <input type="checkbox" class="w-5 h-5 cursor-pointer" id="check" />
+          <label for="check" class="text-[#749A44] font-normal text-[1rem]"
             >I agree to the
-            <span class="text-[#7CAD3F] underline text-sm font-semibold"
+            <span
+              class="underline text-[#58595A] font-semibold cursor-pointer text-[1rem]"
               >terms & conditions</span
             ></label
           >
         </div>
-        <!-- button create account -->
+      </div>
+      <!-- end password+checkbox -->
+      <div class="buttons flex flex-col gap-8">
         <button
-          class="text-xl p-3 border-[#365D1C] rounded-md w-full bg-[#365D1C] text-[#FAFAFA] shadow-[0px_4px_10px_rgba(54,93,28,0.25)] hover:bg-[#1F4109] hover:border-[#1F4109] hover:-translate-y-1 cursor-pointer transition-all duration-300 ease-in-out">
-          Create Account
+          class="p-3 w-full border rounded-lg h-12 bg-[#7CAD3F] text-[#F5F8F5] font-bold text-2xl flex items-center justify-center shadow-[0px_4px_10px_rgba(124,173,63,0.25)] hover:-translate-y-1 cursor-pointer transition-all duration-300 ease-in-out">
+          Create My Account
         </button>
-        <!-- text  register -->
-        <div class="flex items-center justify-center gap-3 w-full my-6 lg:my-7">
-          <div class="flex-1 h-[1px] bg-[#365D1C]"></div>
-          <p class="px-3 text-md text-[#152D05]">Or Register with</p>
-          <div class="flex-1 h-[1px] bg-[#365D1C]"></div>
+        <div class="flex w-full justify-center items-center gap-2">
+          <div class="flex-1 h-[2px] bg-[#7CAD3F]"></div>
+          <p class="text-[#7CAD3F] font-semibold text-xl">Or Sign up with</p>
+          <div class="flex-1 h-[2px] bg-[#7CAD3F]"></div>
         </div>
-        <!-- button-google -->
-
         <button
-          class="text-xl p-3 border rounded-md w-full border-[#7CAD3F] text-[#7CAD3F] flex justify-center items-center gap-2 mb-2 shadow-[0px_4px_10px_rgba(124,173,63,0.25)] hover:border-[#1F4109] hover:text-[#1F4109] hover:-translate-y-1 cursor-pointer transition-all duration-300 ease-in-out">
-          <img src="images/sign up/google color.svg" class="h-4 w-4" />Google
+          class="p-3 w-full border-2 border-[#7CAD3F] h-12 rounded-lg text-[#7CAD3F] font-bold text-2xl flex items-center justify-center gap-4 shadow-[0px_4px_10px_rgba(124,173,63,0.25)] hover:-translate-y-1 cursor-pointer transition-all duration-300 ease-in-out">
+          <img src="images/sign up/google color.svg" class="w-6 h-6" />Google
         </button>
+        <div
+          class="flex gap-2 items-center text-xl text-[#7CAD3F] cursor-pointer">
+          <i class="fa-solid fa-chevron-left"></i
+          ><span class="underline font-semibold">Back to Home</span>
+        </div>
       </div>
     </div>
   </div>
