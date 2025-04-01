@@ -1,0 +1,45 @@
+{
+  "products": [
+    {
+      "name": "Cacao Hazelnut Clusters",
+      "image": "images/cart/CacaoHazelnutClusters-Front-768x768.png",
+      "price": 100
+    },
+    {
+      "name": "Choc Chip Cookie Star",
+      "image": "images/cart/ChocChipCookieStar-768x768.png",
+      "price": 120
+    },
+    {
+      "name": "Choc Hazelnut Spread",
+      "image": "images/cart/ChocHazelnutSpread-Mockup-768x899.png",
+      "price": 150
+    },
+    {
+      "name": "Peanut Choc Bliss",
+      "image": "images/cart/PeanutChocBliss-1-768x768.png",
+      "price": 130
+    },
+    {
+      "name": "Cacao Hazelnut Clusters",
+      "image": "images/cart/CacaoHazelnutClusters-Front-768x768.png",
+      "price": 100,
+      "id": "6978"
+    },
+    {
+      "name": "Choc Chip Cookie Star",
+      "image": "images/cart/ChocChipCookieStar-768x768.png",
+      "price": 120
+    },
+    {
+      "name": "Choc Hazelnut Spread",
+      "image": "images/cart/ChocHazelnutSpread-Mockup-768x899.png",
+      "price": 150
+    },
+    {
+      "name": "Peanut Choc Bliss",
+      "image": "images/cart/PeanutChocBliss-1-768x768.png",
+      "price": 130
+    }
+  ]
+}
