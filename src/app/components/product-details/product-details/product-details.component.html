@@ -1,11 +1,19 @@
-<div
-  class="grid grid-cols-12 gap-4 sm:gap-6 md:gap-8 lg:gap-10 lg:mx-[88px] sm:mx-[48px] mx-[24px] mt-[72px]">
-  <app-product-gallary
-    *ngIf="data?.images"
-    [images]="data?.images || []"
-    class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-4"></app-product-gallary>
-  <app-product-info
-    class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 m-auto"
-    [product]="data"></app-product-info>
-</div>
-<app-product-tabs></app-product-tabs>
+@if (showProduct) {
+  <div
+    class="grid grid-cols-12 gap-4 sm:gap-6 md:gap-8 lg:gap-10 mx-5 lg:mx-24 xl:mx-40 mt-12">
+    <div class="col-span-12 md:col-span-5 xl:col-span-4">
+      <app-product-gallary
+        *ngIf="data?.images"
+        [images]="data?.images || []"
+        class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-4"></app-product-gallary>
+    </div>
+    <app-product-info
+      class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 mt-6"
+      [product]="data"></app-product-info>
+  </div>
+  <app-product-tabs></app-product-tabs>
+  <div class="mt-16">
+    <app-related-products
+      (changeProductEvent)="loadProduct($event)"></app-related-products>
+  </div>
+}
