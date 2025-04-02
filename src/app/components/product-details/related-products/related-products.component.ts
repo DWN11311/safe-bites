@@ -60,8 +60,10 @@ export class RelatedProductsComponent implements OnInit {
       this.pageSize = 4;
     } else if (width >= 768) {
       this.pageSize = 3;
-    } else {
+    } else if (width >= 480) {
       this.pageSize = 2;
+    } else {
+      this.pageSize = 1;
     }
   }
 

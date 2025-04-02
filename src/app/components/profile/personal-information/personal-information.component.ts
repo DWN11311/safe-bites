@@ -1,4 +1,10 @@
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -8,60 +14,61 @@ import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-personal-information',
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './personal-information.component.html',
-  styleUrl: './personal-information.component.css'
+  styleUrl: './personal-information.component.css',
 })
-export class PersonalInformationComponent implements OnInit{
+export class PersonalInformationComponent implements OnInit {
   personalInformation: FormGroup;
   isEditing: boolean = false;
   userId?: string;
-  
+
   constructor(
     private toastr: ToastrService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private http: HttpClient,
     private usersService: UsersService
-  ){
+  ) {
     this.personalInformation = this.fb.group({
       firstName: [{ value: '', disabled: true }, Validators.required],
       lastName: [{ value: '', disabled: true }, Validators.required],
-      email: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
-      phone: [{ value: '', disabled: true }, [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]],
+      email: [
+        { value: '', disabled: true },
+        [Validators.required, Validators.email],
+      ],
+      phone: [
+        { value: '', disabled: true },
+        [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)],
+      ],
     });
   }
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get('id') ?? '';
-    if(this.userId){
+    if (this.userId) {
       this.getUserData();
-    }else{
+    } else {
       this.toastr.error('User id not found', 'Error');
     }
   }
 
-  getUserData(){
-   const token = localStorage.getItem('token');
-   if(!token){
-    this.toastr.error('No authentication token found', 'Error');
-    return;
-   }
-   if(this.userId)
-   this.usersService.getUserById(this.userId,token).subscribe({
-
-   })
+  getUserData() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.toastr.error('No authentication token found', 'Error');
+      return;
+    }
+    if (this.userId)
+      this.usersService.getUserById(this.userId, token).subscribe({});
   }
 
-  toggleEditing(){
+  toggleEditing() {
     this.isEditing = !this.isEditing;
 
-    if(this.isEditing){
+    if (this.isEditing) {
       this.personalInformation.enable();
-    }else{
+    } else {
       this.personalInformation.disable();
     }
   }
@@ -79,7 +86,7 @@ export class PersonalInformationComponent implements OnInit{
       this.submitForm();
     }
   }
-  
+
   submitForm() {
     if (this.personalInformation.invalid) {
       this.personalInformation.markAllAsTouched();
@@ -92,17 +99,16 @@ export class PersonalInformationComponent implements OnInit{
   }
 }
 
-
 // onSubmit() {
-  //   if(this.personalInformation.invalid){
-  //     this.personalInformation.markAllAsTouched();
-  //     console.log('Form is not valid');
-  //     return;
-  //   }
+//   if(this.personalInformation.invalid){
+//     this.personalInformation.markAllAsTouched();
+//     console.log('Form is not valid');
+//     return;
+//   }
 
-  //   console.log('Data Submitted Successfully', this.personalInformation.value);
-  //   this.toggleEditing();
-  //   setTimeout(() => { 
-  //     this.toastr.success('Data updated successfully!', 'Success');
-  //   }, 0);
-  // }
+//   console.log('Data Submitted Successfully', this.personalInformation.value);
+//   this.toggleEditing();
+//   setTimeout(() => {
+//     this.toastr.success('Data updated successfully!', 'Success');
+//   }, 0);
+// }

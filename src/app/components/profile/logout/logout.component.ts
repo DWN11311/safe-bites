@@ -5,10 +5,10 @@ import { Router } from '@angular/router';
   selector: 'app-logout',
   imports: [],
   templateUrl: './logout.component.html',
-  styleUrl: './logout.component.css'
+  styleUrl: './logout.component.css',
 })
 export class LogoutComponent {
-  constructor(private route: Router){}
+  constructor(private route: Router) {}
 
   logout() {
     localStorage.removeItem('token');
