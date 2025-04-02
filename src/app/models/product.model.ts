@@ -1,0 +1,16 @@
+export interface Product {
+  id: number;
+  name: string;
+  images: Array<Image>;
+  description: string;
+  price: number;
+  brief: string;
+  quantity: number;
+  rank: number;
+  reviews?: string[];
+}
+
+export interface Image {
+  _id: string;
+  imageUrl: string;
+}

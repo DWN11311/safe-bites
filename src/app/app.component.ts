@@ -2,13 +2,18 @@ import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { CartComponent } from "./components/cart/cart/cart.component";
-import { RelatedProductsComponent } from './components/related products/related-products/related-products.component';
-
+import { ProductsService } from './services/products.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, CartComponent,RelatedProductsComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    FooterComponent,
+    ReactiveFormsModule,
+  ],
+  providers: [ProductsService],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })

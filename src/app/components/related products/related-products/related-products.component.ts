@@ -7,14 +7,14 @@ import { HoverDirective } from '../../../directives/hover.directive';
 @Component({
   standalone: true,
   selector: 'app-related-products',
-  imports: [RouterModule, CommonModule, HoverDirective], 
+  imports: [RouterModule, CommonModule, HoverDirective],
   providers: [RelatedproductService],
   templateUrl: './related-products.component.html',
 })
 export class RelatedProductsComponent implements OnInit {
   Relatedproducts: any[] = [];
   currentIndex = 0;
-  pageSize = 4; 
+  pageSize = 4;
 
   constructor(private relatedProductService: RelatedproductService) {}
 
@@ -42,11 +42,11 @@ export class RelatedProductsComponent implements OnInit {
   updatePageSize() {
     const width = window.innerWidth;
     if (width >= 1024) {
-      this.pageSize = 4; 
+      this.pageSize = 4;
     } else if (width >= 768) {
-      this.pageSize = 3; 
+      this.pageSize = 3;
     } else {
-      this.pageSize = 2; 
+      this.pageSize = 2;
     }
   }
 
@@ -54,15 +54,13 @@ export class RelatedProductsComponent implements OnInit {
     if (this.currentIndex + this.pageSize < this.Relatedproducts.length) {
       this.currentIndex += this.pageSize;
     } else {
-    
     }
   }
 
   previousProducts() {
     if (this.currentIndex - this.pageSize >= 0) {
       this.currentIndex -= this.pageSize;
-    
-    } 
+    }
   }
 
   trackByName(index: number, product: any): string {

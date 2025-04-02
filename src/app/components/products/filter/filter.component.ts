@@ -1,21 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-interface FilterParams {
-  sortBy?: string;
-  order?: string;
-  minPrice?: string;
-  maxPrice?: string;
-  inStock?: string;
-  outOfStock?: string;
-  categoryTypes?: string[];
-  categories?: string[];
-}
+import { ActivatedRoute, Router } from '@angular/router';
+import { CategoriesService } from '../../../services/categories.service';
+import { Category } from '../../../models/category.model';
+import { FilterParams } from '../../../models/filterParams.mode';
 
 @Component({
   selector: 'app-filter',
   imports: [CommonModule, FormsModule],
+  providers: [CategoriesService],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.css',
 })
@@ -24,6 +18,12 @@ export class FilterComponent {
   availabilityIsCollapsed = false;
   categoryIsCollapsed = false;
 
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private categoriesService: CategoriesService
+  ) {}
+
   sortBy = '';
   sortOrder = '';
   minPrice = '';
@@ -31,28 +31,9 @@ export class FilterComponent {
   inStock = '';
   outOfStock = '';
 
-  categories = [
-    {
-      type: 'Diet',
-      isCollapsed: false,
-      checked: false,
-      categories: [
-        { name: 'Keto', checked: false },
-        { name: 'Vegan', checked: false },
-        { name: 'Low carb', checked: false },
-      ],
-    },
-    {
-      type: 'Illness',
-      isCollapsed: false,
-      checked: false,
-      categories: [
-        { name: 'Keto', checked: false },
-        { name: 'Vegan', checked: false },
-        { name: 'Low carb', checked: false },
-      ],
-    },
-  ];
+  categories: Category[] = [];
+
+  @Output() sendCategoriesObj = new EventEmitter();
 
   collapsePrice() {
     this.priceIsCollapsed = !this.priceIsCollapsed;
@@ -70,6 +51,44 @@ export class FilterComponent {
     this.categories[index].isCollapsed = !this.categories[index].isCollapsed;
   }
 
+  ngOnInit() {
+    this.categoriesService.getCategories().subscribe({
+      next: data => {
+        this.categories = data;
+        this.updateFilters();
+        this.sendCategoriesObj.emit(this.categories);
+      },
+    });
+  }
+
+  private updateFilters() {
+    this.route.queryParams.subscribe(params => {
+      this.sortBy = params['sortBy'] || '';
+      this.sortOrder = params['order'] || '';
+      this.minPrice = params['minPrice'] || '';
+      this.maxPrice = params['maxPrice'] || '';
+      this.inStock = params['inStock'] || '';
+      this.outOfStock = params['outOfStock'] || '';
+
+      if (params['categories']) {
+        const categories: string[] = params['categories'].split(',');
+        this.categories.forEach(category => {
+          category.checked = categories.includes(category._id);
+          category.categories.forEach(subCategory => {
+            subCategory.checked = categories.includes(subCategory._id);
+          });
+        });
+      } else {
+        this.categories.forEach(category => {
+          category.checked = false;
+          category.categories.forEach(subCategory => {
+            subCategory.checked = false;
+          });
+        });
+      }
+    });
+  }
+
   applyFilter() {
     const params: FilterParams = {};
 
@@ -80,23 +99,29 @@ export class FilterComponent {
     if (this.minPrice) params.minPrice = this.minPrice;
     if (this.maxPrice) params.maxPrice = this.maxPrice;
 
-    const categoryTypes = this.categories
-      .filter(category => category.checked)
-      .map(category => category.type);
+    const categories: string[] = [];
 
-    if (categoryTypes.length > 0) params.categoryTypes = categoryTypes;
+    this.categories.forEach(category => {
+      if (category.checked) categories.push(category._id);
+      category.categories.forEach(subCategory => {
+        if (subCategory.checked) categories.push(subCategory._id);
+      });
+    });
 
-    const categories = this.categories
-      .flatMap(category => category.categories)
-      .filter(subCategory => subCategory.checked)
-      .map(subCategory => subCategory.name);
+    if (categories.length) {
+      const categoryQuery = categories.join(',');
+      params.categories = categoryQuery;
+    }
 
-    if (categories.length > 0) params.categories = categories;
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: params,
+    });
+  }
 
-    const queryString = new URLSearchParams(
-      params as Record<string, string>
-    ).toString();
-
-    console.log(queryString);
+  clearFilters() {
+    this.router.navigate([], {
+      relativeTo: this.route,
+    });
   }
 }
