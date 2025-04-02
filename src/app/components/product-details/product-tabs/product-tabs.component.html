@@ -1,19 +1,19 @@
 <div
-  class="custom-tab-group border-b-2 border-gray-300 flex gap-5 pb-1 mx-5 md:mx-20 xl:mx-40 mt-10">
+  class="custom-tab-group border-b-2 border-gray-300 flex md:gap-5 pb-1 gap-5 mx-5 md:mx-20 xl:mx-40 mt-10 sm:text-lg lg:text-xl">
   <span
-    class="custom-tab-label text-center text-xl"
+    class="custom-tab-label text-center"
     [class.active]="selectedTab === 0"
     (click)="selectTab(0)">
     Ingredients
   </span>
   <span
-    class="custom-tab-label text-center text-xl"
+    class="custom-tab-label text-center"
     [class.active]="selectedTab === 1"
     (click)="selectTab(1)">
     Nutrition Facts
   </span>
   <span
-    class="custom-tab-label text-center text-xl"
+    class="custom-tab-label text-center"
     [class.active]="selectedTab === 2"
     (click)="selectTab(2)">
     Reviews
@@ -21,7 +21,7 @@
 </div>
 
 <!-- Tab Content -->
-<div class="px-5 md:px-20 xl:px-40">
+<div class="px-5 md:px-20 xl:px-40 mb-10">
   @if (selectedTab === 0) {
     <app-product-ingredients></app-product-ingredients>
   }

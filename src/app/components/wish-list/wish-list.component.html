@@ -1,33 +1,42 @@
-<div class="text-[54px] text-[#7C9B66] mt-5 ml-10">Your WishList</div>
-
-@if (products.length > 0) {
+<div class="grid grid-cols-12 px-5 lg:px-24 xl:px-40 w-screen">
   <div
-    class="grid grid-cols-6 md:grid-cols-9 xl:grid-cols-12 gap-5 md:gap-10 lg:mx-[88px] sm:mx-[48px] mx-[24px] place-items-center">
-    @for (product of products; track product.id) {
-      <app-wishlistcard
-        [product]="product"
-        (AddToCard)="AddToCard($event)"
-        (RemoveFromWishlist)="removeFromWishlist($event)"
-        class="w-full col-span-3"></app-wishlistcard>
-    }
+    class="text-4xl text-[#1B8057] col-span-12 mb-6 md:mb-8 md:mt-4 sm:text-left text-center font-medium">
+    Your WishList
   </div>
 
-  <div class="flex justify-end mt-5 mb-4 mr-12 gap-5">
-    <button
-      (click)="showPopUp()"
-      class="text-[#7CAD3F] border-[#7CAD3F] border-2 p-3 rounded-lg h-12 md:h-14 cursor-pointer hover:bg-[#5B8329] hover:text-white">
-      Remove All
-      <i class="fa-solid fa-xmark mr-2 ml-2"></i>
-    </button>
-    <button
-      (click)="moveToCart()"
-      class="text-white border-2 rounded-lg bg-[#7CAD3F] hover:bg-[#5B8329] transition p-3 cursor-pointer">
-      Move All to Cart
-    </button>
-  </div>
-} @else {
-  <app-empty-wish-list></app-empty-wish-list>
-}
+  @if (products.length > 0) {
+    <div class="grid grid-cols-12 col-span-12 gap-5 md:gap-10 w-full">
+      @for (product of products; track product._id) {
+        <div
+          class="col-span-12 min-[500px]:col-span-6 md:col-span-4 xl:col-span-3">
+          <app-wishlistcard
+            [product]="product"
+            (AddToCard)="AddToCard($event)"
+            (RemoveFromWishlist)="removeFromWishlist($event)"
+            class="w-full col-span-3"></app-wishlistcard>
+        </div>
+      }
+    </div>
+
+    <div class="flex justify-center sm:justify-end gap-5 col-span-12 mt-10">
+      <button
+        (click)="showPopUp()"
+        class="text-[#1B8057] border-[#1B8057] border-2 p-3 pr-1 rounded-lg h-12 md:h-14 cursor-pointer hover:bg-[#1B8057]/10 sm:text-lg transition duration-150">
+        Remove All
+        <i class="fa-solid fa-xmark mr-2 ml-2"></i>
+      </button>
+      <button
+        (click)="moveToCart()"
+        class="text-white border-2 rounded-lg bg-[#1B8057] hover:bg-[#307055] sm:text-lg transition p-3 cursor-pointer">
+        Move All to Cart
+      </button>
+    </div>
+  } @else {
+    <div class="col-span-12 mb-32">
+      <app-empty-wish-list></app-empty-wish-list>
+    </div>
+  }
+</div>
 
 @if (showPopup) {
   <app-pop-up (confirm)="removeAll()" (cancel)="showPopup = false"></app-pop-up>
@@ -37,7 +46,7 @@
 </div>
 @if (products.length > 0){
 <div class="grid grid-cols-6 md:grid-cols-9 xl:grid-cols-12 gap-5 md:gap-10 lg:mx-[88px] sm:mx-[48px] mx-[24px] place-items-center">
-    @for (product of products; track product.id) {
+    @for (product of products; track product._id) {
     <div class="bg-white rounded-lg shadow-2xl py-2 px-2 mb-5 flex flex-col justify-evenly items-center w-full col-span-3"> -->
 
 <!-- images -->

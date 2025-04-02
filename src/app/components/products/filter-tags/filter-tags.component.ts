@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../../../models/category.model';
+import { filter, merge } from 'rxjs';
 
 @Component({
   selector: 'app-filter-tags',
@@ -12,7 +13,39 @@ export class FilterTagsComponent {
   @Input() categoriesObj: Category[] = [];
   filters: { key: string; label: string }[] = [];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
+
+  removeFilter(filterIndex: number) {
+    const currentParams = { ...this.route.snapshot.queryParams };
+    const filterToRemove = this.filters[filterIndex];
+    const newCategories: string[] = [];
+
+    if (filterToRemove.key !== 'categories') {
+      delete currentParams[filterToRemove.key];
+    }
+
+    if (filterToRemove.key === 'categories') {
+      this.categoriesObj.forEach(category => {
+        if (category.type !== filterToRemove.label && category.checked)
+          newCategories.push(category._id);
+
+        category.categories.forEach(subCategory => {
+          if (subCategory.name !== filterToRemove.label && subCategory.checked)
+            newCategories.push(subCategory._id);
+        });
+      });
+
+      currentParams['categories'] = newCategories.join(',');
+    }
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: currentParams,
+    });
+  }
 
   ngOnChanges() {
     this.route.queryParamMap.subscribe(params => {
@@ -40,9 +73,9 @@ export class FilterTagsComponent {
             break;
           case 'categories':
             this.categoriesObj?.forEach(cat => {
-              if (cat.checked) {
-                this.filters.push({ key, label: `${cat.type}` });
-              }
+              // if (cat.checked) {
+              //   this.filters.push({ key, label: `${cat.type}` });
+              // }
               cat.categories.forEach(subCat => {
                 if (subCat.checked) {
                   this.filters.push({ key, label: `${subCat.name}` });

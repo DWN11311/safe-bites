@@ -14,7 +14,6 @@ import { RouterModule } from '@angular/router';
 })
 export class CartComponent {
   cart: any;
-  
   showPopup: boolean = false;
   constructor(private CartsService: CartsService) {}
   ngOnInit() {
@@ -23,7 +22,7 @@ export class CartComponent {
         if (Array.isArray(response)) {
           this.cart = response.map(product => ({
             ...product,
-            quantity: product.quantity || 1 
+            quantity: product.quantity || 1,
           }));
         }
       },
@@ -32,12 +31,14 @@ export class CartComponent {
   }
   removeproduct(productToRemove: any) {
     this.CartsService.deleteProduct(productToRemove.id).subscribe({
-      next: (response) => {
+      next: response => {
         console.log('Product deleted successfully:', response);
-      
-        this.cart = this.cart.filter((product: any) => product.id !== productToRemove.id);
+
+        this.cart = this.cart.filter(
+          (product: any) => product.id !== productToRemove.id
+        );
       },
-      error: (err) => {
+      error: err => {
         console.log('Error deleting product:', err);
       },
     });
@@ -45,39 +46,43 @@ export class CartComponent {
   decreaseQuantity(product: any) {
     if (product.quantity > 1) {
       product.quantity--;
-    }}
+    }
+  }
 
   increaseQuantity(product: any) {
     product.quantity++;
   }
-  calculateSubTotal(product:any){
-    return (product.price * product.quantity)
-
+  calculateSubTotal(product: any) {
+    return product.price * product.quantity;
   }
-  calculateTotalItems(){
-    return this.cart.reduce((total: number, product: any) => total + product.quantity, 0);
+  calculateTotalItems() {
+    return this.cart.reduce(
+      (total: number, product: any) => total + product.quantity,
+      0
+    );
   }
-  calculateTotalPrice(){
-    return this.cart.reduce((total: number, product: any) => total + this.calculateSubTotal(product), 0);
+  calculateTotalPrice() {
+    return this.cart.reduce(
+      (total: number, product: any) => total + this.calculateSubTotal(product),
+      0
+    );
   }
- 
 
   clearCart() {
-    if (!this.cart || this.cart.length === 0) return; 
-  
+    if (!this.cart || this.cart.length === 0) return;
+
     this.CartsService.clearCartFromBackend(this.cart).subscribe({
       next: () => {
-        this.cart = [];  
+        this.cart = [];
         this.showPopup = false;
-        console.log("Cart cleared successfully from backend!");
+        console.log('Cart cleared successfully from backend!');
       },
-      error: (err: any) => console.error('Error clearing cart:', err), 
-      complete: () => console.log("All delete requests processed")
+      error: (err: any) => console.error('Error clearing cart:', err),
+      complete: () => console.log('All delete requests processed'),
     });
   }
 
   track(index: number, product: any): any {
     return product.id;
   }
-
 }

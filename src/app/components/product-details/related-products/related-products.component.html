@@ -1,1 +1,139 @@
-<p>related-products works!</p>
+<div
+  class="related-products grid grid-cols-4 gap-x-[1.5rem] px-[1.5rem] lg:grid-cols-12 lg:gap-x-10 lg:px-[10rem] max-w-[1920px] lg:gap-10 gap-[2rem] relative"
+  *ngIf="Relatedproducts && Relatedproducts.length > 0">
+  <p class="col-span-12 font-bold text-2xl lg:text-3xl">
+    Explore <span class="text-[#1B8057]">Related Products</span>
+  </p>
+  <div
+    class="grid grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-[2.5rem] gap-[1.5rem] col-span-12">
+    <div
+      *ngFor="
+        let product of Relatedproducts.slice(
+          currentIndex,
+          currentIndex + pageSize
+        )
+      "
+      class="relative shadow-[0px_4px_10px_rgba(0,0,0,0.25)] rounded-lg flex flex-col items-center h-full overflow-hidden sm:py-[0.75rem] py-[0.5rem] sm:px-[1.5rem] px-[1rem] lg:gap-[1.5rem] gap-[1rem] cursor-pointer">
+      <div class="relative">
+        <img
+          (click)="goToProduct(product._id)"
+          [src]="product.images[0].imageUrl"
+          class="md:w-full lg:h-[200px] h-[170px] sm:h-[200px] object-contain md:object-cover rounded-t-lg"
+          [appHover]="product.images[1].imageUrl" />
+        <p
+          class="absolute top-0 py-[0.5rem] bg-[#282a28] text-[#F5F8F5] font-semibold lg:text-[1rem] text-[0.75rem] w-[90px] md:w-[110px] rounded-lg text-center shadow-[0_4px_10px_rgba(40,42,40,0.25)]"
+          *ngIf="product.quantity === 0">
+          out of Stock
+        </p>
+        <p
+          class="absolute top-0 py-[0.5rem] bg-[#E67E22] text-[#F5F8F5] font-semibold lg:text-[1rem] text-[0.75rem] w-[90px] lg:w-[110px] rounded-lg text-center shadow-[0_4px_10px_rgba(230,126,34,0.25)]"
+          *ngIf="
+            product.quantity !== 0 &&
+            isdisscount(product) &&
+            !isNewProduct(product)
+          ">
+          Offer
+        </p>
+        <p
+          class="absolute top-0 py-[0.5rem] bg-[#2eb600] text-[#F5F8F5] font-semibold lg:text-[1rem] text-[0.75rem] w-[90px] lg:w-[110px] rounded-lg text-center shadow-[0_4px_10px_rgba(46,182,0,0.25)]"
+          *ngIf="
+            product.quantity !== 0 &&
+            isdisscount(product) &&
+            isNewProduct(product)
+          ">
+          Offer & New
+        </p>
+        <p
+          class="absolute top-0 py-[0.5rem] bg-[#1D8B5E] text-[#F5F8F5] font-semibold lg:text-[1rem] text-[0.75rem] w-[90px] lg:w-[110px] rounded-lg text-center shadow-[0_4px_10px_rgba(29,139,94,0.25)]"
+          *ngIf="
+            product.quantity !== 0 &&
+            !isdisscount(product) &&
+            isNewProduct(product)
+          ">
+          New
+        </p>
+      </div>
+      <div
+        class="w-full flex flex-col lg:gap-[0.25rem] gap-[0.25rem] flex-grow">
+        <div class="w-full flex items-center justify-between">
+          <p
+            class="lg:text-[1.25rem] text-[1rem] sm:text-[1.25rem] font-medium text-[#7DB69F]">
+            {{ product.category }}
+          </p>
+          <div class="flex items-center gap-[0.25rem]">
+            <i class="fa-solid fa-star text-[#F8C519] lg:text-md"></i>
+            <p class="font-semibold text-[1rem] lg:md-[1.25rem] text-[#121311]">
+              {{ product.averageRating || 0 }}
+            </p>
+          </div>
+        </div>
+
+        <h1
+          class="w-full text-[#071001] lg:font-semibold font-bold sm:font-semibold lg:text-[1.5rem] md:text-[1.25rem] text-[1rem] sm:text-[1.5rem] overflow-hidden text-nowrap overflow-ellipsis">
+          {{ product.name }}
+        </h1>
+        <div class="flex flex-col lg:gap-[1.5rem] gap-[1rem]">
+          <div class="w-full flex items-center gap-[0.5rem]">
+            <p
+              class="font-semibold lg:text-[1.5rem] text-[1rem] sm:text-[1.25rem] text-[#1B8057]">
+              {{ product.price }}<Span> EGP</Span>
+            </p>
+            <p
+              class="font-medium lg:text-[1rem] text-[0.75rem] sm:text-[1rem] text-[#58595A] line-through"
+              *ngIf="isdisscount(product)">
+              {{ product.price }}<span> EGP</span>
+            </p>
+          </div>
+
+          <div
+            class="w-full flex items-center mt-auto lg:gap-[1.5rem] md:gap-[1 rem] gap-[1rem] sm:gap-[2.5rem]">
+            <button
+              class="w-full border bg-[#1B8057] shadow-[0_4px_10px_rgba(29,139,94,0.25)] flex items-center justify-center text-[#F5F8F5] lg:h-[56px] h-[40px] max-w-[223px] px-[1rem] py-[1.5rem] lg:text-[1.5rem] text-[1rem] sm:text-[1.25rem] font-semibold rounded-lg gap-[0.25rem] hover:bg-[#135C3E]">
+              Add
+              <img
+                src="images/related product/cart.svg"
+                class="ml-2 lg:w-[32px] md:h-[32px] h-[24px] w-[24px]" />
+            </button>
+            <div
+              class="lg:p-[8px] lg:text-2xl text-lg sm:text-xl p-[8px] rounded-full flex items-center justify-center border border-[#C5C4C4]"
+              (click)="toggleheart(product)">
+              <i
+                [ngClass]="
+                  product.isheartFilled
+                    ? 'fa-solid fa-heart text-[#1B8057]'
+                    : 'fa-regular fa-heart'
+                "></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end card -->
+  </div>
+
+  <button
+    class="absolute lg:left-[165px] left-10 top-1/2 translate-y-1/2 rounded-full shadow-[0_4px_10px_rgba(29,139,94,0.25)] drop-shadow-sm sm:text-4xl text-3xl"
+    (click)="previousProducts()"
+    *ngIf="Relatedproducts && Relatedproducts.length > pageSize"
+    [disabled]="currentIndex === 0"
+    [ngClass]="{
+      'text-[#8B8C8A]  cursor-not-allowed': currentIndex === 0,
+      'cursor-pointer text-[#1B8057]    transition-transform duration-500 ease-in-out':
+        currentIndex > 0,
+    }">
+    <i class="fa-solid fa-circle-arrow-left z-10"></i>
+  </button>
+  <button
+    class="absolute lg:right-[165px] right-[40px] top-1/2 translate-y-1/2 rounded-full shadow-[0_4px_10px_rgba(29,139,94,0.25)] drop-shadow-sm sm:text-4xl text-3xl"
+    (click)="nextProducts()"
+    *ngIf="Relatedproducts && Relatedproducts.length > pageSize"
+    [disabled]="currentIndex + pageSize >= Relatedproducts.length"
+    [ngClass]="{
+      'cursor-not-allowed text-[#8B8C8A]':
+        currentIndex + pageSize >= Relatedproducts.length,
+      'cursor-pointer  text-[#1B8057]   transition-transform duration-500 ease-in-out':
+        currentIndex < Relatedproducts.length - pageSize,
+    }">
+    <i class="fa-solid fa-circle-arrow-right"></i>
+  </button>
+</div>
