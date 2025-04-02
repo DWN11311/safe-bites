@@ -1,46 +1,60 @@
 {
   "products": [
     {
-      "name": "Cacao Hazelnut Clusters",
-      "image": "images/cart/CacaoHazelnutClusters-Front-768x768.png",
-      "price": 100
-    },
-    {
-      "name": "Choc Chip Cookie Star",
-      "image": "images/cart/ChocChipCookieStar-768x768.png",
-      "price": 120
-    },
-    {
+      "id": 1,
       "name": "Choc Hazelnut Spread",
       "image": "images/cart/ChocHazelnutSpread-Mockup-768x899.png",
-      "price": 150
+      "price": 150,
+      "description": "Rich chocolate hazelnut spread with a smooth and creamy texture."
     },
     {
+      "id": 2,
+      "name": "Choc Chip Cookie Star",
+      "image": "images/cart/ChocChipCookieStar-768x768.png",
+      "price": 120,
+      "description": "Delicious chocolate chip cookies offering a delightful crunch."
+    },
+    {
+      "id": 3,
+      "name": "Choc Hazelnut Spread",
+      "image": "images/cart/ChocHazelnutSpread-Mockup-768x899.png",
+      "price": 150,
+      "description": "Rich chocolate hazelnut spread with a smooth and creamy texture."
+    },
+    {
+      "id": 4,
       "name": "Peanut Choc Bliss",
       "image": "images/cart/PeanutChocBliss-1-768x768.png",
-      "price": 130
+      "price": 130,
+      "description": "A perfect blend of peanuts and chocolate for a blissful treat."
     },
     {
+      "id": 5,
       "name": "Cacao Hazelnut Clusters",
       "image": "images/cart/CacaoHazelnutClusters-Front-768x768.png",
       "price": 100,
-      "id": "6978"
+      "description": "Crunchy clusters of cacao and hazelnut that offer a satisfying bite."
     },
     {
+      "id": 6,
       "name": "Choc Chip Cookie Star",
       "image": "images/cart/ChocChipCookieStar-768x768.png",
-      "price": 120
+      "price": 120,
+      "description": "Delicious chocolate chip cookies offering a delightful crunch."
     },
     {
+      "id": 7,
       "name": "Choc Hazelnut Spread",
       "image": "images/cart/ChocHazelnutSpread-Mockup-768x899.png",
-      "price": 150
+      "price": 150,
+      "description": "Rich chocolate hazelnut spread with a smooth and creamy texture."
     },
     {
+      "id": 8,
       "name": "Peanut Choc Bliss",
       "image": "images/cart/PeanutChocBliss-1-768x768.png",
-      "price": 130
+      "price": 130,
+      "description": "A perfect blend of peanuts and chocolate for a blissful treat."
     }
   ]
 }
-

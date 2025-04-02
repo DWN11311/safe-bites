@@ -184,7 +184,7 @@
               <input
                 type="password"
                 id="Password"
-                 [(ngModel)]="password"
+                [(ngModel)]="password"
                 class="peer md:mb-0 mb-2 w-full p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
                 placeholder="Password"
                 autocomplete="off" />
@@ -203,7 +203,8 @@
             </label>
           </div>
           <!-- button Log IN -->
-          <button (click)="login()"
+          <button
+            (click)="login()"
             class="text-xl p-3 border-[#365D1C] rounded-md w-full bg-[#365D1C] text-[#FAFAFA] shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:bg-[#1F4109] hover:border-[#1F4109] hover:-translate-y-1 cursor-pointer transition-all duration-300 ease-in-out">
             Log In
           </button>
