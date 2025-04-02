@@ -16,6 +16,7 @@ export class HeaderComponent {
   isSideOpen = false;
   showDropdown = false;
   firstName: string | null = '';
+  userId: string | null = '';
   categories: Category[] = [];
   constructor(
     private router: Router,
@@ -33,6 +34,7 @@ export class HeaderComponent {
   ngOnInit() {
     this.checkForUserImage();
     this.firstName = localStorage.getItem('firstName');
+    this.userId = localStorage.getItem('userId');
     this.categoriesService.getCategories().subscribe(data => {
       this.categories = data as Category[];
     });

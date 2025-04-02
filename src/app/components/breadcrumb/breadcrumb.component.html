@@ -1,0 +1,18 @@
+<div class="w-full flex flex-col justify-center items-center gap-4 h-56 md:mt-[114px] mt-[78px]"
+  style="
+    background: url('/images/hero product section.png');
+    background-size: cover;
+    background-position: center;">
+   <ng-container *ngIf="breadcrumbs$ | async as breadcrumbs">
+    <nav *ngIf="breadcrumbs.length > 0">
+    <h2 class="text-3xl font-bold text-[#1B8057] text-center mb-4">{{ breadcrumbs[breadcrumbs.length - 1].label }}</h2>
+      <ol class="breadcrumb">
+        <li *ngFor="let crumb of breadcrumbs; let last = last">
+          <a *ngIf="!last" [routerLink]="crumb.url" class="text-xl font-bold decoration-0 text-[#1B8057]">{{ crumb.label }}</a>
+          <span *ngIf="last" class="text-xl font-semibold text-[#58595A]">{{ crumb.label }}</span>
+          <span *ngIf="!last" class="font-semibold text-[#58595A]"> / </span>
+        </li>
+      </ol>
+    </nav>
+  </ng-container>
+</div>
