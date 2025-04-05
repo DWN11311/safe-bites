@@ -1,5 +1,5 @@
-import { Component, OnInit} from '@angular/core';
-import { Router, RouterOutlet ,NavigationEnd } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductsService } from './services/products.service';
@@ -24,7 +24,7 @@ import { ErrorPageComponent } from './components/error/error.component';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  hiddenRoutes = ['/login', '/sign-up'];
+  hiddenLayoutRoutes = ['/login', '/sign-up'];
   title = 'safe-bites';
   router = inject(Router); // Inject the Router
 
@@ -33,9 +33,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     this.router.events
-      .pipe(
-        filter(event => event instanceof NavigationEnd)
-      )
+      .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });

@@ -20,12 +20,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'about-us', component: AboutusComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'wishList', component: WishListComponent },
-  { path: 'empty-wishList', component: EmptyWishListComponent },
-  { path: 'products/:id', component: ProductDetailsComponent },
-  { path: 'contact-us', component: ContactUsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },

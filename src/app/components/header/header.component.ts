@@ -56,7 +56,6 @@ export class HeaderComponent {
   logout() {
     this.usersService.logout();
     this.firstName = null;
-
     this.toggleMenu();
   }
 

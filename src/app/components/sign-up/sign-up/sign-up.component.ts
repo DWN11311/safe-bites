@@ -67,17 +67,16 @@ export class SignUpComponent {
         console.log('Error message:', err.error?.message);
         if (err.error === 'Already Exist, Please Login') {
           this.myform.controls.email.setErrors({ emailTaken: true });
-
         }
       },
     });
   }
-  
+
   get firstnameRequired() {
     return (
       this.myform.controls.firstname.hasError('required') &&
       (this.myform.controls.firstname.touched ||
-       this.myform.controls.firstname.dirty) &&
+        this.myform.controls.firstname.dirty) &&
       !this.myform.controls.firstname.hasError('pattern')
     );
   }
@@ -85,7 +84,7 @@ export class SignUpComponent {
     return (
       this.myform.controls.firstname.hasError('pattern') &&
       (this.myform.controls.firstname.touched ||
-       this.myform.controls.firstname.dirty) &&
+        this.myform.controls.firstname.dirty) &&
       !this.myform.controls.firstname.hasError('required')
     );
   }
@@ -94,7 +93,7 @@ export class SignUpComponent {
     return (
       this.myform.controls.lastname.hasError('required') &&
       (this.myform.controls.lastname.touched ||
-       this.myform.controls.lastname.dirty) &&
+        this.myform.controls.lastname.dirty) &&
       !this.myform.controls.lastname.hasError('pattern')
     );
   }
@@ -102,7 +101,7 @@ export class SignUpComponent {
     return (
       this.myform.controls.lastname.hasError('pattern') &&
       (this.myform.controls.lastname.touched ||
-       this.myform.controls.lastname.dirty) &&
+        this.myform.controls.lastname.dirty) &&
       !this.myform.controls.lastname.hasError('required')
     );
   }
@@ -111,26 +110,25 @@ export class SignUpComponent {
     return (
       this.myform.controls.email.hasError('required') &&
       (this.myform.controls.email.touched ||
-       this.myform.controls.email.dirty) &&
+        this.myform.controls.email.dirty) &&
       !this.myform.controls.email.hasError('pattern')
     );
   }
   get emailvalidation() {
     return (
       this.myform.controls.email.hasError('pattern') &&
-      (this.myform.controls.email.touched ||
-       this.myform.controls.email.dirty)
+      (this.myform.controls.email.touched || this.myform.controls.email.dirty)
     );
   }
   get emailTaken() {
     return this.myform.controls.email.hasError('emailTaken');
   }
-  
+
   get PasswordRequired() {
     return (
       this.myform.controls.password.hasError('required') &&
       (this.myform.controls.password.touched ||
-       this.myform.controls.password.dirty) &&
+        this.myform.controls.password.dirty) &&
       !this.myform.controls.password.hasError('pattern')
     );
   }
