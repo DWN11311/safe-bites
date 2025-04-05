@@ -1,16 +1,19 @@
 <form
-class="grid grid-cols-4  md:grid-cols-12 bg-white gap-x-[1.5rem] md:gap-x-[2.5rem] px-5 md:px-20 xl:px-40 cursor-default py-[1.8rem] md:py-0 h-screen "
+  class="grid grid-cols-4 md:grid-cols-12 bg-white gap-x-[1.5rem] md:gap-x-[2.5rem] px-5 md:px-20 xl:px-40 cursor-default py-[1.8rem] md:py-0 h-screen"
   [formGroup]="loginForm"
   (ngSubmit)="login()">
-  <div class="  col-span-5 md:-ml-[10rem] hidden md:block">
+  <div class="col-span-5 md:-ml-[10rem] hidden md:block">
     <img
       src="images/sign up/pexels-photo-9070110 2.svg"
       class="w-full h-full object-cover" />
   </div>
-  <div class="col-span-4 md:col-span-6 flex flex-col gap-6 py-[12px] lg:py-0 md:col-start-7  justify-center">
+  <div
+    class="col-span-4 md:col-span-6 flex flex-col gap-6 py-[12px] lg:py-0 md:col-start-7 justify-center">
     <div class="text-form gap-1 flex flex-col lg:gap-2">
-      <h1 class="text-[#1B8057] font-bold text-[2rem] lg:text-[2.5rem]">Welcome Back</h1>
-      <p class="text-[#1B8057]  text-base lg:text-xl font-normal flex gap-1">
+      <h1 class="text-[#1B8057] font-bold text-[2rem] lg:text-[2.5rem]">
+        Welcome Back
+      </h1>
+      <p class="text-[#1B8057] text-base lg:text-xl font-normal flex gap-1">
         Don't have an account?<span
           routerLink="/sign-up"
           class="text-[#1B8057] text-base lg:text-xl underline font-bold md:font-semibold cursor-pointer"
@@ -29,29 +32,33 @@ class="grid grid-cols-4  md:grid-cols-12 bg-white gap-x-[1.5rem] md:gap-x-[2.5re
     <div class="form-field col-span-4 flex flex-col gap-6">
       <!-- email -->
       <div class="field-firstname flex flex-col gap-2">
-        <label
-        for="email"
-        class="text-[#121311] pl-1 font-medium"
-        >Email*</label
-      >
+        <label for="email" class="text-[#121311] pl-1 font-medium"
+          >Email*</label
+        >
         <input
           id="email"
           formControlName="email"
           type="email"
           placeholder="Enter your email"
-          class=" w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 text-[14px] border-[#7DB69F] focus:border-[#1B8057] focus:outline-none  "
+          class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 text-[14px] border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
           autocomplete="off" />
         <div class="h-[1px]">
           <p
             *ngIf="
               loginForm.get('email')?.invalid && loginForm.get('email')?.touched
             "
-            class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1"> <span> <i class="fa-solid text-[#a40f0f] fa-circle-exclamation "></i></span>
+            class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
+            <span>
+              <i class="fa-solid text-[#a40f0f] fa-circle-exclamation"></i
+            ></span>
             {{ getEmailError() }}
           </p>
           <p
             *ngIf="errorEmail"
-            class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1"><span> <i class="fa-solid text-[#a40f0f] fa-circle-exclamation "></i></span>
+            class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
+            <span>
+              <i class="fa-solid text-[#a40f0f] fa-circle-exclamation"></i
+            ></span>
             {{ errorEmail }}
           </p>
         </div>
@@ -59,21 +66,22 @@ class="grid grid-cols-4  md:grid-cols-12 bg-white gap-x-[1.5rem] md:gap-x-[2.5re
       <!-- Password -->
       <div class="flex flex-col gap-8">
         <div class="flex flex-col gap-2">
-          <label for="password" class="text-[#121311] pl-1 font-medium">Password*</label>
+          <label for="password" class="text-[#121311] pl-1 font-medium"
+            >Password*</label
+          >
           <div class="relative">
             <input
-            formControlName="password"
+              formControlName="password"
               id="password"
               [type]="showPassword ? 'text' : 'password'"
               placeholder="Enter your Password"
               class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 pr-10 border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
               autocomplete="off" />
-              <span
+            <span
               class="absolute inset-y-0 right-3 flex items-center text-[#58595A] text-xl cursor-pointer"
               (click)="togglePassword()">
               <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
             </span>
-
           </div>
 
           <div class="h-[1px]">
@@ -82,13 +90,15 @@ class="grid grid-cols-4  md:grid-cols-12 bg-white gap-x-[1.5rem] md:gap-x-[2.5re
                 loginForm.get('password')?.invalid &&
                 loginForm.get('password')?.touched
               "
-              class="text-sm md:text-xs lg:text-sm text-[#a40f0f]"><span> <i class="fa-solid text-[#a40f0f] fa-circle-exclamation "></i></span>
+              class="text-sm md:text-xs lg:text-sm text-[#a40f0f]">
+              <span>
+                <i class="fa-solid text-[#a40f0f] fa-circle-exclamation"></i
+              ></span>
               {{ getPasswordError() }}
             </p>
           </div>
         </div>
         <!--  -->
-
 
         <!-- <span class="h-6">error</span> -->
         <!-- check box  -->
@@ -97,7 +107,7 @@ class="grid grid-cols-4  md:grid-cols-12 bg-white gap-x-[1.5rem] md:gap-x-[2.5re
             type="checkbox"
             id="check"
             formControlName="rememberMe"
-            class=" h-4 w-4 md:w-5 md:h-5" />
+            class="h-4 w-4 md:w-5 md:h-5" />
           <label for="check" class="text-[#1B8057] text-[1rem] font-normal"
             >Remeber me</label
           >
@@ -108,7 +118,7 @@ class="grid grid-cols-4  md:grid-cols-12 bg-white gap-x-[1.5rem] md:gap-x-[2.5re
         <button
           (click)="login()"
           [disabled]="loginForm.invalid"
-          class="shadow-[0_4px_4px_rgBA(38,75,45,0.25)] hover:bg-[#135C3E] p-3 w-full  rounded-lg h-[44px] lg:h-[56px] bg-[#1B8057] text-[#F5F8F5] font-semibold text-base lg:text-xl flex items-center justify-center shadow-[rgba(116,154,68,0.25)]  transition-all duration-300 ease-in-out cursor-pointer">
+          class="shadow-[0_4px_4px_rgBA(38,75,45,0.25)] hover:bg-[#135C3E] p-3 w-full rounded-lg h-[44px] lg:h-[56px] bg-[#1B8057] text-[#F5F8F5] font-semibold text-base lg:text-xl flex items-center justify-center shadow-[rgba(116,154,68,0.25)] transition-all duration-300 ease-in-out cursor-pointer">
           Log in
         </button>
         <div class="flex w-full gap-2 items-center">
@@ -118,13 +128,13 @@ class="grid grid-cols-4  md:grid-cols-12 bg-white gap-x-[1.5rem] md:gap-x-[2.5re
         </div>
         <button
           (click)="onGoogleSignIn()"
-          class="gap-4 border-2  shadow-[0_4px_4px_rgBA(38,75,45,0.25)] p-3 w-full border-[#7DB69F] rounded-lg h-[44px] lg:h-[56px] text-[#1B8057] font-bold text-2xl flex items-center justify-center   transition-all duration-300 ease-in-out cursor-pointer hover:border-[#1B8057]">
+          class="gap-4 border-2 shadow-[0_4px_4px_rgBA(38,75,45,0.25)] p-3 w-full border-[#7DB69F] rounded-lg h-[44px] lg:h-[56px] text-[#1B8057] font-bold text-2xl flex items-center justify-center transition-all duration-300 ease-in-out cursor-pointer hover:border-[#1B8057]">
           <img src="images/sign up/google color.svg" class="h-6 w-6" /> Google
         </button>
-        <div routerLink="" class="flex items-end cursor-pointer gap-2 ">
+        <div routerLink="" class="flex items-end cursor-pointer gap-2">
           <i class="fa-solid fa-chevron-left text-xl text-[#1B8057]"></i>
           <span
-            class="underline font-semibold text-lg lg:text-xl text-[#1B8057] flex gap-2 items-center "
+            class="underline font-semibold text-lg lg:text-xl text-[#1B8057] flex gap-2 items-center"
             >Back to Home</span
           >
         </div>

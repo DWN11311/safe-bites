@@ -137,7 +137,7 @@ export class LoginComponent {
           console.log(data);
           // localStorage.setItem('token', data.token);
           this.usersService.logintoken(data.token);
-         
+
           const decodedToken = this.decodeJWT(data.token);
           localStorage.setItem('firstName', decodedToken.firstName);
           console.log('User First Name:', decodedToken.firstName);

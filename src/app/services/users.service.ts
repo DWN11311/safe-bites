@@ -10,7 +10,10 @@ export class UsersService {
   private readonly url = 'http://localhost:8282/users';
   private logoutTimer: any;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
   getAllUsers() {
     return this.http.get(this.url);
   }
@@ -65,11 +68,9 @@ export class UsersService {
           this.logout();
         }, timeoutDuration);
       } else {
-
         this.logout();
       }
     } else {
-
       this.logout();
     }
   }
@@ -91,7 +92,7 @@ export class UsersService {
     if (this.logoutTimer) {
       clearTimeout(this.logoutTimer);
     }
-    
+
     this.router.navigate(['/login']);
   }
 }

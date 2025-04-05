@@ -14,7 +14,10 @@ export class HeaderComponent {
   isSideOpen = false;
   showDropdown = false;
   firstName: string | null = '';
-  constructor(private router: Router , private usersService: UsersService) {}
+  constructor(
+    private router: Router,
+    private usersService: UsersService
+  ) {}
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -27,9 +30,9 @@ export class HeaderComponent {
   ngOnInit() {
     this.firstName = localStorage.getItem('firstName');
     const token = localStorage.getItem('token');
-if (token) {
-  this.usersService.scheduleAutoLogout(token);
-}
+    if (token) {
+      this.usersService.scheduleAutoLogout(token);
+    }
   }
   logout() {
     this.usersService.logout();

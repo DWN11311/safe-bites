@@ -4,10 +4,10 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-order-summary',
-  standalone: true, // 
+  standalone: true, //
   imports: [RouterModule, ConfirmPaymentComponent],
   templateUrl: './order-summary.component.html',
-  styleUrls: ['./order-summary.component.css']
+  styleUrls: ['./order-summary.component.css'],
 })
 export class OrderSummaryComponent {
   showConfirmPayment = false;

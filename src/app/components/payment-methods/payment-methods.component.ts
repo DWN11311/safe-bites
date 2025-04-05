@@ -7,10 +7,15 @@ import { OrderSummaryComponent } from '../order-summary/order-summary.component'
 import { ConfirmPaymentComponent } from '../confirm-payment/confirm-payment.component';
 
 @Component({
-  imports: [CommonModule, FormsModule ,OrderSummaryComponent,ConfirmPaymentComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    OrderSummaryComponent,
+    ConfirmPaymentComponent,
+  ],
   selector: 'app-payment-methods',
   templateUrl: './payment-methods.component.html',
-  styleUrls: ['./payment-methods.component.css']
+  styleUrls: ['./payment-methods.component.css'],
 })
 export class PaymentMethodsComponent {
   selectedPayment: string = ''; //
@@ -26,9 +31,7 @@ export class PaymentMethodsComponent {
     this.showConfirmPayment = true;
   }
 
-
   setPaymentMethod(method: string) {
     this.selectedPayment = method;
   }
 }
-
