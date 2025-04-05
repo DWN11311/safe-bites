@@ -16,6 +16,7 @@ import { Category } from '../../../models/category.model';
 import { Product } from '../../../models/product.model';
 import { TruncateWordsPipe } from '../../../pipes/truncate-words.pipe';
 import { Router } from '@angular/router';
+import { WishlistService } from '../../../services/wishlist.service';
 
 @Component({
   selector: 'app-product-card',
@@ -39,8 +40,9 @@ export class ProductCardComponent implements OnInit, OnChanges {
   paginatedData: Product[] = [];
   filterIsHidden: boolean = false;
   passedCategories: Category[] = [];
+  wishlist: string[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private wishlistService: WishlistService) { }
   ngOnChanges(changes: SimpleChanges): void {
     this.getTotalPages();
     this.getPaginatedData();
@@ -51,6 +53,9 @@ export class ProductCardComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getPaginatedData();
+    this.wishlistService.wishlist$.subscribe((wishlist) => {
+      this.wishlist = wishlist;
+    });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -111,7 +116,15 @@ export class ProductCardComponent implements OnInit, OnChanges {
     this.getPaginatedData();
   }
 
-  goToProductDetails(index: number) {
-    this.router.navigate(['products/' + this.data[index]._id]);
+  goToProductDetails(id: number) {
+    this.router.navigate(['products/' + id]);
+  }
+
+  toggleWishlist(id: number) {
+
+  }
+
+  isWishlisted(id: number): boolean {
+    return this.wishlist.includes(id.toString());
   }
 }

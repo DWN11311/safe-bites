@@ -1,10 +1,10 @@
-// app.component.ts
-import { Component, inject } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import { Router, RouterOutlet ,NavigationEnd } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductsService } from './services/products.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { filter } from 'rxjs/operators';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { ErrorPageComponent } from './components/error/error.component';
 
@@ -23,12 +23,21 @@ import { ErrorPageComponent } from './components/error/error.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  hiddenLayoutRoutes = ['/login', '/sign-up'];
+export class AppComponent implements OnInit {
+  hiddenRoutes = ['/login', '/sign-up'];
   title = 'safe-bites';
   router = inject(Router); // Inject the Router
 
   shouldDisplayLayout(): boolean {
     return !this.hiddenLayoutRoutes.includes(this.router.url);
+  }
+  ngOnInit(): void {
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd)
+      )
+      .subscribe(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
   }
 }
