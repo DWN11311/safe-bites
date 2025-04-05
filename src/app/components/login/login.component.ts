@@ -1,6 +1,5 @@
-
 declare var google: any; // تعريف مكتبة Google
-import {  AfterViewInit,ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -17,11 +16,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.css',
   imports: [ReactiveFormsModule, CommonModule, RouterModule],
 })
-export class LoginComponent
 //  implements AfterViewInit
- {
+export class LoginComponent {
   errorMessage: string = '';
-  showPassword = false;
+  showPassword: boolean = false;
   errorEmail: string = '';
 
   loginForm: FormGroup = new FormGroup({
@@ -49,15 +47,18 @@ export class LoginComponent
       `width=${width},height=${height},top=${top},left=${left}`
     );
 
-    window.addEventListener('message', (event) => {
-      if (event.origin !== 'http://localhost:8282') return; // تأكد إن الرسالة جاية من الـ backend
-      if (event.data?.token) {
-        localStorage.setItem('token', event.data.token);
-        this.router.navigate(['']);
-      }
-    }, false);
+    window.addEventListener(
+      'message',
+      event => {
+        if (event.origin !== 'http://localhost:8282') return; // تأكد إن الرسالة جاية من الـ backend
+        if (event.data?.token) {
+          localStorage.setItem('token', event.data.token);
+          this.router.navigate(['']);
+        }
+      },
+      false
+    );
   }
-
 
   // ngAfterViewInit() {
   //   if (typeof google !== 'undefined' && google.accounts) {
@@ -66,12 +67,10 @@ export class LoginComponent
   //       callback: (response: any) => this.handleGoogleSignIn(response),
   //     });
 
-
   //   } else {
   //     console.error("Google API is not loaded yet.");
   //   }
   // }
-
 
   // handleGoogleSignIn(response: any) {
   //   console.log('Google response:', response);
@@ -97,7 +96,6 @@ export class LoginComponent
   // onGoogleSignIn() {
   //   google.accounts.id.prompt();
   // }
-
 
   ngOnInit() {
     this.loadRememberedUser();
@@ -137,10 +135,9 @@ export class LoginComponent
         const data = res.body;
         if (data.token) {
           console.log(data);
-          localStorage.setItem('token', data.token);
-          // localStorage.setItem('username', data.firstName);
-          // localStorage.setItem('username', "Asmaa");
-          // store Fname at local storage
+          // localStorage.setItem('token', data.token);
+          this.usersService.logintoken(data.token);
+         
           const decodedToken = this.decodeJWT(data.token);
           localStorage.setItem('firstName', decodedToken.firstName);
           console.log('User First Name:', decodedToken.firstName);

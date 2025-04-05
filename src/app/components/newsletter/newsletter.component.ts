@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-newsletter',
   imports: [],
   templateUrl: './newsletter.component.html',
-  styleUrl: './newsletter.component.css'
+  styleUrl: './newsletter.component.css',
 })
-export class NewsletterComponent {
-
-}
+export class NewsletterComponent {}

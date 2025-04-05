@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent {
   isSideOpen = false;
   showDropdown = false;
   firstName: string | null = '';
-  constructor(private router: Router) {}
+  constructor(private router: Router , private usersService: UsersService) {}
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -25,13 +26,13 @@ export class HeaderComponent {
 
   ngOnInit() {
     this.firstName = localStorage.getItem('firstName');
+    const token = localStorage.getItem('token');
+if (token) {
+  this.usersService.scheduleAutoLogout(token);
+}
   }
   logout() {
-    localStorage.removeItem('fistName');
-    localStorage.removeItem('token');
-
+    this.usersService.logout();
     this.firstName = null;
-
-    this.router.navigate(['/']);
   }
 }

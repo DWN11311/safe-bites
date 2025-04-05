@@ -79,7 +79,7 @@ export class ProductCardComponent implements OnInit, OnChanges {
   passCategories(params: Category[]) {
     this.passedCategories = params;
   }
-  
+
   setItemsPerPage() {
     const screenWidth = window.innerWidth;
     if (screenWidth <= 768) {

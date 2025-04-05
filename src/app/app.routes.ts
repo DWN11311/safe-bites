@@ -8,6 +8,9 @@ import { EmptyWishListComponent } from './components/empty-wish-list/empty-wish-
 import { ErrorComponent } from './components/error/error.component';
 import { AuthGuard } from './auth.guard';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { PaymentMethodsComponent } from './components/payment-methods/payment-methods.component';
+import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,9 +20,10 @@ export const routes: Routes = [
   { path: 'wishList', component: WishListComponent },
   { path: 'empty-wishList', component: EmptyWishListComponent },
   { path: 'newsletter', component: NewsletterComponent },
+  { path: 'ordersummary', component: OrderSummaryComponent },
+  { path: 'paymentmethods', component:PaymentMethodsComponent },
+  { path: 'confirmpayment', component:ConfirmPaymentComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
   { path: '**', component: ErrorComponent },
-
-
 ];
