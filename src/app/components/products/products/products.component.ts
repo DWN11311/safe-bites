@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Wishlist } from '../../../models/wishlist.model';
 import { WishlistService } from '../../../services/wishlist.service';
 import { LoadingService } from '../../../services/loading.service';
+import { CartsService } from '../../../services/carts.service';
+import { Cart } from '../../../models/cart.model';
 
 @Component({
   selector: 'app-products',
@@ -18,12 +20,15 @@ export class ProductsComponent {
     private productService: ProductsService,
     private wishlistService: WishlistService,
     private loadingService: LoadingService,
+    private cartService: CartsService,
     private router: Router
   ) {}
   data: Array<Product> = [];
   wishlist: Wishlist = {};
+  cartData: Cart = {};
 
   ngOnInit() {
+    // this.router.navigate(['error', 400, 'custom server error']);
     // const queryString = this.router.url.split('?')[1] || '';
     // this.productService.getAllProducts(queryString).subscribe({
     //   next: (res: any) => {
@@ -37,6 +42,15 @@ export class ProductsComponent {
     this.wishlistService.wishlist$.subscribe({
       next: newWishlist => {
         this.wishlist = newWishlist;
+      },
+    });
+
+    this.cartService.cart$.subscribe({
+      next: data => {
+        this.cartData = data;
+      },
+      error: err => {
+        console.log(err);
       },
     });
 

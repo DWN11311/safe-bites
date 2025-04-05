@@ -18,6 +18,8 @@ import { TruncateWordsPipe } from '../../../pipes/truncate-words.pipe';
 import { Router } from '@angular/router';
 import { Wishlist } from '../../../models/wishlist.model';
 import { WishlistService } from '../../../services/wishlist.service';
+import { Cart } from '../../../models/cart.model';
+import { CartsService } from '../../../services/carts.service';
 
 @Component({
   selector: 'app-product-card',
@@ -34,6 +36,7 @@ import { WishlistService } from '../../../services/wishlist.service';
 export class ProductCardComponent implements OnInit, OnChanges {
   @Input() data: Product[] = [];
   @Input() wishlist: Wishlist = {};
+  @Input() cartData: Cart = {};
   itemsPerPage = 9;
   currentPage = 1;
   totalPages = 0;
@@ -42,10 +45,12 @@ export class ProductCardComponent implements OnInit, OnChanges {
   paginatedData: Product[] = [];
   filterIsHidden: boolean = false;
   passedCategories: Category[] = [];
+  token: string | null = localStorage.getItem('token');
 
   constructor(
     private router: Router,
-    private wishlistService: WishlistService
+    private wishlistService: WishlistService,
+    private cartService: CartsService
   ) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.getTotalPages();
@@ -59,6 +64,9 @@ export class ProductCardComponent implements OnInit, OnChanges {
     console.log(this.wishlist);
 
     this.getPaginatedData();
+    this.wishlistService.wishlist$.subscribe(wishlist => {
+      this.wishlist = wishlist;
+    });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -119,8 +127,12 @@ export class ProductCardComponent implements OnInit, OnChanges {
     this.getPaginatedData();
   }
 
-  goToProductDetails(index: number) {
-    this.router.navigate(['products/' + this.data[index]._id]);
+  goToProductDetails(id: string) {
+    this.router.navigate(['products/' + id]);
+  }
+
+  addToCart(productId: string) {
+    if (this.token) this.cartService.addToCart(productId, this.token);
   }
 
   addToWishlist(productId: string) {

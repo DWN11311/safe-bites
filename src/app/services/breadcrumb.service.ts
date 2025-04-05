@@ -29,21 +29,28 @@ export class BreadcrumbService {
     let url = '';
 
     while (currentRoute) {
-      if (currentRoute.routeConfig?.data?.['breadcrumb']) {
-        url += '/' + currentRoute.url.map(segment => segment.path).join('/');
-        breadcrumbs.push({
-          label: currentRoute.routeConfig.data['breadcrumb'],
-          url,
-        });
+      const routeConfig = currentRoute.routeConfig;
+      const routeSegments = currentRoute.url
+        .map(segment => segment.path)
+        .join('/');
+
+      if (routeSegments) {
+        url += `/${routeSegments}`;
+      }
+
+      if (routeSegments.match(/products\/\w+/)) {
+        breadcrumbs.push({ label: 'Products', url: '/products' });
+      }
+
+      if (routeConfig?.data?.['breadcrumb']) {
+        breadcrumbs.push({ label: routeConfig.data['breadcrumb'], url });
       }
       currentRoute = currentRoute.firstChild!;
     }
 
-    // ✅ Hide breadcrumbs on home page
     if (breadcrumbs.length === 1) {
       breadcrumbs = [];
     }
-
     this.breadcrumbs$.next(breadcrumbs);
   }
 

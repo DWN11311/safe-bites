@@ -6,8 +6,9 @@
     while offering a distinctive taste.
   </p>
   <ul class="text-gray-500 font-semibold list-disc px-5">
-    @for (ingredient of product?.ingredients; track ingredient) {
+    @for (ingredient of productIngredients; track ingredient) {
       <li class="mb-3">{{ ingredient }}</li>
     }
-  </ul>
+  </ul>
 </div>
+

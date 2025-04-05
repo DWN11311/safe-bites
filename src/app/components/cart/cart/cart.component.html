@@ -1,8 +1,10 @@
 <!-- no data -->
-<div *ngIf="cart?.length === 0" class="flex justify-center">
+<div
+  *ngIf="cartItems?.length === 0"
+  class="flex justify-center cursor-default">
   <div
-    class="md:grid grid-cols-[auto_auto] flex flex-col justify-center items-center gap-[18px] md:gap-[48px] lg:py-[88px] py-[44px]">
-    <img src="images/cart/empty cart.svg" class="w-[200px] h-[200px]" />
+    class="md:grid grid-cols-[auto_auto] flex flex-col justify-center items-center gap-[18px] md:gap-[48px] lg:py-[88px] py-[44px] px-5 md:px-20 xl:px-40">
+    <img src="images/cart/cart empty.svg" class="w-[200px] h-[200px]" />
 
     <div class="text-center flex flex-col gap-[12px]">
       <p class="text-[24px] font-semibold text-[#121311]">
@@ -13,23 +15,21 @@
       </p>
       <button
         routerLink=""
-        class="mx-auto bg-[#1B8057] px-4 py-2 mt-[1rem] rounded-[8px] text-[#F5F8F5] h-[56px] w-[230px] text-[20px] font-semibold cursor-pointer">
+        class="mx-auto bg-[#1B8057] hover:bg-[#135C3E] shadow-[0_4px_4px_rgba(38,75,45,0.25)] px-4 py-2 mt-[1rem] rounded-[8px] text-[#F5F8F5] h-[56px] w-[230px] text-[20px] font-semibold cursor-pointer">
         Shop Now
       </button>
     </div>
     <!-- suggest part -->
-
-    <!--  -->
   </div>
 </div>
-<!-- start here -->
 
+<!-- start here -->
 <div
-  *ngIf="cart?.length > 0"
-  class="grid md:grid-cols-12 grid-cols-4 md:px-[160px] md:gap-x-[40px] px-[24px] gap-x-[24px] 2xl:bg-white xl:bg-white lg:bg-white md:bg-white bg-white py-[44px] md:py-[88px]">
+  *ngIf="cartItems.length > 0"
+  class="grid md:grid-cols-12 grid-cols-4 px-5 md:px-20 xl:px-40 gap-x-5 lg:gap-x-10 py-[44px] lg:py-[88px] bg-white cursor-default">
   <div class="grid lg:col-span-7 md:col-span-12 col-span-4">
     <div
-      class="2xl:h-[95px] lg:h-[80px] md:h-[65px] h-[50px] bg-[#1B8057] text-[#F5F8F5] flex 2xl:mb-[24px] p-4 xl:mb-[24px] md:mb-[20px] lg:mb-[16px] mb-[16px] items-center 2xl:p-6 md:p-2 rounded-[8px] md:text-[16px] 2xl:text-[20px] xl:text-[16px] lg:text-[14px] lg:p-3 font-semibold text-[12px] justify-between">
+      class="2xl:h-[95px] lg:h-[80px] md:h-[65px] h-[50px] bg-[#1B8057] text-[#F5F8F5] flex 2xl:mb-[24px] p-4 xl:mb-[24px] md:mb-[20px] lg:mb-[16px] mb-[16px] items-center 2xl:p-3 md:p-2 rounded-[8px] md:text-[16px] 2xl:text-[20px] xl:text-[16px] lg:text-[14px] lg:p-3 font-semibold text-[12px] justify-between">
       <p class="w-1/2 whitespace-nowrap">Products</p>
       <div class="flex lg:gap-2 xl:gap-4 2xl:gap-5 md:gap-2 gap-3">
         <p class="whitespace-nowrap">Price</p>
@@ -39,14 +39,14 @@
     </div>
 
     <div
-      *ngFor="let product of cart; trackBy: track"
+      *ngFor="let product of cartItems; trackBy: track"
       class="card flex items-center 2xl:py-[8px] border-b-2 border-[#C5C4C4] 2xl:gap-6 xl:py-[8px] py-[8px] gap-4 xl:gap-6 md:py-[12px] lg:gap-2 md:gap-4 justify-between lg:py-[12px]">
       <div class="flex gap-2 items-center flex-grow">
         <i
-          class="fa-solid fa-rectangle-xmark text-[#F8C519] xl:text-xl 2xl:text-2xl lg:text-md cursor-pointer md:text-lg text-[16px]"
-          (click)="removeproduct(product)"></i>
+          class="fa-solid fa-rectangle-xmark shadow-[0_4px_4px_rgba(248,197,25,0.15)] text-[#F8C519] xl:text-xl 2xl:text-2xl lg:text-md cursor-pointer md:text-lg text-[16px]"
+          (click)="removeproduct(product._id)"></i>
         <img
-          [src]="product.image"
+          [src]="product.images[0].imageUrl"
           class="w-full h-auto 2xl:max-w-[130px] xl:max-w-[110px] lg:max-w-[85px] md:max-w-[80px] max-w-[70px]"
           alt="product image" />
 
@@ -58,7 +58,7 @@
           </h1>
           <p
             class="xl:text-[12px] 2xl:text-[12px] lg:text-[10px] md:text-[12px] text-[10px] text-[#121311] font-light">
-            {{ product.description }}
+            {{ product.brief }}
           </p>
         </div>
       </div>
@@ -150,10 +150,41 @@
       </div>
 
       <div
-        class="flex lg:justify-center md:justify-end 2xl:pb-[28px] xl:pb-[24px] pb-[24px] text-[16px]">
+        class="flex lg:justify-center justify-end 2xl:pb-[28px] xl:pb-[24px] pb-[24px] text-[16px]">
         <button
           class="bg-[#1B8057] hover:bg-[#135C3E] text-[#F5F8F5] h-[56px] w-full md:w-[175px] 2xl:w-[250px] xl:w-[220px] lg:w-[180px] lg:h-[56px] 2xl:text-[18px] xl:text-[16px] text-[16px] md:text-[14px] font-semibold rounded-[8px] cursor-pointer">
           Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  *ngIf="showPopup"
+  class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-full h-full flex justify-center items-center bg-[#121311] opacity-97"
+  (click)="showPopup = false">
+  <div
+    class="bg-[#ffff] border border-[#C5C4C4] shadow-lg rounded-[8px] md:w-[450px] md:h-[250px] flex flex-col p-6 gap-[16px]"
+    (click)="$event.stopPropagation()">
+    <div class="flex justify-end">
+      <i
+        class="fa-solid fa-rectangle-xmark text-[#F8C519] shadow-[0_4px_4px_rgba(248,197,25,0.25)] text-2xl cursor-pointer"
+        (click)="showPopup = false"></i>
+    </div>
+    <div class="flex flex-col flex-1 justify-center items-center gap-6 px-2">
+      <p class="text-center text-[#121311] mb-2 lg:text-[18px] font-medium">
+        Are you sure you want to clear your entire cart?
+      </p>
+      <div class="flex justify-center gap-6">
+        <button
+          (click)="showPopup = false"
+          class="bg-[#1B8057] hover:bg-[#135C3E] shadow-[0_4px_4px_rgba(38,75,45,0.25)] px-4 py-2 rounded-[8px] text-[#F5F8F5] h-[56px] w-[140px] 2xl:w-[140px] 2xl:text-[20px] font-medium cursor-pointer">
+          Cancel
+        </button>
+        <button
+          (click)="clearCart()"
+          class="bg-[#E6B200] hover:bg-[#C0991B] shadow-[0_4px_4px_rgba(248,197,25,0.25)] text-[#F5F8F5] px-4 py-2 rounded-[8px] h-[56px] w-[140px] 2xl:w-[140px] 2xl:text-[20px] font-medium cursor-pointer">
+          Delete
         </button>
       </div>
     </div>
@@ -178,7 +209,7 @@
       <div class="flex justify-center gap-6">
         <button
           (click)="showPopup = false"
-          class="bg-[#1B8057] hover:bg-[#135C3E] px-4 py-2 rounded-[8px] text-[#F5F8F5] h-[56px] w-[140px] 2xl:w-[140px] 2xl:text-[20px] font-medium cursor-pointer">
+          class="bg-[#1B8057] hover:bg-[#135C3E] shadow-[0_4px_4px_rgba(38,75,45,0.25)] px-4 py-2 rounded-[8px] text-[#F5F8F5] h-[56px] w-[140px] 2xl:w-[140px] 2xl:text-[20px] font-medium cursor-pointer">
           Cancel
         </button>
         <button
@@ -190,3 +221,5 @@
     </div>
   </div>
 </div>
+
+

@@ -16,7 +16,7 @@
 </div>
 
 <div
-  class="grid grid-cols-12 gap-5 lg:gap-10 px-5 min-[1024px]:px-16 min-[1440px]:px-40 mt-6 md:mt-10">
+  class="grid grid-cols-12 gap-5 lg:gap-10 px-5 min-[1024px]:px-16 min-[1440px]:px-40 mt-[78px] md:mt-[154px]">
   <!-- Left Part -->
   <div class="hidden md:block col-span-4 xl:col-span-3">
     <app-filter (sendCategoriesObj)="passCategories($event)"></app-filter>
@@ -53,7 +53,7 @@
           </p>
         </div>
         <img
-          (click)="goToProductDetails(index)"
+          (click)="goToProductDetails(item._id)"
           src="{{ item.images[0].imageUrl }}"
           class="m-auto h-[10rem] md:h-[11rem] lg:h-[13rem] cursor-pointer"
           alt="Feature 2"
@@ -79,7 +79,9 @@
 
         <div class="flex gap-4 justify-self-end">
           <button
-            class="bg-[#378F6B] w-full py-1.5 text-white md:text-lg rounded-lg hover:cursor-pointer hover:bg-[#307055] transition-all">
+            (click)="addToCart(item._id)"
+            [disabled]="cartData[item._id]"
+            class="bg-[#378F6B] w-full py-2 text-white text-lg md:text-xl rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed hover:cursor-pointer hover:bg-[#307055] transition-all">
             Add To Cart
           </button>
           <button
