@@ -24,13 +24,17 @@ export class BreadcrumbService {
 
   private updateBreadcrumbs(): void {
     let breadcrumbs: Breadcrumb[] = [{ label: 'Home', url: '/' }];
-    let currentRoute: ActivatedRouteSnapshot | null = this.router.routerState.snapshot.root;
+    let currentRoute: ActivatedRouteSnapshot | null =
+      this.router.routerState.snapshot.root;
     let url = '';
 
     while (currentRoute) {
       if (currentRoute.routeConfig?.data?.['breadcrumb']) {
         url += '/' + currentRoute.url.map(segment => segment.path).join('/');
-        breadcrumbs.push({ label: currentRoute.routeConfig.data['breadcrumb'], url });
+        breadcrumbs.push({
+          label: currentRoute.routeConfig.data['breadcrumb'],
+          url,
+        });
       }
       currentRoute = currentRoute.firstChild!;
     }
@@ -47,4 +51,3 @@ export class BreadcrumbService {
     return this.breadcrumbs$.asObservable();
   }
 }
-

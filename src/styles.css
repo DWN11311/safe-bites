@@ -14,7 +14,7 @@
 }
 
 .toast-success {
-  background-color: #1B8057 !important;
+  background-color: #1b8057 !important;
   color: white !important;
   font-size: 1.2rem;
   padding: 1.5rem 4rem;
@@ -23,11 +23,11 @@
 }
 
 .toast-error {
-  background-color: #D9534F !important; 
+  background-color: #d9534f !important;
 }
 
 .toast-warning {
-  background-color: #F0AD4E !important;
+  background-color: #f0ad4e !important;
 }
 
 .toast-title {
@@ -40,8 +40,8 @@
 
 .toast-container {
   position: fixed;
-  top: 1rem; 
-  right: 1rem; 
-  z-index: 99999; 
+  top: 1rem;
+  right: 1rem;
+  z-index: 99999;
   cursor: pointer;
 }

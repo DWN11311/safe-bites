@@ -8,7 +8,7 @@ import { BreadcrumbService } from '../../services/breadcrumb.service';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './breadcrumb.component.html',
-  styleUrls: ['./breadcrumb.component.css']
+  styleUrls: ['./breadcrumb.component.css'],
 })
 export class BreadcrumbComponent {
   private breadcrumbService = inject(BreadcrumbService);

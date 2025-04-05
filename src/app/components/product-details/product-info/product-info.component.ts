@@ -11,8 +11,8 @@ export class ProductInfoComponent implements OnChanges {
   @Input() product?: Product;
 
   quantity: number = 1;
-  yellowStars: Array<number> = [];
-  whiteStars: Array<number> = [];
+  // yellowStars: Array<number> = [];
+  // whiteStars: Array<number> = [];
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['availableQuantity'] && this.product?.quantity !== undefined) {
@@ -20,11 +20,11 @@ export class ProductInfoComponent implements OnChanges {
         this.quantity = this.product?.quantity;
       }
     }
-    if (this.product) {
-      this.product.averageRating = 3;
-      this.yellowStars = new Array(this.product.averageRating);
-      this.whiteStars = new Array(5 - this.product.averageRating);
-    }
+    // if (this.product) {
+    //   this.product.averageRating = 3;
+    //   this.yellowStars = new Array(this.product.averageRating);
+    //   this.whiteStars = new Array(5 - this.product.averageRating);
+    // }
   }
 
   increaseQuantity() {
