@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ParamMap } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -8,11 +9,17 @@ export class ProductsService {
   private readonly url = 'http://localhost:8282/products';
   constructor(private http: HttpClient) {}
 
-  getAllProducts(queryString?: string) {
-    let reqUrl = this.url;
-    if (queryString) reqUrl += `?${queryString}`;
+  getAllProducts(queryParams: ParamMap) {
+    let httpParams = new HttpParams();
 
-    return this.http.get(reqUrl);
+    queryParams.keys.forEach(key => {
+      const values = queryParams.getAll(key);
+      values.forEach(value => {
+        httpParams = httpParams.append(key, value);
+      });
+    });
+
+    return this.http.get(this.url, { params: httpParams });
   }
 
   getProductById(id: string) {

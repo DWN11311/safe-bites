@@ -11,7 +11,7 @@ export class LogoutComponent {
   constructor(private route: Router) {}
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.clear();
     this.route.navigate(['/']);
   }
 }

@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CategoriesService } from '../../services/categories.service';
 import { Category } from '../../models/category.model';
+import { LoadingService } from '../../services/loading.service';
+import { WishlistService } from '../../services/wishlist.service';
 import { CartsService } from '../../services/carts.service';
 import { UsersService } from '../../services/users.service';
 
@@ -21,12 +23,15 @@ export class HeaderComponent {
   firstName: string | null = '';
   userId: string | null = '';
   categories: Category[] = [];
+  wishlistCount: number = 0;
   cartCount: number = 0;
   constructor(
     private router: Router,
-    private usersService: UsersService,
     private categoriesService: CategoriesService,
-    private cartService: CartsService
+    private loadingService: LoadingService,
+    private wishlistService: WishlistService,
+    private cartService: CartsService,
+    private usersService: UsersService
   ) {}
 
   toggleMenu(e?: Event) {
@@ -41,11 +46,28 @@ export class HeaderComponent {
     this.checkForUserImage();
     this.firstName = localStorage.getItem('firstName');
     this.userId = localStorage.getItem('userId');
-    this.categoriesService.getCategories().subscribe(data => {
-      this.categories = data as Category[];
-      this.cartService.count$.subscribe(count => {
-        this.cartCount = count;
-      });
+    // this.categoriesService.getCategories().subscribe(data => {
+    //   this.categories = data as Category[];
+    // });
+    this.loadingService.show();
+
+    this.cartService.cart$.subscribe({
+      next: cart => {
+        this.cartCount = Object.keys(cart).length;
+      },
+    });
+
+    this.categoriesService.getCategories().subscribe({
+      next: data => {
+        this.categories = data as Category[];
+
+        this.loadingService.hide();
+      },
+      complete: () => {},
+    });
+
+    this.wishlistService.wishlist$.subscribe(wishlist => {
+      this.wishlistCount = Object.keys(wishlist).length;
     });
     const token = localStorage.getItem('token');
     if (token) {
@@ -77,298 +99,3 @@ export class HeaderComponent {
     });
   }
 }
-
-// <div
-//   class="bg-[#7C9B66] w-full h-[80px] sm:h-[133px] mx-auto flex sm:flex-col relative items-center justify-center px-6 sm:px-[88px]">
-//   <!-- Upper half -->
-//   <div class="flex grow justify-center sm:gap-4 items-center w-full">
-//     <div>
-//       <a
-//         routerLink="/"
-//         class="text-nowrap max-w-[156px] h-[45px] text-white font-bold text-2xl sm:text-3xl leading-[45px]"
-//         >Safe Bites</a
-//       >
-//     </div>
-//     <div
-//       class="min-w-32 max-w-[744px] w-full h-12 relative mx-6 lg:mx-16 flex items-center">
-//       <input
-//         type="text"
-//         placeholder="search"
-//         class="placeholder-white/60 w-full h-full leading-12 px-4 border-2 text-white border-white rounded-[25px] focus:outline-none focus:ring-2 focus:ring-white" />
-
-//       <a href="#"
-//         ><i
-//           class="fa-solid fa-magnifying-glass text-white absolute right-4 top-1/2 -translate-y-1/2"></i
-//       ></a>
-//     </div>
-//     <button
-//       class="hidden sm:flex items-center text-2xl pr-2 md:pr-4 text-white rounded-[25px] transition">
-//       <i class="fa-solid fa-cart-shopping"></i>
-//     </button>
-//     <button
-//       class="hidden sm:flex items-center text-2xl pr-2 md:pr-4 text-white rounded-[25px] transition">
-//       <i class="fa-solid fa-heart"></i>
-//     </button>
-//     <!-- <a
-//       routerLink="/login"
-//       class="h-12 bg-white hidden sm:flex items-center justify-center px-4 gap-2 rounded-full text-[#7C9B66] font-semibold">
-//       <i class="fa-solid fa-user"></i>
-//       <span>Account</span>
-//     </a> -->
-//     <!-- Asmaa -->
-//     <i class="fa-solid fa-user text-white text-2xl"></i>
-
-// <ng-container *ngIf="firstName; else signInTemplate">
-//   <div class="flex items-center gap-8">
-//     <!-- <span class="text-white font-semibold text-lg">Hello, {{ username }}</span> -->
-
-//     <a
-//       (click)="logout()"
-//       class="cursor-pointer flex items-center gap-2 px-4 py-2 rounded-full text-[#ffff] font-semibold shadow-sm border-1 border-[#ffff]">
-//       <i class="fa-solid fa-right-from-bracket"></i> Logout
-//     </a>
-//   </div>
-// </ng-container>
-
-// <ng-template #signInTemplate>
-//   <a
-//     routerLink="/login"
-//     class="flex items-center gap-2 text-[#ffff] font-semibold">
-//     <i class="fa-solid fa-user"></i> Sign in
-//   </a>
-//   <span class="text-[#ffff]">|</span>
-//   <a
-//     routerLink="/sign-up"
-//     class="flex items-center text-[#ffff] font-semibold">
-//     Register
-//   </a>
-// </ng-template>
-//   </div>
-
-//   <!-- Lower Half -->
-//   <div class="relative sm:pb-4">
-//     <!-- Burger menu -->
-//     <button
-//       class="text-white sm:hidden h-[120px] flex items-center justify-center text-2xl"
-//       (click)="toggleMenu()">
-//       <i class="fa-solid fa-bars"></i>
-//     </button>
-//     <ul
-//       class="absolute top-full left-0 w-screen bg-[#4C782FB8] text-white hidden sm:flex sm:static sm:w-auto sm:bg-transparent sm:p-0 grow sm:justify-center align gap-4 sm:gap-8">
-//       <li>
-//         <a
-//           routerLink=""
-//           routerLinkActive="active"
-//           [routerLinkActiveOptions]="{ exact: true }"
-//           class="hover:underline">
-//           Home
-//         </a>
-//       </li>
-//       <li>
-//         <a
-//           routerLink="/products"
-//           routerLinkActive="active"
-//           class="hover:underline"
-//           >Products</a
-//         >
-//       </li>
-//       <ul class="relative">
-//         <li class="categories">
-//           <a
-//             routerLink="/products"
-//             routerLinkActive="active"
-//             class="hover:underline"
-//             >Categories</a
-//           >
-//           <div class="dropdown z-10">
-//             <div class="grid-container">
-//               <ul>
-//                 <li>
-//                   <a
-//                     routerLink="/products"
-//                     routerLinkActive="active"
-//                     class="text-2xl text-[#4C782FB8]"
-//                     >Diet</a
-//                   >rLink="/products" routerLinkActive="active">Keto</a>
-//                 </li>
-//                 <li>
-//                   <a routerLink="/products" routerLinkActive="active">Vegan</a>
-//                 </li>
-//                 <li>
-//                   <a routerLink="/products" routerLinkActive="active"
-//                     >Low carb</a
-//                   >
-//                 </li>
-//               </ul>
-//               <ul>
-//                 <li>
-//                   <a
-//                     routerLink="/products"
-//                     routerLinkActive="active"
-//                     class="text-2xl text-[#4C782FB8]"
-//                     >Illness</a
-//                   >
-//                 </li>
-//                 <li>
-//                   <a routerLink="/products" routerLinkActive="active">Keto</a>
-//                 </li>
-//                 <li>
-//                   <a routerLink="/products" routerLinkActive="active">Vegan</a>
-//                 </li>
-//                 <li>
-//                   <a routerLink="/products" routerLinkActive="active"
-//                     >Low carb</a
-//                   >
-//                 </li>
-//               </ul>
-//             </div>
-//           </div>
-//         </li>
-//       </ul>
-//       <li>
-//         <a
-//           routerLink="/contact-us"
-//           routerLinkActive="active"
-//           class="hover:underline hover:text-bold"
-//           >ContactUs
-//         </a>
-//       </li>
-//       <li>
-//         <a
-//           routerLink="/about-us"
-//           routerLinkActive="active"
-//           class="hover:underline"
-//           >AboutUs
-//         </a>
-//       </li>
-//     </ul>
-//   </div>
-// </div>
-
-// <div
-//   id="side-menu"
-//   class="h-screen w-screen fixed top-0 z-10 bg-black/50"
-//   [ngClass]="{ block: isMenuOpen, hidden: !isMenuOpen }">
-//   <div
-//     id="side-menu-content"
-//     class="side-menu-content bg-white sm:hidden h-full w-[80vw] absolute overflow-y-scroll right-0 top-0"
-//     [ngClass]="{ open: isMenuOpen }">
-//     <div class="flex justify-between items-center w-full px-6">
-//       <a
-//         routerLink="/login"
-//         class="flex items-center justify-center gap-2 py-4">
-//         <span
-//           class="size-12 rounded-full flex items-center justify-center bg-[#7C9B66] text-white"
-//           ><i class="fa-solid fa-user"></i
-//         ></span>
-
-//         Profile
-//       </a>
-//       <button
-//         class="text-[#7C9B66] sm:hidden flex items-center justify-center text-3xl"
-//         (click)="toggleMenu()">
-//         <i class="fa-solid fa-xmark"></i>
-//       </button>
-//     </div>
-//     <div class="flex px-6 pb-2 gap-2">
-//       <a
-//         href=""
-//         class="w-1/2 h-12 flex items-center gap-2 border-2 border-[#C5CDBE] px-2 rounded font-semibold"
-//         ><i class="fa-solid fa-cart-shopping text-lg text-[#C5CDBE]"></i
-//         ><span>Cart</span></a
-//       >
-//       <a
-//         href=""
-//         class="w-1/2 h-12 flex items-center gap-2 border-2 border-[#C5CDBE] px-2 rounded font-semibold"
-//         ><i class="fa-solid fa-heart text-lg text-[#C5CDBE]"></i>
-//         <span>Wishlist</span>
-//       </a>
-//     </div>
-//     <ul class="text-[#141810] flex flex-col gap-2 p-6 pt-0">
-//       <li
-//         class="h-12 bg-[#C5CDBE] w-full px-4 flex items-center rounded text-[#141810] font-bold">
-//         <a
-//           routerLink=""
-//           routerLinkActive="active"
-//           [routerLinkActiveOptions]="{ exact: true }"
-//           class="hover:underline">
-//           Home
-//         </a>
-//       </li>
-//       <li
-//         class="h-12 bg-[#C5CDBE]/40 w-full px-4 flex items-center rounded text-[#141810]">
-//         <a
-//           routerLink="/products"
-//           routerLinkActive="active"
-//           class="hover:underline"
-//           >Products</a
-//         >
-//       </li>
-//       <li
-//         (click)="sideMenuCateogryToggle()"
-//         class="h-12 bg-[#C5CDBE]/40 w-full px-4 flex items-center justify-between rounded text-[#141810] font-bold">
-//         Categories
-//         <span [ngClass]="{ rotate: !isSideOpen }"
-//           ><i class="fa-solid fa-chevron-down"></i
-//         ></span>
-//       </li>
-//       <ul
-//         class="w-full px-4 border-l-2 border-l-[#7C9B66]"
-//         [ngClass]="{ block: isSideOpen, hidden: !isSideOpen }">
-//         <li>
-//           <a
-//             routerLink=""
-//             routerLinkActive="active"
-//             class="text-lg text-[#4C782FB8]"
-//             >Illness</a
-//           >
-//         </li>
-//         <li class="px-2">
-//           <a routerLink="" routerLinkActive="active">Keto</a>
-//         </li>
-//         <li class="px-2">
-//           <a routerLink="" routerLinkActive="active">Vegan</a>
-//         </li>
-//         <li class="px-2">
-//           <a routerLink="" routerLinkActive="active">Low carb</a>
-//         </li>
-
-//         <li>
-//           <a
-//             routerLink=""
-//             routerLinkActive="active"
-//             class="text-lg text-[#4C782FB8]"
-//             >Diet</a
-//           >
-//         </li>
-//         <li><a routerLink="" routerLinkActive="active">Keto</a></li>
-//         <li><a routerLink="" routerLinkActive="active">Vegan</a></li>
-//         <li>
-//           <a routerLink="" routerLinkActive="active">Low carb</a>
-//         </li>
-//       </ul>
-//       <li
-//         class="h-12 bg-[#C5CDBE]/40 w-full px-4 flex items-center rounded text-[#141810]">
-//         <a
-//           routerLink="/contact-us"
-//           routerLinkActive="active"
-//           class="hover:underline hover:text-bold"
-//           >ContactUs
-//         </a>
-//       </li>
-//       <li
-//         class="h-12 bg-[#C5CDBE]/40 w-full px-4 flex items-center rounded text-[#141810]">
-//         <a
-//           routerLink="/about-us"
-//           routerLinkActive="active"
-//           class="hover:underline"
-//           >AboutUs
-//         </a>
-//       </li>
-//     </ul>
-//   </div>
-// </div>
-
-//                 </li>
-//                 <li>
-//                   <a route

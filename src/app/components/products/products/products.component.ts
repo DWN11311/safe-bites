@@ -2,7 +2,12 @@ import { Component, HostListener } from '@angular/core';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProductsService } from '../../../services/products.service';
 import { Product } from '../../../models/product.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Wishlist } from '../../../models/wishlist.model';
+import { WishlistService } from '../../../services/wishlist.service';
+import { LoadingService } from '../../../services/loading.service';
+import { CartsService } from '../../../services/carts.service';
+import { Cart } from '../../../models/cart.model';
 
 @Component({
   selector: 'app-products',
@@ -13,32 +18,51 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductsComponent {
   constructor(
     private productService: ProductsService,
-    private router: Router
+    private wishlistService: WishlistService,
+    private loadingService: LoadingService,
+    private cartService: CartsService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
   data: Array<Product> = [];
+  wishlist: Wishlist = {};
+  cartData: Cart = {};
 
   ngOnInit() {
-    this.router.navigate(['error', 400, 'custom server error']);
-    // const queryString = this.router.url.split('?')[1] || '';
-    // this.productService.getAllProducts(queryString).subscribe({
-    //   next: (res: any) => {
-    //     this.data = res.data;
-    //     this.calculatePagination();
-    //   },
-    //   error: () => {},
-    //   complete: () => {},
-    // });
+    this.wishlistService.wishlist$.subscribe({
+      next: newWishlist => {
+        this.wishlist = newWishlist;
+      },
+    });
 
-    this.router.events.subscribe(() => {
-      const queryString = this.router.url.split('?')[1] || '';
-      this.productService.getAllProducts(queryString).subscribe({
-        next: (res: any) => {
-          this.data = res.data;
-          this.calculatePagination();
-        },
-        error: () => {},
-        complete: () => {},
-      });
+    this.cartService.cart$.subscribe({
+      next: data => {
+        this.cartData = data;
+      },
+      error: err => {
+        console.log(err);
+      },
+    });
+
+    this.route.queryParamMap.subscribe(params => {
+      this.fetchProducts(params);
+    });
+
+    // this.router.events.subscribe(() => {
+    //   this.loadingService.show();
+    //   const queryString = this.router.url.split('?')[1] || '';
+    // });
+  }
+
+  fetchProducts(query: ParamMap) {
+    this.productService.getAllProducts(query).subscribe({
+      next: (res: any) => {
+        this.data = res.data;
+        this.calculatePagination();
+        this.loadingService.hide();
+      },
+      error: () => {},
+      complete: () => {},
     });
   }
 

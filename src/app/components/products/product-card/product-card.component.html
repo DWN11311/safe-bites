@@ -79,18 +79,22 @@
 
         <div class="flex gap-4 justify-self-end">
           <button
-            class="bg-[#378F6B] w-full py-2 text-white text-lg md:text-xl rounded-lg hover:cursor-pointer hover:bg-[#307055] transition-all">
+            (click)="addToCart(item._id)"
+            [disabled]="cartData[item._id]"
+            class="bg-[#378F6B] w-full py-2 text-white text-lg md:text-xl rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed hover:cursor-pointer hover:bg-[#307055] transition-all">
             Add To Cart
           </button>
           <button
-            (click)="toggleWishlist(item._id)"
-            class="shrink-0 rounded-full flex items-center justify-center size-14 border border-[#C5C4C4] hover:text-red-500 cursor-pointer">
-            <i
-              [class]="
-                isWishlisted(item._id)
-                  ? 'fa-regular fa-heart text-3xl text-red-500'
-                  : 'fa-regular fa-heart text-3xl'
-              "></i>
+            (click)="addToWishlist(item._id)"
+            *ngIf="!wishlist[item._id]"
+            class="shrink-0 rounded-full flex items-center justify-center size-12 border border-[#C5C4C4] hover:text-[#1B8057] cursor-pointer">
+            <i class="fa-regular fa-heart text-3xl"></i>
+          </button>
+          <button
+            *ngIf="wishlist[item._id]"
+            (click)="removeFromWishlist(item._id)"
+            class="shrink-0 rounded-full flex items-center justify-center size-12 border border-[#C5C4C4] text-[#1B8057] hover:text-[#307055] transition-all cursor-pointer">
+            <i class="fa-solid fa-heart text-3xl"></i>
           </button>
         </div>
       </div>

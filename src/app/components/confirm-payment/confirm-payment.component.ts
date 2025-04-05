@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { CartsService } from '../../services/carts.service';
 
 @Component({
   selector: 'app-confirm-payment',
@@ -7,4 +8,15 @@ import { RouterModule } from '@angular/router';
   templateUrl: './confirm-payment.component.html',
   styleUrl: './confirm-payment.component.css',
 })
-export class ConfirmPaymentComponent {}
+export class ConfirmPaymentComponent {
+  constructor(
+    private router: Router,
+    private cartsService: CartsService
+  ) {}
+
+  goHome() {
+    const token = localStorage.getItem('token');
+    if (token) this.cartsService.clearCart(token);
+    this.router.navigate(['/']);
+  }
+}

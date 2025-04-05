@@ -9,15 +9,35 @@ import { Product } from '../../models/product.model';
   styleUrl: './wishlistcard.component.css',
 })
 export class WishlistcardComponent {
-  @Input() product!: Product;
-  @Output() AddToCard = new EventEmitter<Product>();
-  @Output() RemoveFromWishlist = new EventEmitter<Product>();
+  @Input() product!: Pick<
+    Product,
+    | 'name'
+    | 'price'
+    | 'images'
+    | 'brief'
+    | 'description'
+    | '_id'
+    | 'averageRating'
+  >;
+  @Output() AddToCard = new EventEmitter<
+    Pick<
+      Product,
+      | 'name'
+      | 'price'
+      | 'images'
+      | 'brief'
+      | 'description'
+      | '_id'
+      | 'averageRating'
+    >
+  >();
+  @Output() RemoveFromWishlist = new EventEmitter<string>();
 
   addToCart() {
     this.AddToCard.emit(this.product);
   }
 
   removeItem() {
-    this.RemoveFromWishlist.emit(this.product);
+    this.RemoveFromWishlist.emit(this.product._id);
   }
 }

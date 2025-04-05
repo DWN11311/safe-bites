@@ -16,9 +16,15 @@ import { Category } from '../../../models/category.model';
 import { Product } from '../../../models/product.model';
 import { TruncateWordsPipe } from '../../../pipes/truncate-words.pipe';
 import { Router } from '@angular/router';
+import { Wishlist } from '../../../models/wishlist.model';
 import { WishlistService } from '../../../services/wishlist.service';
+<<<<<<< HEAD
 import { EmptyproductsComponent } from '../../emptyproducts/emptyproducts.component';
 
+=======
+import { Cart } from '../../../models/cart.model';
+import { CartsService } from '../../../services/carts.service';
+>>>>>>> Mohamed
 
 @Component({
   selector: 'app-product-card',
@@ -35,6 +41,8 @@ import { EmptyproductsComponent } from '../../emptyproducts/emptyproducts.compon
 })
 export class ProductCardComponent implements OnInit, OnChanges {
   @Input() data: Product[] = [];
+  @Input() wishlist: Wishlist = {};
+  @Input() cartData: Cart = {};
   itemsPerPage = 9;
   currentPage = 1;
   totalPages = 0;
@@ -43,11 +51,12 @@ export class ProductCardComponent implements OnInit, OnChanges {
   paginatedData: Product[] = [];
   filterIsHidden: boolean = false;
   passedCategories: Category[] = [];
-  wishlist: string[] = [];
+  token: string | null = localStorage.getItem('token');
 
   constructor(
     private router: Router,
-    private wishlistService: WishlistService
+    private wishlistService: WishlistService,
+    private cartService: CartsService
   ) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.getTotalPages();
@@ -73,7 +82,6 @@ export class ProductCardComponent implements OnInit, OnChanges {
   calculatePagination() {
     if (this.totalItems) {
       this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
-      console.log(this.totalPages);
 
       this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
     }
@@ -97,13 +105,18 @@ export class ProductCardComponent implements OnInit, OnChanges {
 
   setItemsPerPage() {
     const screenWidth = window.innerWidth;
+    const oldItemsPerPage = this.itemsPerPage;
+
     if (screenWidth <= 768) {
       this.itemsPerPage = 5;
     } else {
       this.itemsPerPage = 9;
     }
-    this.currentPage = 1;
-    this.totalPages;
+
+    if (this.itemsPerPage !== oldItemsPerPage) {
+      this.currentPage = 1;
+    }
+
     this.calculatePagination();
   }
 
@@ -122,13 +135,21 @@ export class ProductCardComponent implements OnInit, OnChanges {
     this.getPaginatedData();
   }
 
-  goToProductDetails(id: number) {
+  goToProductDetails(id: string) {
     this.router.navigate(['products/' + id]);
   }
 
-  toggleWishlist(id: number) {}
+  addToCart(productId: string) {
+    if (this.token) this.cartService.addToCart(productId, this.token);
+  }
 
-  isWishlisted(id: number): boolean {
-    return this.wishlist.includes(id.toString());
+  addToWishlist(productId: string) {
+    const token = localStorage.getItem('token');
+    if (token) this.wishlistService.addToWishlist(productId, token);
+  }
+
+  removeFromWishlist(productId: string) {
+    const token = localStorage.getItem('token');
+    if (token) this.wishlistService.removeFromWishlist(productId, token);
   }
 }

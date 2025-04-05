@@ -26,6 +26,14 @@ export class UsersService {
     return this.http.get(this.url + '/' + id, { headers });
   }
 
+  updateUser(id: string, userData: any, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.put(`${this.url}/${id}`, userData, { headers });
+  }
+
   getUserByEmail(email: string) {
     return this.http.get(`${this.url}?email=${email}`);
   }

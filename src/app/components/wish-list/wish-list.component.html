@@ -4,9 +4,9 @@
     Your WishList
   </div>
 
-  @if (products.length > 0) {
+  @if (productEntries && productEntries.length > 0) {
     <div class="grid grid-cols-12 col-span-12 gap-5 md:gap-10 w-full">
-      @for (product of products; track product._id) {
+      @for (product of productEntries; track product._id) {
         <div
           class="col-span-12 min-[500px]:col-span-6 md:col-span-4 xl:col-span-3">
           <app-wishlistcard
@@ -17,7 +17,7 @@
         </div>
       }
     </div>
-
+    <!--             (RemoveFromWishlist)="removeFromWishlist($event)" -->
     <div class="flex justify-center sm:justify-end gap-5 col-span-12 mt-10">
       <button
         (click)="showPopUp()"
