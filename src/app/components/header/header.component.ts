@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CategoriesService } from '../../services/categories.service';
 import { Category } from '../../models/category.model';
+import { CartsService } from '../../services/carts.service';
 
 @Component({
   selector: 'app-header',
@@ -15,13 +16,19 @@ export class HeaderComponent {
   isMenuOpen = false;
   isSideOpen = false;
   showDropdown = false;
+  items=0;
   firstName: string | null = '';
   userId: string | null = '';
   categories: Category[] = [];
+  cartCount: number = 0; 
   constructor(
     private router: Router,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,private cartService: CartsService
   ) {}
+
+
+  
+  
 
   toggleMenu(e?: Event) {
     this.isMenuOpen = !this.isMenuOpen;
@@ -37,6 +44,10 @@ export class HeaderComponent {
     this.userId = localStorage.getItem('userId');
     this.categoriesService.getCategories().subscribe(data => {
       this.categories = data as Category[];
+      this.cartService.count$.subscribe(count => {
+        this.cartCount = count;
+    
+      });
     });
   }
 
@@ -68,6 +79,7 @@ export class HeaderComponent {
       queryParams: { search: searchParam },
     });
   }
+  
 }
 
 // <div

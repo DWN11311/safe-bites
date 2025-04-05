@@ -6,15 +6,18 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProductsService } from './services/products.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { ErrorPageComponent } from './components/error/error.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
     ReactiveFormsModule,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    ErrorPageComponent,
   ],
   providers: [ProductsService],
   templateUrl: './app.component.html',

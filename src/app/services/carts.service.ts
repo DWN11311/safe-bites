@@ -1,13 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartsService {
   private readonly dB_URL = 'http://localhost:3000/products';
-
+  private countSubject = new BehaviorSubject<number>(0);
+  count$ = this.countSubject.asObservable();
   constructor(private http: HttpClient) {}
   //handel all request
   getAllProducts() {
@@ -23,4 +26,8 @@ export class CartsService {
       )
     );
   }
-}
+
+  updateCount(items: any[]) {
+    const total = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    this.countSubject.next(total);
+}}

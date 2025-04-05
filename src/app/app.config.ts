@@ -13,6 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimations(),
     provideToastr(),
-    CarouselModule
+    CarouselModule,
   ],
 };

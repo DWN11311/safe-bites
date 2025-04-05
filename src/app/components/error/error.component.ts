@@ -1,9 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-error',
-  imports: [],
+  standalone: true,
   templateUrl: './error.component.html',
-  styleUrl: './error.component.css',
+  styleUrls: ['./error.component.css'],
 })
-export class ErrorComponent {}
+export class ErrorPageComponent implements OnInit {
+  errorCode: number = 404;
+  errorMessage: string = 'Page Not Found';
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      console.log('Error Params:', params);
+
+      if (params.get('code')) {
+        this.errorCode = +params.get('code')!;
+      }
+      if (params.get('message')) {
+        this.errorMessage = params.get('message')!;
+      }
+    });
+  }
+}

@@ -3,7 +3,6 @@ import { CartsService } from '../../../services/carts.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-
 @Component({
   standalone: true,
   selector: 'app-cart',
@@ -19,10 +18,12 @@ export class CartComponent {
   ngOnInit() {
     this.CartsService.getAllProducts().subscribe({
       next: (response: any) => {
+        
         if (Array.isArray(response)) {
           this.cart = response.map(product => ({
             ...product,
             quantity: product.quantity || 1,
+          
           }));
         }
       },
