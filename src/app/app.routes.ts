@@ -16,10 +16,12 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
 import { PaymentMethodsComponent } from './components/payment-methods/payment-methods.component';
 import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { EmptyproductsComponent } from './components/emptyproducts/emptyproducts.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
+  { path: 'paymentmethods', component: PaymentMethodsComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
@@ -59,6 +61,11 @@ export const routes: Routes = [
     component: PaymentComponent,
     data: { breadcrumb: 'Payment' },
   },
+  {
+  path: 'empty-products',
+  component: EmptyproductsComponent,
+  data: { breadcrumb: 'products empty' },
+},
   { path: 'cart', component: CartComponent, data: { breadcrumb: 'Cart' } },
   { path: 'error/:code/:message', component: ErrorPageComponent },
   { path: '**', component: ErrorPageComponent, data: { breadcrumb: 'Error' } },

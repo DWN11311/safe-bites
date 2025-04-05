@@ -17,6 +17,8 @@ import { Product } from '../../../models/product.model';
 import { TruncateWordsPipe } from '../../../pipes/truncate-words.pipe';
 import { Router } from '@angular/router';
 import { WishlistService } from '../../../services/wishlist.service';
+import { EmptyproductsComponent } from '../../emptyproducts/emptyproducts.component';
+
 
 @Component({
   selector: 'app-product-card',
@@ -26,6 +28,7 @@ import { WishlistService } from '../../../services/wishlist.service';
     FilterComponent,
     TruncateWordsPipe,
     FilterTagsComponent,
+    EmptyproductsComponent
   ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',

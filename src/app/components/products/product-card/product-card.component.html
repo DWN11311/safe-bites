@@ -118,6 +118,9 @@
           (click)="pageClicked(currentPage + 1)"
           [ngClass]="{ disabled: currentPage === totalPages }"></i>
       </div>
+    }@else {
+      <!-- Empty State -->
+     <app-emptyproducts></app-emptyproducts>
     }
   </div>
 </div>
