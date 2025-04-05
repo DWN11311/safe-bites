@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CategoriesService } from '../../services/categories.service';
 import { Category } from '../../models/category.model';
+import { LoadingService } from '../../services/loading.service';
+import { WishlistService } from '../../services/wishlist.service';
 
 @Component({
   selector: 'app-header',
@@ -18,9 +20,12 @@ export class HeaderComponent {
   firstName: string | null = '';
   userId: string | null = '';
   categories: Category[] = [];
+  wishlistCount: number = 0;
   constructor(
     private router: Router,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private loadingService: LoadingService,
+    private wishlistService: WishlistService
   ) {}
 
   toggleMenu(e?: Event) {
@@ -35,8 +40,24 @@ export class HeaderComponent {
     this.checkForUserImage();
     this.firstName = localStorage.getItem('firstName');
     this.userId = localStorage.getItem('userId');
-    this.categoriesService.getCategories().subscribe(data => {
-      this.categories = data as Category[];
+    // this.categoriesService.getCategories().subscribe(data => {
+    //   this.categories = data as Category[];
+    // });
+    this.loadingService.show();
+    console.log(this.loadingService.loadingCounter);
+
+    this.categoriesService.getCategories().subscribe({
+      next: data => {
+        this.categories = data as Category[];
+        console.log(this.loadingService.loadingCounter);
+
+        this.loadingService.hide();
+      },
+      complete: () => {},
+    });
+
+    this.wishlistService.wishlist$.subscribe(wishlist => {
+      this.wishlistCount = Object.keys(wishlist).length;
     });
   }
 

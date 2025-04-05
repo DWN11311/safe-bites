@@ -16,6 +16,8 @@ import { Category } from '../../../models/category.model';
 import { Product } from '../../../models/product.model';
 import { TruncateWordsPipe } from '../../../pipes/truncate-words.pipe';
 import { Router } from '@angular/router';
+import { Wishlist } from '../../../models/wishlist.model';
+import { WishlistService } from '../../../services/wishlist.service';
 
 @Component({
   selector: 'app-product-card',
@@ -31,6 +33,7 @@ import { Router } from '@angular/router';
 })
 export class ProductCardComponent implements OnInit, OnChanges {
   @Input() data: Product[] = [];
+  @Input() wishlist: Wishlist = {};
   itemsPerPage = 9;
   currentPage = 1;
   totalPages = 0;
@@ -40,7 +43,10 @@ export class ProductCardComponent implements OnInit, OnChanges {
   filterIsHidden: boolean = false;
   passedCategories: Category[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private wishlistService: WishlistService
+  ) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.getTotalPages();
     this.getPaginatedData();
@@ -50,6 +56,8 @@ export class ProductCardComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    console.log(this.wishlist);
+
     this.getPaginatedData();
   }
 
@@ -113,5 +121,15 @@ export class ProductCardComponent implements OnInit, OnChanges {
 
   goToProductDetails(index: number) {
     this.router.navigate(['products/' + this.data[index]._id]);
+  }
+
+  addToWishlist(productId: string) {
+    const token = localStorage.getItem('token');
+    if (token) this.wishlistService.addToWishlist(productId, token);
+  }
+
+  removeFromWishlist(productId: string) {
+    const token = localStorage.getItem('token');
+    if (token) this.wishlistService.removeFromWishlist(productId, token);
   }
 }

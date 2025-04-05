@@ -2,6 +2,11 @@
   <app-header></app-header>
   <app-breadcrumb></app-breadcrumb>
 }
+
+<div *ngIf="loadingService.loading$ | async">
+  <app-loading></app-loading>
+</div>
+
 @if (shouldDisplayLayout() && router.url === '/') {
   <app-header></app-header>
 }
