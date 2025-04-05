@@ -1,4 +1,8 @@
-@if (shouldDisplayLayout()) {
+@if (shouldDisplayLayout() && router.url !== '/') {
+  <app-header></app-header>
+  <app-breadcrumb></app-breadcrumb>
+}
+@if (shouldDisplayLayout() && router.url === '/') {
   <app-header></app-header>
 }
 <router-outlet></router-outlet>

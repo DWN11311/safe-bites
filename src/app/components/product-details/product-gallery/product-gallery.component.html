@@ -1,6 +1,6 @@
 <div class="w-auto">
   <!-- big Image -->
-  <div class="relative h-[400px]">
+  <div class="relative h-[400px] bg-white">
     <img
       [src]="images[currentIndex].imageUrl"
       alt="main photo"
@@ -21,13 +21,13 @@
   </div>
 
   <!-- small Images -->
-  <div class="grid grid-cols-4 sm:grid-cols-3 gap-2 mt-4">
+  <div class="grid grid-cols-3 gap-2 mt-8">
     <img
       *ngFor="let img of images; let i = index"
       [src]="img.imageUrl"
       [class.opacity-100]="i === currentIndex"
       [class.border-blue-500]="i === currentIndex"
-      class="rounded-md cursor-pointer opacity-60 hover:opacity-100 border-2 border-transparent transition"
+      class="rounded-md cursor-pointer opacity-60 hover:opacity-100 border-2 border-transparent transition w-full h-32 object-cover"
       (click)="selectImage(i)" />
   </div>
 </div>

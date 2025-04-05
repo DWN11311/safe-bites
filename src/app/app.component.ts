@@ -5,14 +5,19 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProductsService } from './services/products.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { filter } from 'rxjs/operators';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { ErrorPageComponent } from './components/error/error.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
     ReactiveFormsModule,
+    BreadcrumbComponent,
+    ErrorPageComponent,
   ],
   providers: [ProductsService],
   templateUrl: './app.component.html',
@@ -21,11 +26,10 @@ import { filter } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   hiddenRoutes = ['/login', '/sign-up'];
   title = 'safe-bites';
-
-  constructor(private router: Router) {}
+  router = inject(Router); // Inject the Router
 
   shouldDisplayLayout(): boolean {
-    return !this.hiddenRoutes.includes(this.router.url);
+    return !this.hiddenLayoutRoutes.includes(this.router.url);
   }
   ngOnInit(): void {
     this.router.events

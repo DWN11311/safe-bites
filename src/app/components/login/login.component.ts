@@ -145,6 +145,7 @@ export class LoginComponent {
             .getUserById(decodedToken.id, data.token)
             .subscribe(response => {
               userData = response.user;
+              localStorage.setItem('userId', userData._id);
               console.log(userData);
 
               if (userData.image && userData.image.imageUrl)

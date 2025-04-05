@@ -1,56 +1,62 @@
-<div class="flex flex-col items-start gap-8 max-w-full">
+<div class="flex flex-col items-start gap-6 max-w-full">
   <!-- name -->
-  <div class="text-black text-2xl font-bold">
+  <div class="text-black text-2xl lg:text-3xl font-semibold">
     {{ product?.name }}
   </div>
   <!-- review -->
-  <div class="flex items-center gap-4 justify-center">
-    <div class="rates">
-      <i
-        *ngFor="let s of yellowStars"
-        class="fa-solid fa-star text-[#EAFF00] text-lg"></i>
-      <i
-        *ngFor="let s of whiteStars"
-        class="fa-solid fa-star text-[#DCDCDC] text-lg"></i>
+  <div class="text-xl flex items-center gap-2">
+    <div class="w-full text-xl flex items-center gap-1">
+      @for (star of [1, 2, 3, 4, 5]; track $index) {
+        @if (product && product.averageRating - $index >= 1) {
+          <i class="fa-solid fa-star text-[#F8C519]"></i>
+        } @else if (product && product.averageRating - $index >= 0.5) {
+          <i class="fa-solid fa-star-half-stroke text-[#F8C519]"></i>
+        } @else {
+          <i class="fa-regular fa-star text-[#F8C519]"></i>
+        }
+      }
     </div>
-    <p>{{ product?.averageRating }}</p>
-    <p>({{ product?.reviews?.length }} reviews)</p>
+    <p class="mr-1">{{ product?.averageRating?.toFixed(1) }}</p>
   </div>
   <!-- price -->
-  <div class="font-bold text-black text-2xl">{{ product?.price }} EGP</div>
+  <div class="font-bold text-black text-2xl md:text-3xl">
+    {{ product?.price }} EGP
+  </div>
   <!-- description -->
-  <div class="font-normal text-sm">
+  <div class="font-normal text-lg">
     {{ product?.description }}
   </div>
   <!-- quantity -->
-  <div
-    class="flex items-center justify-around gap-4 mt-4 border-2 border-[#1B8057] rounded-lg px-4 py-2 w-30">
+  <div class="flex items-center justify-around rounded-lg w-30 h-14">
     <button
       (click)="decreaseQuantity()"
-      class="text-black text-3xl rounded-lg transition cursor-pointer">
+      class="text-[#1B8057] text-3xl transition cursor-pointer border-2 rounded-l-lg border-[#1B8057] w-1/3 h-full basis-1/3">
       -
     </button>
 
-    <span class="text-lg font-bold">{{ quantity }}</span>
+    <p
+      class="text-xl text-[#58595A] font-bold h-full basis-1/3 flex items-center border-y-2 border-[#58595A] justify-center">
+      {{ quantity }}
+    </p>
 
     <button
       (click)="increaseQuantity()"
-      class="text-black rounded-lg transition text-3xl cursor-pointer">
+      class="text-[#1B8057] transition text-3xl cursor-pointer border-2 rounded-r-lg border-[#1B8057] w-1/3 h-full basis-1/3">
       +
     </button>
   </div>
 
-  <div class="mt-4 flex items-center gap-4">
+  <div class="flex w-full items-center gap-4 max-w-sm mt-4">
     <button
       (click)="addToCart()"
-      class="border-2 rounded-lg bg-[#7CAD3F] hover:bg-[#5B8329] text-white p-1 sm:p-1 md:p-2 lg:p-3 text-sm md:text-sm h-12 md:h-14 cursor-pointer w-xs md:w-xs lg:w-xs sm:w-[200px]">
-      <i class="fa-solid fa-cart-plus mr-1"></i> add to cart
+      class="rounded-lg bg-[#1B8057] hover:bg-[#307055] md:text-lg text-white p-1 sm:p-1 md:p-2 lg:p-3 h-12 md:h-14 cursor-pointer w-full transition-all duration-150">
+      <i class="fa-solid fa-cart-plus mr-1"></i> Add to cart
     </button>
 
-    <div
+    <button
       (click)="addToWishlist()"
-      class="w-10 h-10 flex items-center justify-center border border-gray-400 rounded-full cursor-pointer hover:text-[#5B8329] hover:border-2 hover:border-[#5B8329]">
-      <i class="fa-regular fa-heart"></i>
-    </div>
+      class="shrink-0 rounded-full flex items-center justify-center size-12 md:size-14 border border-[#C5C4C4] hover:text-red-500 cursor-pointer">
+      <i class="fa-regular fa-heart text-2xl md:text-3xl"></i>
+    </button>
   </div>
 </div>
