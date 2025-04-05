@@ -16,6 +16,7 @@ import { UsersService } from '../../../services/users.service';
   styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent {
+  showPassword = false;
   myform = new FormGroup({
     firstname: new FormControl('', [
       Validators.required,
@@ -125,4 +126,10 @@ export class SignUpComponent {
     const passwordValue = this.myform.get('password')?.value || '';
     return /[!@#$%^&*]/.test(passwordValue);
   }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  data() {}
 }

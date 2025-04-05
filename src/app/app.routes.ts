@@ -8,6 +8,10 @@ import { EmptyWishListComponent } from './components/empty-wish-list/empty-wish-
 import { ErrorComponent } from './components/error/error.component';
 import { AuthGuard } from './auth.guard';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
+import { ProductDetailsComponent } from './components/product-details/product-details/product-details.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { AboutusComponent } from './components/about us/aboutus/aboutus.component';
+import { CartComponent } from './components/cart/cart/cart.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { PaymentMethodsComponent } from './components/payment-methods/payment-methods.component';
 import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
@@ -15,11 +19,14 @@ import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-pa
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'about-us', component: AboutusComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'wishList', component: WishListComponent },
   { path: 'empty-wishList', component: EmptyWishListComponent },
   { path: 'newsletter', component: NewsletterComponent },
+  { path: 'products/:id', component: ProductDetailsComponent },
+  { path: 'contact-us', component: ContactUsComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'ordersummary', component: OrderSummaryComponent },
   { path: 'paymentmethods', component: PaymentMethodsComponent },
   { path: 'confirmpayment', component: ConfirmPaymentComponent },

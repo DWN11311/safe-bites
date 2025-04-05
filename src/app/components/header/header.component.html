@@ -1,11 +1,11 @@
 <div
-  class="bg-[#7C9B66] w-full h-[80px] sm:h-[133px] mx-auto flex sm:flex-col relative items-center justify-center px-6 sm:px-[88px]">
+  class="bg-[#7CAD3F] w-full h-[80px] sm:h-[133px] flex sm:flex-col relative items-center justify-center px-6 sm:px-[88px]">
   <!-- Upper half -->
-  <div class="flex grow justify-center sm:gap-4 items-center w-full">
+  <div class="flex grow items-center w-full justify-between">
     <div>
       <a
         routerLink="/"
-        class="text-nowrap max-w-[156px] h-[45px] text-white font-bold text-2xl sm:text-3xl leading-[45px]"
+        class="text-nowrap max-w-[156px] h-[45px] text-white font-bold text-2xl sm:text-3xl"
         >Safe Bites</a
       >
     </div>
@@ -22,16 +22,18 @@
       ></a>
     </div>
     <button
+      routerLink="/cart"
       class="hidden sm:flex items-center text-2xl pr-2 md:pr-4 text-white rounded-[25px] transition">
       <i class="fa-solid fa-cart-shopping"></i>
     </button>
     <button
+      routerLink="/wishList"
       class="hidden sm:flex items-center text-2xl pr-2 md:pr-4 text-white rounded-[25px] transition">
       <i class="fa-solid fa-heart"></i>
     </button>
     <!-- <a
       routerLink="/login"
-      class="h-12 bg-white hidden sm:flex items-center justify-center px-4 gap-2 rounded-full text-[#7C9B66] font-semibold">
+      class="h-12 bg-white hidden sm:flex items-center  px-4 gap-2 rounded-full text-[#7C9B66] font-semibold">
       <i class="fa-solid fa-user"></i>
       <span>Account</span>
     </a> -->
@@ -195,6 +197,7 @@
     </div>
     <div class="flex px-6 pb-2 gap-2">
       <a
+        routerLink="/cart"
         href=""
         class="w-1/2 h-12 flex items-center gap-2 border-2 border-[#C5CDBE] px-2 rounded font-semibold"
         ><i class="fa-solid fa-cart-shopping text-lg text-[#C5CDBE]"></i

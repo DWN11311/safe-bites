@@ -15,7 +15,7 @@ export class ProductsService {
     return this.http.get(reqUrl);
   }
 
-  getProductById(id: number) {
+  getProductById(id: string) {
     return this.http.get(this.url + '/' + id);
   }
   // createProduct(porduct:Product){

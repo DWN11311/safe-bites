@@ -1,0 +1,126 @@
+<!-- no data -->
+<div
+  *ngIf="cart?.length === 0"
+  class="md:px-22 px-6 md:py-20 py-10 flex flex-col justify-center items-center md:gap-12 gap-6">
+  <h1 class="w-full text-left md:text-5xl text-3xl font-bold text-[#7C9B66]">
+    Your Cart
+  </h1>
+
+  <div
+    class="md:grid grid-cols-[auto_auto] flex flex-col justify-center items-center">
+    <img src="images/cart/shopping nodata.svg" class="w-32 md:w-auto" />
+    <div class="text-center">
+      <h2 class="md:text-4xl text-2xl text-[#152D05] font-bold pb-2 md:pb-4">
+        Oops! your cart is feeling lonely
+      </h2>
+      <p class="md:text-lg text-sm text-[#485A3B] pb-6 md:pb-8 font-medium">
+        Add your favorite products and enjoy a great shopping experience!
+      </p>
+      <button
+        routerLink=""
+        class="lg:text-lg text-base lg:h-14 h-12 p-3 md:w-48 w-32 rounded-lg bg-[#7CAD3F] text-[#FAFAFA] shadow-[0px_4px_4px_rgba(116,154,68,0.25)] hover:-translate-y-1 transition-all duration-300 ease-in-out cursor-pointer">
+        Shop Now
+      </button>
+    </div>
+    <!-- suggest part -->
+
+    <!--  -->
+  </div>
+</div>
+<!-- start here -->
+<div
+  *ngIf="cart?.length > 0"
+  class="md:px-22 px-6 py-10 md:py-20 bg-[#FDFFF6] flex flex-col gap-4">
+  <!-- text -->
+  <div class="flex items-center">
+    <h1 class="w-full text-left md:text-5xl text-3xl font-bold text-[#7C9B66]">
+      Your Cart
+    </h1>
+    <img src="images/cart/shopping nodata.svg" class="md:w-32 w-24" />
+  </div>
+  <!-- card and checkout -->
+
+  <div class="grid md:grid-cols-[3fr_1fr] gap-16">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-8">
+      @for (product of cart; track product.name) {
+        <!-- card -->
+        <div class="bg-white shadow-2xl rounded-lg py-5 px-5 mb-3 h-75">
+          <img src="{{ product.image }}" class="w-full h-40" />
+          <!-- text in cart -->
+          <div class="text-center">
+            <h1
+              class="md:text-base text-sm md:font-semibold font-bold text-[#071001]">
+              {{ product.name }}
+            </h1>
+            <p class="md:text-lg text-[#3f3e3e]">${{ product.price }}</p>
+            <!-- button increase and decrease -->
+            <div class="flex justify-center gap-4">
+              <button
+                class="w-8 h-8 text-2xl rounded-full bg-[#808080] text-[#FAFAFA] hover:bg-[#525252] transition-all duration-300 ease-in-out cursor-pointer">
+                -
+              </button>
+              <span>1</span>
+              <button
+                class="w-8 h-8 text-2xl rounded-full bg-[#7CAD3F] text-[#FAFAFA] hover:bg-[#5B8329] transition-all duration-300 ease-in-out cursor-pointer">
+                +
+              </button>
+            </div>
+            <!--finish buttons  -->
+          </div>
+          <!-- finish text -->
+        </div>
+        <!-- finish cart -->
+      }
+    </div>
+    <!-- checkout -->
+    <div class="flex flex-col gap-8">
+      <!-- section1 -->
+      <div class="flex justify-between">
+        <h2 class="text-lg font-semibold text-[#808080]">Number of items</h2>
+        <p class="text-[#071001] font-semibold">8</p>
+      </div>
+      <!-- section2 -->
+      <div class="flex justify-between">
+        <h2 class="text-lg font-semibold text-[#808080]">Subtotal:</h2>
+        <p class="text-[#071001] font-semibold">30$</p>
+      </div>
+      <!--section3  -->
+      <div class="flex justify-between">
+        <h2 class="text-lg font-semibold text-[#808080]">Shipping:</h2>
+        <p class="text-[#071001] font-semibold">5$</p>
+      </div>
+      <!-- section4 -->
+      <h2 class="text-lg font-semibold text-[#808080]">Coupon code</h2>
+      <div class="flex justify-between">
+        <input
+          type="text"
+          placeholder="Coupon code"
+          class="rounded-lg border-[#7CAD3F] border-2 p-3" />
+
+        <button
+          class="lg:text-lg md:text-base text-sm lg:h-14 h-12 p-3 rounded-lg bg-[#7CAD3F] text-[#FAFAFA] shadow-[0px_4px_4px_rgba(116,154,68,0.25)] hover:bg-[#5B8329] transition-all duration-300 ease-in-out cursor-pointer">
+          applay your code
+        </button>
+      </div>
+      <!--section5 -->
+      <hr />
+      <!-- section6 -->
+      <div class="flex justify-between">
+        <h2 class="text-xl font-semibold text-[#071001]">Total</h2>
+        <p class="text-[#071001] font-semibold">35$</p>
+      </div>
+      <!-- section7 -->
+      <div class="flex flex-col gap-6">
+        <button
+          class="lg:text-lg md:text-base text-sm lg:h-14 h-12 p-3 rounded-lg border bg-transparent text-[#7CAD3F] shadow-[0px_4px_4px_rgba(116,154,68,0.25)] hover:border-[#5B8329] transition-all duration-300 ease-in-out cursor-pointer">
+          Checkout <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button
+          class="lg:text-lg md:text-base text-sm lg:h-14 h-12 p-3 rounded-lg bg-[#7CAD3F] text-[#FAFAFA] shadow-[0px_4px_4px_rgba(116,154,68,0.25)] hover:bg-[#5B8329] transition-all duration-300 ease-in-out cursor-pointer">
+          <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+        </button>
+      </div>
+    </div>
+    <!--  -->
+  </div>
+</div>
