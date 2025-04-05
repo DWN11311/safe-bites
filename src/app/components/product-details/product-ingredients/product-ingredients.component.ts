@@ -41,7 +41,6 @@ export class ProductIngredientsComponent implements OnInit {
 this.http.get(`http://localhost:8282/products/${productId}`).subscribe({
         next: (response: any) => {
           this.product = response.data;
-          console.log('full object', this.product);
         },
         error: err => {
           console.log(err);

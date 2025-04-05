@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ProductIngredientsComponent } from '../product-ingredients/product-ingredients.component';
 import { ProductNutritionComponent } from '../product-nutrition/product-nutrition.component';
 import { ProductReviewsComponent } from '../product-reviews/product-reviews.component';
+import { Router } from '@angular/router';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-product-tabs',

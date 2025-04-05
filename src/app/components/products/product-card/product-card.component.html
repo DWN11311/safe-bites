@@ -53,7 +53,7 @@
           </p>
         </div>
         <img
-          (click)="goToProductDetails(index)"
+          (click)="goToProductDetails(item._id)"
           src="{{ item.images[0].imageUrl }}"
           class="m-auto h-[10rem] md:h-[11rem] lg:h-[13rem] cursor-pointer"
           alt="Feature 2"
@@ -83,8 +83,14 @@
             Add To Cart
           </button>
           <button
+            (click)="toggleWishlist(item._id)"
             class="shrink-0 rounded-full flex items-center justify-center size-14 border border-[#C5C4C4] hover:text-red-500 cursor-pointer">
-            <i class="fa-regular fa-heart text-3xl"></i>
+            <i
+              [class]="
+                isWishlisted(item._id)
+                  ? 'fa-regular fa-heart text-3xl text-red-500'
+                  : 'fa-regular fa-heart text-3xl'
+              "></i>
           </button>
         </div>
       </div>

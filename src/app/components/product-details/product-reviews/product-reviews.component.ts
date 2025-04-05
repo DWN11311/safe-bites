@@ -36,9 +36,12 @@ export class ProductReviewsComponent {
     this.productReviewService.getProductReviews(this.productId).subscribe({
       next: res => {
         const { data } = res;
+
         this.reviews = data.reviews;
         this.count = data.reviews.length;
         this.averageRating = data.averageRating.toFixed(1);
+
+        console.log(this.reviews);
 
         this.reviews.forEach(review => {
           this.ratingCounts[review.rating]++;

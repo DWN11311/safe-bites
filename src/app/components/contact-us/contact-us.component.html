@@ -25,11 +25,12 @@
           formControlName="phone"
           class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 lg:h-14 md:h-12 sm:h-12"
           placeholder=" "
-          (blur)="checkInputValue('phone')" />
+          (blur)="checkInputValue('phone')"
+          autocomplete="off" />
 
         <label
           for="phone"
-          class="absolute left-3 bg-white px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057] focus:ring-0"
+          class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057] focus:ring-0"
           [ngClass]="{
             'top-[-10px] text-sm text-[#1B8057]':
               contactForm.get('phone')?.value,
@@ -58,11 +59,12 @@
           formControlName="subject"
           class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 lg:h-14 md:h-12 sm:h-12"
           placeholder=" "
-          (blur)="checkInputValue('subject')" />
+          (blur)="checkInputValue('subject')"
+          autocomplete="off" />
 
         <label
           for="subject"
-          class="absolute left-3 bg-white px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
+          class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
           [ngClass]="{
             'top-[-10px] text-sm text-[#1B8057]':
               contactForm.get('subject')?.value,
@@ -90,7 +92,7 @@
 
         <label
           for="message"
-          class="absolute left-3 bg-white px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#1B8057]"
+          class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#1B8057]"
           [ngClass]="{
             'top-[-10px] text-sm text-[#1B8057]':
               contactForm.get('message')?.value,
@@ -133,7 +135,7 @@
       <i class="fa-solid fa-phone text-white text-2xl"></i>
     </div>
     <p class="mt-2">Phone</p>
-    <p class="text-gray-800">+0102-159-1926</p>
+    <p class="text-gray-800">+0100-123-456</p>
   </div>
 
   <div

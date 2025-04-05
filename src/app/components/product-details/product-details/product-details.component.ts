@@ -6,6 +6,7 @@ import { ProductTabsComponent } from '../product-tabs/product-tabs.component';
 import { ProductGallaryComponent } from '../product-gallery/product-gallery.component';
 import { CommonModule } from '@angular/common';
 import { ProductInfoComponent } from '../product-info/product-info.component';
+import { RelatedProductsComponent } from '../related-products/related-products.component';
 
 @Component({
   selector: 'app-product-details',
@@ -14,6 +15,7 @@ import { ProductInfoComponent } from '../product-info/product-info.component';
     CommonModule,
     ProductInfoComponent,
     ProductTabsComponent,
+    RelatedProductsComponent,
   ],
   providers: [ProductsService],
   templateUrl: './product-details.component.html',
@@ -21,6 +23,7 @@ import { ProductInfoComponent } from '../product-info/product-info.component';
 })
 export class ProductDetailsComponent {
   data?: Product;
+  showProduct = false;
 
   constructor(
     private productsService: ProductsService,
@@ -28,13 +31,23 @@ export class ProductDetailsComponent {
   ) {}
 
   ngOnInit() {
-    const productId = this.route.snapshot.paramMap.get('id') as string;
+    // reload the product when the id in the url changes
+    this.route.paramMap.subscribe(params => {
+      this.showProduct = false;
+      const id = params.get('id');
+      if (id) {
+        this.loadProduct(id);
+      }
+    });
+  }
 
+  loadProduct(productId: string) {
     this.productsService.getProductById(productId).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.data = res.data;
-        // console.log(this.data);
+        setTimeout(() => {
+          this.showProduct = true;
+        }, 0);
       },
       error: () => {},
       complete: () => {},

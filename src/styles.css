@@ -15,6 +15,7 @@
 
 .toast-success {
   background-color: #1b8057 !important;
+  background-color: #1b8057 !important;
   color: white !important;
   font-size: 1.2rem;
   padding: 1.5rem 4rem;
@@ -35,6 +36,7 @@
 
 .toast-warning {
   background-color: #f0ad4e !important;
+  background-color: #f0ad4e !important;
 }
 
 .toast-title {
@@ -52,3 +54,4 @@
   z-index: 99999;
   cursor: pointer;
 }
+

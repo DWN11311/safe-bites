@@ -24,7 +24,8 @@ export class BreadcrumbService {
 
   private updateBreadcrumbs(): void {
     let breadcrumbs: Breadcrumb[] = [{ label: 'Home', url: '/' }];
-    let currentRoute: ActivatedRouteSnapshot | null = this.router.routerState.snapshot.root;
+    let currentRoute: ActivatedRouteSnapshot | null =
+      this.router.routerState.snapshot.root;
     let url = '';
   
     while (currentRoute) {

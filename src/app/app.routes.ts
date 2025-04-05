@@ -6,21 +6,31 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up/sign-up.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { EmptyWishListComponent } from './components/empty-wish-list/empty-wish-list.component';
-import { ErrorComponent } from './components/error/error.component';
+import { ErrorPageComponent } from './components/error/error.component';
 import { AuthGuard } from './auth.guard';
 import { ProductDetailsComponent } from './components/product-details/product-details/product-details.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AboutusComponent } from './components/about us/aboutus/aboutus.component';
 import { CartComponent } from './components/cart/cart/cart.component';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { PaymentMethodsComponent } from './components/payment-methods/payment-methods.component';
+import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
 import { PaymentComponent } from './components/payment/payment.component';
 
 export const routes: Routes = [
+<<<<<<< HEAD
   { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
   {
     path: 'products',
     component: ProductsComponent,
     data: { breadcrumb: 'Products' },
   },
+=======
+  { path: '', component: HomeComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'cart', component: CartComponent },
+>>>>>>> origin/develop
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
   {
@@ -59,5 +69,10 @@ export const routes: Routes = [
     data: { breadcrumb: 'Payment' },
   },
   { path: 'cart', component: CartComponent, data: { breadcrumb: 'Cart' } },
+<<<<<<< HEAD
   { path: '**', component: ErrorComponent, data: { breadcrumb: 'Error' } },
+=======
+  { path: 'error/:code/:message', component: ErrorPageComponent },
+  { path: '**', component: ErrorPageComponent, data: { breadcrumb: 'Error' } },
+>>>>>>> origin/develop
 ];

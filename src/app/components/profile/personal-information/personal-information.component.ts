@@ -22,16 +22,20 @@ export class PersonalInformationComponent implements OnInit {
   personalInformation: FormGroup;
   isEditing: boolean = false;
   userId?: string;
+<<<<<<< HEAD
   userImage: string = '';
   newUserImage: string = ''; 
   imageId: string = '';
   cacheBuster: string = ''; 
   userData: any;
+=======
+>>>>>>> origin/develop
 
   constructor(
     private toastr: ToastrService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
+<<<<<<< HEAD
     private usersService: UsersService,
     private imageService: ImagesService,
     private cdr: ChangeDetectorRef
@@ -39,12 +43,21 @@ export class PersonalInformationComponent implements OnInit {
     this.personalInformation = this.fb.group({
       firstName: [{ value: '', disabled: true }, Validators.required],
       lastName: [{ value: '', disabled: true }],
+=======
+    private http: HttpClient,
+    private usersService: UsersService
+  ) {
+    this.personalInformation = this.fb.group({
+      firstName: [{ value: '', disabled: true }, Validators.required],
+      lastName: [{ value: '', disabled: true }, Validators.required],
+>>>>>>> origin/develop
       email: [
         { value: '', disabled: true },
         [Validators.required, Validators.email],
       ],
       phone: [
         { value: '', disabled: true },
+<<<<<<< HEAD
         [Validators.pattern(/^(010|011|012|015)\d{8}$/)],
       ],
       inputImage: [{ value: '', disabled: true}]
@@ -54,6 +67,15 @@ export class PersonalInformationComponent implements OnInit {
   async ngOnInit() {
     this.userId = await (this.route.snapshot.paramMap.get('id') || localStorage.getItem('userId')) as string | undefined;
     console.log('Retrieved userId:', this.userId);
+=======
+        [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)],
+      ],
+    });
+  }
+
+  ngOnInit(): void {
+    this.userId = this.route.snapshot.paramMap.get('id') ?? '';
+>>>>>>> origin/develop
     if (this.userId) {
       this.getUserData();
     } else {
@@ -67,6 +89,7 @@ export class PersonalInformationComponent implements OnInit {
       this.toastr.error('No authentication token found', 'Error');
       return;
     }
+<<<<<<< HEAD
 
     if (this.userId){
       this.usersService.getUserById(this.userId, token).subscribe({
@@ -92,6 +115,10 @@ export class PersonalInformationComponent implements OnInit {
         }
       });
     }
+=======
+    if (this.userId)
+      this.usersService.getUserById(this.userId, token).subscribe({});
+>>>>>>> origin/develop
   }
 
   toggleEditing() {
@@ -99,7 +126,10 @@ export class PersonalInformationComponent implements OnInit {
 
     if (this.isEditing) {
       this.personalInformation.enable();
+<<<<<<< HEAD
       this.personalInformation.get('inputImage')?.enable();
+=======
+>>>>>>> origin/develop
     } else {
       this.personalInformation.disable();
       this.personalInformation.get('inputImage')?.disable();
@@ -119,6 +149,7 @@ export class PersonalInformationComponent implements OnInit {
     }
   }
 
+<<<<<<< HEAD
   onImageSelected(event: any) {
     const file = event.target.files[0];
     if (!file) return;
@@ -168,6 +199,8 @@ export class PersonalInformationComponent implements OnInit {
     });
   }
 
+=======
+>>>>>>> origin/develop
   submitForm() {
     if (this.personalInformation.invalid) {
       this.personalInformation.markAllAsTouched();
@@ -216,6 +249,7 @@ export class PersonalInformationComponent implements OnInit {
   }
 }
 
+<<<<<<< HEAD
   /*
   uploadImage(file: File) {
     const token = localStorage.getItem('token');
@@ -253,6 +287,8 @@ export class PersonalInformationComponent implements OnInit {
   }
   */
 
+=======
+>>>>>>> origin/develop
 // onSubmit() {
 //   if(this.personalInformation.invalid){
 //     this.personalInformation.markAllAsTouched();
