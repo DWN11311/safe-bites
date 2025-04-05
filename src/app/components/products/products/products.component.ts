@@ -18,15 +18,16 @@ export class ProductsComponent {
   data: Array<Product> = [];
 
   ngOnInit() {
-    const queryString = this.router.url.split('?')[1] || '';
-    this.productService.getAllProducts(queryString).subscribe({
-      next: (res: any) => {
-        this.data = res.data;
-        this.calculatePagination();
-      },
-      error: () => {},
-      complete: () => {},
-    });
+    this.router.navigate(['error', 400, 'custom server error']);
+    // const queryString = this.router.url.split('?')[1] || '';
+    // this.productService.getAllProducts(queryString).subscribe({
+    //   next: (res: any) => {
+    //     this.data = res.data;
+    //     this.calculatePagination();
+    //   },
+    //   error: () => {},
+    //   complete: () => {},
+    // });
 
     this.router.events.subscribe(() => {
       const queryString = this.router.url.split('?')[1] || '';

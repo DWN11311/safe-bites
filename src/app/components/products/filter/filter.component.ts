@@ -51,13 +51,15 @@ export class FilterComponent {
     this.categories[index].isCollapsed = !this.categories[index].isCollapsed;
   }
 
+  changeSortOrder(e: Event) {
+    const radioElem = e.target as HTMLInputElement;
+    this.sortOrder = radioElem.value;
+  }
+
   ngOnInit() {
-    this.categoriesService.getCategories().subscribe({
-      next: data => {
-        this.categories = data;
-        this.updateFilters();
-        this.sendCategoriesObj.emit(this.categories);
-      },
+    this.categoriesService.getCategories().subscribe(data => {
+      this.categories = data as Category[];
+      this.updateFilters();
     });
   }
 
@@ -87,6 +89,8 @@ export class FilterComponent {
         });
       }
     });
+
+    this.sendCategoriesObj.emit(this.categories);
   }
 
   applyFilter() {
@@ -112,6 +116,8 @@ export class FilterComponent {
       const categoryQuery = categories.join(',');
       params.categories = categoryQuery;
     }
+
+    this.sendCategoriesObj.emit(this.categories);
 
     this.router.navigate([], {
       relativeTo: this.route,

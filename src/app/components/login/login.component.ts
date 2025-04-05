@@ -139,6 +139,20 @@ export class LoginComponent {
           this.usersService.logintoken(data.token);
 
           const decodedToken = this.decodeJWT(data.token);
+          let userData;
+          this.usersService
+            .getUserById(decodedToken.id, data.token)
+            .subscribe(response => {
+              userData = response.user;
+              localStorage.setItem('userId', userData._id);
+              console.log(userData);
+
+              if (userData.image && userData.image.imageUrl)
+                localStorage.setItem(
+                  'profileImageUrl',
+                  userData.image.imageUrl
+                );
+            });
           localStorage.setItem('firstName', decodedToken.firstName);
           console.log('User First Name:', decodedToken.firstName);
           this.router.navigate(['']);

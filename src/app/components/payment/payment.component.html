@@ -1,0 +1,249 @@
+<div
+  class="w-full flex flex-col justify-center items-center gap-4"
+  style="
+    background: url('/images/ContactUs/hero product section.png');
+    background-size: cover;
+    background-position: center;
+  ">
+  <h1 class="text-[#1B8057] text-5xl font-bold pt-24">Checkout</h1>
+  <div class="flex pb-24">
+    <h3>Home</h3>
+    <h3>/ Contact Us</h3>
+    <h3>/Checkout</h3>
+  </div>
+</div>
+
+<h2 class="text-2xl font-bold mx-10 px-8 mt-16">Billing Details</h2>
+<div
+  class="grid grid-cols-12 sm:col-span-6 md:col-span-8 gap-8 p-8 mx-auto lg:m-10">
+  <form
+    [formGroup]="contactForm"
+    (ngSubmit)="submitForm()"
+    class="col-span-12 sm:col-span-6 md:col-span-8 my-auto">
+    <div class="grid grid-cols-8 gap-10 lg:mb-10 md:mb-10 sm:mb-12 mb-10 mt-4">
+      <!-- first name -->
+      <div class="relative col-span-4">
+        <input
+          type="text"
+          id="FirstName"
+          formControlName="FirstName"
+          class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 lg:h-14 md:h-12 sm:h-12"
+          placeholder=" "
+          (blur)="checkInputValue('FirstName')"
+          autocomplete="off" />
+
+        <label
+          for="FirstName"
+          class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
+          [ngClass]="{
+            'top-[-10px] text-sm text-[#1B8057]':
+              contactForm.get('FirstName')?.value,
+          }">
+          First Name
+        </label>
+
+        <div
+          *ngIf="FirstName?.touched && FirstName?.invalid"
+          class="text-red-700 text-sm mt-1 font-semibold absolute">
+          <span *ngIf="FirstName?.errors?.['required']">
+            <i class="fa-solid fa-circle-exclamation text-red-700"></i> This
+            field is required</span
+          >
+        </div>
+      </div>
+      <!-- last name -->
+      <div class="relative col-span-4">
+        <input
+          type="text"
+          id="LastName"
+          formControlName="LastName"
+          class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 lg:h-14 md:h-12 sm:h-12"
+          placeholder=" "
+          (blur)="checkInputValue('LastName')"
+          autocomplete="off" />
+
+        <label
+          for="LastName"
+          class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
+          [ngClass]="{
+            'top-[-10px] text-sm text-[#1B8057]':
+              contactForm.get('LastName')?.value,
+          }">
+          Last Name
+        </label>
+
+        <div
+          *ngIf="LastName?.touched && LastName?.invalid"
+          class="text-red-700 text-sm mt-1 font-semibold absolute">
+          <span *ngIf="LastName?.errors?.['required']">
+            <i class="fa-solid fa-circle-exclamation text-red-700"></i> This
+            field is required</span
+          >
+        </div>
+      </div>
+    </div>
+    <!-- phone -->
+    <div class="relative lg:mb-10 md:mb-10 sm:mb-12 mb-10 mt-4">
+      <input
+        type="text"
+        id="phone"
+        formControlName="phone"
+        class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 lg:h-14 md:h-12 sm:h-12"
+        placeholder=" "
+        (blur)="checkInputValue('phone')"
+        autocomplete="off" />
+
+      <label
+        for="phone"
+        class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057] focus:ring-0"
+        [ngClass]="{
+          'top-[-10px] text-sm text-[#1B8057]': contactForm.get('phone')?.value,
+        }">
+        phone
+      </label>
+
+      <div
+        *ngIf="phone?.touched && phone?.invalid"
+        class="text-red-700 text-sm mt-1 font-semibold absolute">
+        <span *ngIf="phone?.errors?.['required']"
+          ><i class="fa-solid fa-circle-exclamation text-red-700"></i> This
+          field is required</span
+        >
+        <span *ngIf="phone?.errors?.['pattern']"
+          ><i class="fa-solid fa-circle-exclamation text-red-700"></i> phone
+          number must be valid</span
+        >
+      </div>
+    </div>
+
+    <!-- email -->
+    <div class="relative lg:mb-10 md:mb-10 sm:mb-10 mb-10 mt-4">
+      <input
+        type="text"
+        id="Email"
+        formControlName="Email"
+        class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 lg:h-14 md:h-12 sm:h-12"
+        placeholder=" "
+        (blur)="checkInputValue('Email')"
+        autocomplete="off" />
+
+      <label
+        for="Email"
+        class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
+        [ngClass]="{
+          'top-[-10px] text-sm text-[#1B8057]': contactForm.get('Email')?.value,
+        }">
+        Email
+      </label>
+
+      <div
+        *ngIf="Email?.touched && Email?.invalid"
+        class="text-red-700 text-sm mt-1 font-semibold absolute">
+        <span *ngIf="Email?.errors?.['required']">
+          <i class="fa-solid fa-circle-exclamation text-red-700"></i> This field
+          is required</span
+        >
+        <span *ngIf="Email?.errors?.['pattern']">
+          <i class="fa-solid fa-circle-exclamation text-red-700"></i>
+          please enter a valid email address
+        </span>
+      </div>
+    </div>
+    <!-- city -->
+    <div class="relative lg:mb-10 md:mb-10 sm:mb-10 mb-10 mt-4">
+      <input
+        type="text"
+        id="City"
+        formControlName="City"
+        class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 lg:h-14 md:h-12 sm:h-12"
+        placeholder=" "
+        (blur)="checkInputValue('City')"
+        autocomplete="off" />
+
+      <label
+        for="City"
+        class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
+        [ngClass]="{
+          'top-[-10px] text-sm text-[#1B8057]': contactForm.get('City')?.value,
+        }">
+        City
+      </label>
+
+      <div
+        *ngIf="City?.touched && City?.invalid"
+        class="text-red-700 text-sm mt-1 font-semibold absolute">
+        <span *ngIf="City?.errors?.['required']">
+          <i class="fa-solid fa-circle-exclamation text-red-700"></i> This field
+          is required</span
+        >
+      </div>
+    </div>
+
+    <!-- street -->
+    <div class="relative lg:mb-10 md:mb-10 sm:mb-10 mb-10 mt-4">
+      <input
+        type="text"
+        id="Street"
+        formControlName="Street"
+        class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 lg:h-14 md:h-12 sm:h-12"
+        placeholder=" "
+        (blur)="checkInputValue('Street')"
+        autocomplete="off" />
+
+      <label
+        for="Street"
+        class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
+        [ngClass]="{
+          'top-[-10px] text-sm text-[#1B8057]':
+            contactForm.get('Street')?.value,
+        }">
+        Street
+      </label>
+
+      <div
+        *ngIf="Street?.touched && Street?.invalid"
+        class="text-red-700 text-sm mt-1 font-semibold absolute">
+        <span *ngIf="Street?.errors?.['required']">
+          <i class="fa-solid fa-circle-exclamation text-red-700"></i> This field
+          is required</span
+        >
+      </div>
+    </div>
+  </form>
+
+  <div class="col-span-12 md:col-span-4 sm:col-span-6 mx-auto">
+    <div class="border-2 p-6 w-full max-w-sm border-[#C5C4C4] rounded-lg">
+      <h1 class="text-xl md:text-2xl font-semibold">Order Summary</h1>
+
+      <div class="grid grid-cols-2 gap-y-4 text-[#58595A] mt-4">
+        <div class="col-span-2 h-[1px] bg-[#C5C4C4]"></div>
+
+        <span class="font-semibold">Items</span>
+        <span class="text-right text-[#121311]">4</span>
+
+        <span class="font-semibold">Sub Total</span>
+        <span class="text-right text-[#121311]">100 EGP</span>
+
+        <span class="font-semibold">Shipping</span>
+        <span class="text-right text-[#121311]">Free</span>
+
+        <span class="font-semibold">Coupon Discount</span>
+        <span class="text-right text-red-500">-50 EGP</span>
+
+        <div class="col-span-2 h-[1px] bg-[#C5C4C4]"></div>
+
+        <span class="font-semibold text-lg md:text-xl text-[#121311]"
+          >Total</span
+        >
+        <span class="text-right font-semibold text-lg md:text-xl text-[#121311]"
+          >50 EGP</span
+        >
+      </div>
+
+      <button
+        class="w-full bg-[#1B8057] text-white py-3 mt-4 rounded-md hover:bg-[#3a6b58] transition text-center">
+        Proceed to Payment
+      </button>
+    </div>
+  </div>
+</div>

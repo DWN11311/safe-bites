@@ -1,0 +1,88 @@
+<div class="personal-information">
+  <!-- User Profile Image -->
+  <div class="user-image w-36 h-36 rounded-full relative">
+    <img
+      src="images/profile.png"
+      alt="User Image"
+      class="w-full h-full rounded-full object-cover" />
+    <div
+      class="edit-icon w-10 h-10 rounded-full bg-[#1B8057] absolute bottom-0 right-0 flex items-center justify-center border border-white cursor-pointer">
+      <img src="images/vector.svg" alt="" />
+    </div>
+  </div>
+
+  <!-- User Data -->
+  <form [formGroup]="personalInformation">
+    <div class="names grid grid-cols-8 gap-10 mt-8">
+      <div class="first-name col-span-8 lg:col-span-4">
+        <label class="block font-semibold">First Name*</label>
+        <input
+          type="text"
+          formControlName="firstName"
+          placeholder="Enter your First Name"
+          class="w-full border-2 border-[#1B8057] px-2 py-4 mt-4 rounded-lg outline-0 disabled:opacity-50 disabled:border-gray-400 disabled:bg-gray-100" />
+        @if (isFieldInvalid('firstName')) {
+          <div class="text-red-500">First name is required !</div>
+        }
+      </div>
+
+      <div class="last-name col-span-8 lg:col-span-4">
+        <label class="block font-semibold">Last Name*</label>
+        <input
+          type="text"
+          formControlName="lastName"
+          placeholder="Enter your Last Name"
+          class="w-full border-2 border-[#1B8057] px-2 py-4 mt-4 rounded-lg outline-0 disabled:opacity-50 disabled:border-gray-400 disabled:bg-gray-100" />
+        @if (isFieldInvalid('lastName')) {
+          <div class="text-red-500">Last name is required !</div>
+        }
+      </div>
+    </div>
+    <!-- End Names -->
+
+    <div class="email my-6">
+      <label class="block font-semibold">Email*</label>
+      <input
+        type="text"
+        formControlName="email"
+        placeholder="Enter your Email"
+        class="w-full border-2 border-[#1B8057] px-2 py-4 mt-4 rounded-lg outline-0 disabled:opacity-50 disabled:border-gray-400 disabled:bg-gray-100" />
+      @if (isFieldInvalid('email')) {
+        @if (personalInformation.controls['email'].errors?.['required']) {
+          <span class="text-red-500"> Email is required ! </span>
+        }
+        @if (personalInformation.controls['email'].errors?.['email']) {
+          <span class="text-red-500"> Email is invalid ! </span>
+        }
+      }
+    </div>
+    <!-- End Email -->
+
+    <div class="phone">
+      <label class="block font-semibold">Phone*</label>
+      <input
+        type="text"
+        formControlName="phone"
+        placeholder="Enter your Phone"
+        class="w-full border-2 border-[#1B8057] px-2 py-4 mt-4 rounded-lg outline-0 disabled:opacity-50 disabled:border-gray-400 disabled:bg-gray-100" />
+      @if (isFieldInvalid('phone')) {
+        @if (personalInformation.controls['phone'].errors?.['required']) {
+          <span class="text-red-500"> Phone is required ! </span>
+        }
+        @if (personalInformation.controls['phone'].errors?.['pattern']) {
+          <span class="text-red-500"> Phone is invalid ! </span>
+        }
+      }
+    </div>
+    <!-- End Phone -->
+
+    <div class="md:text-left text-center mt-8">
+      <button
+        type="submit"
+        (click)="onButtonClick()"
+        class="bg-[#1B8057] text-white font-bold text-xl md:p-4 px-8 py-4 cursor-pointer rounded-lg hover:bg-[#307055]">
+        {{ isEditing ? 'Update Changes' : 'Edit Info' }}
+      </button>
+    </div>
+  </form>
+</div>
