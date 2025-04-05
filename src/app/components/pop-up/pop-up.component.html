@@ -1,18 +1,19 @@
-<div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-full h-full flex justify-center items-center bg-[#121311] opacity-97"(click)="cancel.emit()">
-  <div class="bg-[#ffff] border border-[#C5C4C4] shadow-lg rounded-[8px] md:w-[450px] md:h-[250px] flex flex-col p-6 gap-[16px]"(click)="$event.stopPropagation()">
+<div
+  class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-full h-full flex justify-center items-center bg-[#121311] opacity-97"
+  (click)="cancel.emit()">
+  <div
+    class="bg-[#ffff] border border-[#C5C4C4] shadow-lg rounded-[8px] md:w-[450px] md:h-[250px] flex flex-col p-6 gap-[16px]"
+    (click)="$event.stopPropagation()">
     <div class="flex justify-end">
       <i
         class="fa-solid fa-rectangle-xmark text-[#F8C519] shadow-[0_4px_4px_rgba(248,197,25,0.25)] text-2xl cursor-pointer"
-        (click)="cancel.emit()" ></i>
+        (click)="cancel.emit()"></i>
     </div>
     <div class="flex flex-col flex-1 justify-center items-center gap-6 px-2">
-    
       <p class="text-center text-[#121311] mb-2 lg:text-[18px] font-medium">
         Are you sure you want to clear your wishlist?
       </p>
-      
-   
-      
+
       <div (click)="cancel.emit()" class="flex justify-center gap-6">
         <button
           class="bg-[#1B8057] hover:bg-[#135C3E] shadow-[0_4px_4px_rgba(38,75,45,0.25)] px-4 py-2 rounded-[8px] text-[#F5F8F5] h-[56px] w-[140px] 2xl:w-[140px] 2xl:text-[20px] font-medium cursor-pointer">
@@ -21,7 +22,7 @@
         <button
           (click)="confirm.emit()"
           class="bg-[#E6B200] hover:bg-[#C0991B] shadow-[0_4px_4px_rgba(248,197,25,0.25)] text-[#F5F8F5] px-4 py-2 rounded-[8px] h-[56px] w-[140px] 2xl:w-[140px] 2xl:text-[20px] font-medium cursor-pointer">
-        Delete All
+          Delete All
         </button>
       </div>
     </div>

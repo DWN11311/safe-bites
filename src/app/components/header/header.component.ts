@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CategoriesService } from '../../services/categories.service';
 import { Category } from '../../models/category.model';
 import { CartsService } from '../../services/carts.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-header',
@@ -16,19 +17,17 @@ export class HeaderComponent {
   isMenuOpen = false;
   isSideOpen = false;
   showDropdown = false;
-  items=0;
+  items = 0;
   firstName: string | null = '';
   userId: string | null = '';
   categories: Category[] = [];
-  cartCount: number = 0; 
+  cartCount: number = 0;
   constructor(
     private router: Router,
-    private categoriesService: CategoriesService,private cartService: CartsService
+    private usersService: UsersService,
+    private categoriesService: CategoriesService,
+    private cartService: CartsService
   ) {}
-
-
-  
-  
 
   toggleMenu(e?: Event) {
     this.isMenuOpen = !this.isMenuOpen;
@@ -46,19 +45,17 @@ export class HeaderComponent {
       this.categories = data as Category[];
       this.cartService.count$.subscribe(count => {
         this.cartCount = count;
-    
       });
     });
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.usersService.scheduleAutoLogout(token);
+    }
   }
 
   logout() {
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('token');
-
+    this.usersService.logout();
     this.firstName = null;
-
-    this.router.navigate(['/']);
-
     this.toggleMenu();
   }
 
@@ -79,7 +76,6 @@ export class HeaderComponent {
       queryParams: { search: searchParam },
     });
   }
-  
 }
 
 // <div

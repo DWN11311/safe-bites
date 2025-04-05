@@ -6,25 +6,22 @@ import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterModule,CommonModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
 })
 export class FooterComponent {
   firstName: string | null = '';
   categories: Category[] = [];
- constructor(
+  constructor(
     private router: Router,
     private categoriesService: CategoriesService
   ) {}
 
   ngOnInit() {
-  
     this.firstName = localStorage.getItem('firstName');
     this.categoriesService.getCategories().subscribe(data => {
       this.categories = data as Category[];
     });
   }
-
-
 }

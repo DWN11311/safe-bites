@@ -49,5 +49,4 @@ export class ContactUsComponent {
       control.markAsTouched();
     }
   }
-
 }

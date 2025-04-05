@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
 //  implements AfterViewInit
 export class LoginComponent {
   errorMessage: string = '';
-  showPassword = false;
+  showPassword: boolean = false;
   errorEmail: string = '';
 
   loginForm: FormGroup = new FormGroup({
@@ -135,10 +135,9 @@ export class LoginComponent {
         const data = res.body;
         if (data.token) {
           console.log(data);
-          localStorage.setItem('token', data.token);
-          // localStorage.setItem('username', data.firstName);
-          // localStorage.setItem('username', "Asmaa");
-          // store Fname at local storage
+          // localStorage.setItem('token', data.token);
+          this.usersService.logintoken(data.token);
+
           const decodedToken = this.decodeJWT(data.token);
           let userData;
           this.usersService

@@ -42,7 +42,10 @@ export class ProductCardComponent implements OnInit, OnChanges {
   passedCategories: Category[] = [];
   wishlist: string[] = [];
 
-  constructor(private router: Router, private wishlistService: WishlistService) { }
+  constructor(
+    private router: Router,
+    private wishlistService: WishlistService
+  ) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.getTotalPages();
     this.getPaginatedData();
@@ -53,7 +56,7 @@ export class ProductCardComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getPaginatedData();
-    this.wishlistService.wishlist$.subscribe((wishlist) => {
+    this.wishlistService.wishlist$.subscribe(wishlist => {
       this.wishlist = wishlist;
     });
   }
@@ -120,9 +123,7 @@ export class ProductCardComponent implements OnInit, OnChanges {
     this.router.navigate(['products/' + id]);
   }
 
-  toggleWishlist(id: number) {
-
-  }
+  toggleWishlist(id: number) {}
 
   isWishlisted(id: number): boolean {
     return this.wishlist.includes(id.toString());

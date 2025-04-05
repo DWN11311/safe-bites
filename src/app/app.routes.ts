@@ -12,15 +12,16 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AboutusComponent } from './components/about us/aboutus/aboutus.component';
 import { CartComponent } from './components/cart/cart/cart.component';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { PaymentMethodsComponent } from './components/payment-methods/payment-methods.component';
+import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
 import { PaymentComponent } from './components/payment/payment.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
-  {
-    path: 'products',
-    component: ProductsComponent,
-    data: { breadcrumb: 'Products' },
-  },
+  { path: '', component: HomeComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
   {

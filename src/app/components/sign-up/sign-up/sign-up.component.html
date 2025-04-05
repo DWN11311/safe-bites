@@ -1,38 +1,47 @@
-<form [formGroup]="myform" (ngSubmit)="onSubmit()"
-      class="grid grid-cols-4 md:grid-cols-12 bg-white gap-x-[1.5rem] md:gap-x-[2.5rem] px-5 md:px-20 xl:px-40 cursor-default h-screen">
-
-
+<form
+  [formGroup]="myform"
+  (ngSubmit)="onSubmit()"
+  class="grid grid-cols-4 md:grid-cols-12 bg-white gap-x-[1.5rem] md:gap-x-[2.5rem] px-5 md:px-20 xl:px-40 cursor-default h-screen">
   <div class="col-span-5 md:-ml-[10rem] hidden md:block h-full">
-    <img src="images/sign up/f75141002b7274ddf70545cfed087e44.jpg"
-         class="w-full h-screen object-cover" />
+    <img
+      src="images/sign up/f75141002b7274ddf70545cfed087e44.jpg"
+      class="w-full h-screen object-cover" />
   </div>
 
-
-  <div class="col-span-4 md:col-span-6 md:col-start-7 flex flex-col gap-6 lg:py-0 justify-center">
+  <div
+    class="col-span-4 md:col-span-6 md:col-start-7 flex flex-col gap-6 lg:py-0 justify-center">
     <div class="text-form flex flex-col gap-1 lg:gap-2">
-      <h1 class="text-[#1B8057] text-[2rem] lg:text-[2.5rem] font-bold">Create An Account</h1>
+      <h1 class="text-[#1B8057] text-[2rem] lg:text-[2.5rem] font-bold">
+        Create An Account
+      </h1>
       <p class="text-[#1B8057] text-base lg:text-xl font-normal flex gap-1">
         Already have an account?
-        <span routerLink="/login"
-              class="text-[#1B8057] text-base lg:text-xl underline md:font-semibold font-bold cursor-pointer">
+        <span
+          routerLink="/login"
+          class="text-[#1B8057] text-base lg:text-xl underline md:font-semibold font-bold cursor-pointer">
           login
         </span>
       </p>
     </div>
- 
-
 
     <div class="form-field flex flex-col gap-6">
       <div class="grid lg:grid-cols-2 gap-x-[2.5rem] gap-6">
         <!-- First Name -->
         <div class="field-firstname flex flex-col gap-2">
-          <label for="firstname" class="text-[#121311] pl-1 font-medium">First Name*</label>
-          <input formControlName="firstname" id="firstname" type="text" placeholder="Enter your first name"
-                 class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 text-[14px] border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
-                 autocomplete="off" />
+          <label for="firstname" class="text-[#121311] pl-1 font-medium"
+            >First Name*</label
+          >
+          <input
+            formControlName="firstname"
+            id="firstname"
+            type="text"
+            placeholder="Enter your first name"
+            class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 text-[14px] border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
+            autocomplete="off" />
           <div class="h-1 flex items-center">
-            <div *ngIf="firstnameRequired || firstnamepattern"
-                 class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
+            <div
+              *ngIf="firstnameRequired || firstnamepattern"
+              class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
               <i class="fa-solid fa-circle-exclamation"></i>
               <span *ngIf="firstnameRequired">Required field</span>
               <span *ngIf="firstnamepattern">Character only</span>
@@ -42,13 +51,20 @@
 
         <!-- Last Name -->
         <div class="field-lastname flex flex-col gap-2">
-          <label for="lastname" class="text-[#121311] pl-1 font-medium">Last Name*</label>
-          <input formControlName="lastname" id="lastname" type="text" placeholder="Enter your last name"
-                 class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 text-[14px] border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
-                 autocomplete="off" />
+          <label for="lastname" class="text-[#121311] pl-1 font-medium"
+            >Last Name*</label
+          >
+          <input
+            formControlName="lastname"
+            id="lastname"
+            type="text"
+            placeholder="Enter your last name"
+            class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 text-[14px] border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
+            autocomplete="off" />
           <div class="h-1 flex items-center">
-            <div *ngIf="lastnameRequired || lastnamepattern"
-                 class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
+            <div
+              *ngIf="lastnameRequired || lastnamepattern"
+              class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
               <i class="fa-solid fa-circle-exclamation"></i>
               <span *ngIf="lastnameRequired">Required field</span>
               <span *ngIf="lastnamepattern">Character only</span>
@@ -59,80 +75,141 @@
 
       <!-- Email -->
       <div class="field-email flex flex-col gap-2">
-        <label for="email" class="text-[#121311] pl-1 font-medium">Email*</label>
-        <input formControlName="email" id="email" type="text" placeholder="user@example.com"
-               class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 text-[14px] border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
-               autocomplete="off" />
+        <label for="email" class="text-[#121311] pl-1 font-medium"
+          >Email*</label
+        >
+        <input
+          formControlName="email"
+          id="email"
+          type="text"
+          placeholder="user@example.com"
+          class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 text-[14px] border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
+          autocomplete="off" />
         <div class="h-1 flex items-center">
-          <div *ngIf="emailRequired || emailvalidation" class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
+          <div
+            *ngIf="emailRequired || emailvalidation"
+            class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
             <i class="fa-solid fa-circle-exclamation"></i>
             <span *ngIf="emailRequired">Required field</span>
-            <span *ngIf="emailvalidation">Please enter a valid email address</span>
+            <span *ngIf="emailvalidation"
+              >Please enter a valid email address</span
+            >
           </div>
-          <div *ngIf="emailTaken" class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
+          <div
+            *ngIf="emailTaken"
+            class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
             <i class="fa-solid fa-circle-exclamation"></i>
-            <span>The email you entered is already in use. Please try logging in.</span>
+            <span
+              >The email you entered is already in use. Please try logging
+              in.</span
+            >
           </div>
-          
-          
         </div>
       </div>
 
       <!-- Password -->
       <div class="flex flex-col gap-2">
-        <label for="Password" class="text-[#121311] pl-1 font-medium">Password*</label>
+        <label for="Password" class="text-[#121311] pl-1 font-medium"
+          >Password*</label
+        >
         <div class="relative">
-          <input formControlName="password" id="Password" [type]="showPassword ? 'text' : 'password'"
-                 placeholder="Enter your password"
-                 class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 pr-10 border-[#7DB69F] text-[14px] focus:border-[#1B8057] focus:outline-none"
-                 autocomplete="off" />
-          <span class="absolute inset-y-0 right-3 flex items-center text-[#58595A] text-xl cursor-pointer"
-                (click)="togglePassword()">
+          <input
+            formControlName="password"
+            id="Password"
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="Enter your password"
+            class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 pr-10 border-[#7DB69F] text-[14px] focus:border-[#1B8057] focus:outline-none"
+            autocomplete="off" />
+          <span
+            class="absolute inset-y-0 right-3 flex items-center text-[#58595A] text-xl cursor-pointer"
+            (click)="togglePassword()">
             <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
           </span>
         </div>
 
         <div class="h-1 flex items-center">
-          <div *ngIf="myform.get('password') && PasswordRequired"
-               class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
+          <div
+            *ngIf="myform.get('password') && PasswordRequired"
+            class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
             <i class="fa-solid fa-circle-exclamation"></i>
             <span>Required field</span>
           </div>
         </div>
-        <div *ngIf="myform.get('password')?.dirty && !PasswordRequired && !(hasUpperCase() && hasSpecialCharacter() && !myform.get('password')?.hasError('minlength'))" class="h-1 flex items-center justify-evenly text-sm">
-          <span class="text-sm" [style.color]="hasUpperCase() ? 'green' : '#a40f0f'">
-            <i [class]="hasUpperCase() ? 'fas fa-check-circle' : 'fas fa-times-circle'"></i>
+        <div
+          *ngIf="
+            myform.get('password')?.dirty &&
+            !PasswordRequired &&
+            !(
+              hasUpperCase() &&
+              hasSpecialCharacter() &&
+              !myform.get('password')?.hasError('minlength')
+            )
+          "
+          class="h-1 flex items-center justify-evenly text-sm">
+          <span
+            class="text-sm"
+            [style.color]="hasUpperCase() ? 'green' : '#a40f0f'">
+            <i
+              [class]="
+                hasUpperCase() ? 'fas fa-check-circle' : 'fas fa-times-circle'
+              "></i>
             one UpperCase (A-Z)
           </span>
-          
-          <span class="text-sm" [style.color]="hasSpecialCharacter() ? 'green' : '#a40f0f'">
-            <i [class]="hasSpecialCharacter() ? 'fas fa-check-circle' : 'fas fa-times-circle'"></i>
+
+          <span
+            class="text-sm"
+            [style.color]="hasSpecialCharacter() ? 'green' : '#a40f0f'">
+            <i
+              [class]="
+                hasSpecialCharacter()
+                  ? 'fas fa-check-circle'
+                  : 'fas fa-times-circle'
+              "></i>
             special character (!#$%^&*)
           </span>
-          
-          <span class="text-sm" [style.color]="myform.get('password')?.hasError('minlength') ? '#a40f0f' : 'green'">
-            <i [class]="myform.get('password')?.hasError('minlength') ? 'fas fa-times-circle' : 'fas fa-check-circle'"></i>
+
+          <span
+            class="text-sm"
+            [style.color]="
+              myform.get('password')?.hasError('minlength')
+                ? '#a40f0f'
+                : 'green'
+            ">
+            <i
+              [class]="
+                myform.get('password')?.hasError('minlength')
+                  ? 'fas fa-times-circle'
+                  : 'fas fa-check-circle'
+              "></i>
             Min 8 characters
           </span>
         </div>
-        
       </div>
 
       <!-- Checkbox -->
       <div class="flex items-center gap-2">
-        <input type="checkbox" class="w-4 h-4 md:w-5 md:h-5 cursor-pointer" id="check" />
+        <input
+          type="checkbox"
+          class="w-4 h-4 md:w-5 md:h-5 cursor-pointer"
+          id="check" />
         <label for="check" class="text-[#1B8057] font-normal text-[1rem]">
           I agree to the
-          <span class="underline text-[#1B8057] font-semibold cursor-pointer text-[1rem]">terms & conditions</span>
+          <span
+            class="underline text-[#1B8057] font-semibold cursor-pointer text-[1rem]"
+            >terms & conditions</span
+          >
         </label>
       </div>
 
       <!-- Buttons -->
       <div class="buttons flex flex-col gap-8">
-        <button class="p-3 w-full rounded-lg h-[44px] lg:h-[56px] bg-[#1B8057] hover:bg-[#135C3E] shadow-[0_4px_4px_rgBA(38,75,45,0.25)] text-[#F5F8F5] font-semibold text-[1rem] lg:text-[1.25rem] flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out">
+        <button
+          class="p-3 w-full rounded-lg h-[44px] lg:h-[56px] bg-[#1B8057] hover:bg-[#135C3E] shadow-[0_4px_4px_rgBA(38,75,45,0.25)] text-[#F5F8F5] font-semibold text-[1rem] lg:text-[1.25rem] flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out">
           Create an Account
         </button>
-        <div routerLink="" class="flex gap-2 items-center lg:text-xl text-lg text-[#1B8057] cursor-pointer">
+        <div
+          routerLink=""
+          class="flex gap-2 items-center lg:text-xl text-lg text-[#1B8057] cursor-pointer">
           <i class="fa-solid fa-chevron-left"></i>
           <span class="underline font-semibold">Back to Home</span>
         </div>

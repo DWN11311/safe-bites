@@ -18,12 +18,10 @@ export class CartComponent {
   ngOnInit() {
     this.CartsService.getAllProducts().subscribe({
       next: (response: any) => {
-        
         if (Array.isArray(response)) {
           this.cart = response.map(product => ({
             ...product,
             quantity: product.quantity || 1,
-          
           }));
         }
       },
