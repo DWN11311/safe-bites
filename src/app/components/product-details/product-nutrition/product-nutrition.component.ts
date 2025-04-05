@@ -24,14 +24,14 @@ export class ProductNutritionComponent implements OnInit {
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId) {
       this.productService.getProductById(productId).subscribe({
-        next: (res: any) =>{
+        next: (res: any) => {
           this.productNutrition = res.data.nutritionalValues;
           console.log(this.productNutrition);
         },
-        error: (err) =>{
-          this.toaster.error("Faild to get nutrition of this product","Error")
-        }
-      })
+        error: err => {
+          this.toaster.error('Faild to get nutrition of this product', 'Error');
+        },
+      });
     }
   }
 }

@@ -1,10 +1,9 @@
 <!-- no data -->
- <!-- 
 <div
-  *ngIf="cart?.length === 0"
-  class="flex justify-center bg-white cursor-default">
+  *ngIf="cartItems?.length === 0"
+  class="flex justify-center cursor-default">
   <div
-    class="md:grid grid-cols-[auto_auto] flex flex-col justify-center items-center gap-[18px] md:gap-[48px] lg:py-[88px] py-[44px] bg-white px-5 md:px-20 xl:px-40">
+    class="md:grid grid-cols-[auto_auto] flex flex-col justify-center items-center gap-[18px] md:gap-[48px] lg:py-[88px] py-[44px] px-5 md:px-20 xl:px-40">
     <img src="images/cart/cart empty.svg" class="w-[200px] h-[200px]" />
 
     <div class="text-center flex flex-col gap-[12px]">
@@ -21,14 +20,12 @@
       </button>
     </div>
     <!-- suggest part -->
-
-    <!--  
   </div>
 </div>
-<!-- start here -->
 
+<!-- start here -->
 <div
-  *ngIf="cart?.length > 0"
+  *ngIf="cartItems.length > 0"
   class="grid md:grid-cols-12 grid-cols-4 px-5 md:px-20 xl:px-40 gap-x-5 lg:gap-x-10 py-[44px] lg:py-[88px] bg-white cursor-default">
   <div class="grid lg:col-span-7 md:col-span-12 col-span-4">
     <div
@@ -42,14 +39,14 @@
     </div>
 
     <div
-      *ngFor="let product of cart; trackBy: track"
+      *ngFor="let product of cartItems; trackBy: track"
       class="card flex items-center 2xl:py-[8px] border-b-2 border-[#C5C4C4] 2xl:gap-6 xl:py-[8px] py-[8px] gap-4 xl:gap-6 md:py-[12px] lg:gap-2 md:gap-4 justify-between lg:py-[12px]">
       <div class="flex gap-2 items-center flex-grow">
         <i
           class="fa-solid fa-rectangle-xmark shadow-[0_4px_4px_rgba(248,197,25,0.15)] text-[#F8C519] xl:text-xl 2xl:text-2xl lg:text-md cursor-pointer md:text-lg text-[16px]"
-          (click)="removeproduct(product)"></i>
+          (click)="removeproduct(product._id)"></i>
         <img
-          [src]="product.image"
+          [src]="product.images[0].imageUrl"
           class="w-full h-auto 2xl:max-w-[130px] xl:max-w-[110px] lg:max-w-[85px] md:max-w-[80px] max-w-[70px]"
           alt="product image" />
 
@@ -224,4 +221,5 @@
     </div>
   </div>
 </div>
--->
+
+

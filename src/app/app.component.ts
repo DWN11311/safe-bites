@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { filter } from 'rxjs/operators';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { ErrorPageComponent } from './components/error/error.component';
+import { CartsService } from './services/carts.service';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,9 @@ import { ErrorPageComponent } from './components/error/error.component';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  constructor(
+    private cartService: CartsService
+  ){}
   hiddenLayoutRoutes = ['/login', '/sign-up'];
   title = 'safe-bites';
   router = inject(Router); // Inject the Router
@@ -36,6 +40,10 @@ export class AppComponent implements OnInit {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+    });
+    const token = localStorage.getItem('token')
+    if(token){
+      this.cartService.getCart(token);
+    }
   }
 }

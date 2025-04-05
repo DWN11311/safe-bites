@@ -34,9 +34,6 @@ export class RelatedProductsComponent implements OnInit {
     this.relatedProductService.getAllProducts().subscribe({
       next: (response: any) => {
         const data = response.data;
-        console.log('fire');
-        console.log(data);
-
         this.Relatedproducts = data.map((product: any) => ({
           ...product,
           isheartFilled: false,

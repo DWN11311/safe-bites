@@ -18,19 +18,14 @@ import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-pa
 import { PaymentComponent } from './components/payment/payment.component';
 
 export const routes: Routes = [
-<<<<<<< HEAD
   { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
   {
     path: 'products',
     component: ProductsComponent,
     data: { breadcrumb: 'Products' },
   },
-=======
-  { path: '', component: HomeComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'sign-up', component: SignUpComponent },
-  { path: 'cart', component: CartComponent },
->>>>>>> origin/develop
+  { path: 'cart', component: CartComponent, data: { breadcrumb: 'Cart' } },
+
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
   {
@@ -69,10 +64,6 @@ export const routes: Routes = [
     data: { breadcrumb: 'Payment' },
   },
   { path: 'cart', component: CartComponent, data: { breadcrumb: 'Cart' } },
-<<<<<<< HEAD
-  { path: '**', component: ErrorComponent, data: { breadcrumb: 'Error' } },
-=======
   { path: 'error/:code/:message', component: ErrorPageComponent },
   { path: '**', component: ErrorPageComponent, data: { breadcrumb: 'Error' } },
->>>>>>> origin/develop
 ];

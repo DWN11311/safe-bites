@@ -27,10 +27,12 @@ export class BreadcrumbService {
     let currentRoute: ActivatedRouteSnapshot | null =
       this.router.routerState.snapshot.root;
     let url = '';
-  
+
     while (currentRoute) {
       const routeConfig = currentRoute.routeConfig;
-      const routeSegments = currentRoute.url.map(segment => segment.path).join('/');
+      const routeSegments = currentRoute.url
+        .map(segment => segment.path)
+        .join('/');
 
       if (routeSegments) {
         url += `/${routeSegments}`;
@@ -45,13 +47,12 @@ export class BreadcrumbService {
       }
       currentRoute = currentRoute.firstChild!;
     }
-  
+
     if (breadcrumbs.length === 1) {
       breadcrumbs = [];
     }
     this.breadcrumbs$.next(breadcrumbs);
   }
-  
 
   getBreadcrumbs() {
     return this.breadcrumbs$.asObservable();

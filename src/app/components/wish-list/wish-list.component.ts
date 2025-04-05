@@ -14,9 +14,14 @@ import { EmptyWishListComponent } from '../empty-wish-list/empty-wish-list.compo
   templateUrl: './wish-list.component.html',
   styleUrl: './wish-list.component.css',
 })
-export class WishListComponent implements OnChanges, OnInit {
-  constructor(private router: Router) {}
-  ngOnInit(): void {
+export class WishListComponent {
+  // constructor(private router: Router) {}
+  
+}
+
+/*
+
+ngOnInit(): void {
     // if (this.products.length == 0) {
     //   this.router.navigate(["./empty-wish-list"])
     // }
@@ -177,4 +182,5 @@ export class WishListComponent implements OnChanges, OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   moveToCart() {}
-}
+
+*/

@@ -25,17 +25,19 @@ export class ProductIngredientsComponent implements OnInit {
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId) {
       this.productService.getProductById(productId).subscribe({
-        next: (res: any)=>{
+        next: (res: any) => {
           this.productIngredients = res.data.ingredients;
         },
-        error: (err) =>{
-          this.toaster.error("Faild to get ingredients of this product","Error")
-        }
-      })
+        error: err => {
+          this.toaster.error(
+            'Faild to get ingredients of this product',
+            'Error'
+          );
+        },
+      });
     }
   }
 }
-
 
 /*
 this.http.get(`http://localhost:8282/products/${productId}`).subscribe({

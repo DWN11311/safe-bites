@@ -39,7 +39,9 @@ export class PasswordManagerComponent {
   }
 
   ngOnInit() {
-    this.userId = this.route.snapshot.paramMap.get('id') || localStorage.getItem('userId') as string | undefined;
+    this.userId =
+      this.route.snapshot.paramMap.get('id') ||
+      (localStorage.getItem('userId') as string | undefined);
     console.log('Retrieved userId:', this.userId);
     if (!this.userId) {
       this.toastr.error('User id not found', 'Error');
@@ -64,35 +66,42 @@ export class PasswordManagerComponent {
       return;
     }
 
-    const { password, newPassword, confirmPassword } = this.passwordInformation.value;
+    const { password, newPassword, confirmPassword } =
+      this.passwordInformation.value;
 
     if (newPassword !== confirmPassword) {
-      this.toastr.error('New password and confirm password do not match', 'Error');
+      this.toastr.error(
+        'New password and confirm password do not match',
+        'Error'
+      );
       return;
     }
 
     const requestData = {
       oldPassword: password,
-      newPassword: newPassword
+      newPassword: newPassword,
     };
 
     this.passwordInformation.disable();
 
-    this.usersService.updateUser(this.userId!, requestData, token)
-      .subscribe({
-        next: () => {
-          this.toastr.success('Password updated successfully!', 'Success');
-          this.isPasswordUpdated = true;
-          // this.passwordInformation.reset();
-          // this.passwordInformation.enable();
-        },
-        error: (error) => {
-          console.error('Update Password Error:', error);
-          const errorMessage = error?.error?.message || error?.error?.error || error?.message || 'Failed to change password';
-          this.toastr.error(errorMessage, 'Error');
-          this.passwordInformation.enable();
-        },
-      });
+    this.usersService.updateUser(this.userId!, requestData, token).subscribe({
+      next: () => {
+        this.toastr.success('Password updated successfully!', 'Success');
+        this.isPasswordUpdated = true;
+        // this.passwordInformation.reset();
+        // this.passwordInformation.enable();
+      },
+      error: error => {
+        console.error('Update Password Error:', error);
+        const errorMessage =
+          error?.error?.message ||
+          error?.error?.error ||
+          error?.message ||
+          'Failed to change password';
+        this.toastr.error(errorMessage, 'Error');
+        this.passwordInformation.enable();
+      },
+    });
   }
 
   togglePasswordVisibility(field: string) {
@@ -106,22 +115,22 @@ export class PasswordManagerComponent {
   }
 }
 
-  // async getUserData() {
-  //   if (this.userId) {
-  //     const token = localStorage.getItem('token');
-  //     if (token) {
-  //       this.usersService.getUserById(this.userId, token).subscribe({
-  //         next: (res) => {
-  //           this.userData = res.user;
-  //           console.log('User Data:', this.userData);
-  //         },
-  //         error: (error) => {
-  //           this.toastr.error('Failed to load user data', 'Error');
-  //           console.error('Error loading user data:', error);
-  //         }
-  //       });
-  //     } else {
-  //       this.toastr.error('Authentication token is missing', 'Error');
-  //     }
-  //   }
-  // }
+// async getUserData() {
+//   if (this.userId) {
+//     const token = localStorage.getItem('token');
+//     if (token) {
+//       this.usersService.getUserById(this.userId, token).subscribe({
+//         next: (res) => {
+//           this.userData = res.user;
+//           console.log('User Data:', this.userData);
+//         },
+//         error: (error) => {
+//           this.toastr.error('Failed to load user data', 'Error');
+//           console.error('Error loading user data:', error);
+//         }
+//       });
+//     } else {
+//       this.toastr.error('Authentication token is missing', 'Error');
+//     }
+//   }
+// }

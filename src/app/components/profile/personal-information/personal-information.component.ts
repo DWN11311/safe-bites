@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '../../../services/users.service';
@@ -22,20 +22,16 @@ export class PersonalInformationComponent implements OnInit {
   personalInformation: FormGroup;
   isEditing: boolean = false;
   userId?: string;
-<<<<<<< HEAD
   userImage: string = '';
-  newUserImage: string = ''; 
+  newUserImage: string = '';
   imageId: string = '';
-  cacheBuster: string = ''; 
+  cacheBuster: string = '';
   userData: any;
-=======
->>>>>>> origin/develop
 
   constructor(
     private toastr: ToastrService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-<<<<<<< HEAD
     private usersService: UsersService,
     private imageService: ImagesService,
     private cdr: ChangeDetectorRef
@@ -43,39 +39,22 @@ export class PersonalInformationComponent implements OnInit {
     this.personalInformation = this.fb.group({
       firstName: [{ value: '', disabled: true }, Validators.required],
       lastName: [{ value: '', disabled: true }],
-=======
-    private http: HttpClient,
-    private usersService: UsersService
-  ) {
-    this.personalInformation = this.fb.group({
-      firstName: [{ value: '', disabled: true }, Validators.required],
-      lastName: [{ value: '', disabled: true }, Validators.required],
->>>>>>> origin/develop
       email: [
         { value: '', disabled: true },
         [Validators.required, Validators.email],
       ],
       phone: [
         { value: '', disabled: true },
-<<<<<<< HEAD
         [Validators.pattern(/^(010|011|012|015)\d{8}$/)],
       ],
-      inputImage: [{ value: '', disabled: true}]
+      inputImage: [{ value: '', disabled: true }],
     });
   }
 
   async ngOnInit() {
-    this.userId = await (this.route.snapshot.paramMap.get('id') || localStorage.getItem('userId')) as string | undefined;
+    this.userId = (await (this.route.snapshot.paramMap.get('id') ||
+      localStorage.getItem('userId'))) as string | undefined;
     console.log('Retrieved userId:', this.userId);
-=======
-        [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)],
-      ],
-    });
-  }
-
-  ngOnInit(): void {
-    this.userId = this.route.snapshot.paramMap.get('id') ?? '';
->>>>>>> origin/develop
     if (this.userId) {
       this.getUserData();
     } else {
@@ -89,12 +68,15 @@ export class PersonalInformationComponent implements OnInit {
       this.toastr.error('No authentication token found', 'Error');
       return;
     }
-<<<<<<< HEAD
 
-    if (this.userId){
+    if (this.userId) {
       this.usersService.getUserById(this.userId, token).subscribe({
-        next: (userData) => {
-          if (!userData || !userData.user || Object.keys(userData.user).length === 0) {
+        next: userData => {
+          if (
+            !userData ||
+            !userData.user ||
+            Object.keys(userData.user).length === 0
+          ) {
             this.toastr.error('User data is empty', 'Error');
             return;
           }
@@ -105,20 +87,18 @@ export class PersonalInformationComponent implements OnInit {
               email: userData.user.email || '',
               phone: userData.user.phone || '',
             });
-            this.userImage = userData.user.image?.imageUrl || 'images/default-profile-image.webp';
+            this.userImage =
+              userData.user.image?.imageUrl ||
+              'images/default-profile-image.webp';
           }
-        this.personalInformation.disable();
-      },
-        error: (error) => {
+          this.personalInformation.disable();
+        },
+        error: error => {
           console.error('Error fetching user data:', error);
           this.toastr.error('Failed to load user data', 'Error');
-        }
+        },
       });
     }
-=======
-    if (this.userId)
-      this.usersService.getUserById(this.userId, token).subscribe({});
->>>>>>> origin/develop
   }
 
   toggleEditing() {
@@ -126,10 +106,7 @@ export class PersonalInformationComponent implements OnInit {
 
     if (this.isEditing) {
       this.personalInformation.enable();
-<<<<<<< HEAD
       this.personalInformation.get('inputImage')?.enable();
-=======
->>>>>>> origin/develop
     } else {
       this.personalInformation.disable();
       this.personalInformation.get('inputImage')?.disable();
@@ -149,11 +126,10 @@ export class PersonalInformationComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
   onImageSelected(event: any) {
     const file = event.target.files[0];
     if (!file) return;
-  
+
     const reader = new FileReader();
     reader.onload = () => {
       this.newUserImage = reader.result as string;
@@ -173,34 +149,32 @@ export class PersonalInformationComponent implements OnInit {
     const formData = new FormData();
     formData.append('image', file);
 
-    this.imageService.uploadUserImage("users", formData, token).subscribe({
-      next: (response) => {
+    this.imageService.uploadUserImage('users', formData, token).subscribe({
+      next: response => {
         console.log('Full Image Upload Response:', response);
         this.toastr.success('Profile picture updated successfully!', 'Success');
 
         if (response && response.data && response.data.imageUrl) {
-          const newImageUrl = response.data.imageUrl + '?v=' + Date.now(); 
-          this.cacheBuster = Date.now().toString(); 
-          this.userImage = newImageUrl; 
-          localStorage.setItem("profileImageUrl", newImageUrl); 
+          const newImageUrl = response.data.imageUrl + '?v=' + Date.now();
+          this.cacheBuster = Date.now().toString();
+          this.userImage = newImageUrl;
+          localStorage.setItem('profileImageUrl', newImageUrl);
           this.newUserImage = '';
           this.cdr.detectChanges();
         }
 
-        if(response.data._id){
+        if (response.data._id) {
           this.imageId = response.data._id;
-          console.log("Saved Image ID:", this.imageId);
+          console.log('Saved Image ID:', this.imageId);
         }
       },
-      error: (error) => {
+      error: error => {
         console.error('Error uploading image:', error);
         this.toastr.error('Failed to upload profile picture', 'Error');
-      }
+      },
     });
   }
 
-=======
->>>>>>> origin/develop
   submitForm() {
     if (this.personalInformation.invalid) {
       this.personalInformation.markAllAsTouched();
@@ -209,7 +183,7 @@ export class PersonalInformationComponent implements OnInit {
     }
 
     const token = localStorage.getItem('token');
-    if(!token){
+    if (!token) {
       this.toastr.error('Authentication token is missing', 'Error');
       return;
     }
@@ -229,28 +203,30 @@ export class PersonalInformationComponent implements OnInit {
         delete updatedData[key];
       }
     });
-    console.log("Updated User", updatedData);
+    console.log('Updated User', updatedData);
 
-    const previousUserImage = this.userImage; 
+    const previousUserImage = this.userImage;
 
     this.usersService.updateUser(this.userId!, updatedData, token).subscribe({
-      next: (userUpdatedData) =>{
+      next: userUpdatedData => {
         this.toastr.success('User data updated successfully', 'Success');
         this.isEditing = false;
         this.personalInformation.disable();
-        this.userImage = userUpdatedData.user?.image?.imageUrl || previousUserImage || 'images/default-profile-image.webp';
+        this.userImage =
+          userUpdatedData.user?.image?.imageUrl ||
+          previousUserImage ||
+          'images/default-profile-image.webp';
         console.log('User Image after update:', this.userImage);
         this.cacheBuster = Date.now().toString();
       },
-      error: (err) => {
-        this.toastr.error('Failed to update user data','Error');
-      }
-    })
+      error: err => {
+        this.toastr.error('Failed to update user data', 'Error');
+      },
+    });
   }
 }
 
-<<<<<<< HEAD
-  /*
+/*
   uploadImage(file: File) {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -287,8 +263,6 @@ export class PersonalInformationComponent implements OnInit {
   }
   */
 
-=======
->>>>>>> origin/develop
 // onSubmit() {
 //   if(this.personalInformation.invalid){
 //     this.personalInformation.markAllAsTouched();

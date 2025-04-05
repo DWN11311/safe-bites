@@ -8,19 +8,22 @@
         class="w-full h-full rounded-full object-cover" />
       <label
         class="edit-icon w-10 h-10 rounded-full absolute bottom-0 right-0 flex items-center justify-center border
-        {{ isEditing ? 'bg-[#1B8057] cursor-pointer border-white' : 'border-gray-400 bg-gray-400 cursor-not-allowed' }}">
+        {{
+          isEditing
+            ? 'bg-[#1B8057] cursor-pointer border-white'
+            : 'border-gray-400 bg-gray-400 cursor-not-allowed'
+        }}">
         <input
           type="file"
           formControlName="inputImage"
           (change)="onImageSelected($event)"
           accept="image/*"
           hidden
-          [disabled]="!isEditing"/>
-        <img src="images/vector.svg" alt=""/>
+          [disabled]="!isEditing" />
+        <img src="images/vector.svg" alt="" />
       </label>
     </div>
-
-     <!-- User Data -->
+    <!-- User Data -->
     <div class="names grid grid-cols-8 gap-10 mt-8">
       <div class="first-name col-span-8 lg:col-span-4">
         <label class="block font-semibold">First Name*</label>
