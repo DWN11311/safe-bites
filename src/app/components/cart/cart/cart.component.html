@@ -1,4 +1,5 @@
 <!-- no data -->
+ <!-- 
 <div
   *ngIf="cart?.length === 0"
   class="md:px-22 px-6 md:py-20 py-10 flex flex-col justify-center items-center md:gap-12 gap-6">
@@ -24,36 +25,36 @@
     </div>
     <!-- suggest part -->
 
-    <!--  -->
+    <!--  
   </div>
 </div>
-<!-- start here -->
+<!-- start here 
 <div
   *ngIf="cart?.length > 0"
   class="md:px-22 px-6 py-10 md:py-20 bg-[#FDFFF6] flex flex-col gap-4">
-  <!-- text -->
+  <!-- text 
   <div class="flex items-center">
     <h1 class="w-full text-left md:text-5xl text-3xl font-bold text-[#7C9B66]">
       Your Cart
     </h1>
     <img src="images/cart/shopping nodata.svg" class="md:w-32 w-24" />
   </div>
-  <!-- card and checkout -->
+  <!-- card and checkout 
 
   <div class="grid md:grid-cols-[3fr_1fr] gap-16">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-8">
       @for (product of cart; track product.name) {
-        <!-- card -->
+        <!-- card 
         <div class="bg-white shadow-2xl rounded-lg py-5 px-5 mb-3 h-75">
           <img src="{{ product.image }}" class="w-full h-40" />
-          <!-- text in cart -->
+          <!-- text in cart 
           <div class="text-center">
             <h1
               class="md:text-base text-sm md:font-semibold font-bold text-[#071001]">
               {{ product.name }}
             </h1>
             <p class="md:text-lg text-[#3f3e3e]">${{ product.price }}</p>
-            <!-- button increase and decrease -->
+            <!-- button increase and decrease 
             <div class="flex justify-center gap-4">
               <button
                 class="w-8 h-8 text-2xl rounded-full bg-[#808080] text-[#FAFAFA] hover:bg-[#525252] transition-all duration-300 ease-in-out cursor-pointer">
@@ -65,31 +66,31 @@
                 +
               </button>
             </div>
-            <!--finish buttons  -->
+            <!--finish buttons  
           </div>
-          <!-- finish text -->
+          <!-- finish text 
         </div>
-        <!-- finish cart -->
+        <!-- finish cart 
       }
     </div>
-    <!-- checkout -->
+    <!-- checkout 
     <div class="flex flex-col gap-8">
-      <!-- section1 -->
+      <!-- section1 
       <div class="flex justify-between">
         <h2 class="text-lg font-semibold text-[#808080]">Number of items</h2>
         <p class="text-[#071001] font-semibold">8</p>
       </div>
-      <!-- section2 -->
+      <!-- section2 
       <div class="flex justify-between">
         <h2 class="text-lg font-semibold text-[#808080]">Subtotal:</h2>
         <p class="text-[#071001] font-semibold">30$</p>
       </div>
-      <!--section3  -->
+      <!--section3  
       <div class="flex justify-between">
         <h2 class="text-lg font-semibold text-[#808080]">Shipping:</h2>
         <p class="text-[#071001] font-semibold">5$</p>
       </div>
-      <!-- section4 -->
+      <!-- section4 
       <h2 class="text-lg font-semibold text-[#808080]">Coupon code</h2>
       <div class="flex justify-between">
         <input
@@ -102,14 +103,14 @@
           applay your code
         </button>
       </div>
-      <!--section5 -->
+      <!--section5 
       <hr />
-      <!-- section6 -->
+      <!-- section6 
       <div class="flex justify-between">
         <h2 class="text-xl font-semibold text-[#071001]">Total</h2>
         <p class="text-[#071001] font-semibold">35$</p>
       </div>
-      <!-- section7 -->
+      <!-- section7 
       <div class="flex flex-col gap-6">
         <button
           class="lg:text-lg md:text-base text-sm lg:h-14 h-12 p-3 rounded-lg border bg-transparent text-[#7CAD3F] shadow-[0px_4px_4px_rgba(116,154,68,0.25)] hover:border-[#5B8329] transition-all duration-300 ease-in-out cursor-pointer">
@@ -121,6 +122,7 @@
         </button>
       </div>
     </div>
-    <!--  -->
+    <!--  
   </div>
 </div>
+-->

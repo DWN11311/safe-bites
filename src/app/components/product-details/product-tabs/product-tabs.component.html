@@ -1,19 +1,19 @@
 <div
-  class="custom-tab-group border-b-2 border-gray-300 flex gap-5 pb-1 mx-5 md:mx-20 xl:mx-40 mt-10">
+  class="custom-tab-group border-b-2 border-[#CCCBCB] sm:grid sm:grid-cols-12 flex flex-col gap-0 xl:mx-40 mx-24 mt-10">
   <span
-    class="custom-tab-label text-center text-xl"
+    class="custom-tab-label ingredients md:text-xl text-lg xl:col-span-2 lg:col-span-3 sm:col-span-3 py-2.5 "
     [class.active]="selectedTab === 0"
     (click)="selectTab(0)">
     Ingredients
   </span>
-  <span
-    class="custom-tab-label text-center text-xl"
+  <span  
+    class="custom-tab-label nutrition md:text-xl text-lg xl:col-span-2 lg:col-span-3 sm:col-span-4 py-2.5 "
     [class.active]="selectedTab === 1"
     (click)="selectTab(1)">
     Nutrition Facts
   </span>
   <span
-    class="custom-tab-label text-center text-xl"
+    class="custom-tab-label reviews md:text-xl text-lg lg:col-span-2 sm:col-span-3 py-2.5 "
     [class.active]="selectedTab === 2"
     (click)="selectTab(2)">
     Reviews
@@ -21,7 +21,7 @@
 </div>
 
 <!-- Tab Content -->
-<div class="px-5 md:px-20 xl:px-40">
+<div class="col-span-12 xl:mx-40 mx-24">
   @if (selectedTab === 0) {
     <app-product-ingredients></app-product-ingredients>
   }

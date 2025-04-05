@@ -14,7 +14,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     HeaderComponent,
     FooterComponent,
     ReactiveFormsModule,
-    BreadcrumbComponent
+    BreadcrumbComponent,
   ],
   providers: [ProductsService],
   templateUrl: './app.component.html',

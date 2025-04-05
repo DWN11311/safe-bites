@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CartsService } from '../../../services/carts.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -7,11 +6,12 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   selector: 'app-cart',
   imports: [CommonModule, RouterModule],
-  providers: [CartsService],
+  providers: [],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
 export class CartComponent {
+  /*
   cart: any;
   constructor(private CartsService: CartsService) {}
   ngOnInit() {
@@ -25,4 +25,5 @@ export class CartComponent {
       },
     });
   }
+    */
 }

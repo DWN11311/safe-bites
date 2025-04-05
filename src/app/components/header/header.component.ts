@@ -41,8 +41,9 @@ export class HeaderComponent {
   }
 
   logout() {
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('token');
+    // localStorage.removeItem('firstName');
+    // localStorage.removeItem('token');
+    localStorage.clear();
 
     this.firstName = null;
 

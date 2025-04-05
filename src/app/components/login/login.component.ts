@@ -153,10 +153,10 @@ export class LoginComponent {
                   'profileImageUrl',
                   userData.image.imageUrl
                 );
+              window.location.href = '';
             });
           localStorage.setItem('firstName', decodedToken.firstName);
           console.log('User First Name:', decodedToken.firstName);
-          this.router.navigate(['']);
           // Remeber Me
           if (rememberMe) {
             localStorage.setItem('rememberedEmail', email);

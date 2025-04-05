@@ -1,15 +1,14 @@
 .custom-tab-label {
   font-weight: bold;
-  color: gray;
+  color: #6C6D6E;
   padding: 10px 0px;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 .custom-tab-label:hover {
-  color: green;
+  color: #1B8057;
 }
 
 .custom-tab-label.active {
-  color: green;
-  text-decoration:  underline;
+  color: #1B8057;
 }
