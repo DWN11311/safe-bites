@@ -1,7 +1,5 @@
 <!-- no data -->
-<div
-  *ngIf="cartItems?.length === 0"
-  class="flex justify-center cursor-default">
+<div *ngIf="cartItems?.length === 0" class="flex justify-center cursor-default">
   <div
     class="md:grid grid-cols-[auto_auto] flex flex-col justify-center items-center gap-[18px] md:gap-[48px] lg:py-[88px] py-[44px] px-5 md:px-20 xl:px-40">
     <img src="images/cart/cart empty.svg" class="w-[200px] h-[200px]" />
@@ -152,6 +150,7 @@
       <div
         class="flex lg:justify-center justify-end 2xl:pb-[28px] xl:pb-[24px] pb-[24px] text-[16px]">
         <button
+          routerLink="/payment"
           class="bg-[#1B8057] hover:bg-[#135C3E] text-[#F5F8F5] h-[56px] w-full md:w-[175px] 2xl:w-[250px] xl:w-[220px] lg:w-[180px] lg:h-[56px] 2xl:text-[18px] xl:text-[16px] text-[16px] md:text-[14px] font-semibold rounded-[8px] cursor-pointer">
           Proceed to Checkout
         </button>
@@ -221,5 +220,3 @@
     </div>
   </div>
 </div>
-
-

@@ -7,9 +7,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-payment',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css',
 })

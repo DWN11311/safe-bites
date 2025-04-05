@@ -50,12 +50,16 @@ export class HeaderComponent {
     //   this.categories = data as Category[];
     // });
     this.loadingService.show();
-    console.log(this.loadingService.loadingCounter);
+
+    this.cartService.cart$.subscribe({
+      next: cart => {
+        this.cartCount = Object.keys(cart).length;
+      },
+    });
 
     this.categoriesService.getCategories().subscribe({
       next: data => {
         this.categories = data as Category[];
-        console.log(this.loadingService.loadingCounter);
 
         this.loadingService.hide();
       },

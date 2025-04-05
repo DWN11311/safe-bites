@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms'; // استيراد FormsModule
 
 import { OrderSummaryComponent } from '../order-summary/order-summary.component';
 import { ConfirmPaymentComponent } from '../confirm-payment/confirm-payment.component';
+import { CartsService } from '../../services/carts.service';
 
 @Component({
   imports: [
@@ -26,6 +27,8 @@ export class PaymentMethodsComponent {
   cvv: string = '';
   saveCard: boolean = false;
   showConfirmPayment = false;
+
+  constructor(private cartService: CartsService) {}
 
   toggleConfirmPayment() {
     this.showConfirmPayment = true;

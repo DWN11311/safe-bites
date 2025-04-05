@@ -12,10 +12,11 @@ export class CartsService {
   private cartSubject = new BehaviorSubject<Cart>({});
   public cart$ = this.cartSubject.asObservable();
 
-  formatCart(response: { data: { productId: Product, quantity: Number }[] }) {
+  formatCart(response: { data: { productId: Product; quantity: Number }[] }) {
     if (response.data) {
       const transformedData = response.data.reduce((acc, currentProduct) => {
         const product = currentProduct.productId;
+
         acc[product._id] = {
           _id: product._id,
           name: product.name,
@@ -24,7 +25,7 @@ export class CartsService {
           description: product.description,
           brief: product.brief,
           averageRating: product.averageRating,
-          quantity: currentProduct.quantity
+          quantity: currentProduct.quantity,
         };
         return acc;
       }, {} as Cart);
@@ -39,7 +40,9 @@ export class CartsService {
       'Content-Type': 'application/json',
     });
     this.http
-      .get<{ data: { productId: Product, quantity: Number }[] }>(this.url, { headers })
+      .get<{ data: { productId: Product; quantity: Number }[] }>(this.url, {
+        headers,
+      })
       .pipe(map(data => this.formatCart(data)))
       .subscribe({
         next: formattedData => {
@@ -48,7 +51,7 @@ export class CartsService {
         error: err => {
           console.log(err);
         },
-    });
+      });
   }
 
   addToCart(productId: string, token: string) {
@@ -57,7 +60,7 @@ export class CartsService {
       'Content-Type': 'application/json',
     });
     this.http
-      .post<{ data: { productId: Product, quantity: Number }[] }>(
+      .post<{ data: { productId: Product; quantity: Number }[] }>(
         `${this.url}/${productId}`,
         {},
         { headers }
@@ -79,7 +82,7 @@ export class CartsService {
       'Content-Type': 'application/json',
     });
     this.http
-      .put<{ data: { productId: Product, quantity: Number }[] }>(
+      .put<{ data: { productId: Product; quantity: Number }[] }>(
         `${this.url}/${productId}`,
         { quantity },
         { headers }
@@ -102,9 +105,12 @@ export class CartsService {
     });
 
     this.http
-      .delete<{ data: { productId: Product, quantity: Number }[] }>(`${this.url}/${productId}`, {
-        headers,
-      })
+      .delete<{ data: { productId: Product; quantity: Number }[] }>(
+        `${this.url}/${productId}`,
+        {
+          headers,
+        }
+      )
       .pipe(map(data => this.formatCart(data)))
       .subscribe({
         next: fotmattedData => {
@@ -122,7 +128,9 @@ export class CartsService {
       'Content-Type': 'application/json',
     });
     this.http
-      .delete<{ data: { productId: Product, quantity: Number }[] }>(`${this.url}`, { headers })
+      .delete<{
+        data: { productId: Product; quantity: Number }[];
+      }>(`${this.url}`, { headers })
       .subscribe({
         next: response => {
           this.cartSubject.next({});

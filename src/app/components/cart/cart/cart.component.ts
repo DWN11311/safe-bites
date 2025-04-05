@@ -20,19 +20,19 @@ export class CartComponent {
   constructor(private cartService: CartsService) {}
   ngOnInit() {
     this.cartService.cart$.subscribe({
-      next: (data) => {
+      next: data => {
         this.cart = data;
         this.cartItems = Object.values(this.cart);
       },
-      error: (err) => {
+      error: err => {
         console.log(err);
-      }
-    })
+      },
+    });
   }
 
   removeproduct(productId: string | undefined) {
-    if(this.token && productId){
-      this.cartService.removeFromCart(productId, this.token)
+    if (this.token && productId) {
+      this.cartService.removeFromCart(productId, this.token);
     }
   }
 
@@ -51,25 +51,26 @@ export class CartComponent {
   }
 
   calculateTotalItems() {
-    if(this.cart)
-    return Object.values(this.cart).reduce(
-      (total: number, product: any) => total + product.quantity, 
-      0);
+    if (this.cart)
+      return Object.values(this.cart).reduce(
+        (total: number, product: any) => total + product.quantity,
+        0
+      );
     return 0;
   }
 
   calculateTotalPrice() {
-    if(this.cart)
+    if (this.cart)
       return Object.values(this.cart).reduce(
-      (total: number, product: any) => total + this.calculateSubTotal(product),
-      0
-    );
+        (total: number, product: any) =>
+          total + this.calculateSubTotal(product),
+        0
+      );
     return 0;
   }
 
   clearCart() {
-    if(this.token)
-    this.cartService.clearCart(this.token);
+    if (this.token) this.cartService.clearCart(this.token);
     this.showPopup = false;
   }
 

@@ -61,8 +61,6 @@ export class ProductCardComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log(this.wishlist);
-
     this.getPaginatedData();
     this.wishlistService.wishlist$.subscribe(wishlist => {
       this.wishlist = wishlist;
@@ -78,7 +76,6 @@ export class ProductCardComponent implements OnInit, OnChanges {
   calculatePagination() {
     if (this.totalItems) {
       this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
-      console.log(this.totalPages);
 
       this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
     }
@@ -102,13 +99,18 @@ export class ProductCardComponent implements OnInit, OnChanges {
 
   setItemsPerPage() {
     const screenWidth = window.innerWidth;
+    const oldItemsPerPage = this.itemsPerPage;
+
     if (screenWidth <= 768) {
       this.itemsPerPage = 5;
     } else {
       this.itemsPerPage = 9;
     }
-    this.currentPage = 1;
-    this.totalPages;
+
+    if (this.itemsPerPage !== oldItemsPerPage) {
+      this.currentPage = 1;
+    }
+
     this.calculatePagination();
   }
 

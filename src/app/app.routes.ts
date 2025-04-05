@@ -14,8 +14,6 @@ import { AboutusComponent } from './components/about us/aboutus/aboutus.componen
 import { CartComponent } from './components/cart/cart/cart.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { PaymentMethodsComponent } from './components/payment-methods/payment-methods.component';
-import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
-import { PaymentComponent } from './components/payment/payment.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
@@ -59,8 +57,13 @@ export const routes: Routes = [
   },
   {
     path: 'payment',
-    component: PaymentComponent,
-    data: { breadcrumb: 'Payment' },
+    component: PaymentMethodsComponent,
+    data: { breadcrumb: 'Checkout' },
+  },
+  {
+    path: 'order',
+    component: OrderSummaryComponent,
+    data: { breadcrumb: 'Checkout' },
   },
   { path: 'cart', component: CartComponent, data: { breadcrumb: 'Cart' } },
   { path: 'error/:code/:message', component: ErrorPageComponent },
