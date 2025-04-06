@@ -39,6 +39,13 @@
     <app-filter-tags [categoriesObj]="passedCategories"></app-filter-tags>
 
     <!-- Products -->
+
+    @if (!paginatedData.length) {
+      <div>
+        <app-emptyproducts></app-emptyproducts>
+      </div>
+    }
+
     <div class="grid min-[500px]:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-10">
       <div
         *ngFor="let item of paginatedData; let index = index"
@@ -122,9 +129,6 @@
           (click)="pageClicked(currentPage + 1)"
           [ngClass]="{ disabled: currentPage === totalPages }"></i>
       </div>
-    }@else {
-      <!-- Empty State -->
-     <app-emptyproducts></app-emptyproducts>
     }
   </div>
 </div>

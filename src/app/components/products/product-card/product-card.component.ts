@@ -18,13 +18,9 @@ import { TruncateWordsPipe } from '../../../pipes/truncate-words.pipe';
 import { Router } from '@angular/router';
 import { Wishlist } from '../../../models/wishlist.model';
 import { WishlistService } from '../../../services/wishlist.service';
-<<<<<<< HEAD
-import { EmptyproductsComponent } from '../../emptyproducts/emptyproducts.component';
-
-=======
 import { Cart } from '../../../models/cart.model';
 import { CartsService } from '../../../services/carts.service';
->>>>>>> Mohamed
+import { EmptyproductsComponent } from '../../emptyproducts/emptyproducts.component';
 
 @Component({
   selector: 'app-product-card',
@@ -34,7 +30,7 @@ import { CartsService } from '../../../services/carts.service';
     FilterComponent,
     TruncateWordsPipe,
     FilterTagsComponent,
-    EmptyproductsComponent
+    EmptyproductsComponent,
   ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',
