@@ -16,7 +16,7 @@
 </div>
 
 <div
-  class="grid grid-cols-12 gap-5 lg:gap-10 px-5 min-[1024px]:px-16 min-[1440px]:px-40 mt-[78px] md:mt-[154px]">
+  class="grid grid-cols-12 gap-5 lg:gap-10 px-5 min-[1024px]:px-16 min-[1440px]:px-40">
   <!-- Left Part -->
   <div class="hidden md:block col-span-4 xl:col-span-3">
     <app-filter (sendCategoriesObj)="passCategories($event)"></app-filter>
@@ -30,9 +30,10 @@
         class="md:hidden px-4 py-3.5 text-[#353932B2] text-xl rounded-xl my-2 cursor-pointer transition-[background-color] font-semibold">
         <i class="fa-solid fa-filter"></i> Filter
       </button>
-      @if (paginatedData.length > 0) {
+            
+      @if (totalProducts > 0) {
         <p class="text-xl text-[#353932B2]">
-          1 of <span>{{ paginatedData.length }}</span> Products
+          {{ data.length }} of <span>{{ totalProducts }}</span> Products
         </p>
       }
     </div>
@@ -40,15 +41,14 @@
 
     <!-- Products -->
 
-    @if (!paginatedData.length) {
+    @if(!data.length) {
       <div>
         <app-emptyproducts></app-emptyproducts>
       </div>
     }
-
     <div class="grid min-[500px]:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-10">
       <div
-        *ngFor="let item of paginatedData; let index = index"
+        *ngFor="let item of data; let index = index"
         class="card bg-white rounded-lg py-4 px-5 flex flex-col"
         style="box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25)"
         appHover>
@@ -87,8 +87,7 @@
         <div class="flex gap-4 justify-self-end">
           <button
             (click)="addToCart(item._id)"
-            [disabled]="cartData[item._id]"
-            class="bg-[#378F6B] w-full py-2 text-white text-lg md:text-xl rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed hover:cursor-pointer hover:bg-[#307055] transition-all">
+            class="bg-[#378F6B] w-full py-2 text-white text-lg md:text-xl rounded-lg hover:cursor-pointer hover:bg-[#307055] transition-all">
             Add To Cart
           </button>
           <button
@@ -106,8 +105,37 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-span-12">
+
+    @if (totalProducts > 0){
+      <div class="col-span-12">
+        <div class="pagintion flex items-center justify-center mt-4 mb-16 text-2xl">
+            <i class="fa-solid fa-angle-left cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
+                (click)="onPageClicked(currentPage - 1)"
+                [ngClass]="{ disabled: currentPage === 1 }">
+            </i>
+            <ul class="flex justify-center items-center ml-5 text-xl">
+                <li
+                class="mr-5"
+                *ngFor="let page of getPages()"
+                [ngClass]="{ active: page === currentPage }"
+                (click)="onPageClicked(page)">
+                <a href="javascript:void(0)">{{ page }}</a>
+                </li>
+            </ul>
+            <i
+                class="fa-solid fa-angle-right cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded-lg pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
+                (click)="onPageClicked(currentPage + 1)"
+                [ngClass]="{ disabled: currentPage === totalPages }">
+            </i>
+        </div>
+      </div>
+    }
+  </div>  
+</div>
+
+
+
+<!-- <div class="col-span-12">
     @if (paginatedData.length > 0) {
       <div
         class="pagintion flex items-center justify-center mt-4 mb-16 text-2xl">
@@ -129,6 +157,5 @@
           (click)="pageClicked(currentPage + 1)"
           [ngClass]="{ disabled: currentPage === totalPages }"></i>
       </div>
-    }
-  </div>
-</div>
+    }
+  </div> -->
