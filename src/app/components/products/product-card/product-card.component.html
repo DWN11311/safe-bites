@@ -30,10 +30,10 @@
         class="md:hidden px-4 py-3.5 text-[#353932B2] text-xl rounded-xl my-2 cursor-pointer transition-[background-color] font-semibold">
         <i class="fa-solid fa-filter"></i> Filter
       </button>
-            
+
       @if (totalProducts > 0) {
         <p class="text-xl text-[#353932B2]">
-          {{ data.length }} of <span>{{ totalProducts }}</span> Products
+          {{ rangeStart }} - {{ rangeEnd }} of <span>{{ totalProducts }}</span> Products
         </p>
       }
     </div>
@@ -41,7 +41,7 @@
 
     <!-- Products -->
 
-    @if(!data.length) {
+    @if (!data.length) {
       <div>
         <app-emptyproducts></app-emptyproducts>
       </div>
@@ -106,34 +106,34 @@
       </div>
     </div>
 
-    @if (totalProducts > 0){
+    @if (totalProducts > 0) {
       <div class="col-span-12">
-        <div class="pagintion flex items-center justify-center mt-4 mb-16 text-2xl">
-            <i class="fa-solid fa-angle-left cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
-                (click)="onPageClicked(currentPage - 1)"
-                [ngClass]="{ disabled: currentPage === 1 }">
-            </i>
-            <ul class="flex justify-center items-center ml-5 text-xl">
-                <li
-                class="mr-5"
-                *ngFor="let page of getPages()"
-                [ngClass]="{ active: page === currentPage }"
-                (click)="onPageClicked(page)">
-                <a href="javascript:void(0)">{{ page }}</a>
-                </li>
-            </ul>
-            <i
-                class="fa-solid fa-angle-right cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded-lg pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
-                (click)="onPageClicked(currentPage + 1)"
-                [ngClass]="{ disabled: currentPage === totalPages }">
-            </i>
+        <div
+          class="pagintion flex items-center justify-center mt-4 mb-16 text-2xl">
+          <i
+            class="fa-solid fa-angle-left cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
+            (click)="onPageClicked(currentPage - 1)"
+            [ngClass]="{ disabled: currentPage === 1 }">
+          </i>
+          <ul class="flex justify-center items-center ml-5 text-xl">
+            <li
+              class="mr-5"
+              *ngFor="let page of getPages()"
+              [ngClass]="{ active: page === currentPage }"
+              (click)="isNumber(page) && onPageClicked(page)">
+              <a href="javascript:void(0)">{{ page }}</a>
+            </li>
+          </ul>
+          <i
+            class="fa-solid fa-angle-right cursor-pointer text-[#8D8F8B] w-[35px] h-[35px] rounded-lg pt-1 border border-[#2E39264D] text-center hover:bg-[#8D8F8B] hover:text-white hover:border-0"
+            (click)="onPageClicked(currentPage + 1)"
+            [ngClass]="{ disabled: currentPage === totalPages }">
+          </i>
         </div>
       </div>
     }
-  </div>  
+  </div>
 </div>
-
-
 
 <!-- <div class="col-span-12">
     @if (paginatedData.length > 0) {

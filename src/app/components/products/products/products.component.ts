@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductCardComponent,CommonModule],
+  imports: [ProductCardComponent, CommonModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
@@ -34,6 +34,7 @@ export class ProductsComponent {
   pageSize: number = 9;
 
   ngOnInit() {
+    this.setPageSizeByScreenWidth();
     this.wishlistService.wishlist$.subscribe({
       next: newWishlist => {
         this.wishlist = newWishlist;
@@ -53,7 +54,6 @@ export class ProductsComponent {
       this.currentPage = Number(params.get('page')) || 1;
       this.fetchProducts(params, this.currentPage, this.pageSize);
     });
-
   }
 
   fetchProducts(query: ParamMap, page: number, limit: number) {
@@ -73,12 +73,40 @@ export class ProductsComponent {
     });
   }
 
-  onPageChange(newPage: number){
+  onPageChange(newPage: number) {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: {...this.route.snapshot.queryParams, page: newPage},
-      queryParamsHandling: 'merge'
-    })
+      queryParams: { ...this.route.snapshot.queryParams, page: newPage },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  @HostListener('window:resize')
+  onResize(){
+    const prevPageSize = this.pageSize;
+    this.setPageSizeByScreenWidth();
+
+    if(prevPageSize !== this.pageSize){
+      this.fetchProducts(this.route.snapshot.queryParamMap, this.currentPage, this.pageSize);
+    }
+  }
+
+  private setPageSizeByScreenWidth(){
+    const screenWidth = window.innerWidth;
+    if(screenWidth <= 768){
+      this.pageSize = 6;
+    }else{
+      this.pageSize = 9;
+    }
+  }
+
+  getRangeStart(): number {
+    return (this.currentPage - 1) * this.pageSize + 1;
+  }
+
+  getRangeEnd(): number {
+    const end = this.currentPage * this.pageSize;
+    return end > this.totalProducts ? this.totalProducts : end;
   }
 }
 

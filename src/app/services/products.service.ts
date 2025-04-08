@@ -10,9 +10,7 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   getAllProducts(queryParams: ParamMap, page: number, limit: number) {
-    let httpParams = new HttpParams()
-    .set('page', page)
-    .set('limit', limit);
+    let httpParams = new HttpParams().set('page', page).set('limit', limit);
 
     queryParams.keys.forEach(key => {
       const values = queryParams.getAll(key);
