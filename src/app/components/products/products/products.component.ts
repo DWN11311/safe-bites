@@ -82,20 +82,24 @@ export class ProductsComponent {
   }
 
   @HostListener('window:resize')
-  onResize(){
+  onResize() {
     const prevPageSize = this.pageSize;
     this.setPageSizeByScreenWidth();
 
-    if(prevPageSize !== this.pageSize){
-      this.fetchProducts(this.route.snapshot.queryParamMap, this.currentPage, this.pageSize);
+    if (prevPageSize !== this.pageSize) {
+      this.fetchProducts(
+        this.route.snapshot.queryParamMap,
+        this.currentPage,
+        this.pageSize
+      );
     }
   }
 
-  private setPageSizeByScreenWidth(){
+  private setPageSizeByScreenWidth() {
     const screenWidth = window.innerWidth;
-    if(screenWidth <= 768){
+    if (screenWidth <= 768) {
       this.pageSize = 6;
-    }else{
+    } else {
       this.pageSize = 9;
     }
   }

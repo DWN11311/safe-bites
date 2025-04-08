@@ -32,8 +32,9 @@
       </button>
 
       @if (totalProducts > 0) {
-        <p class="text-xl text-[#353932B2]">
-          {{ rangeStart }} - {{ rangeEnd }} of <span>{{ totalProducts }}</span> Products
+        <p class="text-xl text-[#353932B2] mt-5">
+          {{ rangeStart }} - {{ rangeEnd }} of
+          <span>{{ totalProducts }}</span> Products
         </p>
       }
     </div>
@@ -46,10 +47,10 @@
         <app-emptyproducts></app-emptyproducts>
       </div>
     }
-    <div class="grid min-[500px]:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-10">
+    <div class="grid min-[500px]:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6">
       <div
         *ngFor="let item of data; let index = index"
-        class="card bg-white rounded-lg py-4 px-5 flex flex-col"
+        class="card bg-white shadow-2xl rounded-lg p-5 flex flex-col"
         style="box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25)"
         appHover>
         <div class="header flex justify-between mb-5">
@@ -59,14 +60,16 @@
             New
           </p>
         </div>
-        <img
+        <div class="md:h-44 sm:h-56 hover:40">
+          <img
           (click)="goToProductDetails(item._id)"
           src="{{ item.images[0].imageUrl }}"
-          class="m-auto h-[10rem] md:h-[11rem] lg:h-[13rem] cursor-pointer"
+          class="m-auto h-full w-full cursor-pointer rounded-lg"
           alt="Feature 2"
           [appHover]="item.images[1].imageUrl" />
+        </div>
 
-        <div class="data my-2 lg:my-4 mt-4 lg:mt-6 flex flex-col gap-2">
+        <div class="data my-2 lg:my-4 flex flex-col">
           <div class="flex justify-between text-lg lg:text-xl">
             <p class="text-[#7DB69F]">
               {{ (item.categories[0].name | titlecase) || 'Healthy Product' }}
@@ -76,7 +79,7 @@
               >{{ item.averageRating || 0 }}</span
             >
           </div>
-          <h3 class="font-medium text-xl sm:text-xl lg:text-2xl text-[#121311]">
+          <h3 class="font-medium text-[22px] mt-2 text-[#121311] capitalize overflow-hidden text-ellipsis whitespace-nowrap h-[32px]">
             {{ item.name | truncateWords: 25 }}
           </h3>
           <p class="text-xl font-semibold text-[#1B8057]">
@@ -93,14 +96,14 @@
           <button
             (click)="addToWishlist(item._id)"
             *ngIf="!wishlist[item._id]"
-            class="shrink-0 rounded-full flex items-center justify-center size-12 border border-[#C5C4C4] hover:text-[#1B8057] cursor-pointer">
-            <i class="fa-regular fa-heart text-3xl"></i>
+            class="shrink-0 rounded-full flex items-center justify-center size-11 border border-[#C5C4C4] hover:text-[#1B8057] cursor-pointer">
+            <i class="fa-regular fa-heart text-2xl"></i>
           </button>
           <button
             *ngIf="wishlist[item._id]"
             (click)="removeFromWishlist(item._id)"
-            class="shrink-0 rounded-full flex items-center justify-center size-12 border border-[#C5C4C4] text-[#1B8057] hover:text-[#307055] transition-all cursor-pointer">
-            <i class="fa-solid fa-heart text-3xl"></i>
+            class="shrink-0 rounded-full flex items-center justify-center size-11 border border-[#C5C4C4] text-[#1B8057] hover:text-[#307055] transition-all cursor-pointer">
+            <i class="fa-solid fa-heart text-2xl"></i>
           </button>
         </div>
       </div>

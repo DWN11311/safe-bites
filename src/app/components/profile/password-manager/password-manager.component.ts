@@ -48,21 +48,23 @@ export class PasswordManagerComponent {
       this.toastr.error('User id not found', 'Error');
     }
     const token = localStorage.getItem('token');
-    if(token){
+    if (token) {
       this.usersService.getUserById(this.userId!, token).subscribe({
-        next: (res) => {
+        next: res => {
           this.userData = res.user;
           this.isGoogleAuthUser = this.userData?.password === 'google-auth';
-          if(!this.isGoogleAuthUser){
-            this.passwordInformation.get('password')?.addValidators(Validators.required);
+          if (!this.isGoogleAuthUser) {
+            this.passwordInformation
+              .get('password')
+              ?.addValidators(Validators.required);
             this.passwordInformation.get('password')?.updateValueAndValidity();
           }
         },
-        error: (err) => {
+        error: err => {
           console.log('Error fetching user data', err);
           this.toastr.error('Faild to load user data', 'Error');
-        }
-      })
+        },
+      });
     }
   }
 
@@ -70,7 +72,6 @@ export class PasswordManagerComponent {
     const control = this.passwordInformation.get(field);
     return control?.invalid && control?.touched ? true : false;
   }
-
 
   submitForm() {
     if (this.passwordInformation.invalid) {
@@ -91,7 +92,7 @@ export class PasswordManagerComponent {
       newPassword: newPassword,
     };
 
-    if(!this.isGoogleAuthUser){
+    if (!this.isGoogleAuthUser) {
       requestData.oldPassword = this.passwordInformation.value.password;
     }
 

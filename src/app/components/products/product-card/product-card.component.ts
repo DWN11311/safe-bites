@@ -57,7 +57,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   onPageClicked(page: number) {
-    if(page < 1 || page > this.totalPages || page === this.currentPage) return;
+    if (page < 1 || page > this.totalPages || page === this.currentPage) return;
     this.pageChange.emit(page);
   }
 
@@ -73,30 +73,30 @@ export class ProductCardComponent implements OnInit {
     const maxPagesToShow = 5;
     let startPage: number, endPage: number;
 
-    if(this.totalPages <= maxPagesToShow){
+    if (this.totalPages <= maxPagesToShow) {
       startPage = 1;
       endPage = this.totalPages;
-    }else{
-      if(this.currentPage <= 3){
+    } else {
+      if (this.currentPage <= 3) {
         startPage = 1;
         endPage = maxPagesToShow;
-      }else if(this.currentPage + 2 >= this.totalPages){
+      } else if (this.currentPage + 2 >= this.totalPages) {
         startPage = this.totalPages - maxPagesToShow + 1;
         endPage = this.totalPages;
-      }else{
+      } else {
         startPage = this.currentPage - 2;
         endPage = this.currentPage + 2;
       }
     }
 
-    for(let i = startPage; i <= endPage; i++){
+    for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
 
-    if(startPage > 1){
+    if (startPage > 1) {
       pages.unshift('...');
     }
-    if(endPage < this.totalPages){
+    if (endPage < this.totalPages) {
       pages.push('...');
     }
 
