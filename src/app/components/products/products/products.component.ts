@@ -8,10 +8,11 @@ import { WishlistService } from '../../../services/wishlist.service';
 import { LoadingService } from '../../../services/loading.service';
 import { CartsService } from '../../../services/carts.service';
 import { Cart } from '../../../models/cart.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductCardComponent],
+  imports: [ProductCardComponent,CommonModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
@@ -19,7 +20,7 @@ export class ProductsComponent {
   constructor(
     private productService: ProductsService,
     private wishlistService: WishlistService,
-    private loadingService: LoadingService,
+    public loadingService: LoadingService,
     private cartService: CartsService,
     private router: Router,
     private route: ActivatedRoute
@@ -27,6 +28,10 @@ export class ProductsComponent {
   data: Array<Product> = [];
   wishlist: Wishlist = {};
   cartData: Cart = {};
+  totalProducts: number = 0;
+  totalPages: number = 0;
+  currentPage: number = 1;
+  pageSize: number = 9;
 
   ngOnInit() {
     this.wishlistService.wishlist$.subscribe({
@@ -45,26 +50,42 @@ export class ProductsComponent {
     });
 
     this.route.queryParamMap.subscribe(params => {
-      this.fetchProducts(params);
+      this.currentPage = Number(params.get('page')) || 1;
+      this.fetchProducts(params, this.currentPage, this.pageSize);
     });
+
+  }
+
+  fetchProducts(query: ParamMap, page: number, limit: number) {
+    this.loadingService.show();
+    this.productService.getAllProducts(query, page, limit).subscribe({
+      next: (res: any) => {
+        this.data = res.data;
+        this.totalProducts = res.total;
+        this.totalPages = res.totalPages;
+        this.currentPage = res.page;
+        this.loadingService.hide();
+      },
+      error: () => {
+        this.loadingService.hide();
+      },
+      complete: () => {},
+    });
+  }
+
+  onPageChange(newPage: number){
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {...this.route.snapshot.queryParams, page: newPage},
+      queryParamsHandling: 'merge'
+    })
+  }
+}
+
+/*
 
     // this.router.events.subscribe(() => {
     //   this.loadingService.show();
     //   const queryString = this.router.url.split('?')[1] || '';
     // });
-  }
-
-  fetchProducts(query: ParamMap) {
-    this.productService.getAllProducts(query).subscribe({
-      next: (res: any) => {
-        this.data = res.data;
-        this.calculatePagination();
-        this.loadingService.hide();
-      },
-      error: () => {},
-      complete: () => {},
-    });
-  }
-
-  calculatePagination() {}
-}
+*/

@@ -53,7 +53,8 @@ export class HeaderComponent {
 
     this.cartService.cart$.subscribe({
       next: cart => {
-        this.cartCount = Object.keys(cart).length;
+        const itemsArray = Object.values(cart); 
+        this.cartCount = itemsArray.reduce((total, item) => total + Number(item.quantity ?? 0), 0);
       },
     });
 

@@ -9,8 +9,10 @@ export class ProductsService {
   private readonly url = 'http://localhost:8282/products';
   constructor(private http: HttpClient) {}
 
-  getAllProducts(queryParams: ParamMap) {
-    let httpParams = new HttpParams();
+  getAllProducts(queryParams: ParamMap, page: number, limit: number) {
+    let httpParams = new HttpParams()
+    .set('page', page)
+    .set('limit', limit);
 
     queryParams.keys.forEach(key => {
       const values = queryParams.getAll(key);
