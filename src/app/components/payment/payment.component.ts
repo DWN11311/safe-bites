@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-payment',
   imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterModule],
@@ -15,9 +15,9 @@ import { RouterModule } from '@angular/router';
   styleUrl: './payment.component.css',
 })
 export class PaymentComponent {
-  contactForm: FormGroup;
-  constructor(private fb: FormBuilder) {
-    this.contactForm = this.fb.group({
+  paymentForm: FormGroup;
+  constructor(private fb: FormBuilder, private router: Router) {
+    this.paymentForm = this.fb.group({
       phone: ['', [Validators.required, Validators.pattern('^01[0-9]{9}$')]],
       FirstName: ['', [Validators.required]],
       LastName: ['', [Validators.required]],
@@ -36,39 +36,42 @@ export class PaymentComponent {
   }
 
   get phone() {
-    return this.contactForm.get('phone');
+    return this.paymentForm.get('phone');
   }
 
   get FirstName() {
-    return this.contactForm.get('FirstName');
+    return this.paymentForm.get('FirstName');
   }
   get LastName() {
-    return this.contactForm.get('LastName');
+    return this.paymentForm.get('LastName');
   }
 
   get Street() {
-    return this.contactForm.get('Street');
+    return this.paymentForm.get('Street');
   }
 
   get City() {
-    return this.contactForm.get('City');
+    return this.paymentForm.get('City');
   }
 
   get Email() {
-    return this.contactForm.get('Email');
+    return this.paymentForm.get('Email');
   }
   submitForm() {
-    if (this.contactForm.invalid) {
-      this.contactForm.markAllAsTouched();
-      return;
+    if (this.paymentForm.valid) {
+      this.router.navigate(['/payment-methods'])
+      console.log('Form Submitted:', this.paymentForm.value);
+    } else {
+      this.paymentForm.markAllAsTouched();
     }
-    console.log('Form Submitted:', this.contactForm.value);
   }
 
   checkInputValue(field: string) {
-    const control = this.contactForm.get(field);
+    const control = this.paymentForm.get(field);
     if (control?.value) {
       control.markAsTouched();
     }
   }
 }
+
+

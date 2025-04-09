@@ -1,21 +1,14 @@
-<div class="grid grid-cols-12 gap-8 p-8 mt-16 mx-auto lg:mx-10">
-  <form
-    [formGroup]="contactForm"
-    (ngSubmit)="submitForm()"
-    class="col-span-12 sm:col-span-6 md:col-span-6 my-auto">
+<div
+  class="grid grid-cols-1 sm:grid-cols-12  gap-4 md:gap-8 lg:px-16 lg:mx-12 sm:mx-4 sm:px-2  mx-auto mt-16 max-w-screen-xl md:mx-4 md:px-4 ">
+  <form [formGroup]="contactForm" (ngSubmit)="submitForm()"
+    class="col-span-12 sm:col-span-6 md:col-span-6 my-auto w-full max-w-xl  mx-auto px-6 ">
     <div class="col-span-12 sm:col-span-6 md:col-span-6">
       <div class="relative lg:mb-16 md:mb-10 sm:mb-10 mb-10 mt-4">
-        <input
-          type="text"
-          id="phone"
-          formControlName="phone"
+        <input type="text" id="phone" formControlName="phone"
           class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 lg:h-14 md:h-12 sm:h-12"
-          placeholder=" "
-          (blur)="checkInputValue('phone')"
-          autocomplete="off" />
+          placeholder=" " (blur)="checkInputValue('phone')" autocomplete="off" />
 
-        <label
-          for="phone"
+        <label for="phone"
           class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057] focus:ring-0"
           [ngClass]="{
             'top-[-10px] text-sm text-[#1B8057]':
@@ -24,32 +17,20 @@
           Phone
         </label>
 
-        <div
-          *ngIf="phone?.touched && phone?.invalid"
-          class="text-red-700 text-sm mt-1 font-semibold absolute">
-          <span *ngIf="phone?.errors?.['required']"
-            ><i class="fa-solid fa-circle-exclamation text-red-700"></i> This
-            field is required</span
-          >
-          <span *ngIf="phone?.errors?.['pattern']"
-            ><i class="fa-solid fa-circle-exclamation text-red-700"></i> Phone
-            number must be valid</span
-          >
+        <div *ngIf="phone?.touched && phone?.invalid" class="text-red-700 text-sm mt-1 font-semibold absolute">
+          <span *ngIf="phone?.errors?.['required']"><i class="fa-solid fa-circle-exclamation text-red-700"></i> This
+            field is required</span>
+          <span *ngIf="phone?.errors?.['pattern']"><i class="fa-solid fa-circle-exclamation text-red-700"></i> Phone
+            number must be valid</span>
         </div>
       </div>
 
       <div class="relative lg:mb-16 md:mb-10 sm:mb-10 mb-10 mt-4">
-        <input
-          type="text"
-          id="subject"
-          formControlName="subject"
+        <input type="text" id="subject" formControlName="subject"
           class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 lg:h-14 md:h-12 sm:h-12"
-          placeholder=" "
-          (blur)="checkInputValue('subject')"
-          autocomplete="off" />
+          placeholder=" " (blur)="checkInputValue('subject')" autocomplete="off" />
 
-        <label
-          for="subject"
+        <label for="subject"
           class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
           [ngClass]="{
             'top-[-10px] text-sm text-[#1B8057]':
@@ -58,26 +39,19 @@
           Subject
         </label>
 
-        <div
-          *ngIf="subject?.touched && subject?.invalid"
-          class="text-red-700 text-sm mt-1 font-semibold absolute">
+        <div *ngIf="subject?.touched && subject?.invalid" class="text-red-700 text-sm mt-1 font-semibold absolute">
           <span *ngIf="subject?.errors?.['required']">
             <i class="fa-solid fa-circle-exclamation text-red-700"></i> This
-            field is required</span
-          >
+            field is required</span>
         </div>
       </div>
 
       <div class="relative lg:mb-16 md:mb-10 sm:mb-10 mb-10 mt-4">
-        <textarea
-          id="message"
-          formControlName="message"
-          class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 resize-none lg:h-48 md:h-32 sm:h-24 h-24"
-          placeholder=" "
-          (blur)="checkInputValue('message')"></textarea>
+        <textarea id="message" formControlName="message"
+          class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 resize-none xl:h-48 lg:h-32 md:h-32 sm:h-24 h-24"
+          placeholder=" " (blur)="checkInputValue('message')"></textarea>
 
-        <label
-          for="message"
+        <label for="message"
           class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#1B8057]"
           [ngClass]="{
             'top-[-10px] text-sm text-[#1B8057]':
@@ -86,37 +60,31 @@
           Message
         </label>
 
-        <div
-          *ngIf="message?.touched && message?.invalid"
-          class="text-red-700 text-sm mt-1 font-semibold absolute">
-          <span *ngIf="message?.errors?.['required']"
-            ><i class="fa-solid fa-circle-exclamation text-red-700"></i> This
-            field is required</span
-          >
+        <div *ngIf="message?.touched && message?.invalid" class="text-red-700 text-sm mt-1 font-semibold absolute">
+          <span *ngIf="message?.errors?.['required']"><i class="fa-solid fa-circle-exclamation text-red-700"></i> This
+            field is required</span>
         </div>
       </div>
 
-      <button
-        type="submit"
-        class="bg-[#1B8057] text-white px-6 py-1 rounded-lg hover:bg-[#3a6b58] transition h-12 md:h-14 mt-4 cursor-pointer">
+      <button type="submit"
+        class="bg-[#1B8057] text-white px-10  rounded-lg hover:bg-[#3a6b58] transition h-12 md:h-14 mt-4 cursor-pointer">
         Send a Message
       </button>
     </div>
   </form>
-
-  <div class="col-span-12 sm:col-span-6 md:col-span-6">
-    <img
-      src="images/ContactUs/colleagues-working-together-call-center-office (1) 1.png"
-      alt="" />
+  <!-- col-span-12 sm:col-span-6 md:col-span-6 my-auto w-full max-w-xl px-4 mx-auto -->
+  <div
+    class="col-span-12 sm:col-span-6 md:col-span-6 w-full max-w-full  object-cover mx-auto   lg:pl-16 lg:mx-auto lg:my-4 md:my-4 sm:my-4 ">
+    <img src="images/ContactUs/colleagues-working-together-call-center-office (1) 1.png" alt="customer service"
+      class="hidden sm:block rounded-lg" />
   </div>
 </div>
 
 <!-- icons -->
 
 <div
-  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-18 mt-16 gap-8 lg:gap-24 md:gap-16 sm:gap-8">
-  <div
-    class="border-2 border-[#1B8057] rounded-lg p-4 flex flex-col items-center">
+  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-auto px-6 sm:px-6 sm:mx-6 lg:px-16 md:mx-6 md:px-6  lg:mx-16 mt-16 gap-8 lg:gap-24 md:gap-16 sm:gap-8">
+  <div class="border-2 border-[#1B8057] rounded-lg p-4 flex flex-col items-center">
     <div class="bg-[#1B8057] w-fit p-2 rounded-lg">
       <i class="fa-solid fa-phone text-white text-2xl"></i>
     </div>
@@ -124,8 +92,7 @@
     <p class="text-gray-800">+0100-123-456</p>
   </div>
 
-  <div
-    class="border-2 border-[#1B8057] rounded-lg p-4 flex flex-col items-center">
+  <div class="border-2 border-[#1B8057] rounded-lg p-4 flex flex-col items-center">
     <div class="bg-[#1B8057] w-fit p-2 rounded-lg">
       <i class="fa-solid fa-envelope text-white text-2xl"></i>
     </div>
@@ -133,8 +100,7 @@
     <p class="text-gray-800">Support<span>&#64;</span>safebites.com</p>
   </div>
 
-  <div
-    class="border-2 border-[#1B8057] rounded-lg p-4 flex flex-col items-center">
+  <div class="border-2 border-[#1B8057] rounded-lg p-4 flex flex-col items-center">
     <div class="bg-[#1B8057] w-fit p-2 rounded-lg">
       <i class="fa-solid fa-location-dot text-white text-2xl"></i>
     </div>
@@ -145,11 +111,10 @@
 <!-- small icons -->
 
 <div
-  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mx-18 mt-16 gap-8 lg:gap-24 md:gap-16 sm:gap-8">
+  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mx-auto px-6 sm:mx-6 sm:px-6 md:mx-6 md:px-6 lg:px-16 lg:mx-16 mt-16 gap-8 lg:gap-24 md:gap-16 sm:gap-8">
   <div class="flex gap-2 relative">
     <div>
-      <i
-        class="fa-solid fa-truck-fast absolute top-[-10px] left-[-5px] text-[#1B8057] text-5xl"></i>
+      <i class="fa-solid fa-truck-fast absolute top-[-10px] left-[-5px] text-[#1B8057] text-5xl"></i>
     </div>
     <div class="bg-amber-300 w-12 h-12 rounded-full flex-shrink-0 ml-3"></div>
     <div class="flex flex-col">
@@ -160,8 +125,7 @@
 
   <div class="flex gap-2 relative">
     <div>
-      <i
-        class="fa-solid fa-basket-shopping absolute top-[-10px] left-[-5px] text-[#1B8057] text-5xl"></i>
+      <i class="fa-solid fa-basket-shopping absolute top-[-10px] left-[-5px] text-[#1B8057] text-5xl"></i>
     </div>
     <div class="bg-amber-300 w-12 h-12 rounded-full flex-shrink-0 ml-3"></div>
     <div class="flex flex-col">
@@ -173,8 +137,7 @@
   </div>
   <div class="flex gap-2 relative">
     <div>
-      <i
-        class="fa-solid fa-headset absolute top-[-10px] left-[-5px] text-[#1B8057] text-5xl"></i>
+      <i class="fa-solid fa-headset absolute top-[-10px] left-[-5px] text-[#1B8057] text-5xl"></i>
     </div>
     <div class="bg-amber-300 w-12 h-12 rounded-full flex-shrink-0 ml-3"></div>
     <div class="flex flex-col">
@@ -184,8 +147,7 @@
   </div>
   <div class="flex gap-2 relative">
     <div>
-      <i
-        class="fa-solid fa-leaf absolute top-[-10px] left-[-5px] text-[#1B8057] text-5xl"></i>
+      <i class="fa-solid fa-leaf absolute top-[-10px] left-[-5px] text-[#1B8057] text-5xl"></i>
     </div>
     <div class="bg-amber-300 w-12 h-12 rounded-full flex-shrink-0 ml-3"></div>
     <div class="flex flex-col">
