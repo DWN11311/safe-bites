@@ -15,6 +15,7 @@ import { CartComponent } from './components/cart/cart/cart.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { PaymentMethodsComponent } from './components/payment-methods/payment-methods.component';
 import { EmptyproductsComponent } from './components/emptyproducts/emptyproducts.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
@@ -58,6 +59,11 @@ export const routes: Routes = [
   },
   {
     path: 'payment',
+    component: PaymentComponent,
+    data: { breadcrumb: 'Checkout' },
+  },
+  {
+    path: 'payment-methods',
     component: PaymentMethodsComponent,
     data: { breadcrumb: 'Checkout' },
   },
