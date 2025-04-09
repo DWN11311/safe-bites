@@ -18,33 +18,45 @@ import { EmptyproductsComponent } from './components/emptyproducts/emptyproducts
 import { PaymentComponent } from './components/payment/payment.component';
 
 export const routes: Routes = [
+  {
+    path: 'paymentmethods',
+    component: PaymentMethodsComponent,
+    canActivate: [AuthGuard],
+    data: { breadcrumb: 'Checkout' },
+  },
+  { path: 'sign-up', component: SignUpComponent },
+
   { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
   {
     path: 'products',
     component: ProductsComponent,
+    canActivate: [AuthGuard],
     data: { breadcrumb: 'Products' },
   },
-  { path: 'cart', component: CartComponent, data: { breadcrumb: 'Cart' } },
+
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
   {
     path: 'wishList',
     component: WishListComponent,
+    canActivate: [AuthGuard],
     data: { breadcrumb: 'Wishlist' },
   },
   {
     path: 'empty-wishList',
     component: EmptyWishListComponent,
+    canActivate: [AuthGuard],
     data: { breadcrumb: 'Wishlist empty' },
   },
   {
     path: 'products/:id',
     component: ProductDetailsComponent,
+    canActivate: [AuthGuard],
     data: { breadcrumb: 'Product details' },
   },
   {
     path: 'users/:id',
     component: ProfileComponent,
+    canActivate: [AuthGuard],
     data: { breadcrumb: 'Profile' },
   },
   {
@@ -55,6 +67,7 @@ export const routes: Routes = [
   {
     path: 'contact-us',
     component: ContactUsComponent,
+    canActivate: [AuthGuard],
     data: { breadcrumb: 'Contact Us' },
   },
   {
@@ -66,18 +79,34 @@ export const routes: Routes = [
     path: 'payment-methods',
     component: PaymentMethodsComponent,
     data: { breadcrumb: 'Checkout' },
+    canActivate: [AuthGuard],
   },
+  {
+    path: 'empty-products',
+    component: EmptyproductsComponent,
+    canActivate: [AuthGuard],
+    data: { breadcrumb: 'products empty' },
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+    canActivate: [AuthGuard],
+    data: { breadcrumb: 'Cart' },
+  },
+
   {
     path: 'order',
     component: OrderSummaryComponent,
+    canActivate: [AuthGuard],
     data: { breadcrumb: 'Checkout' },
   },
   {
     path: 'empty-products',
     component: EmptyproductsComponent,
+    canActivate: [AuthGuard],
     data: { breadcrumb: 'products empty' },
   },
-  { path: 'cart', component: CartComponent, data: { breadcrumb: 'Cart' } },
-  { path: 'error/:code/:message', component: ErrorPageComponent },
-  { path: '**', component: ErrorPageComponent, data: { breadcrumb: 'Error' } },
+
+  { path: 'error/:code/:message',canActivate: [AuthGuard], component: ErrorPageComponent },
+  { path: '**', component: ErrorPageComponent,canActivate: [AuthGuard], data: { breadcrumb: 'Error' } },
 ];
