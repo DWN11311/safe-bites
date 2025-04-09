@@ -107,7 +107,7 @@ export class LoginComponent {
     const emailControl = this.loginForm.get('email');
 
     if (emailControl?.hasError('required')) {
-      return 'This input is required';
+      return 'This field is required';
     } else if (emailControl?.hasError('email')) {
       return 'Invalid email format';
     }
@@ -119,13 +119,14 @@ export class LoginComponent {
     const passwordControl = this.loginForm.get('password');
 
     if (passwordControl?.hasError('required')) {
-      return 'This input is required';
+      return 'This field is required';
     }
 
     return '';
   }
 
   login() {
+    this.loginForm.markAllAsTouched();
     if (this.loginForm.invalid) {
       return; // Stop submission if form is invalid
     }

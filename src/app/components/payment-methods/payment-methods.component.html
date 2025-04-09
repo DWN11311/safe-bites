@@ -1,20 +1,5 @@
 <div
-
-  class="col-span-12 p-20 text-center"
-  style="
-    background: url('images/newsletter/bg-newsletter.png');
-    background-size: cover;
-    background-position:  center;
-  ">
-  <h1 class="text-2xl md:text-4xl text-[#1B8057] font-bold mb-3">Check out</h1>
-  <p class="text-[#58595A] font-semibold">Home/My cart/Checkout</p>
-</div>
-
-<div
   class="grid grid-cols-12 md:gap-x-6 xl:gap-x-6 gap-y-8 lg-px-24 px-10 mt-16">
-
-
-
   <!-- Payment Section (8 columns) -->
 
   <div class="payment col-span-12 lg:col-span-7 space-y-8">
@@ -63,8 +48,8 @@
           <i class="fa-solid fa-credit-card text-[#1B8057]"></i
           ><span
             class="flex items-center gap-2 text-lg sm:font-semibold font-medium">
-            Add credit/debit card </span
-          >
+            Add credit/debit card
+          </span>
         </div>
 
         <div *ngIf="selectedPayment === 'card'" class="space-y-7 md:px-20">

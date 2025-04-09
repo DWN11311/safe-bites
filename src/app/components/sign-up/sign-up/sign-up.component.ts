@@ -52,6 +52,7 @@ export class SignUpComponent {
       };
       this.register(user);
     } else {
+      this.myform.markAllAsTouched();
       console.log('Form is not valid');
     }
   }

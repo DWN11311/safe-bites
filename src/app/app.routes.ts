@@ -107,6 +107,15 @@ export const routes: Routes = [
     data: { breadcrumb: 'products empty' },
   },
 
-  { path: 'error/:code/:message',canActivate: [AuthGuard], component: ErrorPageComponent },
-  { path: '**', component: ErrorPageComponent,canActivate: [AuthGuard], data: { breadcrumb: 'Error' } },
+  {
+    path: 'error/:code/:message',
+    canActivate: [AuthGuard],
+    component: ErrorPageComponent,
+  },
+  {
+    path: '**',
+    component: ErrorPageComponent,
+    canActivate: [AuthGuard],
+    data: { breadcrumb: 'Error' },
+  },
 ];

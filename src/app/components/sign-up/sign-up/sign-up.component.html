@@ -157,23 +157,23 @@
     </div>
   </div>
 </form> -->
-<form
-  [formGroup]="myform"
-  (ngSubmit)="onSubmit()"
-  class="grid grid-cols-1 md:grid-cols-12 bg-white h-screen">
-  <div class="hidden md:block md:col-span-5 h-screen">
+
+
+<div class="grid grid-cols-12 h-screen xl:px-40 lg:px-24 px-10 xl:gap-10 gap-5 items-center">
+  <div class="hidden md:block md:col-span-6 h-screen">
     <img
       src="images/sign up/f75141002b7274ddf70545cfed087e44.jpg"
-      class="w-full h-full object-cover py-8 px-5" />
+      class="w-full lg:h-[37.8rem] lg:mt-12 h-[40.5rem] mt-5" />
   </div>
-
-  <div
-    class="col-span-1 md:col-span-7 flex flex-col gap-4 py-8 px-5 md:px-10 lg:px-16 xl:px-24 overflow-auto">
+  <form 
+    [formGroup]="myform"
+    (ngSubmit)="onSubmit()"
+    class="col-span-12 md:col-span-6">
     <div class="text-form flex flex-col gap-1">
       <h1 class="text-[#1B8057] text-[2rem] lg:text-[2.5rem] font-bold">
         Create An Account
       </h1>
-      <p class="text-[#1B8057] text-base lg:text-xl font-normal flex gap-1">
+      <p class="text-[#1B8057] text-base lg:text-xl font-normal flex gap-1 lg:mb-4 mb-2">
         Already have an account?
         <span
           routerLink="/login"
@@ -202,7 +202,7 @@
               *ngIf="firstnameRequired || firstnamepattern"
               class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
               <i class="fa-solid fa-circle-exclamation"></i>
-              <span *ngIf="firstnameRequired">Required field</span>
+              <span *ngIf="firstnameRequired">Thie field is required</span>
               <span *ngIf="firstnamepattern">Character only</span>
             </div>
           </div>
@@ -225,7 +225,7 @@
               *ngIf="lastnameRequired || lastnamepattern"
               class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
               <i class="fa-solid fa-circle-exclamation"></i>
-              <span *ngIf="lastnameRequired">Required field</span>
+              <span *ngIf="lastnameRequired">This field is required</span>
               <span *ngIf="lastnamepattern">Character only</span>
             </div>
           </div>
@@ -249,7 +249,7 @@
             *ngIf="emailRequired || emailvalidation"
             class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
             <i class="fa-solid fa-circle-exclamation"></i>
-            <span *ngIf="emailRequired">Required field</span>
+            <span *ngIf="emailRequired">This field is required</span>
             <span *ngIf="emailvalidation"
               >Please enter a valid email address</span
             >
@@ -291,7 +291,7 @@
             *ngIf="myform.get('password') && PasswordRequired"
             class="text-sm text-[#a40f0f] pl-1 flex items-center gap-1">
             <i class="fa-solid fa-circle-exclamation"></i>
-            <span>Required field</span>
+            <span>This field is required</span>
           </div>
         </div>
 
@@ -364,7 +364,8 @@
       <!-- Buttons -->
       <div class="buttons flex flex-col gap-8">
         <button
-          class="m-auto p-3 w-lg rounded-lg h-[44px] lg:h-[56px] bg-[#1B8057] hover:bg-[#135C3E] shadow-[0_4px_4px_rgBA(38,75,45,0.25)] text-[#F5F8F5] font-semibold text-[1rem] lg:text-[1.25rem] flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out">
+          class="rounded-lg h-[44px] lg:h-[56px] bg-[#1B8057] hover:bg-[#135C3E]
+          shadow-[0_4px_4px_rgBA(38,75,45,0.25)] text-[#F5F8F5] font-semibold text-[1rem] lg:text-[1.25rem] flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out">
           Create an Account
         </button>
         <div
@@ -375,5 +376,8 @@
         </div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
+
+
+
