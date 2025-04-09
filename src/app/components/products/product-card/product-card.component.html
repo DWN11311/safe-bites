@@ -62,11 +62,11 @@
         </div>
         <div class="md:h-44 sm:h-56 hover:40">
           <img
-          (click)="goToProductDetails(item._id)"
-          src="{{ item.images[0].imageUrl }}"
-          class="m-auto h-full w-full cursor-pointer rounded-lg"
-          alt="Feature 2"
-          [appHover]="item.images[1].imageUrl" />
+            (click)="goToProductDetails(item._id)"
+            src="{{ item.images[0].imageUrl }}"
+            class="m-auto h-full w-full cursor-pointer rounded-lg"
+            alt="Feature 2"
+            [appHover]="item.images[1].imageUrl" />
         </div>
 
         <div class="data my-2 lg:my-4 flex flex-col">
@@ -79,7 +79,8 @@
               >{{ item.averageRating || 0 }}</span
             >
           </div>
-          <h3 class="font-medium text-[22px] mt-2 text-[#121311] capitalize overflow-hidden text-ellipsis whitespace-nowrap h-[32px]">
+          <h3
+            class="font-medium text-[22px] mt-2 text-[#121311] capitalize overflow-hidden text-ellipsis whitespace-nowrap h-[32px]">
             {{ item.name | truncateWords: 25 }}
           </h3>
           <p class="text-xl font-semibold text-[#1B8057]">

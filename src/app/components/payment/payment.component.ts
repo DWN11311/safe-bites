@@ -16,7 +16,10 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class PaymentComponent {
   paymentForm: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.paymentForm = this.fb.group({
       phone: ['', [Validators.required, Validators.pattern('^01[0-9]{9}$')]],
       FirstName: ['', [Validators.required]],
@@ -59,7 +62,7 @@ export class PaymentComponent {
   }
   submitForm() {
     if (this.paymentForm.valid) {
-      this.router.navigate(['/payment-methods'])
+      this.router.navigate(['/payment-methods']);
       console.log('Form Submitted:', this.paymentForm.value);
     } else {
       this.paymentForm.markAllAsTouched();
@@ -73,5 +76,3 @@ export class PaymentComponent {
     }
   }
 }
-
-
