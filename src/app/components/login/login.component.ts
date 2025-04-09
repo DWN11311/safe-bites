@@ -53,6 +53,8 @@ export class LoginComponent {
         if (event.origin !== 'http://localhost:8282') return; // تأكد إن الرسالة جاية من الـ backend
         if (event.data?.token) {
           localStorage.setItem('token', event.data.token);
+          const decodedToken = this.decodeJWT(event.data.token);
+          localStorage.setItem('firstName', decodedToken.firstName);
           this.router.navigate(['']);
         }
       },
