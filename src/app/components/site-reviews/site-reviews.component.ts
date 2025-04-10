@@ -1,18 +1,17 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ProductReviewsService } from '../../../services/product-reviews.service';
+import { ProductReviewsService } from '../../services/product-reviews.service';
 import { ActivatedRoute } from '@angular/router';
-import { ProductReview } from '../../../models/product-review.model';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ReviewFormComponent } from '../../review-form/review-form.component';
-import { EmptyReviewsComponent } from '../../reviews/empty-reviews/empty-reviews.component';
+import { ProductReview } from '../../models/product-review.model';
+import { ReviewFormComponent } from '../review-form/review-form.component';
+import { SiteReviewsService } from '../../services/site-reviews.service';
 
 @Component({
-  selector: 'app-product-reviews',
-  imports: [ReactiveFormsModule, ReviewFormComponent, EmptyReviewsComponent],
-  templateUrl: './product-reviews.component.html',
-  styleUrl: './product-reviews.component.css',
+  selector: 'app-site-reviews',
+  imports: [ReviewFormComponent],
+  templateUrl: './site-reviews.component.html',
+  styleUrl: './site-reviews.component.css',
 })
-export class ProductReviewsComponent {
+export class SiteReviewsComponent {
   @ViewChild('addReviewForm') addReviewForm!: ElementRef;
   reviews: ProductReview[] = [];
   count: number = 0;
@@ -27,23 +26,20 @@ export class ProductReviewsComponent {
   };
   productId: string | undefined;
   constructor(
-    private productReviewService: ProductReviewsService,
+    private siteReviewSerice: SiteReviewsService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.productId = this.route.snapshot.paramMap.get('id') as string;
-    this.fetchReviews(this.productId);
-  }
 
-  fetchReviews(productId: string) {
-    this.productReviewService.getProductReviews(productId).subscribe({
+    this.siteReviewSerice.getAllSiteReviews().subscribe({
       next: res => {
         const { data } = res;
 
         this.reviews = data.reviews;
         this.count = data.reviews.length;
-        this.averageRating = data.averageRating.toFixed(1);
+        this.averageRating = res.data.averageRating;
 
         console.log(this.reviews);
 
@@ -61,6 +57,8 @@ export class ProductReviewsComponent {
   }
 
   loadMore() {
+    console.log('fired');
+
     if (this.loadedReviews + (4 % this.count) == this.loadedReviews)
       this.loadedReviews = this.loadedReviews + 4;
     else
@@ -81,6 +79,7 @@ export class ProductReviewsComponent {
   addReviewActive = false;
   addReview() {
     this.addReviewActive = true;
+    console.log(this.addReviewForm);
 
     setTimeout(() => {
       this.addReviewForm.nativeElement.scrollIntoView({
@@ -88,12 +87,5 @@ export class ProductReviewsComponent {
         block: 'start',
       });
     }, 50);
-  }
-
-  onReviewAdded() {
-    if (this.productId) {
-      this.fetchReviews(this.productId);
-      this.addReviewActive = false;
-    }
   }
 }

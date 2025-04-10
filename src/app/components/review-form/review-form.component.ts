@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { ProductReviewsService } from '../../services/product-reviews.service';
 import { ProductReview } from '../../models/product-review.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-review-form',
@@ -17,8 +18,12 @@ import { ProductReview } from '../../models/product-review.model';
 })
 export class ReviewFormComponent {
   @Input() productId: string | undefined;
+  @Output() reviewEvent = new EventEmitter();
 
-  constructor(private productReviewsService: ProductReviewsService) {}
+  constructor(
+    private productReviewsService: ProductReviewsService,
+    private toastrService: ToastrService
+  ) {}
 
   reviewFormGroup = new FormGroup({
     reviewTitle: new FormControl(null, [Validators.required]),
@@ -46,7 +51,9 @@ export class ReviewFormComponent {
         )
         .subscribe({
           next: response => {
-            console.log('Review added successfully:', response);
+            this.toastrService.success('Added review successfully', 'Success');
+            this.reviewEvent.emit();
+            this.reviewFormGroup.reset();
           },
           error: err => {
             console.error('Error adding review:', err);
