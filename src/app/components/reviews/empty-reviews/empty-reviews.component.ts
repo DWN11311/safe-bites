@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-empty-reviews',
   imports: [],
   templateUrl: './empty-reviews.component.html',
-  styleUrl: './empty-reviews.component.css'
+  styleUrl: './empty-reviews.component.css',
 })
-export class EmptyReviewsComponent {
-
-}
+export class EmptyReviewsComponent {}

@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductCardComponent,CommonModule],
+  imports: [ProductCardComponent, CommonModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
@@ -53,7 +53,6 @@ export class ProductsComponent {
       this.currentPage = Number(params.get('page')) || 1;
       this.fetchProducts(params, this.currentPage, this.pageSize);
     });
-
   }
 
   fetchProducts(query: ParamMap, page: number, limit: number) {
@@ -73,12 +72,12 @@ export class ProductsComponent {
     });
   }
 
-  onPageChange(newPage: number){
+  onPageChange(newPage: number) {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: {...this.route.snapshot.queryParams, page: newPage},
-      queryParamsHandling: 'merge'
-    })
+      queryParams: { ...this.route.snapshot.queryParams, page: newPage },
+      queryParamsHandling: 'merge',
+    });
   }
 }
 

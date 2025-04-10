@@ -1,17 +1,17 @@
 .active {
-    background-color: #378f6b;
-    color: #f5f8f5;
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
-    text-align: center;
-    line-height: 1.6;
-    font-weight: bold;
-  }
-  
-  .disabled {
-    background-color: #f5f8f5;
-    border: none;
-    color: #2e39264d;
-    cursor: not-allowed;
-  }
+  background-color: #378f6b;
+  color: #f5f8f5;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 1.6;
+  font-weight: bold;
+}
+
+.disabled {
+  background-color: #f5f8f5;
+  border: none;
+  color: #2e39264d;
+  cursor: not-allowed;
+}

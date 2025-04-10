@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HoverDirective } from '../../../directives/hover.directive';
 import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../filter/filter.component';
@@ -52,7 +46,6 @@ export class ProductCardComponent implements OnInit {
     private cartService: CartsService,
     private toaster: ToastrService
   ) {}
-  
 
   ngOnInit(): void {
     // this.getPaginatedData();
@@ -61,13 +54,13 @@ export class ProductCardComponent implements OnInit {
     });
   }
 
-  onPageClicked(page: number){
+  onPageClicked(page: number) {
     this.pageChange.emit(page);
   }
 
-  getPages(): number[]{
+  getPages(): number[] {
     const pages = [];
-    for (let i = 1; i <= this.totalPages; i++){
+    for (let i = 1; i <= this.totalPages; i++) {
       pages.push(i);
     }
     return pages;
@@ -89,9 +82,9 @@ export class ProductCardComponent implements OnInit {
   addToCart(productId: string) {
     if (this.token) {
       this.cartService.addToCart(productId, this.token);
-      this.toaster.success("Product added to cart successfully","Success")
-    }else{
-      this.toaster.success("Faild to add product to cart","Error")
+      this.toaster.success('Product added to cart successfully', 'Success');
+    } else {
+      this.toaster.success('Faild to add product to cart', 'Error');
     }
   }
 
@@ -99,7 +92,6 @@ export class ProductCardComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (token) {
       this.wishlistService.addToWishlist(productId, token);
-      
     }
   }
 
@@ -108,7 +100,6 @@ export class ProductCardComponent implements OnInit {
     if (token) this.wishlistService.removeFromWishlist(productId, token);
   }
 }
-
 
 /*
 
