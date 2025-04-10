@@ -25,6 +25,7 @@ export class PasswordManagerComponent {
   userId?: string;
   userData: any;
   isPasswordUpdated = false;
+  isGoogleAuthUser = false;
   constructor(
     private toastr: ToastrService,
     private fb: FormBuilder,
@@ -32,7 +33,7 @@ export class PasswordManagerComponent {
     private usersService: UsersService
   ) {
     this.passwordInformation = this.fb.group({
-      password: ['', Validators.required],
+      password: ['', []],
       newPassword: ['', [Validators.required]],
       confirmPassword: ['', Validators.required],
     });
@@ -45,6 +46,25 @@ export class PasswordManagerComponent {
     console.log('Retrieved userId:', this.userId);
     if (!this.userId) {
       this.toastr.error('User id not found', 'Error');
+    }
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.usersService.getUserById(this.userId!, token).subscribe({
+        next: res => {
+          this.userData = res.user;
+          this.isGoogleAuthUser = this.userData?.password === 'google-auth';
+          if (!this.isGoogleAuthUser) {
+            this.passwordInformation
+              .get('password')
+              ?.addValidators(Validators.required);
+            this.passwordInformation.get('password')?.updateValueAndValidity();
+          }
+        },
+        error: err => {
+          console.log('Error fetching user data', err);
+          this.toastr.error('Faild to load user data', 'Error');
+        },
+      });
     }
   }
 
@@ -66,8 +86,15 @@ export class PasswordManagerComponent {
       return;
     }
 
-    const { password, newPassword, confirmPassword } =
-      this.passwordInformation.value;
+    const { newPassword, confirmPassword } = this.passwordInformation.value;
+
+    const requestData: any = {
+      newPassword: newPassword,
+    };
+
+    if (!this.isGoogleAuthUser) {
+      requestData.oldPassword = this.passwordInformation.value.password;
+    }
 
     if (newPassword !== confirmPassword) {
       this.toastr.error(
@@ -76,11 +103,6 @@ export class PasswordManagerComponent {
       );
       return;
     }
-
-    const requestData = {
-      oldPassword: password,
-      newPassword: newPassword,
-    };
 
     this.passwordInformation.disable();
 

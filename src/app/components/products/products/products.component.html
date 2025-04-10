@@ -5,5 +5,7 @@
   [totalProducts]="totalProducts"
   [currentPage]="currentPage"
   [totalPages]="totalPages"
+  [rangeStart]="getRangeStart()"
+  [rangeEnd]="getRangeEnd()"
   (pageChange)="onPageChange($event)">
 </app-product-card>

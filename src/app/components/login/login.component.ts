@@ -53,6 +53,8 @@ export class LoginComponent {
         if (event.origin !== 'http://localhost:8282') return; // تأكد إن الرسالة جاية من الـ backend
         if (event.data?.token) {
           localStorage.setItem('token', event.data.token);
+          const decodedToken = this.decodeJWT(event.data.token);
+          localStorage.setItem('firstName', decodedToken.firstName);
           this.router.navigate(['']);
         }
       },
@@ -105,7 +107,7 @@ export class LoginComponent {
     const emailControl = this.loginForm.get('email');
 
     if (emailControl?.hasError('required')) {
-      return 'This input is required';
+      return 'This field is required';
     } else if (emailControl?.hasError('email')) {
       return 'Invalid email format';
     }
@@ -117,13 +119,14 @@ export class LoginComponent {
     const passwordControl = this.loginForm.get('password');
 
     if (passwordControl?.hasError('required')) {
-      return 'This input is required';
+      return 'This field is required';
     }
 
     return '';
   }
 
   login() {
+    this.loginForm.markAllAsTouched();
     if (this.loginForm.invalid) {
       return; // Stop submission if form is invalid
     }

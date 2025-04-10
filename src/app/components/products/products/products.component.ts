@@ -34,6 +34,7 @@ export class ProductsComponent {
   pageSize: number = 9;
 
   ngOnInit() {
+    this.setPageSizeByScreenWidth();
     this.wishlistService.wishlist$.subscribe({
       next: newWishlist => {
         this.wishlist = newWishlist;
@@ -78,6 +79,38 @@ export class ProductsComponent {
       queryParams: { ...this.route.snapshot.queryParams, page: newPage },
       queryParamsHandling: 'merge',
     });
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    const prevPageSize = this.pageSize;
+    this.setPageSizeByScreenWidth();
+
+    if (prevPageSize !== this.pageSize) {
+      this.fetchProducts(
+        this.route.snapshot.queryParamMap,
+        this.currentPage,
+        this.pageSize
+      );
+    }
+  }
+
+  private setPageSizeByScreenWidth() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 768) {
+      this.pageSize = 6;
+    } else {
+      this.pageSize = 9;
+    }
+  }
+
+  getRangeStart(): number {
+    return (this.currentPage - 1) * this.pageSize + 1;
+  }
+
+  getRangeEnd(): number {
+    const end = this.currentPage * this.pageSize;
+    return end > this.totalProducts ? this.totalProducts : end;
   }
 }
 

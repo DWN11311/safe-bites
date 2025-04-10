@@ -34,6 +34,8 @@ export class ProductCardComponent implements OnInit {
   @Input() totalProducts: number = 0;
   @Input() currentPage: number = 1;
   @Input() totalPages: number = 0;
+  @Input() rangeStart: number = 0;
+  @Input() rangeEnd: number = 0;
   @Output() pageChange = new EventEmitter<number>();
 
   filterIsHidden: boolean = false;
@@ -55,14 +57,49 @@ export class ProductCardComponent implements OnInit {
   }
 
   onPageClicked(page: number) {
+    if (page < 1 || page > this.totalPages || page === this.currentPage) return;
     this.pageChange.emit(page);
   }
 
-  getPages(): number[] {
-    const pages = [];
-    for (let i = 1; i <= this.totalPages; i++) {
+  isNumber(page: number | string): page is number {
+    return typeof page === 'number';
+  }
+
+  getPages(): (number | string)[] {
+    const pages: (number | string)[] = [];
+    // for (let i = 1; i <= this.totalPages; i++) {
+    //   pages.push(i);
+    // }
+    const maxPagesToShow = 5;
+    let startPage: number, endPage: number;
+
+    if (this.totalPages <= maxPagesToShow) {
+      startPage = 1;
+      endPage = this.totalPages;
+    } else {
+      if (this.currentPage <= 3) {
+        startPage = 1;
+        endPage = maxPagesToShow;
+      } else if (this.currentPage + 2 >= this.totalPages) {
+        startPage = this.totalPages - maxPagesToShow + 1;
+        endPage = this.totalPages;
+      } else {
+        startPage = this.currentPage - 2;
+        endPage = this.currentPage + 2;
+      }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
+
+    if (startPage > 1) {
+      pages.unshift('...');
+    }
+    if (endPage < this.totalPages) {
+      pages.push('...');
+    }
+
     return pages;
   }
 

@@ -1,8 +1,9 @@
-<div class="grid grid-cols-12 gap-8 p-8 mt-16 mx-auto lg:mx-10">
+<div
+  class="grid grid-cols-1 sm:grid-cols-12 gap-4 md:gap-8 lg:px-16 lg:mx-12 sm:mx-4 sm:px-2 mx-auto mt-16 max-w-screen-xl md:mx-4 md:px-4">
   <form
     [formGroup]="contactForm"
     (ngSubmit)="submitForm()"
-    class="col-span-12 sm:col-span-6 md:col-span-6 my-auto">
+    class="col-span-12 sm:col-span-6 md:col-span-6 my-auto w-full max-w-xl mx-auto px-6">
     <div class="col-span-12 sm:col-span-6 md:col-span-6">
       <div class="relative lg:mb-16 md:mb-10 sm:mb-10 mb-10 mt-4">
         <input
@@ -72,7 +73,7 @@
         <textarea
           id="message"
           formControlName="message"
-          class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 resize-none lg:h-48 md:h-32 sm:h-24 h-24"
+          class="peer w-full border-2 border-[#1B8057] rounded-md px-3 py-2 focus:outline-none focus:border-[#1B8057] focus:ring-0 resize-none xl:h-48 lg:h-32 md:h-32 sm:h-24 h-24"
           placeholder=" "
           (blur)="checkInputValue('message')"></textarea>
 
@@ -98,23 +99,25 @@
 
       <button
         type="submit"
-        class="bg-[#1B8057] text-white px-6 py-1 rounded-lg hover:bg-[#3a6b58] transition h-12 md:h-14 mt-4 cursor-pointer">
+        class="bg-[#1B8057] text-white px-10 rounded-lg hover:bg-[#3a6b58] transition h-12 md:h-14 mt-4 cursor-pointer">
         Send a Message
       </button>
     </div>
   </form>
-
-  <div class="col-span-12 sm:col-span-6 md:col-span-6">
+  <!-- col-span-12 sm:col-span-6 md:col-span-6 my-auto w-full max-w-xl px-4 mx-auto -->
+  <div
+    class="col-span-12 sm:col-span-6 md:col-span-6 w-full max-w-full object-cover mx-auto lg:pl-16 lg:mx-auto lg:my-4 md:my-4 sm:my-4">
     <img
       src="images/ContactUs/colleagues-working-together-call-center-office (1) 1.png"
-      alt="" />
+      alt="customer service"
+      class="hidden sm:block rounded-lg" />
   </div>
 </div>
 
 <!-- icons -->
 
 <div
-  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-18 mt-16 gap-8 lg:gap-24 md:gap-16 sm:gap-8">
+  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-auto px-6 sm:px-6 sm:mx-6 lg:px-16 md:mx-6 md:px-6 lg:mx-16 mt-16 gap-8 lg:gap-24 md:gap-16 sm:gap-8">
   <div
     class="border-2 border-[#1B8057] rounded-lg p-4 flex flex-col items-center">
     <div class="bg-[#1B8057] w-fit p-2 rounded-lg">
@@ -145,7 +148,7 @@
 <!-- small icons -->
 
 <div
-  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mx-18 mt-16 gap-8 lg:gap-24 md:gap-16 sm:gap-8">
+  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mx-auto px-6 sm:mx-6 sm:px-6 md:mx-6 md:px-6 lg:px-16 lg:mx-16 mt-16 gap-8 lg:gap-24 md:gap-16 sm:gap-8">
   <div class="flex gap-2 relative">
     <div>
       <i

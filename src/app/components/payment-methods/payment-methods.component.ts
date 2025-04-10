@@ -19,7 +19,7 @@ import { CartsService } from '../../services/carts.service';
   styleUrls: ['./payment-methods.component.css'],
 })
 export class PaymentMethodsComponent {
-  selectedPayment: string = ''; //
+  selectedPayment: string = 'cash'; //
 
   firstName: string = '';
   cardNumber: string = '';
