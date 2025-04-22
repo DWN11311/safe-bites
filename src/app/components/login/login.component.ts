@@ -9,6 +9,8 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { CommonModule } from '@angular/common';
+import { CartsService } from '../../services/carts.service';
+import { WishlistService } from '../../services/wishlist.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +33,9 @@ export class LoginComponent {
   constructor(
     private usersService: UsersService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private cartsService: CartsService,
+    private wishlistService: WishlistService
   ) {}
 
   onGoogleSignIn() {
@@ -137,8 +141,6 @@ export class LoginComponent {
       next: res => {
         const data = res.body;
         if (data.token) {
-          console.log(data);
-          // localStorage.setItem('token', data.token);
           this.usersService.logintoken(data.token);
 
           const decodedToken = this.decodeJWT(data.token);
@@ -148,7 +150,6 @@ export class LoginComponent {
             .subscribe(response => {
               userData = response.user;
               localStorage.setItem('userId', userData._id);
-              console.log(userData);
 
               if (userData.image && userData.image.imageUrl)
                 localStorage.setItem(
@@ -158,7 +159,6 @@ export class LoginComponent {
               window.location.href = '';
             });
           localStorage.setItem('firstName', decodedToken.firstName);
-          console.log('User First Name:', decodedToken.firstName);
           // Remeber Me
           if (rememberMe) {
             localStorage.setItem('rememberedEmail', email);

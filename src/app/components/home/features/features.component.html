@@ -5,12 +5,13 @@
   <div class="grid grid-cols-12 xl:gap-10 gap-5 col-span-12">
     @for (product of topRatedProducts; track $index) {
       <div
-        class="bg-white shadow-2xl rounded-2xl md:col-span-4 col-span-6 pt-5 pb-10 px-5"
+        [routerLink]="'/products/' + product._id"
+        class="bg-white shadow-2xl rounded-2xl md:col-span-4 min-[450px]:col-span-6 col-span-12 pt-5 pb-10 px-5"
         appHover>
         <div class="image w-full lg:h-96 sm:h-72 h-56 sm:py-5 py-3">
           <img
             [src]="product.images[0]?.imageUrl || 'images/default.jpg'"
-            class="m-auto w-full h-full rounded-2xl"
+            class="m-auto w-full h-full rounded-2xl object-contain"
             alt="Feature 1"
             [appHover]="product.images[1]?.imageUrl || 'images/default.jpg'" />
         </div>

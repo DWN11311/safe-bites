@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HoverDirective } from '../../directives/hover.directive';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../models/product.model';
@@ -9,15 +9,21 @@ import { EmptyWishListComponent } from '../empty-wish-list/empty-wish-list.compo
 import { WishlistService } from '../../services/wishlist.service';
 import { LoadingService } from '../../services/loading.service';
 import { Wishlist } from '../../models/wishlist.model';
+import { CartsService } from '../../services/carts.service';
 
 @Component({
   selector: 'app-wish-list',
   standalone: true,
-  imports: [WishlistcardComponent, PopUpComponent, EmptyWishListComponent],
+  imports: [
+    WishlistcardComponent,
+    PopUpComponent,
+    EmptyWishListComponent,
+    RouterModule,
+  ],
   templateUrl: './wish-list.component.html',
   styleUrl: './wish-list.component.css',
 })
-export class WishListComponent implements OnChanges, OnInit {
+export class WishListComponent implements OnInit {
   products: Wishlist = {};
   productEntries: Pick<
     Product,
@@ -33,7 +39,8 @@ export class WishListComponent implements OnChanges, OnInit {
   constructor(
     private router: Router,
     public wishlistService: WishlistService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private cartService: CartsService
   ) {}
 
   ngOnInit(): void {
@@ -56,8 +63,10 @@ export class WishListComponent implements OnChanges, OnInit {
       | '_id'
       | 'averageRating'
     >
-  ) {}
-  ngOnChanges() {}
+  ) {
+    const token = localStorage.getItem('token');
+    if (token) this.cartService.addToCart(product._id, token);
+  }
 
   removeFromWishlist(productId: string) {
     const token = localStorage.getItem('token');
@@ -71,9 +80,9 @@ export class WishListComponent implements OnChanges, OnInit {
   }
 
   removeAll() {
-    this.products = {};
-    this.showPopup = false;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const token = localStorage.getItem('token');
+
+    if (token) this.wishlistService.clearWishList(token);
   }
 
   moveToCart() {}

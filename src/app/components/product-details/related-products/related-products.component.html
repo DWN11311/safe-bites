@@ -63,7 +63,7 @@
           <div class="flex items-center gap-[0.25rem]">
             <i class="fa-solid fa-star text-[#F8C519] lg:text-md"></i>
             <p class="font-semibold text-[1rem] lg:md-[1.25rem] text-[#121311]">
-              {{ product.averageRating || 0 }}
+              {{ (product.averageRating | number: '1.1-1') || 0 }}
             </p>
           </div>
         </div>

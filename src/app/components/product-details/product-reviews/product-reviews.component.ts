@@ -45,8 +45,13 @@ export class ProductReviewsComponent {
         this.count = data.reviews.length;
         this.averageRating = data.averageRating.toFixed(1);
 
-        console.log(this.reviews);
-
+        this.ratingCounts = {
+          1: 0,
+          2: 0,
+          3: 0,
+          4: 0,
+          5: 0,
+        };
         this.reviews.forEach(review => {
           this.ratingCounts[review.rating]++;
         });

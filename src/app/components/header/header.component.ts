@@ -81,6 +81,7 @@ export class HeaderComponent {
 
   logout() {
     this.usersService.logout();
+    localStorage.clear();
     this.firstName = null;
     this.toggleMenu();
   }

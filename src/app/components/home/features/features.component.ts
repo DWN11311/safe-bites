@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { HoverDirective } from '../../../directives/hover.directive';
 import { Product } from '../../../models/product.model';
 import { ProductsService } from '../../../services/products.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartsService } from '../../../services/carts.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-features',
-  imports: [HoverDirective, CommonModule],
+  imports: [HoverDirective, CommonModule, RouterModule],
   templateUrl: './features.component.html',
   styleUrl: './features.component.css',
 })

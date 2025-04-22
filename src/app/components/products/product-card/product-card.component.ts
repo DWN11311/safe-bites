@@ -119,7 +119,6 @@ export class ProductCardComponent implements OnInit {
   addToCart(productId: string) {
     if (this.token) {
       this.cartService.addToCart(productId, this.token);
-      this.toaster.success('Product added to cart successfully', 'Success');
     } else {
       this.toaster.success('Faild to add product to cart', 'Error');
     }

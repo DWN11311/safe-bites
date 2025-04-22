@@ -22,7 +22,7 @@ export class CartComponent {
   constructor(
     private cartService: CartsService,
     private productService: ProductsService,
-    private toastr: ToastrService 
+    private toastr: ToastrService
   ) {}
   ngOnInit() {
     this.cartService.cart$.subscribe({
@@ -49,38 +49,56 @@ export class CartComponent {
       product.quantity--;
     }
   }
-increaseQuantity(product: any) {
+  increaseQuantity(product: any) {
     this.productService.getProductById(product._id).subscribe({
       next: (response: any) => {
         const availableQuantity = response.data.quantity;
         const requestedQuantityInCart = product.quantity + 1;
 
         if (requestedQuantityInCart > availableQuantity) {
-          this.toastr.error(`The requested quantity is not available. Available quantity: ${availableQuantity}`, 'error');
+          this.toastr.error(
+            `The requested quantity is not available.`,
+            'error'
+          );
         } else {
           const newQuantityInCart = product.quantity + 1;
           this.updateCart(product._id, newQuantityInCart, 'increase');
-          product.quantity++; 
+          // product.quantity++;
         }
       },
       error: (error: any) => {
         console.error('Error fetching product details', error);
-        this.toastr.error('An error occurred while checking the available quantity.', 'error');
-      }
+        this.toastr.error(
+          'An error occurred while checking the available quantity.',
+          'error'
+        );
+      },
     });
   }
 
-  updateCart(productId: string, quantityInCart: number, operation: 'increase' | 'decrease') {
+  updateCart(
+    productId: string,
+    quantityInCart: number,
+    operation: 'increase' | 'decrease'
+  ) {
     if (this.token && productId) {
       this.cartService.updateCart(productId, quantityInCart, this.token);
+
       const quantityChange = operation === 'increase' ? -1 : 1;
-      this.productService.updateProductQuantity(productId, quantityChange, operation, this.token).subscribe({
-        next: (response: any) => {
-        },
-        error: (error: any) => {
-          this.toastr.error('An error occurred while updating the quantity in stock', 'error');
-        }
-      });
+      this.productService
+        .updateProductQuantity(productId, quantityChange, operation, this.token)
+        .subscribe({
+          next: (response: any) => {
+            console.log(this.cart);
+          },
+
+          error: (error: any) => {
+            this.toastr.error(
+              'An error occurred while updating the quantity in stock',
+              'error'
+            );
+          },
+        });
     }
   }
 

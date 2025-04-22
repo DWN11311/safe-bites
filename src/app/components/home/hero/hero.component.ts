@@ -26,7 +26,7 @@ export class HeroComponent {
       }
 
       this.goToSlide(this.counter);
-    }, 20000);
+    }, 3000);
   }
 
   goToSlide(index: number): void {

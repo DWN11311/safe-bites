@@ -100,7 +100,7 @@ export class ProductsComponent {
     if (screenWidth <= 768) {
       this.pageSize = 6;
     } else {
-      this.pageSize = 9;
+      this.pageSize = 3;
     }
   }
 
