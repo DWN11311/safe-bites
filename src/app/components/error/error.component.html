@@ -1,0 +1,23 @@
+<div
+  class="flex flex-col items-center justify-center text-center h-[50vh] p-2 cursor-default">
+  <h1
+    class="lg:text-[200px] md:text-[150px] text-[130px] font-extrabold text-transparent bg-clip-text bg-center bg-cover bg-no-repeat"
+    style="
+      background-image: url('images/error/26ba0eeb716e8773e4bd3c97aea407d8.jpg');
+    ">
+    {{ errorCode }}
+  </h1>
+  <div class="flex flex-col gap-[1rem]">
+    <p class="font-bold lg:text-4xl md:text-3xl text-2xl text-[#1B8057]">
+      <span class="text-[#172919] font-bold lg:text-4xl md:text-3xl text-2xl"
+        >Oops!</span
+      >
+      {{ errorMessage }}
+    </p>
+    <button
+      routerLink="/"
+      class="mx-auto bg-[#1B8057] hover:bg-[#135C3E] shadow-[0_4px_4px_rgba(38,75,45,0.25)] px-4 py-2 mt-[1rem] text-[#F5F8F5] h-[56px] w-[175px] 2xl:w-[230px] xl:w-[220px] lg:w-[180px] lg:h-[56px] 2xl:text-[18px] xl:text-[16px] text-[16px] md:text-[14px] font-semibold rounded-[8px] cursor-pointer">
+      Go to Home Page
+    </button>
+  </div>
+</div>

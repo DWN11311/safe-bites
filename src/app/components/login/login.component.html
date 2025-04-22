@@ -1,264 +1,150 @@
-<!-- <div class="h-[100vh] flex items-center justify-center lg:my-0 md:block"> -->
-<!-- img part -->
-<!-- <div class="flex items-center justify-center md:min-h-screen md:mx-4 lg:mx-0">
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 rounded-lg overflow-hidden lg:max-w-[90%] w-full shadow-[0px_4px_10px_rgba(0,0,0,0.25)]">
-      <div class="relative hidden md:block">
-        <img
-          src="images/shopping.svg"
-          class="h-full lg:w-[80%] md:w-[90%] object-cover" />
-        <div
-          class="flex items-center justify-center md:max-w-[90%] lg:max-w-[80%] w-full">
-          <p
-            class="absolute bottom-12 bg-[rgba(255,255,255,0.2)] rounded-md text-[#F5F8F5] font-semibold md:text-sm lg:text-lg">
-            Sign up now and make wellness a lifestyle!
-          </p>
-        </div>
-        <img
-          src="images/sign up/Frame 1321317559.svg"
-          class="absolute top-0 left-4 w-20 h-20" />
-        <button
-          class="absolute top-0 lg:right-1/4 md:right-1/6 mt-4 bg-[rgba(255,255,255,0.2)] rounded-2xl py-1 px-2 flex justify-center items-center gap-2 text-[#213E0E] cursor-pointer md:text-sm lg:text-lg">
-          Back to Home<img src="images/sign up/Vector.svg" class="h-4 w-4" />
-        </button> -->
-<!-- </div> -->
+<div
+  class="grid grid-cols-12 h-screen xl:px-40 lg:px-24 px-10 xl:gap-10 gap-5 items-center">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+    class="col-span-12 md:col-span-6">
+    <div class="text-form gap-1 flex flex-col lg:gap-2">
+      <h1 class="text-[#1B8057] font-bold text-[2rem] lg:text-[2.5rem]">
+        Welcome Back
+      </h1>
+      <p
+        class="text-[#1B8057] text-base lg:text-xl font-normal flex gap-1 lg:mb-4 mb-2">
+        Don't have an account?<span
+          routerLink="/sign-up"
+          class="text-[#1B8057] text-base lg:text-xl underline font-bold md:font-semibold cursor-pointer"
+          >Sign up</span
+        >
+      </p>
 
-<!-- sign up -->
-<!-- title ceate account -->
-<!-- <div class="lg:w-[80%] md:w-[90%] md:px-0 md:pt-4 lg:pt-6 py-6 px-6">
-        <h1 class="text-[#7CAD3F] md:text-4xl font-bold pb-4 text-3xl">
-          Create an account
-        </h1>
-        <span
-          class="text-[#365D1C] md:text-lg font-normal opacity-80 text-normal"
-          >Already have an account? </span
-        ><a href="#" class="text-md font-semibold underline text-[#65715e]"
-          >log in</a
-        > -->
-<!-- field -->
-<!-- <div class="grid grid-cols-2 md:gap-8 gap-4 md:pt-8 pt-4">
-          <div class="relative w-full">
-            <input
-              type="text"
-              id="FirstName"
-              class="w-full peer p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
-              placeholder="First Name"
-              autocomplete="off" />
-            <label
-              for="FirstName"
-              class="absolute left-3 top-3 text-gray-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#365D1C] not-peer-placeholder-shown:top-[-10px] not-peer-placeholder-shown:text-sm not-peer-placeholder-shown:text-[#365D1C] bg-white px-1 transition-all duration-300 ease-in-out"
-              >First Name</label
-            >
-          </div>
-          <div class="relative w-full">
-            <input
-              type="text"
-              id="lastname"
-              class="w-full peer p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
-              placeholder="Last Name"
-              autocomplete="off" />
-            <label
-              for="lastname"
-              class="absolute left-3 top-3 text-gray-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#365D1C] not-peer-placeholder-shown:top-[-10px] not-peer-placeholder-shown:text-sm not-peer-placeholder-shown:text-[#365D1C] bg-white px-1 transition-all duration-300 ease-in-out"
-              >Last Name</label
-            >
-          </div>
-        </div> -->
-<!-- <div class="grid grid-cols-none pt-8 gap-8"> -->
-<!-- Email -->
-<!-- <div class="relative w-full">
-            <input
-              type="text"
-              id="Email"
-              class="peer w-full p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
-              placeholder="Email"
-              autocomplete="off" />
-            <label
-              for="Email"
-              class="absolute left-3 top-3 text-gray-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#365D1C] not-peer-placeholder-shown:top-[-10px] not-peer-placeholder-shown:text-sm not-peer-placeholder-shown:text-[#365D1C] bg-white px-1 transition-all duration-300 ease-in-out"
-              >Email</label
-            > -->
-<!-- </div> -->
-<!-- password -->
-<!-- <div class="relative w-full">
-            <input
-              type="text"
-              id="Password"
-              class="peer md:mb-0 mb-2 w-full p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
-              placeholder="Password"
-              autocomplete="off" />
-            <label
-              for="Password"
-              class="absolute left-3 top-3 text-gray-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#365D1C] not-peer-placeholder-shown:top-[-10px] not-peer-placeholder-shown:text-sm not-peer-placeholder-shown:text-[#365D1C] bg-white px-1 transition-all duration-300 ease-in-out"
-              >Password</label
-            >
-          </div> -->
-<!-- </div> -->
-<!-- error password -->
-<!-- <div
-          class="flex items-center justify-center gap-6 md:gap-0 lg:gap-2 flex-row md:pt-2 invisible">
-          <span class="text-sm md:text-xs lg:text-sm text-[#365D1C] px-2"
-            ><i class="fa-solid fa-circle-xmark text-[#a40f0f]"></i> UpperCase
-            A-Z</span
-          > -->
-<!-- <span class="text-sm md:text-xs lg:text-sm text-[#365D1C] px-2">
-            <i class="fa-solid fa-circle-xmark text-[#a40f0f]"></i> Number
-            0-9</span
-          >
-
-          <span class="text-sm md:text-xs lg:text-sm text-[#365D1C] px-2">
-            <i class="fa-solid fa-circle-xmark text-[#a40f0f]"></i> Special
-            (#,!, etc..)</span
-          > -->
-<!-- </div> -->
-<!-- check box -->
-<!-- <div class="pb-6 md:pt-3 pt-2 flex items-center gap-2">
-          <input type="checkbox" id="accept" class="w-4 h-4" />
-          <label for="accept" class="text-[#365D1C] text-sm font-normal"
-            >I agree to the
-            <span class="text-[#7CAD3F] underline text-sm font-semibold"
-              >terms & conditions</span
-            ></label
-          >
-        </div> -->
-<!-- button create account -->
-<!-- <button
-          class="text-xl p-3 border-[#365D1C] rounded-md w-full bg-[#365D1C] text-[#FAFAFA] shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:bg-[#1F4109] hover:border-[#1F4109] hover:-translate-y-1 cursor-pointer transition-all duration-300 ease-in-out">
-          Create Account
-        </button> -->
-<!-- text  register -->
-<!-- <div class="flex items-center justify-center gap-3 w-full my-6 lg:my-7">
-          <div class="flex-1 h-[1px] bg-[#365D1C]"></div>
-          <p class="px-3 text-md text-[#152D05]">Or Register with</p>
-          <div class="flex-1 h-[1px] bg-[#365D1C]"></div>
-        </div> -->
-<!-- button-google -->
-
-<!-- <button
-          class="text-xl p-3 border rounded-md w-full border-[#7CAD3F] text-[#7CAD3F] flex justify-center items-center gap-2 mb-2 shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:border-[#1F4109] hover:text-[#1F4109] hover:-translate-y-1 cursor-pointer transition-all duration-300 ease-in-out">
-          <img src="images/sign up/google color.svg" class="h-4 w-4" />Google
-        </button>
-      </div>
+      <!-- <p
+        *ngIf="errorMessage"
+        class="min-h-[20px] text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1 pb-2">
+        {{ errorMessage }}
+      </p> -->
     </div>
-  </div>
-</div> -->
-<!-- Asmaa -->
-<!-- big container -->
-<div class="h-[100vh] flex items-center justify-center lg:my-0 md:block">
-  <!-- form -->
-  <div class="flex items-center justify-center md:min-h-screen md:mx-4 lg:mx-0">
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 rounded-lg overflow-hidden lg:max-w-[90%] w-full shadow-[0px_4px_10px_rgba(0,0,0,0.25)]">
-      <div class="relative md:block w-full">
-        <!-- sign up -->
-        <!-- title ceate account -->
-        <div
-          class="ml-8 lg:w-[80%] md:w-[90%] md:px-0 md:pt-4 lg:pt-6 py-6 px-6">
-          <h1 class="text-[#7CAD3F] md:text-4xl font-bold pb-4 text-3xl">
-            Welcome Back
-          </h1>
-          <span
-            class="text-[#365D1C] md:text-lg font-normal opacity-80 text-normal"
-            >Please Enter your details
-          </span>
 
-          <!-- field -->
-          <div class="grid grid-cols-none pt-8 gap-8">
-            <!-- Email -->
-            <div class="relative w-full">
-              <input
-                type="text"
-                id="Email"
-                class="peer w-full p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
-                placeholder="Email"
-                autocomplete="off" />
-              <label
-                for="Email"
-                class="absolute left-3 top-3 text-gray-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#365D1C] not-peer-placeholder-shown:top-[-10px] not-peer-placeholder-shown:text-sm not-peer-placeholder-shown:text-[#365D1C] bg-white px-1 transition-all duration-300 ease-in-out"
-                >Email</label
-              >
-            </div>
-            <!-- password -->
-            <div class="relative w-full">
-              <input
-                type="text"
-                id="Password"
-                class="peer md:mb-0 mb-2 w-full p-3 rounded-md border-[#7CAD3F] border-2 focus:border-[#365D1C] focus:outline-none placeholder-transparent"
-                placeholder="Password"
-                autocomplete="off" />
-              <label
-                for="Password"
-                class="absolute left-3 top-3 text-gray-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-[#365D1C] not-peer-placeholder-shown:top-[-10px] not-peer-placeholder-shown:text-sm not-peer-placeholder-shown:text-[#365D1C] bg-white px-1 transition-all duration-300 ease-in-out"
-                >Password</label
-              >
-            </div>
+    <!-- form -->
+    <div class="form-field flex flex-col gap-4">
+      <!-- email -->
+      <div class="flex flex-col gap-6">
+        <div class="field-firstname flex flex-col gap-2">
+          <label for="email" class="text-[#121311] pl-1 font-medium"
+            >Email*</label
+          >
+          <input
+            id="email"
+            formControlName="email"
+            type="email"
+            placeholder="Enter your email"
+            class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 text-[14px] border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
+            autocomplete="off" />
+          <div class="h-[1px]">
+            <p
+              *ngIf="
+                loginForm.get('email')?.invalid &&
+                loginForm.get('email')?.touched
+              "
+              class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
+              <span>
+                <i class="fa-solid text-[#a40f0f] fa-circle-exclamation"></i
+              ></span>
+              {{ getEmailError() }}
+            </p>
+            <p
+              *ngIf="errorEmail"
+              class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
+              <span>
+                <i class="fa-solid text-[#a40f0f] fa-circle-exclamation"></i
+              ></span>
+              {{ errorEmail }}
+            </p>
           </div>
-          <!-- check box -->
-          <div class="pb-6 md:pt-3 pt-2 flex items-center gap-2">
-            <input type="checkbox" id="accept" class="w-4 h-4" />
-            <label for="accept" class="text-[#365D1C] text-sm font-normal"
-              >Remeber Me
-            </label>
-          </div>
-          <!-- button Log IN -->
-          <button
-            class="text-xl p-3 border-[#365D1C] rounded-md w-full bg-[#365D1C] text-[#FAFAFA] shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:bg-[#1F4109] hover:border-[#1F4109] hover:-translate-y-1 cursor-pointer transition-all duration-300 ease-in-out">
-            Log In
-          </button>
-          <div class="pt-2 pl-">
-            <span
-              class="text-[#365D1C] md:text-lg font-normal opacity-80 text-normal"
-              >Don't have an Account ? </span
-            ><a
-              routerLink="/sign-up"
-              class="text-md font-semibold underline text-[#65715e]"
-              >Sign up</a
-            >
-          </div>
-
-          <!-- text  register -->
-          <div
-            class="flex items-center justify-center gap-3 w-full my-6 lg:my-7">
-            <div class="flex-1 h-[1px] bg-[#365D1C]"></div>
-            <p class="px-3 text-md text-[#152D05]">Or Log In with</p>
-            <div class="flex-1 h-[1px] bg-[#365D1C]"></div>
-          </div>
-          <!-- button-google -->
-
-          <button
-            class="text-xl p-3 border rounded-md w-full border-[#7CAD3F] text-[#7CAD3F] flex justify-center items-center gap-2 mb-2 shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:border-[#1F4109] hover:text-[#1F4109] hover:-translate-y-1 cursor-pointer transition-all duration-300 ease-in-out">
-            <img src="images/google-color.svg" class="h-4 w-4" />Google
-          </button>
         </div>
-      </div>
-      <!-- Image -->
-      <div>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 rounded-lg overflow-hidden lg:max-w-[90%]">
-          <div class="relative hidden md:block">
-            <img
-              src="images/shopping.svg"
-              class="h-full w-full lg:w-[80%] md:w-[90%] object-cover" />
-            <div
-              class="flex items-center justify-center md:max-w-[90%] lg:max-w-[80%] w-full">
+        <!-- Password -->
+        <div class="flex flex-col gap-8">
+          <div class="flex flex-col gap-2">
+            <label for="password" class="text-[#121311] pl-1 font-medium"
+              >Password*</label
+            >
+            <div class="relative">
+              <input
+                formControlName="password"
+                id="password"
+                [type]="showPassword ? 'text' : 'password'"
+                placeholder="Enter your Password"
+                class="w-full border-2 rounded-lg p-3 pr-10 border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
+                autocomplete="off" />
+              <span
+                class="absolute inset-y-0 right-3 flex items-center text-[#58595A] text-xl cursor-pointer"
+                (click)="togglePassword()">
+                <i
+                  [class]="
+                    showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'
+                  "></i>
+              </span>
+            </div>
+
+            <div class="h-[1px]">
               <p
-                class="absolute bottom-12 bg-[rgba(255,255,255,0.2)] rounded-md text-[#F5F8F5] font-semibold md:text-sm lg:text-lg">
-                Sign up now and make wellness a lifestyle!
+                *ngIf="
+                  loginForm.get('password')?.invalid &&
+                  loginForm.get('password')?.touched
+                "
+                class="text-sm md:text-xs lg:text-sm text-[#a40f0f]">
+                <span>
+                  <i class="fa-solid text-[#a40f0f] fa-circle-exclamation"></i
+                ></span>
+                {{ getPasswordError() }}
               </p>
             </div>
-            <img
-              src="images/sign up/Frame 1321317559.svg"
-              class="absolute top-0 left-4 w-20 h-20" />
-            <a
-              routerLink=""
-              class="absolute top-0 lg:right-1/4 md:right-1/6 mt-4 bg-[rgba(255,255,255,0.2)] rounded-2xl py-1 px-2 flex justify-center items-center gap-2 text-[#213E0E] cursor-pointer md:text-sm lg:text-lg">
-              Back to Home<img
-                src="images/sign up/Vector.svg"
-                class="h-4 w-4" />
-            </a>
+          </div>
+          <!--  -->
+
+          <!-- <span class="h-6">error</span> -->
+          <!-- check box  -->
+          <div class="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id="check"
+              formControlName="rememberMe"
+              class="h-4 w-4 md:w-5 md:h-5" />
+            <label for="check" class="text-[#1B8057] text-[1rem] font-normal"
+              >Remeber me</label
+            >
           </div>
         </div>
       </div>
+      <!-- buttons -->
+      <div class="buttons flex flex-col gap-5">
+        <button
+          class="shadow-[0_4px_4px_rgBA(38,75,45,0.25)] hover:bg-[#135C3E] p-3 w-full rounded-lg h-[44px] lg:h-[56px] bg-[#1B8057] text-[#F5F8F5] font-semibold text-base lg:text-xl flex items-center justify-center shadow-[rgba(116,154,68,0.25)] transition-all duration-300 ease-in-out cursor-pointer">
+          Log in
+        </button>
+        <div class="flex w-full gap-2 items-center">
+          <div class="flex-1 h-[2px] bg-[#7DB69F]"></div>
+          <p class="text-[#1B8057] font-semibold text-2xl">Or Sign in with</p>
+          <div class="flex-1 h-[2px] bg-[#7DB69F]"></div>
+        </div>
+        <button
+          (click)="onGoogleSignIn()"
+          class="gap-4 border-2 shadow-[0_4px_4px_rgBA(38,75,45,0.25)] p-3 w-full border-[#7DB69F] rounded-lg h-[44px] lg:h-[56px] text-[#1B8057] font-bold text-2xl flex items-center justify-center transition-all duration-300 ease-in-out cursor-pointer hover:border-[#1B8057]">
+          <img src="images/sign up/google color.svg" class="h-6 w-6" /> Google
+        </button>
+        <div routerLink="" class="flex items-end cursor-pointer gap-2">
+          <i class="fa-solid fa-chevron-left text-xl text-[#1B8057]"></i>
+          <span
+            class="underline font-semibold text-lg lg:text-xl text-[#1B8057] flex gap-2 items-center"
+            >Back to Home</span
+          >
+        </div>
+      </div>
     </div>
+  </form>
+
+  <div class="hidden md:block md:col-span-6 h-screen">
+    <img
+      src="images/sign up/f75141002b7274ddf70545cfed087e44.jpg"
+      class="w-full lg:h-[37.8rem] lg:mt-12 h-[35.5rem] mt-15" />
   </div>
 </div>

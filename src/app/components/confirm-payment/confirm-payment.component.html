@@ -1,0 +1,21 @@
+<div
+  style="background-color: rgba(0, 0, 0, 0.7)"
+  class="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg shadow-lg p-6 w-[350px] text-center">
+    <div
+      class="w-12 h-12 mx-auto mb-4 rounded-full bg-[#F8C519] flex items-center justify-center">
+      <i class="fa-solid fa-check text-white text-lg"></i>
+    </div>
+    <h2 class="text-xl font-semibold text-gray-800 mb-2">
+      Your order is Complete!
+    </h2>
+    <p class="text-gray-600 text-sm">Thank you. Your order has been received</p>
+    <a class="flex cursor-pointer gap-1 mt-4" (click)="goHome()">
+      <i class="fa-solid text-sm mt-2 fa-chevron-left text-[#F8C519]"></i>
+      <span
+        class="underline font-semibold text-[#F8C519] flex gap-2 items-center"
+        >Back to Home</span
+      >
+    </a>
+  </div>
+</div>

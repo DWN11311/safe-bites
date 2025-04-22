@@ -1,0 +1,20 @@
+<div class="grid grid-cols-12 xl:gap-10 gap-5 xl:mx-40 sm:mx-24 mx-8 mt-10">
+  <!-- Sidebar Tabs -->
+  <div
+    class="xl:col-span-4 lg:col-span-5 md:col-span-6 sm:col-span-10 col-span-12 xl:pr-10 lg:pr-20 md:pr-10 md:mb-0 mb-4">
+    <app-profile-tabs (tabchanged)="selectedTab = $event"></app-profile-tabs>
+  </div>
+
+  <!-- Tab Content -->
+  <div class="xl:col-span-8 lg:col-span-7 md:col-span-6 col-span-12">
+    @if (selectedTab === 0) {
+      <app-personal-information></app-personal-information>
+    }
+    @if (selectedTab === 1) {
+      <app-password-manager></app-password-manager>
+    }
+    @if (selectedTab === 2) {
+      <app-logout></app-logout>
+    }
+  </div>
+</div>

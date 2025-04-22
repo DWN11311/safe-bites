@@ -1,0 +1,43 @@
+<div
+  class="border-2 p-6 w-full max-w-[340px] border-[#C5C4C4] rounded-lg mx-auto lg:mt-4">
+  <!-- Order Summary -->
+  <h1 class="text-xl md:text-2xl font-semibold text-center">Order Summary</h1>
+
+  <!-- Order Details -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 text-[#58595A] mt-4">
+    <div class="col-span-2 h-[1px] bg-[#C5C4C4]"></div>
+
+    <span class="font-semibold text-left">Items</span>
+    <span class="text-right text-[#121311]">4</span>
+
+    <span class="font-semibold text-left">Sub Total</span>
+    <span class="text-right text-[#121311]">100 EGP</span>
+
+    <span class="font-semibold text-left">Shipping</span>
+    <span class="text-right text-[#121311]">Free</span>
+
+    <span class="font-semibold text-left">Coupon Discount</span>
+    <span class="text-right text-red-500">-50 EGP</span>
+
+    <!-- Divider -->
+    <div class="col-span-2 h-[1px] bg-[#C5C4C4]"></div>
+
+    <!-- Total Row -->
+    <span class="font-semibold text-lg md:text-xl text-left text-[#121311]"
+      >Total</span
+    >
+    <span class="text-right font-semibold text-lg md:text-xl text-[#121311]"
+      >50 EGP</span
+    >
+  </div>
+
+  <!-- Confirm Button -->
+  <button
+    class="w-full bg-[#1B8057] text-white py-2 mt-4 rounded-md hover:bg-[#307055] transition text-center cursor-pointer"
+    (click)="toggleConfirmPayment()">
+    Confirm Payment
+  </button>
+</div>
+@if (showConfirmPayment) {
+  <app-confirm-payment></app-confirm-payment>
+}

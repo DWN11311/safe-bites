@@ -1,0 +1,127 @@
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 28px;
+
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  top: 50%;
+  translate: 0 -50%;
+  position: absolute;
+
+  left: 0;
+  height: 20px;
+  width: 20px;
+
+  border: 2px solid #378f6a;
+  transition: all 300ms;
+  border-radius: 4px;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #378f6a18;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: #378f6b;
+  border: 2px solid #378f6b;
+}
+
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  background: url('/images/check-solid.svg') center/contain no-repeat;
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  border: none;
+}
+
+/*  */
+
+.radio-wrapper-27 {
+  display: flex;
+  align-items: center;
+  --bc: 27.8078% 0.029596 256.847952;
+}
+
+.radio-wrapper-27 label {
+  padding-left: 0.6em;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: oklch(var(--bc) / var(--tw-text-opacity));
+}
+
+.radio-wrapper-27 input[type='radio'] {
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 1.5rem;
+  width: 1.5rem;
+  cursor: pointer;
+  border-radius: 9999px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #378f6b;
+  --tw-border-opacity: 0.2;
+  --chkbg: var(--bc);
+  --b1: 100% 0 0;
+}
+
+.radio-wrapper-27 input[type='radio']:checked,
+.radio-wrapper-27 input[type='radio'][aria-checked='true'] {
+  --tw-bg-opacity: 1;
+  background-color: #378f6b;
+  background-image: none;
+  animation: radiomark-27 var(--animation-input, 0.2s) ease-out;
+  box-shadow:
+    0 0 0 4px oklch(var(--b1) / 1) inset,
+    0 0 0 4px oklch(var(--b1) / 1) inset;
+}
+
+@keyframes radiomark-27 {
+  0% {
+    box-shadow:
+      0 0 0 12px oklch(var(--b1) / 1) inset,
+      0 0 0 12px oklch(var(--b1) / 1) inset;
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px oklch(var(--b1) / 1) inset,
+      0 0 0 3px oklch(var(--b1) / 1) inset;
+  }
+  100% {
+    box-shadow:
+      0 0 0 4px oklch(var(--b1) / 1) inset,
+      0 0 0 4px oklch(var(--b1) / 1) inset;
+  }
+}

@@ -1,7 +1,11 @@
-<app-product-card 
-    [totalItems]="data.length" 
-    [itemsPerPage]="itemsPerPage"
-    [currentPage]="currentPage"
-    [paginatedData]="paginatedData"
-    (onClick)="changePage($event)">
+<app-product-card
+  [data]="data"
+  [wishlist]="wishlist"
+  [cartData]="cartData"
+  [totalProducts]="totalProducts"
+  [currentPage]="currentPage"
+  [totalPages]="totalPages"
+  [rangeStart]="getRangeStart()"
+  [rangeEnd]="getRangeEnd()"
+  (pageChange)="onPageChange($event)">
 </app-product-card>

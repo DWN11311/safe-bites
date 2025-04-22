@@ -1,0 +1,72 @@
+<div
+    class="md:py-20 py-12 flex flex-col md:gap-10  px-22  justify-center bg-[#FDFFF6]" >   
+    <!-- <h1 class="text-5xl font-semibold text-[#7C9B66] ">Shopping Cart</h1>  -->
+ 
+ 
+        <!-- <div class="grid grid-cols-[2fr_1fr] gap-18 md:pb-20 pb-12  md:px-[120px]   justify-center"> -->
+            <div>
+             
+              <div class=" grid grid-cols-3 gap-[30px]">
+                @for (product of cart; track product.name) {
+                  <div class="  bg-white shadow-2xl rounded-lg py-5 px-5 mb-3">
+                    <img src="{{ product.image }}" class="">
+                    <div class="text-center">
+                      <h1 class="text-xl">{{ product.name }}</h1>
+                      <p class="text-[24px]">${{ product.price }}</p>
+                      <div>
+                        <span>-</span>
+                        <span>1</span>
+                        <button class="border border-amber-300 bg-amber-400">+</button>
+                      </div>
+                    </div> 
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- now here  -->
+          <!-- checkout -->
+            <div class=" flex flex-col gap-8">
+                <!-- section1 -->
+                <div class="flex justify-between">
+                    <h2 class="text-lg font-semibold text-[#808080]">Number of items </h2>
+                    <p class="text-[#071001] font-semibold">8</p>
+                </div>
+                <!-- section2 -->
+            <div class="flex justify-between">
+                <h2 class="text-lg font-semibold text-[#808080]">Subtotal:</h2>
+                <p class="text-[#071001] font-semibold">30$</p>
+            </div>  
+                  <!--section3  -->
+                  <div class="flex justify-between">
+                    <h2 class="text-lg font-semibold text-[#808080]">Shipping:</h2>
+                    <p class="text-[#071001] font-semibold">5$</p>
+                  </div>
+                  <!-- section4 -->
+                  <h2 class="text-lg font-semibold text-[#808080]">Coupon code</h2>
+                   <div class="flex justify-between">
+                    <input type="text"  placeholder="Coupon code" class="rounded-lg  border-[#7CAD3F] border-2 p-3">
+              
+                    <button
+                    
+                    class=" lg:text-lg md:text-base text-sm lg:h-14 h-12  p-3  rounded-lg  bg-[#7CAD3F] text-[#FAFAFA] shadow-[0px_4px_4px_rgba(116,154,68,0.25)]    hover:bg-[#5B8329] transition-all duration-300 ease-in-out cursor-pointer">
+                    applay your code
+                  </button>
+                   </div>
+                   <!--section5 -->
+                   <hr>
+                   <!-- section6 -->
+                    <div class="flex justify-between">
+                        <h2 class="text-xl font-semibold text-[#071001]">Total</h2>
+                        <p class="text-[#071001] font-semibold">35$</p>
+                    </div>
+                    <!-- section7 -->
+                     <div class=" flex flex-col gap-6">
+                        <button class=" lg:text-lg md:text-base text-sm lg:h-14 h-12  p-3  rounded-lg  bg-[#7CAD3F] text-[#FAFAFA] shadow-[0px_4px_4px_rgba(116,154,68,0.25)]    hover:bg-[#5B8329] transition-all duration-300 ease-in-out cursor-pointer">
+                            Checkout <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button     class=" lg:text-lg md:text-base text-sm lg:h-14 h-12  p-3  rounded-lg  bg-[#7CAD3F] text-[#FAFAFA] shadow-[0px_4px_4px_rgba(116,154,68,0.25)]    hover:bg-[#5B8329] transition-all duration-300 ease-in-out cursor-pointer"><i class="fa-solid fa-arrow-left"></i> Continue Shopping</button>
+                     </div>
+            </div>
+            <!--  -->
+          </div>

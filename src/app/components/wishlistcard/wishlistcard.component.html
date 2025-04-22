@@ -1,0 +1,53 @@
+<div
+  class="bg-white rounded-lg py-2 px-2 flex flex-col justify-evenly w-full max-w-full"
+  style="box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25)">
+  <!-- images -->
+  <div>
+    <img
+      [routerLink]="'/products/' + product._id"
+      [src]="product.images[0].imageUrl"
+      [appHover]="product.images[1].imageUrl"
+      alt="image1"
+      class="w-full h-52 object-contain duration-300 mt-4" />
+  </div>
+  <!-- details -->
+  <div class="p-4">
+    <!-- price -->
+    <p class="text-lg mt-2 text-[#7DB69F]">${{ product.price }}</p>
+    <!-- title -->
+    <h2
+      class="text-xl mt-2 font-semibold overflow-hidden text-nowrap overflow-ellipsis">
+      {{ product.name }}
+    </h2>
+    <!-- pref -->
+    <p
+      class="text-sm text-gray-500 py-1 mt-2 overflow-hidden text-nowrap overflow-ellipsis">
+      {{ product.brief }}
+    </p>
+    <!-- evaluation -->
+    <div class="mt-2 flex items-center">
+      @for (star of [1, 2, 3, 4, 5]; track star) {
+        <i
+          class="fa-solid fa-star"
+          class="{{
+            product.averageRating >= star ? 'text-yellow-400' : 'text-gray-300'
+          }}">
+        </i>
+      }
+    </div>
+    <!-- buttons -->
+    <div class="flex justify-between mt-3 gap-4 self-end">
+      <!-- add to cart -->
+      <button
+        (click)="addToCart()"
+        class="rounded-lg bg-[#1B8057] hover:bg-[#307055] text-white w-full h-12 md:h-14 cursor-pointer font-semibold transition-all">
+        <i class="fa-solid fa-cart-plus mr-1"></i> Add to cart
+      </button>
+      <!-- delete -->
+      <button class="cursor-pointer shrink-0" (click)="removeItem()">
+        <i
+          class="fa-solid fa-trash mr-1 text-[#808080] text-3xl hover:text-[#464545] transition-all"></i>
+      </button>
+    </div>
+  </div>
+</div>

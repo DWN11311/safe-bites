@@ -1,0 +1,10 @@
+<div class="col-span-full flex flex-wrap gap-4 mb-8 text-[#378f6b]">
+  @for (filter of filters; track $index) {
+    <span
+      (click)="removeFilter($index)"
+      class="border-2 border-[#378f6b] text-sm px-2 rounded-sm py-2 font-medium max-w-full flex items-center gap-2 cursor-pointer"
+      >{{ filter.label }}
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </span>
+  }
+</div>

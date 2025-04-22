@@ -1,8 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css',
 })
@@ -25,7 +26,7 @@ export class HeroComponent {
       }
 
       this.goToSlide(this.counter);
-    }, 20000);
+    }, 3000);
   }
 
   goToSlide(index: number): void {

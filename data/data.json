@@ -1,0 +1,78 @@
+{
+  "products": [
+    {
+      "name": "Cacao Hazelnut",
+      "images": [
+        "images/related product/img1.jpg",
+        "images/related product/img2.jpg"
+      ],
+      "badge": "New",
+      "category": "Sugar-free",
+      "description": "Delicious cacao hazelnut clusters, packed with flavor.",
+      "rating": 4.5,
+      "discountPrice": "200",
+      "originalPrice": "300",
+      "quantity": 1,
+      "releaseDate": "2025-3-20"
+    },
+    {
+      "name": "Choc Chip Cookie",
+      "images": [
+        "images/related product/img3.jpg",
+        "images/related product/img4.jpg"
+      ],
+      "badge": "Best Seller",
+      "category": "Sugar-free",
+      "description": "Crispy and chocolaty chip cookies in a star shape.",
+      "rating": 4.7,
+      "discountPrice": "0",
+      "originalPrice": "320",
+      "quantity": 1,
+      "releaseDate": "2025-03-19"
+    },
+    {
+      "name": "Choc Hazelnut",
+      "images": [
+        "images/related product/img5.jpg",
+        "images/related product/img6.jpg"
+      ],
+      "badge": "Limited Edition",
+      "category": "Sugar-free",
+      "description": "Smooth and creamy chocolate hazelnut spread.",
+      "rating": 4.6,
+      "originalPrice": "350",
+      "quantity": 0,
+      "releaseDate": "2023-07-20"
+    },
+    {
+      "name": "Peanut Choc Bliss",
+      "images": [
+        "images/related product/img7.jpg",
+        "images/related product/img8.jpg"
+      ],
+      "badge": "Hot Deal",
+      "category": "Sugar-free",
+      "description": "Perfect combination of peanut butter and chocolate.",
+      "rating": 4.8,
+      "discountPrice": "180",
+      "originalPrice": "280",
+      "quantity": 1,
+      "releaseDate": "2023-09-05"
+    },
+    {
+      "name": "Peanut Choc Bliss",
+      "images": [
+        "images/related product/img7.jpg",
+        "images/related product/img8.jpg"
+      ],
+      "badge": "Hot Deal",
+      "category": "Sugar-free",
+      "description": "Perfect combination of peanut butter and chocolate.",
+      "rating": 4.8,
+      "discountPrice": "180",
+      "originalPrice": "280",
+      "quantity": 1,
+      "releaseDate": "2023-09-05"
+    }
+  ]
+}
