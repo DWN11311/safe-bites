@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { HoverDirective } from '../../../directives/hover.directive';
 import { Product } from '../../../models/product.model';
 import { ProductsService } from '../../../services/products.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartsService } from '../../../services/carts.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-features',
-  imports: [HoverDirective, CommonModule],
+  imports: [HoverDirective, CommonModule, RouterModule],
   templateUrl: './features.component.html',
   styleUrl: './features.component.css',
 })
-export class FeaturesComponent implements OnInit{
+export class FeaturesComponent implements OnInit {
   products: Product[] = [];
   topRatedProducts: Product[] = [];
   token: string | null = localStorage.getItem('token');
@@ -25,27 +25,29 @@ export class FeaturesComponent implements OnInit{
     private cartsService: CartsService,
     private route: ActivatedRoute,
     private toaster: ToastrService
-  ){}
-  
+  ) {}
+
   ngOnInit(): void {
     const queryParams = this.route.snapshot.queryParamMap;
 
-    this.productService.getAllProducts(queryParams, this.page, this.limit).subscribe({
-      next: (res: any) => {
-        this.products = res.data;
-        this.topRatedProducts = [...this.products]
-        .sort((a, b) => b.averageRating - a.averageRating)
-        .slice(0, 3);
-      }
-    })
+    this.productService
+      .getAllProducts(queryParams, this.page, this.limit)
+      .subscribe({
+        next: (res: any) => {
+          this.products = res.data;
+          this.topRatedProducts = [...this.products]
+            .sort((a, b) => b.averageRating - a.averageRating)
+            .slice(0, 3);
+        },
+      });
   }
 
   handleAddToCart(productId: string) {
     if (this.token) {
       this.cartsService.addToCart(productId, this.token);
-      this.toaster.success("Product added to cart successfully", "Success");
-    }else{
-      this.toaster.success("Faild to add product to cart", "Error");
+      this.toaster.success('Product added to cart successfully', 'Success');
+    } else {
+      this.toaster.success('Faild to add product to cart', 'Error');
     }
   }
 }

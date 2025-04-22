@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Product } from '../models/product.model';
 import { Wishlist } from '../models/wishlist.model';
+import { LoadingService } from './loading.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +20,12 @@ export class WishlistService {
   // we make an observable out of the behvaiour subject because we don't want anyone to pass a value to our behaviour subject outside of the service
   // this is what we will subscribe to outside the service, we do this because we want the service to be the only place where the value of the behavior subject can be changed
   public wishlist$ = this.wishlistSubject.asObservable();
+
+  constructor(
+    private http: HttpClient,
+    private loadingService: LoadingService,
+    private toaster: ToastrService
+  ) {}
 
   formatWishlist(response: { data: { productId: Product }[] }) {
     if (response.data) {
@@ -45,12 +53,21 @@ export class WishlistService {
       'Content-Type': 'application/json',
     });
 
+    this.loadingService.show();
     this.http
       .get<{ data: { productId: Product }[] }>(this.url, { headers })
       .pipe(map(data => this.formatWishlist(data)))
       .subscribe({
         next: formattedData => {
+          console.log(formattedData);
           this.wishlistSubject.next(formattedData);
+        },
+        error: err => {
+          this.toaster.error('Could not fetch wishlist', err.message);
+          console.log(err);
+        },
+        complete: () => {
+          this.loadingService.hide();
         },
       });
   }
@@ -61,6 +78,7 @@ export class WishlistService {
       'Content-Type': 'application/json',
     });
 
+    this.loadingService.show();
     this.http
       .post<{
         data: { productId: Product }[];
@@ -69,6 +87,17 @@ export class WishlistService {
       .subscribe({
         next: formattedData => {
           this.wishlistSubject.next(formattedData);
+          this.toaster.success(
+            'Product added to wishlist successfully',
+            'Success'
+          );
+        },
+        error: err => {
+          this.toaster.error('Could not fetch wishlist', err.message);
+          console.log(err);
+        },
+        complete: () => {
+          this.loadingService.hide();
         },
       });
   }
@@ -79,6 +108,7 @@ export class WishlistService {
       'Content-Type': 'application/json',
     });
 
+    this.loadingService.show();
     this.http
       .delete<{
         data: { productId: Product }[];
@@ -87,6 +117,20 @@ export class WishlistService {
       .subscribe({
         next: formattedData => {
           this.wishlistSubject.next(formattedData);
+          this.toaster.success(
+            'Product removed from wishlist successfully',
+            'Success'
+          );
+        },
+        error: err => {
+          this.toaster.error(
+            'Could not remove product from wishlist',
+            err.message
+          );
+          console.log(err);
+        },
+        complete: () => {
+          this.loadingService.hide();
         },
       });
   }
@@ -97,14 +141,22 @@ export class WishlistService {
       'Content-Type': 'application/json',
     });
 
+    this.loadingService.show();
+
     this.http
       .delete<{ data: { productId: Product }[] }>(this.url, { headers })
       .subscribe({
         next: response => {
           this.wishlistSubject.next({});
+          this.toaster.success('Cleared wishlist successfully', 'Success');
+        },
+        error: err => {
+          this.toaster.error('Could not clear wishlist', err.message);
+          console.log(err);
+        },
+        complete: () => {
+          this.loadingService.hide();
         },
       });
   }
-
-  constructor(private http: HttpClient) {}
 }

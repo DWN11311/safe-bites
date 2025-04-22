@@ -10,10 +10,10 @@
 </div> -->
 
 <div class="w-full overflow-hidden relative mt-[72px]">
-  <div #slider class="w-screen h-screen flex transition-transform duration-500">
+  <div #slider class="w-screen h-[90vh] flex transition-transform duration-500">
     <div
       class="w-screen h-screen relative flex items-center justify-center shrink-0">
-      <img src="hero/1.jpg" class="object-cover w-full h-full" alt="hero 1" />
+      <img src="hero/5.webp" class="object-cover w-full h-full" alt="hero 1" />
       <div class="top-0 left-0 w-full h-full bg-black/50 absolute"></div>
       <div
         class="absolute text-center flex justify-center items-center flex-col w-[80%]">
@@ -76,7 +76,10 @@
     </div>
     <div
       class="w-screen h-screen relative flex items-center justify-center shrink-0">
-      <img src="hero/4.jpg" class="object-cover w-full h-full" alt="hero 1" />
+      <img
+        src="hero/fresh-fruit-juice.jpg"
+        class="object-cover w-full h-full"
+        alt="hero 1" />
       <div class="top-0 left-0 w-full h-full bg-black/50 absolute"></div>
       <div
         class="absolute text-center flex justify-center items-center flex-col w-[80%]">
@@ -102,11 +105,11 @@
     @for (dot of [0, 1, 2, 3]; track $index) {
       @if (counter === dot) {
         <div
-          class="size-6 border-2 border-[#1B8057] bg-[#1B8057] rounded-full cursor-pointer"
+          class="size-6 border-2 border-[#25d08c] bg-[#1B8057] rounded-full cursor-pointer"
           [attr.data-index]="dot"></div>
       } @else {
         <div
-          class="size-6 border-2 border-[#1B8057] rounded-full cursor-pointer"
+          class="size-6 border-2 border-[#25d08c] rounded-full cursor-pointer"
           [attr.data-index]="dot"></div>
       }
     }

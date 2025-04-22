@@ -59,81 +59,77 @@
       </div>
       <button
         (click)="addReview()"
-        class="add-review-btn text-lg md:text-xl font-semibold mt-10 py-2.5 bg-[#1B8057] w-full md:w-80 mx-auto rounded-lg text-[#F5F8F5]">
+        class="add-review-btn text-lg md:text-xl font-semibold mt-10 py-2.5 bg-[#1B8057] w-50 md:w-80 mx-auto rounded-lg text-[#F5F8F5]">
         Add Your Review
       </button>
     </div>
   </div>
+  <!-- Title and sort -->
+  <div
+    class="flex flex-col md:flex-row items-center gap-4 justify-between mt-6">
+    <div>
+      <h3 class="text-3xl md:text-4xl font-bold text-[#121311]">
+        Review
+        <span class="text-[#1B8057]">List</span>
+      </h3>
+      <p class="font-semibold text-[#8B8C8A] mt-2 md:mt-4">
+        Showing 1-{{ loadedReviews }} of {{ count }} results
+      </p>
+    </div>
+
+    <div class="flex items-center md:text-lg font-semibold">
+      <p class="">sort by :</p>
+      <select
+        (change)="sortReviews($event)"
+        name=""
+        id=""
+        class="border py-3 px-2 ml-2 rounded-lg">
+        <option value="nosort">No Sort</option>
+        <option value="asc">Rating Ascending</option>
+        <option value="desc">Rating Descending</option>
+      </select>
+    </div>
+  </div>
+
   <!-- reviews -->
   <div class="w-full mt-10 flex flex-col gap-4">
-    @if (!reviews.length) {
-      <app-empty-reviews></app-empty-reviews>
-    } @else {
-      <!-- Title and sort -->
-      <div
-        class="flex flex-col md:flex-row items-center gap-4 justify-between mt-6">
-        <div>
-          <h3 class="text-3xl md:text-4xl font-bold text-[#121311]">
-            Review
-            <span class="text-[#1B8057]">List</span>
-          </h3>
-          <p class="font-semibold text-[#8B8C8A] mt-2 md:mt-4">
-            Showing 1-{{ loadedReviews }} of {{ count }} results
-          </p>
-        </div>
+    @for (review of reviews; track $index) {
+      @if ($index < loadedReviews) {
+        <div class="flex items-center gap-4">
+          @if (!review.userId.image) {
+            <img
+              src="images/defaultUser.png"
+              class="size-12 md:size-16 rounded-full"
+              alt="" />
+          } @else {
+            <img
+              src="{{ review.userId.image.imageUrl }}"
+              class="size-12 md:size-16 rounded-full"
+              alt="" />
+          }
 
-        <div class="flex items-center md:text-lg font-semibold">
-          <p class="">sort by :</p>
-          <select
-            (change)="sortReviews($event)"
-            name=""
-            id=""
-            class="border py-3 px-2 ml-2 rounded-lg">
-            <option value="nosort">No Sort</option>
-            <option value="asc">Rating Ascending</option>
-            <option value="desc">Rating Descending</option>
-          </select>
+          <span class="text-2xl font-semibold"
+            >{{ review.userId.firstName }} {{ review.userId.lastName }}</span
+          >
         </div>
-      </div>
-      @for (review of reviews; track $index) {
-        @if ($index < loadedReviews) {
-          <div class="flex items-center gap-4">
-            @if (!review.userId.image) {
-              <img
-                src="images/defaultUser.png"
-                class="size-12 md:size-16 rounded-full"
-                alt="" />
+        <span class="text-xl font-bold">{{ review.reviewTitle }}</span>
+        <span class="text-lg">{{ review.reviewDescription }}</span>
+
+        <div class="flex items-center w-full text-xl gap-1 md:gap-2">
+          @for (star of [1, 2, 3, 4, 5]; track $index) {
+            @if (review.rating - $index >= 1) {
+              <i class="fa-solid fa-star text-[#F8C519]"></i>
+            } @else if (review.rating - $index >= 0.5) {
+              <i class="fa-solid fa-star-half-stroke text-[#F8C519]"></i>
             } @else {
-              <img
-                src="{{ review.userId.image.imageUrl }}"
-                class="size-12 md:size-16 rounded-full"
-                alt="" />
+              <i class="fa-regular fa-star text-[#F8C519]"></i>
             }
-
-            <span class="text-2xl font-semibold"
-              >{{ review.userId.firstName }} {{ review.userId.lastName }}</span
-            >
-          </div>
-          <span class="text-xl font-bold">{{ review.reviewTitle }}</span>
-          <span class="text-lg">{{ review.reviewDescription }}</span>
-
-          <div class="flex items-center w-full text-xl gap-1 md:gap-2">
-            @for (star of [1, 2, 3, 4, 5]; track $index) {
-              @if (review.rating - $index >= 1) {
-                <i class="fa-solid fa-star text-[#F8C519]"></i>
-              } @else if (review.rating - $index >= 0.5) {
-                <i class="fa-solid fa-star-half-stroke text-[#F8C519]"></i>
-              } @else {
-                <i class="fa-regular fa-star text-[#F8C519]"></i>
-              }
-            }
-            <span class="text-2xl font-semibold">{{ review.rating }}</span>
-          </div>
-          <hr />
-        }
+          }
+          <span class="text-2xl font-semibold">{{ review.rating }}</span>
+        </div>
+        <hr />
       }
     }
-
     @if (loadedReviews < count) {
       <button
         (click)="loadMore()"
@@ -144,9 +140,7 @@
   </div>
   @if (addReviewActive) {
     <div #addReviewForm>
-      <app-review-form
-        (reviewEvent)="onReviewAdded()"
-        [productId]="productId"></app-review-form>
+      <app-review-form [productId]="productId"></app-review-form>
     </div>
   }
 </div>

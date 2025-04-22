@@ -9,6 +9,8 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { CommonModule } from '@angular/common';
+import { CartsService } from '../../services/carts.service';
+import { WishlistService } from '../../services/wishlist.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +33,9 @@ export class LoginComponent {
   constructor(
     private usersService: UsersService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private cartsService: CartsService,
+    private wishlistService: WishlistService
   ) {}
 
   onGoogleSignIn() {
@@ -53,6 +57,8 @@ export class LoginComponent {
         if (event.origin !== 'http://localhost:8282') return; // تأكد إن الرسالة جاية من الـ backend
         if (event.data?.token) {
           localStorage.setItem('token', event.data.token);
+          const decodedToken = this.decodeJWT(event.data.token);
+          localStorage.setItem('firstName', decodedToken.firstName);
           this.router.navigate(['']);
         }
       },
@@ -105,7 +111,7 @@ export class LoginComponent {
     const emailControl = this.loginForm.get('email');
 
     if (emailControl?.hasError('required')) {
-      return 'This input is required';
+      return 'This field is required';
     } else if (emailControl?.hasError('email')) {
       return 'Invalid email format';
     }
@@ -117,13 +123,14 @@ export class LoginComponent {
     const passwordControl = this.loginForm.get('password');
 
     if (passwordControl?.hasError('required')) {
-      return 'This input is required';
+      return 'This field is required';
     }
 
     return '';
   }
 
   login() {
+    this.loginForm.markAllAsTouched();
     if (this.loginForm.invalid) {
       return; // Stop submission if form is invalid
     }
@@ -134,8 +141,6 @@ export class LoginComponent {
       next: res => {
         const data = res.body;
         if (data.token) {
-          console.log(data);
-          // localStorage.setItem('token', data.token);
           this.usersService.logintoken(data.token);
 
           const decodedToken = this.decodeJWT(data.token);
@@ -145,7 +150,6 @@ export class LoginComponent {
             .subscribe(response => {
               userData = response.user;
               localStorage.setItem('userId', userData._id);
-              console.log(userData);
 
               if (userData.image && userData.image.imageUrl)
                 localStorage.setItem(
@@ -155,7 +159,6 @@ export class LoginComponent {
               window.location.href = '';
             });
           localStorage.setItem('firstName', decodedToken.firstName);
-          console.log('User First Name:', decodedToken.firstName);
           // Remeber Me
           if (rememberMe) {
             localStorage.setItem('rememberedEmail', email);

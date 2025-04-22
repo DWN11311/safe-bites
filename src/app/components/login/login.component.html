@@ -1,19 +1,15 @@
-<form
-  class="grid grid-cols-4 md:grid-cols-12 bg-white gap-x-[1.5rem] md:gap-x-[2.5rem] px-5 md:px-20 xl:px-40 cursor-default py-[1.8rem] md:py-0 h-screen"
-  [formGroup]="loginForm"
-  (ngSubmit)="login()">
-  <div class="col-span-5 md:-ml-[10rem] hidden md:block">
-    <img
-      src="images/sign up/f75141002b7274ddf70545cfed087e44.jpg"
-      class="w-full h-screen object-cover" />
-  </div>
-  <div
-    class="col-span-4 md:col-span-6 flex flex-col gap-6 py-[12px] lg:py-0 md:col-start-7 justify-center">
+<div
+  class="grid grid-cols-12 h-screen xl:px-40 lg:px-24 px-10 xl:gap-10 gap-5 items-center">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+    class="col-span-12 md:col-span-6">
     <div class="text-form gap-1 flex flex-col lg:gap-2">
       <h1 class="text-[#1B8057] font-bold text-[2rem] lg:text-[2.5rem]">
         Welcome Back
       </h1>
-      <p class="text-[#1B8057] text-base lg:text-xl font-normal flex gap-1">
+      <p
+        class="text-[#1B8057] text-base lg:text-xl font-normal flex gap-1 lg:mb-4 mb-2">
         Don't have an account?<span
           routerLink="/sign-up"
           class="text-[#1B8057] text-base lg:text-xl underline font-bold md:font-semibold cursor-pointer"
@@ -29,95 +25,99 @@
     </div>
 
     <!-- form -->
-    <div class="form-field col-span-4 flex flex-col gap-6">
+    <div class="form-field flex flex-col gap-4">
       <!-- email -->
-      <div class="field-firstname flex flex-col gap-2">
-        <label for="email" class="text-[#121311] pl-1 font-medium"
-          >Email*</label
-        >
-        <input
-          id="email"
-          formControlName="email"
-          type="email"
-          placeholder="Enter your email"
-          class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 text-[14px] border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
-          autocomplete="off" />
-        <div class="h-[1px]">
-          <p
-            *ngIf="
-              loginForm.get('email')?.invalid && loginForm.get('email')?.touched
-            "
-            class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
-            <span>
-              <i class="fa-solid text-[#a40f0f] fa-circle-exclamation"></i
-            ></span>
-            {{ getEmailError() }}
-          </p>
-          <p
-            *ngIf="errorEmail"
-            class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
-            <span>
-              <i class="fa-solid text-[#a40f0f] fa-circle-exclamation"></i
-            ></span>
-            {{ errorEmail }}
-          </p>
-        </div>
-      </div>
-      <!-- Password -->
-      <div class="flex flex-col gap-8">
-        <div class="flex flex-col gap-2">
-          <label for="password" class="text-[#121311] pl-1 font-medium"
-            >Password*</label
+      <div class="flex flex-col gap-6">
+        <div class="field-firstname flex flex-col gap-2">
+          <label for="email" class="text-[#121311] pl-1 font-medium"
+            >Email*</label
           >
-          <div class="relative">
-            <input
-              formControlName="password"
-              id="password"
-              [type]="showPassword ? 'text' : 'password'"
-              placeholder="Enter your Password"
-              class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 pr-10 border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
-              autocomplete="off" />
-            <span
-              class="absolute inset-y-0 right-3 flex items-center text-[#58595A] text-xl cursor-pointer"
-              (click)="togglePassword()">
-              <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
-            </span>
-          </div>
-
+          <input
+            id="email"
+            formControlName="email"
+            type="email"
+            placeholder="Enter your email"
+            class="w-full border-2 rounded-lg h-[44px] lg:h-[56px] p-3 text-[14px] border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
+            autocomplete="off" />
           <div class="h-[1px]">
             <p
               *ngIf="
-                loginForm.get('password')?.invalid &&
-                loginForm.get('password')?.touched
+                loginForm.get('email')?.invalid &&
+                loginForm.get('email')?.touched
               "
-              class="text-sm md:text-xs lg:text-sm text-[#a40f0f]">
+              class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
               <span>
                 <i class="fa-solid text-[#a40f0f] fa-circle-exclamation"></i
               ></span>
-              {{ getPasswordError() }}
+              {{ getEmailError() }}
+            </p>
+            <p
+              *ngIf="errorEmail"
+              class="text-sm md:text-xs lg:text-sm text-[#a40f0f] pl-1">
+              <span>
+                <i class="fa-solid text-[#a40f0f] fa-circle-exclamation"></i
+              ></span>
+              {{ errorEmail }}
             </p>
           </div>
         </div>
-        <!--  -->
+        <!-- Password -->
+        <div class="flex flex-col gap-8">
+          <div class="flex flex-col gap-2">
+            <label for="password" class="text-[#121311] pl-1 font-medium"
+              >Password*</label
+            >
+            <div class="relative">
+              <input
+                formControlName="password"
+                id="password"
+                [type]="showPassword ? 'text' : 'password'"
+                placeholder="Enter your Password"
+                class="w-full border-2 rounded-lg p-3 pr-10 border-[#7DB69F] focus:border-[#1B8057] focus:outline-none"
+                autocomplete="off" />
+              <span
+                class="absolute inset-y-0 right-3 flex items-center text-[#58595A] text-xl cursor-pointer"
+                (click)="togglePassword()">
+                <i
+                  [class]="
+                    showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'
+                  "></i>
+              </span>
+            </div>
 
-        <!-- <span class="h-6">error</span> -->
-        <!-- check box  -->
-        <div class="flex items-center gap-2">
-          <input
-            type="checkbox"
-            id="check"
-            formControlName="rememberMe"
-            class="h-4 w-4 md:w-5 md:h-5" />
-          <label for="check" class="text-[#1B8057] text-[1rem] font-normal"
-            >Remeber me</label
-          >
+            <div class="h-[1px]">
+              <p
+                *ngIf="
+                  loginForm.get('password')?.invalid &&
+                  loginForm.get('password')?.touched
+                "
+                class="text-sm md:text-xs lg:text-sm text-[#a40f0f]">
+                <span>
+                  <i class="fa-solid text-[#a40f0f] fa-circle-exclamation"></i
+                ></span>
+                {{ getPasswordError() }}
+              </p>
+            </div>
+          </div>
+          <!--  -->
+
+          <!-- <span class="h-6">error</span> -->
+          <!-- check box  -->
+          <div class="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id="check"
+              formControlName="rememberMe"
+              class="h-4 w-4 md:w-5 md:h-5" />
+            <label for="check" class="text-[#1B8057] text-[1rem] font-normal"
+              >Remeber me</label
+            >
+          </div>
         </div>
       </div>
       <!-- buttons -->
-      <div class="buttons flex flex-col gap-8">
+      <div class="buttons flex flex-col gap-5">
         <button
-          (click)="login()"
-          [disabled]="loginForm.invalid"
           class="shadow-[0_4px_4px_rgBA(38,75,45,0.25)] hover:bg-[#135C3E] p-3 w-full rounded-lg h-[44px] lg:h-[56px] bg-[#1B8057] text-[#F5F8F5] font-semibold text-base lg:text-xl flex items-center justify-center shadow-[rgba(116,154,68,0.25)] transition-all duration-300 ease-in-out cursor-pointer">
           Log in
         </button>
@@ -140,5 +140,11 @@
         </div>
       </div>
     </div>
+  </form>
+
+  <div class="hidden md:block md:col-span-6 h-screen">
+    <img
+      src="images/sign up/f75141002b7274ddf70545cfed087e44.jpg"
+      class="w-full lg:h-[37.8rem] lg:mt-12 h-[35.5rem] mt-15" />
   </div>
-</form>
+</div>

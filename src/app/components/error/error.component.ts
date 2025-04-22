@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
+  imports: [RouterModule],
   selector: 'app-error',
   standalone: true,
   templateUrl: './error.component.html',

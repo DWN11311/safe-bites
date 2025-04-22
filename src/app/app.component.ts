@@ -63,6 +63,7 @@ export class AppComponent implements OnInit {
       });
     const token = localStorage.getItem('token');
     if (token) {
+      this.wishlistService.getWishlist(token);
       this.cartService.getCart(token);
     }
   }

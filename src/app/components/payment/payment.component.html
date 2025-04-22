@@ -1,25 +1,10 @@
-<!-- <div
-  class="w-full flex flex-col justify-center items-center gap-4"
-  style="
-    background: url('/images/ContactUs/hero product section.png');
-    background-size: cover;
-    background-position: center;
-  ">
-  <h1 class="text-[#1B8057] text-5xl font-bold pt-24">Checkout</h1>
-  <div class="flex pb-24">
-    <h3>Home</h3>
-    <h3>/ Contact Us</h3>
-    <h3>/Checkout</h3>
-  </div>
-</div> -->
-
 <h2 class="text-2xl font-bold mx-10 px-8 mt-16">Billing Details</h2>
 <div
-  class="grid grid-cols-12 sm:col-span-6 md:col-span-8 gap-8 p-8 mx-auto lg:m-10">
+  class="grid grid-cols-12 sm:col-span-6 md:col-span-8 gap-6 p-6 mx-auto lg:m-10 max-w-full">
   <form
-    [formGroup]="contactForm"
+    [formGroup]="paymentForm"
     (ngSubmit)="submitForm()"
-    class="col-span-12 sm:col-span-6 md:col-span-8 my-auto">
+    class="col-span-12 sm:col-span-6 md:col-span-8 my-auto max-w-full">
     <div class="grid grid-cols-8 gap-10 lg:mb-10 md:mb-10 sm:mb-12 mb-10 mt-4">
       <!-- first name -->
       <div class="relative col-span-4">
@@ -37,7 +22,7 @@
           class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
           [ngClass]="{
             'top-[-10px] text-sm text-[#1B8057]':
-              contactForm.get('FirstName')?.value,
+              paymentForm.get('FirstName')?.value,
           }">
           First Name
         </label>
@@ -51,7 +36,7 @@
           >
         </div>
       </div>
-      <!-- last name -->
+      <!-- last name  -->
       <div class="relative col-span-4">
         <input
           type="text"
@@ -67,7 +52,7 @@
           class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
           [ngClass]="{
             'top-[-10px] text-sm text-[#1B8057]':
-              contactForm.get('LastName')?.value,
+              paymentForm.get('LastName')?.value,
           }">
           Last Name
         </label>
@@ -97,7 +82,7 @@
         for="phone"
         class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057] focus:ring-0"
         [ngClass]="{
-          'top-[-10px] text-sm text-[#1B8057]': contactForm.get('phone')?.value,
+          'top-[-10px] text-sm text-[#1B8057]': paymentForm.get('phone')?.value,
         }">
         phone
       </label>
@@ -131,7 +116,7 @@
         for="Email"
         class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
         [ngClass]="{
-          'top-[-10px] text-sm text-[#1B8057]': contactForm.get('Email')?.value,
+          'top-[-10px] text-sm text-[#1B8057]': paymentForm.get('Email')?.value,
         }">
         Email
       </label>
@@ -150,6 +135,7 @@
       </div>
     </div>
     <!-- city -->
+
     <div class="relative lg:mb-10 md:mb-10 sm:mb-10 mb-10 mt-4">
       <input
         type="text"
@@ -164,7 +150,7 @@
         for="City"
         class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
         [ngClass]="{
-          'top-[-10px] text-sm text-[#1B8057]': contactForm.get('City')?.value,
+          'top-[-10px] text-sm text-[#1B8057]': paymentForm.get('City')?.value,
         }">
         City
       </label>
@@ -195,7 +181,7 @@
         class="absolute left-3 bg-[#F5F8F5] px-1 text-gray-500 text-base transition-all duration-300 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-400 peer-focus:top-[-10px] peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:text-[#1B8057]"
         [ngClass]="{
           'top-[-10px] text-sm text-[#1B8057]':
-            contactForm.get('Street')?.value,
+            paymentForm.get('Street')?.value,
         }">
         Street
       </label>
@@ -241,7 +227,7 @@
       </div>
 
       <button
-        routerLink="/order"
+        (click)="submitForm()"
         class="w-full bg-[#1B8057] text-white py-3 mt-4 rounded-md hover:bg-[#3a6b58] transition text-center">
         Proceed to Payment
       </button>

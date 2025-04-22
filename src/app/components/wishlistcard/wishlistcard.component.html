@@ -4,6 +4,7 @@
   <!-- images -->
   <div>
     <img
+      [routerLink]="'/products/' + product._id"
       [src]="product.images[0].imageUrl"
       [appHover]="product.images[1].imageUrl"
       alt="image1"

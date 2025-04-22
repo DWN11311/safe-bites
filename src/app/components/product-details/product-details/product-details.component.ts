@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../../../services/products.service';
 import { Product } from '../../../models/product.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductTabsComponent } from '../product-tabs/product-tabs.component';
 import { ProductGallaryComponent } from '../product-gallery/product-gallery.component';
 import { CommonModule } from '@angular/common';
@@ -27,7 +27,8 @@ export class ProductDetailsComponent {
 
   constructor(
     private productsService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -49,7 +50,9 @@ export class ProductDetailsComponent {
           this.showProduct = true;
         }, 0);
       },
-      error: () => {},
+      error: err => {
+        this.router.navigate(['error', 404, 'Could not find product']);
+      },
       complete: () => {},
     });
   }

@@ -53,8 +53,11 @@ export class HeaderComponent {
 
     this.cartService.cart$.subscribe({
       next: cart => {
-        const itemsArray = Object.values(cart); 
-        this.cartCount = itemsArray.reduce((total, item) => total + Number(item.quantity ?? 0), 0);
+        const itemsArray = Object.values(cart);
+        this.cartCount = itemsArray.reduce(
+          (total, item) => total + Number(item.quantity ?? 0),
+          0
+        );
       },
     });
 
@@ -78,6 +81,7 @@ export class HeaderComponent {
 
   logout() {
     this.usersService.logout();
+    localStorage.clear();
     this.firstName = null;
     this.toggleMenu();
   }
